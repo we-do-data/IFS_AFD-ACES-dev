@@ -78,7 +78,6 @@
       class="card card--two fixed fixed--center"
       :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }`"
       >
-        <!-- :dsId="dsId" -->
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
@@ -94,7 +93,6 @@
       class="card card--three fixed fixed--center"
       :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }`"
       >
-        <!-- :dsId="dsId" -->
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights"
@@ -587,16 +585,14 @@ export default {
   // }
 }
 .transition {
-  animation: appear 200ms ease-in;
+  animation: appear 300ms ease-in-out;
 }
 @keyframes appear {
   from {
-    // transform: scaleX(.85);
-    transform: translate(-50%, -57%);
+    transform : translate(-50%, -57%) scaleX(.85) ;
   }
   to {
-    // transform: scaleX(.9);
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -60%) scaleX(.9);
   }
 }
 </style>
