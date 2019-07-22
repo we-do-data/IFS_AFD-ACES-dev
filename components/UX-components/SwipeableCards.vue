@@ -20,7 +20,6 @@
       :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }`"
       >
 
-        <!-- :interact-event-bus-events="this.$bus" -->
       <InteractDraggable
         v-if="isVisible"
         id="mainDraggableCard"
@@ -48,24 +47,9 @@
         @draggedLeft="emitAndNext('skip')"
         @draggedUp="emitAndNext('skip')"
 
-
         @clickDraggableBtn="getClickSignal"
         >
-        <!-- @skip="emitAndNext('skip')" -->
 
-        <!-- 
-        @draggedDown="draggedDown"
-        @draggedLeft="draggedLeft"
-        @draggedRight="draggedRight"
-        @draggedUp="draggedUp" 
-        -->
-        <!-- 
-        @draggedRight="emitAndNext('match')"
-        @draggedLeft="emitAndNext('reject')"
-        @draggedUp="emitAndNext('skip')"
-        -->
-
-          <!-- :dsId="dsId" -->
         <CardData
 
           :itemData="current"
@@ -76,6 +60,7 @@
           :breakPoint="this.$vuetify.breakpoint.name"
 
           :isPauseInteractParent="isPauseInteract"
+          :cardWindow="cardWindow"
 
           @needPauseInteract="pauseInteract"
           @click="stopPropagation"
@@ -97,6 +82,7 @@
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
+        :cardWindow="cardWindow"
         >
       </CardData>
     </v-flex> 
@@ -112,6 +98,7 @@
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights"
+        :cardWindow="cardWindow"
         >
       </CardData>
     </v-flex>
@@ -171,7 +158,7 @@ export default {
       breakPointCode : undefined,
       windowWidth : 0,
   
-      window: {
+      cardWindow: {
         width: 0,
         height: 0
       },
@@ -240,15 +227,15 @@ export default {
 
 
     cardHeight() { 
-      return ( this.window.height * .75 ) + "px" 
+      return ( this.cardWindow.height * .75 ) + "px" 
     },
     cardHeights() {
       return {
-        title: ( this.window.height * .10) + "px",
-        content: ( this.window.height * .54 ) + "px",
-        more: ( this.window.height * .12 ) + "px",
-        resources: ( this.window.height * .39 ) + "px",
-        // footer: "8vh"
+        title: ( this.cardWindow.height * .10) + "px",
+        content: ( this.cardWindow.height * .54 ) + "px",
+        more: ( this.cardWindow.height * .12 ) + "px",
+        resources: ( this.cardWindow.height * .39 ) + "px",
+        // footer: ( this.cardWindow.height * .08 ) + "px",
       }
     },
 
@@ -267,12 +254,14 @@ export default {
   methods: {
 
     handleResize() {
-      if ( this.$ua.isFromAndroidOs() ) {
-        this.window.width = window.innerHeight 
-        this.window.height = window.innerWidth
+      let needInvertAndroid = this.$ua.isFromAndroidOs()
+      let isMobile = this.$device.isMobileOrTablet
+      if ( needInvertAndroid  ) {
+        this.cardWindow.width = window.innerHeight
+        this.cardWindow.height = window.innerWidth
       } else {
-        this.window.width = window.innerWidth
-        this.window.height = window.innerHeight
+        this.cardWindow.width = window.innerWidth
+        this.cardWindow.height = window.innerHeight
       }
     },
 
@@ -292,9 +281,9 @@ export default {
 
     // compute card width
     cardWidth ( widthPercent ) {
-      let maxWidth = 100
-      let zWidth = maxWidth * widthPercent / 100
-      let step = 10
+      // let maxWidth = 100
+      // let zWidth = maxWidth * widthPercent 
+      let step = .1
       switch (this.$vuetify.breakpoint.name) {
 
         // case 'xs': return zWidth + 'vw'
@@ -303,11 +292,11 @@ export default {
         // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
         // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
 
-        case 'xs': return Math.round(( zWidth * this.window.width )) + 'px'
-        case 'sm': return Math.round(( ( zWidth - (step * 4) ) * this.window.width )) + 'px'
-        case 'md': return Math.round(( ( zWidth - (step * 5) ) * this.window.width )) + 'px'
-        case 'lg': return Math.round(( ( zWidth - (step * 6) ) * this.window.width )) + 'px'
-        case 'xl': return Math.round(( ( zWidth - (step * 7) ) * this.window.width )) + 'px'
+        case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
+        case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
+        case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
       }
     },
     getNexCard(){
@@ -323,8 +312,6 @@ export default {
     // cf : https://codesandbox.io/s/5wo373kqwk
     skip() {
       console.log("C-SwipeableCards / skip ..." )
-      // InteractEventBus.$emit(EVENTS.SKIP)
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT)
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT)
       // this.emitAndNext('skip')
     },
@@ -355,7 +342,6 @@ export default {
       console.log("C-SwipeableCards-pauseInteract / isPause :", isPause )
       this.isPauseInteract = isPause
     },
-
 
 
 
@@ -412,8 +398,6 @@ export default {
 
 
 
-
-
     // draggedDown() {
     //   console.log("dragged down!");
     //   this.shiftCard();
@@ -434,18 +418,15 @@ export default {
 
 
     // dragDown() {
-    //   InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_DOWN);
+    //   this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_DOWN);
     // },
     dragLeft() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_LEFT);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_LEFT);
     },
     dragRight() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
     },
     dragUp() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_UP);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_UP);
     },
   }
@@ -453,6 +434,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .full-height{
   height: 100%;
 }
@@ -605,15 +587,15 @@ export default {
   // }
 }
 .transition {
-  animation: appear 400ms ease-in;
+  animation: appear 200ms ease-in;
 }
 @keyframes appear {
   from {
-    transform: scaleY(.85);
+    // transform: scaleX(.85);
     transform: translate(-50%, -57%);
   }
   to {
-    transform: scaleY(.9);
+    // transform: scaleX(.9);
     transform: translate(-50%, -60%);
   }
 }

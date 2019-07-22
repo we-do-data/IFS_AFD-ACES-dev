@@ -62,14 +62,14 @@
               </p>
 
               <p>
-                Width: {{ window.width }},
-                Height: {{ window.height }} 
+                cardWindow.width : {{ cardWindow.width }},
+                cardWindow.height : {{ cardWindow.height }} 
                 <br>
 
-                <br> $device.isMobileOrTablet : {{ $device.isMobileOrTablet }} <br>
+                <br> $device.isMobileOrTablet : <br>{{ $device.isMobileOrTablet }} <br>
 
-                <br> $ua.browser() : {{ $ua.browser() }}
-                <br> $ua.isFromAndroidOs() : {{ $ua.isFromAndroidOs() }} <br>
+                <br> $ua.browser() : <br>{{ $ua.browser() }}
+                <br> $ua.isFromAndroidOs() : <br>{{ $ua.isFromAndroidOs() }} <br>
               </p>
 
               <!-- <p>
@@ -236,6 +236,7 @@
 
 
 <script>
+
 // based and adapted from : https://www.josephharveyangeles.com/blog/2019/kittynder
 var cookieparser = require('cookieparser')
 import Cookie from 'js-cookie'
@@ -246,6 +247,8 @@ import interact from 'interact.js'
 import { InteractEventBus } from 'vue2-interact'
 
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
+
+// import { chooseTemplate } from '~/plugins/utils.js'
 
 // cf : https://codepen.io/sethdavis512/pen/EvNKWw
 
@@ -259,6 +262,7 @@ export default {
     
     // debug
     'isPauseInteractParent',
+    'cardWindow',
 
     'cardWidth',
     'breakPoint',
@@ -286,20 +290,9 @@ export default {
       isPauseInteract : false,
       triggerFav : false,
 
-      window: {
-        width: 0,
-        height: 0
-      },
-
     }
   },
-  created() {
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize();
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.handleResize)
-  },
+
   computed: {
 
     ...mapState({
@@ -340,11 +333,6 @@ export default {
     }
   },
   methods: {
-
-    handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
-    },
 
     getContentByLocale( fieldCode ){
       // console.log("C-CardData-getContentByLocale..." )

@@ -27,7 +27,7 @@ export const getters = {
 
   // INTERNATIONALIZATION
   getDefaultLocale : (state, getters) => {
-    console.log("S-index-G-getDefaultLocale ...")
+    state.log && console.log("S-index-G-getDefaultLocale ...")
     return process.env.CONFIG_APP.defaultLocale
   },
 
