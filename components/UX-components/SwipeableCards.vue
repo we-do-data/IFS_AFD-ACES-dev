@@ -5,6 +5,7 @@
     id="swipeable-cards"
     fill-height
     align-center
+
     justify-center
     wrap
     >
@@ -17,7 +18,7 @@
     <v-flex
       v-if="current"
       :class="`card card--one full-height fixed fixed--center ${ isVisible ? 'transition' :'' }`"
-      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }`"
+      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
 
       <InteractDraggable
@@ -76,7 +77,7 @@
     <v-flex
       v-if="getNexCard()"
       class="card card--two fixed fixed--center"
-      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }`"
+      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
       <CardData
         :itemData="getNexCard()"
@@ -91,7 +92,7 @@
     <v-flex
       v-if="index + 2 < cards.length"
       class="card card--three fixed fixed--center"
-      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }`"
+      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
       <CardData
         :itemData="{}"
@@ -226,7 +227,9 @@ export default {
       return this.cards && this.cards[ this.index ]
     },
 
-
+    centerCardStyle() {
+      return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) - 7 }px;`
+    },
     cardHeight() { 
       return ( this.cardWindow.height * .75 ) + "px" 
     },
@@ -540,11 +543,13 @@ export default {
 // }
 .fixed {
   position: fixed;
-  &--center {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+  // &--center {
+  //   top: 357px;
+  //   left: 199px; 
+  //   // left: 50%;
+  //   // top: 50%;
+  //   // transform: translate(-50%, -50%);
+  // }
 }
 // .rounded-borders {
 //   border-radius: 12px;

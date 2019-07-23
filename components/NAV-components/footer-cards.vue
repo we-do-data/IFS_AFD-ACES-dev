@@ -4,14 +4,12 @@
 
   <v-footer 
     color="transparent"
-        xs10 offset-xs1
+    xs10 offset-xs1
     sm8 offset-md2
     md6 offset-md3
-    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } pb-2 centered`"
+    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } pb-4 centered`"
+    :style="`height: 32px; width:${ cardWindow.width }px`"
     >
-
-    <!-- <v-layout
-      > -->
 
     <div
       :style="`z-index: 4; width:${ cardWidth( .9 ) }`"

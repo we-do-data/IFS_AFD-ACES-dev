@@ -10,15 +10,21 @@
     <!-- CONTENTS -->
     <v-content
       >
-      <v-container>
+      <v-container 
+        pa-0>
         <nuxt />
       </v-container>
     </v-content>
 
     <!-- FOOTER CARDS -->
-    <!-- <FooterCards>
-    </FooterCards> -->
+    <FooterCards>
+    </FooterCards>
 
+    <!-- <FooterCards
+      class="fixed-bottom"
+      >
+    </FooterCards> -->
+      <!-- @reloadPreviousItem="reloadPreviousItem()" -->
 
   </v-app>
 </template>
@@ -28,7 +34,7 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Navbar from '~/components/NAV-components/navbar.vue'
-// import FooterCards from '~/components/NAV-components/footer-cards'
+import FooterCards from '~/components/NAV-components/footer-cards'
 
 export default {
 
@@ -36,7 +42,7 @@ export default {
 
   components: {
     Navbar,
-    // FooterCards
+    FooterCards
   },
 
   props: [
@@ -79,3 +85,20 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+  /* .skip-navbar-more{
+    margin-top: 75px;
+  } */
+
+  .fixed-bottom{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    bottom:0;
+    width: 100%;
+    text-align: center;
+  }
+
+</style>
