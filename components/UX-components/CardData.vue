@@ -181,6 +181,7 @@
 
             <div 
               :class="`mt-4 limited-height`"
+              v-body-scroll-lock="true"
               :style="`max-height:${ cardHeights['resources'] }`"
               >
 

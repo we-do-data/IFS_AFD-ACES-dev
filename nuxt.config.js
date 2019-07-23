@@ -200,6 +200,7 @@ export default {
     // '~/plugins/loadGSheetData',
     '~/plugins/vue-touch-events.js',
     // '~/plugins/vh-for-mobile.js',
+    '~/plugins/scroll-lock.js',
     '~/plugins/eventBus'
   ],
 
