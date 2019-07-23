@@ -251,15 +251,22 @@ export default {
     }),
 
     cardWidth ( widthPercent ) {
-      let maxWidth = 80
-      let zWidth = maxWidth * widthPercent
-      let step = 10
+      // let maxWidth = 100
+      // let zWidth = maxWidth * widthPercent 
+      let step = .1
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return zWidth + 'vw'
-        case 'sm': return ( zWidth - (step * 2) ) + 'vw'
-        case 'md': return ( zWidth - (step * 3) ) + 'vw'
-        case 'lg': return ( zWidth - (step * 4) ) + 'vw'
-        case 'xl': return ( zWidth - (step * 5) ) + 'vw'
+
+        // case 'xs': return zWidth + 'vw'
+        // case 'sm': return ( zWidth - (step * 4) ) + 'vw'
+        // case 'md': return ( zWidth - (step * 5) ) + 'vw'
+        // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
+        // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
+
+        case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
+        case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
+        case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
       }
     },
 
