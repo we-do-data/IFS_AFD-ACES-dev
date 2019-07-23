@@ -62,15 +62,15 @@
               </p>
 
               <p>
-                debug - 01.1 <br>
+                debug - 01.2 <br>
                 W :{{ cardWindow.width }} : cardWindow.width<br>
                 H : {{ cardWindow.height }} : cardWindow.height
                 <br>
 
-                <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet <br>
-
+                <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet
                 <br> {{ $ua.browser() }} : $ua.browser() 
-                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() <br>
+                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs()
+
               </p>
 
               <!-- <p>
