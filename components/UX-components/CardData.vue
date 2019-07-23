@@ -62,6 +62,7 @@
               </p>
 
               <p>
+                debug - 01.0 <br>
                 W :{{ cardWindow.width }} : cardWindow.width<br>
                 H : {{ cardWindow.height }} : cardWindow.height
                 <br>
