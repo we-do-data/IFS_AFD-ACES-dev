@@ -156,10 +156,10 @@ export default {
       breakPointCode : undefined,
       windowWidth : 0,
   
-      cardWindow: {
-        width: 0,
-        height: 0
-      },
+      // cardWindow: {
+      //   width: 0,
+      //   height: 0
+      // },
 
       // cardHeight: "75vh",
       // cardHeights: {
@@ -211,6 +211,9 @@ export default {
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
+
+      cardWindow : state => state.cardWindow,
+
       dsId : state => state.cards.currentDsId,
       cards : state => state.cards.currentCardsArrray,
       cardId : state => state.cards.currentCardId,
@@ -263,8 +266,15 @@ export default {
       //   this.cardWindow.height = window.innerHeight
       // }
 
-      this.cardWindow.width = window.innerWidth
-      this.cardWindow.height = window.innerHeight
+      // this.cardWindow.width = window.innerWidth
+      // this.cardWindow.height = window.innerHeight
+
+      let currentWindow = { 
+        width : window.innerWidth,
+        height : window.innerHeight
+      }
+      this.$store.commit('setCardWindow', currentWindow )
+
     },
 
     getClickSignal(event){

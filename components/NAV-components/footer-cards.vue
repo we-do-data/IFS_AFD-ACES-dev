@@ -223,12 +223,22 @@ export default {
 
   },
 
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+
   computed: {
 
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
       locSelected : state => state.locSelected,
+
+      cardWindow : state => state.cardWindow,
 
       index : state => state.cards.currentCardIndex,
 
@@ -244,6 +254,28 @@ export default {
   },
 
   methods: {
+
+    handleResize() {
+      let needInvertAndroid = this.$ua.isFromAndroidOs()
+      let isMobile = this.$device.isMobileOrTablet
+
+      // if ( needInvertAndroid  ) {
+      //   this.cardWindow.width = window.innerHeight
+      //   this.cardWindow.height = window.innerWidth
+      // } else {
+      //   this.cardWindow.width = window.innerWidth
+      //   this.cardWindow.height = window.innerHeight
+      // }
+
+      // this.cardWindow.width = window.innerWidth
+      // this.cardWindow.height = window.innerHeight
+
+      let currentWindow = { 
+        width : window.innerWidth,
+        height : window.innerHeight
+      }
+      this.$store.commit('setCardWindow', currentWindow )
+    },
 
     ...mapMutations({
       setCurrentCardIndex: 'cards/setCurrentCardIndex',

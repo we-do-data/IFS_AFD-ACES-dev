@@ -21,6 +21,11 @@ export const state = () => ({
   showNav : false,
   firstVisit: true,
 
+  cardWindow: {
+    width: 0,
+    height: 0
+  },
+
 })
 
 export const getters = {
@@ -90,6 +95,11 @@ export const mutations = {
   setFirstVisit(state, value){
     console.log("S-index-M-setLocSelected ...")
     state.firstVisit = value
+  },
+
+  setCardWindow (state, cardWithHeight){
+    state.cardWindow.width = cardWithHeight.width
+    state.cardWindow.height = cardWithHeight.height
   },
 
 }
