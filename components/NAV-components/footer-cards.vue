@@ -7,7 +7,8 @@
     xs10 offset-xs1
     sm8 offset-md2
     md6 offset-md3
-    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } pb-4 centered`"
+    fixed
+    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } centered`"
     :style="`height: 32px; width:${ cardWindow.width }px`"
     >
 
@@ -254,8 +255,6 @@ export default {
   methods: {
 
     handleResize() {
-      let needInvertAndroid = this.$ua.isFromAndroidOs()
-      let isMobile = this.$device.isMobileOrTablet
 
       // if ( needInvertAndroid  ) {
       //   this.cardWindow.width = window.innerHeight

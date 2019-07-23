@@ -25,6 +25,8 @@ export const state = () => ({
     width: 0,
     height: 0
   },
+  mobileWidthCorrection : 0,
+  mobileHeightCorrection : 0,
 
 })
 
@@ -98,8 +100,16 @@ export const mutations = {
   },
 
   setCardWindow (state, cardWithHeight){
-    state.cardWindow.width = cardWithHeight.width
-    state.cardWindow.height = cardWithHeight.height
+
+    let isFromAndroidOs = this.$ua.isFromAndroidOs()
+    let isMobile = this.$device.isMobileOrTablet
+    let isChrome = this.$ua.browser() === 'Chrome'
+    
+    let mobileWidthCorrection = ( isMobile && isFromAndroidOs && isChrome ) ? state.mobileWidthCorrection : 0  
+    let mobileHeightCorrection = ( isMobile && isFromAndroidOs && isChrome ) ? state.mobileHeightCorrection : 0  
+
+    state.cardWindow.width = cardWithHeight.width - mobileWidthCorrection
+    state.cardWindow.height = cardWithHeight.height - mobileHeightCorrection
   },
 
 }

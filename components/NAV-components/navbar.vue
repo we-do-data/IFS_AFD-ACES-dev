@@ -49,7 +49,7 @@
       </v-btn> -->
 
 
-      <!-- LOCALES -->
+      <!-- LOCALES AND PAGES -->
       <v-menu
         v-if="isDrawerLeft && hasManyLocales"
         offset-y 

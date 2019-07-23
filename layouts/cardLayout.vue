@@ -1,6 +1,6 @@
 <template>
   <v-app
-    class="card-background-color"
+    class="card-background-color no-scroll"
     >
 
     <!-- NAVABR -->
@@ -40,6 +40,12 @@ export default {
 
   name: "CardLayout",
 
+  head() {
+    return {
+      title: "AFD / " + this.dsId,
+    }
+  },
+
   components: {
     Navbar,
     FooterCards
@@ -55,15 +61,15 @@ export default {
   data() {
 
     return {
-      footerBtnsLeft: [
-        { textCode: "twitter", icon: "fab fa-twitter", to: "/about" },
-        { textCode: "facebook", icon: "fab fa-facebook", to: "/credits" },
-        { textCode: "screenshot", icon: "fas fa-camera", to: "/credits" },
-      ],
+      // footerBtnsLeft: [
+      //   { textCode: "twitter", icon: "fab fa-twitter", to: "/about" },
+      //   { textCode: "facebook", icon: "fab fa-facebook", to: "/credits" },
+      //   { textCode: "screenshot", icon: "fas fa-camera", to: "/credits" },
+      // ],
 
-      footerBtnsRight : [
-        { textCode: "favorite", icon: "favorite", to: "/favorites" },
-      ]
+      // footerBtnsRight : [
+      //   { textCode: "favorite", icon: "favorite", to: "/favorites" },
+      // ]
     }
 
   },
@@ -74,6 +80,7 @@ export default {
       log : state => state.log, 
       locale : state => state.locale,
       locSelected : state => state.locSelected,
+      dsId : state => state.cards.currentDsId,
     }),
 
     ...mapGetters({
@@ -92,6 +99,9 @@ export default {
     margin-top: 75px;
   } */
 
+  .no-scroll{
+    overflow: hidden;
+  }
   .fixed-bottom{
     position: fixed;
     bottom: 0;

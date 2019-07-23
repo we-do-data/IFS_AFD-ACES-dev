@@ -155,8 +155,8 @@ export default {
       
       // UI data
       breakPointCode : undefined,
-      windowWidth : 0,
-  
+      // windowWidth : 0,
+
       // cardWindow: {
       //   width: 0,
       //   height: 0
@@ -209,6 +209,7 @@ export default {
   },
 
   computed: {
+
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
@@ -220,6 +221,7 @@ export default {
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
     }),
+
     ...mapGetters({
       cardsLength : 'cards/getCardsArrrayLength',
     }),
@@ -228,7 +230,7 @@ export default {
     },
 
     centerCardStyle() {
-      return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) - 7 }px;`
+      return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) }px;`
     },
     cardHeight() { 
       return ( this.cardWindow.height * .75 ) + "px" 
@@ -258,10 +260,10 @@ export default {
   methods: {
 
     handleResize() {
-      let needInvertAndroid = this.$ua.isFromAndroidOs()
-      let isMobile = this.$device.isMobileOrTablet
 
-      // if ( needInvertAndroid  ) {
+
+
+      // if ( isFromAndroidOs  ) {
       //   this.cardWindow.width = window.innerHeight
       //   this.cardWindow.height = window.innerWidth
       // } else {

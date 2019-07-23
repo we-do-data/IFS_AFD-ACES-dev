@@ -20,9 +20,6 @@
           > -->
         <SwipeableCards
           >
-          <!-- :dsId="currentDsId"
-          :cardsArray="currentCardsArrray"
-          :cardId="currentCardId" -->
         </SwipeableCards>
 
       <!-- </v-flex> -->
