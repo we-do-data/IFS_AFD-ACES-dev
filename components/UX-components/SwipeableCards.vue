@@ -254,13 +254,17 @@ export default {
     handleResize() {
       let needInvertAndroid = this.$ua.isFromAndroidOs()
       let isMobile = this.$device.isMobileOrTablet
-      if ( needInvertAndroid  ) {
-        this.cardWindow.width = window.innerHeight
-        this.cardWindow.height = window.innerWidth
-      } else {
-        this.cardWindow.width = window.innerWidth
-        this.cardWindow.height = window.innerHeight
-      }
+
+      // if ( needInvertAndroid  ) {
+      //   this.cardWindow.width = window.innerHeight
+      //   this.cardWindow.height = window.innerWidth
+      // } else {
+      //   this.cardWindow.width = window.innerWidth
+      //   this.cardWindow.height = window.innerHeight
+      // }
+
+      this.cardWindow.width = window.innerWidth
+      this.cardWindow.height = window.innerHeight
     },
 
     getClickSignal(event){

@@ -62,8 +62,8 @@
               </p>
 
               <p>
-                {{ cardWindow.width }} : cardWindow.width<br>
-                {{ cardWindow.height }} : cardWindow.height
+                W :{{ cardWindow.width }} : cardWindow.width<br>
+                H : {{ cardWindow.height }} : cardWindow.height
                 <br>
 
                 <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet <br>
