@@ -1,38 +1,8 @@
 <template>
 
-  <!-- <v-container> -->
-
-    <!-- <v-layout 
-      fill-height
-      row wrap 
-      > -->
-
-      <!-- <v-flex 
-        xs10 offset-xs1
-        sm8 offset-md2
-        md6 offset-md3 
-        > -->
-
-        <!-- <SwipeableCards
-          :cardsArray="cardsArray"
-          :dsId="dsId"
-          :cardId="cardId"
-          > -->
-        <SwipeableCards
-          >
-        </SwipeableCards>
-
-      <!-- </v-flex> -->
-
-    <!-- </v-layout> -->
-
-  <!-- <FooterCards
-    class="fixed-bottom"
-    @reloadPreviousItem="reloadPreviousItem()"
+  <SwipeableCards
     >
-  </FooterCards> -->
-
-  <!-- </v-container> -->
+  </SwipeableCards>
 
 </template>
 

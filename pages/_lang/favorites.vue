@@ -35,9 +35,6 @@
 
       <br>
 
-      <!-- DEBUG -->
-      favorites : <br><pre><code>{{ favorites }}</code></pre><br>
-
       <!-- FAVORITES LIST -->
       <div
         v-for="dsFavorites in favorites"

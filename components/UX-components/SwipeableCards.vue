@@ -193,6 +193,7 @@ export default {
       cards : state => state.cards.currentCardsArrray,
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
+      
     }),
 
     ...mapGetters({

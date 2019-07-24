@@ -62,15 +62,15 @@
               </p>
 
               <p>
-                debug develop - 01.1 <br>
+                debug develop - 01.2 <br>
                 <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
                 <!-- H : {{ cardWindow.height }} : cardWindow.height -->
                 <!-- <br> -->
                 
-                dsId : {{ dsId }}<br>
+                <!-- dsId : {{ dsId }}<br> -->
                 <!-- cards : {{ cards }}<br> -->
-                cardId : {{ cardId }}<br>
-                index : {{ index }}<br>
+                <!-- cardId : {{ cardId }}<br> -->
+                <!-- index : {{ index }}<br> -->
 
                 <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
                 <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
