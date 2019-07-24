@@ -125,6 +125,7 @@ export const actions = {
     // commit('switchLocale', localeObject)
     // state.locale = localeCode
     commit('switchLocaleCode', localeCode)
+    commit('setLocSelected')
     Cookie.set('locale', localeCode )
   },
 

@@ -17,49 +17,49 @@
       <v-spacer></v-spacer>
 
 
-        <!-- LOCALES AND PAGES -->
-        <v-menu
-          v-if="isDrawerLeft && hasManyLocales"
-          offset-y 
-          open-on-click 
-          nudge-bottom 
-          nudge-left
+      <!-- LOCALES AND PAGES -->
+      <v-menu
+        v-if="isDrawerLeft && hasManyLocales"
+        offset-y 
+        open-on-click 
+        nudge-bottom 
+        nudge-left
+        >
+        
+        <template 
+          v-slot:activator="{ on }"
           >
-          
-          <template 
-            v-slot:activator="{ on }"
+          <v-toolbar-title 
+            v-on="on"
             >
-            <v-toolbar-title 
-              v-on="on"
+            <span
+              class="text-uppercase grey--text subheading"
               >
-              <span
-                class="text-uppercase grey--text subheading"
-                >
-                {{ locale }}
-              </span>
-              <v-icon
-                color="grey"
-                >
-                arrow_drop_down
-              </v-icon>
-            </v-toolbar-title>
-          </template>
-
-          <v-list>
-            <v-list-tile
-              v-for="loc in locales"
-              :key="loc.code"
-              @click="changeLocale(loc)"
+              {{ locale }}
+            </span>
+            <v-icon
+              color="grey"
               >
-              <v-list-tile-title
-                :class="`${ loc.code !== locale ? 'font-weight-thin' : ''}`"
-                >
-                {{ loc.name }}
-              </v-list-tile-title>
-            </v-list-tile>
-          </v-list>
+              arrow_drop_down
+            </v-icon>
+          </v-toolbar-title>
+        </template>
 
-        </v-menu>
+        <v-list>
+          <v-list-tile
+            v-for="loc in locales"
+            :key="loc.code"
+            @click="changeLocale(loc)"
+            >
+            <v-list-tile-title
+              :class="`${ loc.code !== locale ? 'font-weight-thin' : ''}`"
+              >
+              {{ loc.name }}
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+
+      </v-menu>
 
       <v-layout
         row wrap
