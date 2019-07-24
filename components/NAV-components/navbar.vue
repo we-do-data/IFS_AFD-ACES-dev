@@ -281,6 +281,7 @@ export default {
 
     ...mapGetters({
       // localeCode : 'getCurrentLocaleCode',
+      localesCodes : 'getLocalesCodes',
     }),
 
     isDrawerLeft() {
@@ -298,7 +299,11 @@ export default {
 
     isCardPage(){
       console.log("C-navbar-isCardPage/  this.$nuxt.$route", this.$nuxt.$route)
-      let isCardPage = this.$nuxt.$route.fullPath.startsWith('/cards')
+      // let isCardPage = this.$nuxt.$route.fullPath.startsWith('/cards')
+
+      let pagePathArray = this.$nuxt.$route.fullPath.split('/')
+      let isCardPage = pagePathArray.includes('cards')
+
       return isCardPage 
     },
 
@@ -317,12 +322,33 @@ export default {
     isCurrentPage( item ){
 
       let currentPage = this.$nuxt.$route.path
-      // console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
+      let currentPagePathArray = currentPage.split('/')
+      currentPagePathArray = currentPagePathArray.filter( el => {
+        return el !== ""
+      })
+      console.log("C-navbar-isCurrentPage / currentPagePathArray : ", currentPagePathArray )
+        console.log("C-navbar-isCurrentPage / currentPagePathArray.slice(1) : ", currentPagePathArray.length > 0 && currentPagePathArray.slice(1) )
+
+      // console.log("C-navbar-isCurrentPage / this.localesCodes : ", this.localesCodes)
+      let localesPathsStarts = this.localesCodes.map( locCode => {
+        return '/' + locCode
+      })
+      console.log("C-navbar-isCurrentPage / localesPathsStarts : ", localesPathsStarts )
+
+      console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
       // console.log("C-navbar-isCurrentPage / item.to  : ", item.to )
+
+      // case route begins with a locale param
+      if ( this.localesCodes.includes(currentPagePathArray[0]) ){
+        console.log("C-navbar-isCurrentPage / localesPathsStarts.includes(currentPagePathArray[0]) ...")
+        currentPage = "/" + currentPagePathArray.slice(1).join( '/' )
+        console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
+      }
 
       if ( item.to === '/' ){
         return item.to === currentPage
-      } else {
+      }
+      else {
         return currentPage.startsWith(item.to)
       }
 

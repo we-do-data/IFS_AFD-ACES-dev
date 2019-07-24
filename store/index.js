@@ -43,6 +43,14 @@ export const getters = {
     return state.locale ? state.locale : getters.getDefaultLocale
   },
 
+  getLocalesCodes : (state, getters) => {
+    console.log("S-index-G-getLocalesCodes / state.locales : ", state.locales)
+    let localesCodes = state.locales.map( loc => {
+      return loc.code
+    })
+    return localesCodes
+  },
+
   // UX GETTERS
   getNavbarVisibility : state => {
     return state.showNav
