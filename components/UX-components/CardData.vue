@@ -62,7 +62,7 @@
               </p>
 
               <p>
-                debug - 01.2 <br>
+                debug - 01.3 <br>
                 W :{{ cardWindow.width }} : cardWindow.width<br>
                 H : {{ cardWindow.height }} : cardWindow.height
                 <br>
