@@ -10,7 +10,8 @@
       lg6 offset-lg3
       >
       
-      <h1 class="text-xs-center">
+      <h1 class="text-xs-center text-uppercase primary--text">
+        {{ getTotalFavorites }}
         {{ $t('favorites.title') }}
       </h1>
 
@@ -153,6 +154,16 @@ export default {
       getItemData: 'data/getOneItemFromDatasets',
 
     }),
+
+    getTotalFavorites(){
+      let totalFavs = 0 
+      for ( let dsFavorites of this.favorites ){
+        let dsFavoritesArray =  dsFavorites.favorites
+        let dsTotal = dsFavoritesArray && dsFavoritesArray.length
+        totalFavs += dsTotal
+      }
+      return totalFavs
+    }
 
   },
 

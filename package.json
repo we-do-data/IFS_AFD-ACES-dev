@@ -25,6 +25,7 @@
     "node-sass": "^4.12.0",
     "nuxt": "^2.0.0",
     "nuxt-device-detect": "^1.1.5",
+    "nuxt-svg": "^0.1.6",
     "nuxt-user-agent": "^1.2.1",
     "sass-loader": "^7.1.0",
     "v-body-scroll-lock": "^1.1.3",

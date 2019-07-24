@@ -1,77 +1,107 @@
 <template>
-
-  <!-- <v-container
-    > -->
     
-    <v-layout 
-      class="text-xs-center"
-      align-center 
-      justify-center 
-      >
+  <v-layout 
+    :class="`text-xs-center`"
+    align-center 
+    justify-center
+    >
 
-      <div>
+    <div>
 
-        <!-- LOGO -->
-        <p>xxx logo AFD xxx</p>
+      <!-- LOGO -->
+      <p>
+        <img 
+          v-if="locSelected"
+          height="120px"
+          src="~assets/icons/logo-afd-color.svg" />
+        <img 
+          v-else
+          height="120px"
+          src="~assets/icons/logo-afd-white.svg" />
+      </p>
 
-        <h2> 
-          {{ $t('title.development') }}
-          <b>{{ $t('title.aces') }}</b>
-        </h2>
+      <!-- <h2
+        :class="`${ locSelected ? 'primary' : 'white' }--text`"
+        > 
+        {{ $t('title.development') }}
+        <b>
+        {{ $t('title.aces') }}
+        </b>
+      </h2> -->
 
-        <br>
+      <!-- <v-divider
+        v-show="locSelected"
+        class="ma-2"
+        >
+      </v-divider > -->
 
 
-        <!-- LOCALE SELECTION -->
-        <div v-show="!locSelected">
+      <!-- LOCALE SELECTION -->
+      <div 
+        v-show="!locSelected"
+        class="mt-5"
+        >
 
-          <p>
-            {{ $t('intro.chooseLang') }}
-          </p>
-        
-          <v-btn 
-            v-for="(loc, index) in locales"
-            :key="index"
-            :class="`btn-gradient text-uppercase ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
-            round 
-            dark
-            @click="changeLocale(loc, false)"
-            @mouseover="changeLocale(loc, true)"
-            >
-            <!-- outline -->
-            <!-- color="primary"  -->
-            <!-- :outline="loc.code !== locale " -->
-            {{ loc.code }}
-          </v-btn>
-        
+        <p 
+          :class="`${ locSelected ? 'primary' : 'white' }--text`"
+          >
+          {{ $t('intro.chooseLang') }}
+        </p>
+      
+        <v-btn 
+          v-for="(loc, index) in locales"
+          :key="index"
+          outline
+          color="white"
+          :class="`text-uppercase ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
+          round 
+          dark
+          @click="changeLocale(loc, false)"
+          @mouseover="changeLocale(loc, true)"
+          >
+          {{ loc.code }}
+        </v-btn>
+      
+      </div>
+
+      <!-- GO TO ACES PAGE -->
+      <div  v-show="locSelected">
+
+        <p 
+          class="text-gradient text-uppercase title mt-4 mb-5 "
+          >
+          {{ $t('intro.catchPhrase_1') }}
+          <b>
+          {{ $t('intro.catchPhrase_2') }}
+          </b>
+        </p>
+
+        <div 
+          class="primary--text font-weight-thin text-uppercase subtitle-1 my-4 py-3"
+          >
+            <p>
+              {{ $t('intro.pitchPhrase_1') }}
+            <!-- </p>
+            <p> -->
+            <br>
+              {{ $t('intro.pitchPhrase_2') }}
+            </p>
         </div>
 
-        <!-- GO TO ACES PAGE -->
-        <div  v-show="locSelected">
-
-          <p class="text-uppercase">
-            {{ $t('intro.catchPhrase') }}
-          </p>
-
-          <v-btn 
-            round
-            class="btn-gradient"
-            color="primary"
-            :to="(isFirstVisit)? '/about' : '/cards' "
-            >
-            {{ $t('intro.getAnAce')}}
-          </v-btn>
-
-        </div>
+        <v-btn 
+          round
+          class="btn-gradient"
+          color="primary"
+          :to="(isFirstVisit)? '/about' : '/cards' "
+          >
+          {{ $t('intro.getAnAce')}}
+        </v-btn>
 
       </div>
 
+    </div>
 
-
-
-    </v-layout>
-
-  <!-- </v-container> -->
+  </v-layout>
 
 </template>
 
@@ -159,7 +189,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
   .skip-navbar-more{
     margin-top: 75px;

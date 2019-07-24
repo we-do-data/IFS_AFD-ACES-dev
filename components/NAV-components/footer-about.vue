@@ -1,8 +1,8 @@
 <template>
 
   <!-- FOOTER ABOUT -->
+    <!-- v-show="isFirstVisit"  -->
   <v-footer 
-    v-show="isFirstVisit" 
     color="transparent"
     class="ma-3 pb-5"
     >

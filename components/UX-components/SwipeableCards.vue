@@ -18,7 +18,7 @@
     <v-flex
       v-if="current"
       :class="`card card--one full-height fixed fixed--center ${ isVisible ? 'transition' :'' }`"
-      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :style="`z-index: 3; width:${ cardWidth( .85 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
 
       <InteractDraggable
@@ -56,12 +56,14 @@
           :itemData="current"
           
           :cardHeights="cardHeights"
-
           :cardWidth="cardWidth( .9 )"
+          :cardColorIndex="getRandomColorIndex(0)"
+
           :breakPoint="this.$vuetify.breakpoint.name"
 
           :isPauseInteractParent="isPauseInteract"
           :cardWindow="cardWindow"
+
 
           @needPauseInteract="pauseInteract"
           @click="stopPropagation"
@@ -77,12 +79,13 @@
     <v-flex
       v-if="getNexCard()"
       class="card card--two fixed fixed--center"
-      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :style="`z-index: 2; width:${ cardWidth( .8 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
         :cardWindow="cardWindow"
+        :cardColorIndex="getRandomColorIndex(1)"
         >
       </CardData>
     </v-flex> 
@@ -92,12 +95,13 @@
     <v-flex
       v-if="index + 2 < cards.length"
       class="card card--three fixed fixed--center"
-      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :style="`z-index: 1; width:${ cardWidth( .75 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights"
         :cardWindow="cardWindow"
+        :cardColorIndex="getRandomColorIndex(2)"
         >
       </CardData>
     </v-flex>
@@ -155,6 +159,8 @@ export default {
       
       // UI data
       breakPointCode : undefined,
+      colorIndexMax : 1,
+      colorIndexMin : 8,
 
       // cards iteration variables
       isVisible: true,
@@ -177,6 +183,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },
+
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
@@ -199,6 +206,7 @@ export default {
     ...mapGetters({
       cardsLength : 'cards/getCardsArrrayLength',
     }),
+
     current() {
       return this.cards && this.cards[ this.index ]
     },
@@ -207,14 +215,14 @@ export default {
       return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) }px;`
     },
     cardHeight() { 
-      return ( this.cardWindow.height * .75 ) + "px" 
+      return ( this.cardWindow.height * .65 ) + "px" 
     },
     cardHeights() {
       return {
-        title: ( this.cardWindow.height * .10) + "px",
-        content: ( this.cardWindow.height * .54 ) + "px",
+        title: ( this.cardWindow.height * .20) + "px",
+        content: ( this.cardWindow.height * .34 ) + "px",
         more: ( this.cardWindow.height * .12 ) + "px",
-        resources: ( this.cardWindow.height * .39 ) + "px",
+        resources: ( this.cardWindow.height * .19 ) + "px",
         // footer: ( this.cardWindow.height * .08 ) + "px",
       }
     },
@@ -231,6 +239,7 @@ export default {
       }
     },
   },
+
   methods: {
 
     handleResize() {
@@ -241,6 +250,10 @@ export default {
       }
       this.$store.commit('setCardWindow', currentWindow )
 
+    },
+
+    getRandomColorIndex( level ){
+      return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
     },
 
     getClickSignal(event){
@@ -266,8 +279,8 @@ export default {
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
         case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
-        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
-        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 5.5) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
       }
     },
     getNexCard(){
@@ -407,79 +420,81 @@ export default {
 
 <style lang="scss" scoped>
 
-.full-height{
-  height: 100%;
-}
+  .full-height{
+    height: 100%;
+  }
 
-.fixed {
-  position: fixed;
-  // &--center {
-  //   top: 357px;
-  //   left: 199px; 
-  //   // left: 50%;
-  //   // top: 50%;
-  //   // transform: translate(-50%, -50%);
-  // }
-}
+  .fixed {
+    position: fixed;
+    // &--center {
+    //   top: 357px;
+    //   left: 199px; 
+    //   // left: 50%;
+    //   // top: 50%;
+    //   // transform: translate(-50%, -50%);
+    // }
+  }
 
-.card {
-  // height: 70vh;
-  // height: 85%;
-  // color: black;
-  // img {
-    //   object-fit: cover;
-  //   display: block;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-  &--one {
-    // width: 80vw;
-    // width: 100%;
-    transform: translate(-50%, -60%);
-    // background: rgba(white, 1);
-    // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  .card {
+    // height: 70vh;
+    // height: 85%;
+    // color: black;
+    // img {
+      //   object-fit: cover;
+    //   display: block;
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    &--one {
+      // width: 80vw;
+      // width: 100%;
+      transform: translate(-50%, -60%);
+      // background: rgba(white, 1);
+      // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    }
+    &--two {
+      // width: 78vw;
+      // width: 85%;
+      // background: rgba(white, .9);
+      // transform: translate(-48%, -48%);
+      // transform: scale(1, .8);
+      transform: translate(-50%, -57%);
+      // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
+    }
+    &--three {
+      // width: 76vw;
+      // width: 80%;
+      // background: rgba(white, .8);
+      // transform: translate(-46%, -46%);
+      // transform: scale(1, .6);
+      transform: translate(-50%, -54%);
+      // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
+    }
+    // .text {
+    //   position: absolute;
+    //   bottom: 0;
+    //   width: 100%;
+    //   background:black;
+    //   background:rgba(0,0,0,0.5);
+    //   border-bottom-right-radius: 12px;
+    //   border-bottom-left-radius: 12px;
+    //   text-indent: 20px;
+    //   span {
+    //     font-weight: normal;
+    //   }
+    // }
   }
-  &--two {
-    // width: 78vw;
-    // width: 85%;
-    // background: rgba(white, .9);
-    // transform: translate(-48%, -48%);
-    // transform: scale(1, .8);
-    transform: translate(-50%, -57%);
-    // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
+  .transition {
+    animation: appear 300ms ease-in-out;
   }
-  &--three {
-    // width: 76vw;
-    // width: 80%;
-    // background: rgba(white, .8);
-    // transform: translate(-46%, -46%);
-    // transform: scale(1, .6);
-    transform: translate(-50%, -54%);
-    // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
+  @keyframes appear {
+    from {
+      transform : translate(-50%, -57%) scaleX(.85) ;
+    }
+    to {
+      transform: translate(-50%, -60%) scaleX(.9);
+    }
   }
-  // .text {
-  //   position: absolute;
-  //   bottom: 0;
-  //   width: 100%;
-  //   background:black;
-  //   background:rgba(0,0,0,0.5);
-  //   border-bottom-right-radius: 12px;
-  //   border-bottom-left-radius: 12px;
-  //   text-indent: 20px;
-  //   span {
-  //     font-weight: normal;
-  //   }
-  // }
-}
-.transition {
-  animation: appear 300ms ease-in-out;
-}
-@keyframes appear {
-  from {
-    transform : translate(-50%, -57%) scaleX(.85) ;
-  }
-  to {
-    transform: translate(-50%, -60%) scaleX(.9);
-  }
-}
+
+
 </style>

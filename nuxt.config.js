@@ -217,6 +217,7 @@ export default {
 
     'nuxt-device-detect',
     'nuxt-user-agent',
+    'nuxt-svg',
 
   ],
 

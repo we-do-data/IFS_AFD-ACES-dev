@@ -1,25 +1,11 @@
-// Gradient Splashscreen :
-$color-splashscreen-start: #2e2265;
-$color-splashscreen-end: #c4281a;
+// Primary / splashscreen
+$primary: #2e2265;
+$primary-light: #572a99;
+$main-background-bottom : #c4281a;
 
-.splashscreen-gradient {
-  background-image: linear-gradient($color-splashscreen-start , $color-splashscreen-end) !important;
-}
-// Primary
-$main-background: #2e2265;
-.card-background-color{
-  background-color : $main-background !important;
-}
-
-// Secondary
+// Secondary / gradient button
 $main-secondary : #de4a5b;
-
-// Gradient btn :
-$color-btn-start: #de4a5b;
-$color-btn-end: #863561;
-.btn-gradient {
-  background-image: linear-gradient(to right, $color-btn-start , $color-btn-end) !important;
-}
+$gradient-btn-end: #863561;
 
 // cards colors :
 $card-orange : #e76727;
@@ -30,3 +16,43 @@ $card-red : #de4a5b;
 $card-yellow : #f1a21e;
 $card-green : #3dad4b;
 $card-blue : #5599d6;
+
+
+// Needs latest Compass, add '@import "compass"' to your scss
+// Permalink - use to edit and share this gradient:
+// https://colorzilla.com/gradient-editor/#2e2265+27,2e2265+100&0+27,0.5+99
+// @include filter-gradient(#002e2265, #802e2265, vertical); // IE6-9
+// @include background-image(linear-gradient(top,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 99%,rgba(46,34,101,0.5) 100%));
+
+
+// Gradient Splashscreen :
+.splashscreen-gradient {
+  background-image: linear-gradient( $primary , $main-background-bottom) !important;
+}
+
+.card-background-color{
+  background-color : $primary !important;
+}
+
+// Gradient btn :
+.btn-gradient {
+  background-image: linear-gradient(to right, $main-secondary , $gradient-btn-end) !important;
+}
+.btn-gradient:hover {
+  background-image: linear-gradient(to right, $gradient-btn-end , $primary) !important;
+  color : white !important;
+}
+
+.btn-footer:hover{
+  background-color : $primary !important;
+  color : white !important;
+}
+
+
+
+// gradient texts
+.text-gradient{
+	background: linear-gradient(to right, $main-secondary , $gradient-btn-end) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}

@@ -9,8 +9,15 @@
 
   "intro" : {
     "chooseLang" : "Choose your language",
+
     "catchPhrase" : "Use the development ACES cards from AFD to boost your creativity",
-    "getAnAce" : "Get an ACE"
+    "catchPhrase_1" : "Play with ",
+    "catchPhrase_2" : "transitions",
+
+    "pitchPhrase_1" : "Boost your creativity",
+    "pitchPhrase_2" : "on your transition projects",
+
+    "getAnAce" : "Get a card"
   },
 
   "basicDict" : {

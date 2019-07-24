@@ -1,242 +1,260 @@
 <template>
 
     <v-card
-      :color="'primary'"
+      :color="`secondary card-color card-color-${ cardColorIndex }`"
       class="full-height rounded-borders"
       ref="currentCard"
       dark
       >
 
-      <div
-        >
+      <div>
 
-      <!-- LOGO TITLE -->
-      <!-- <v-layout 
-        justify-center
-        > -->
-
-      <v-card-title 
-        ref="cardTitle"
-        class="justify-center pa-0 absolutePos"
-        :style="`max-height:${ cardHeights['title'] };height:${ cardHeights['title'] }`"
-        >
-        <h2 class="text-xs-center mb-0">
-          xxx AFD LOGO xxx
-        </h2>
-      </v-card-title>
-      <!-- </v-layout>  -->
-
-
-
-      <!-- TEXT CONTENTS -->
-      <transition name="slide">
-        <v-layout 
-          ref="cardContent"
-          v-show="!findMoreActive"
-          :class="`absolutePos ${ findMoreActive ? '' : '' }`"
-          :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
-          align-center
-          justify-center
+        <!-- LOGO TITLE -->
+        <v-card-title 
+          ref="cardTitle"
+          class="justify-center pa-0 "
+          :style="`max-height:${ cardHeights['title'] };height:${ cardHeights['title'] }`"
           >
 
-          <v-flex
+          <v-container fluid>
+            <v-layout row justify-center align-center>
+              <!-- <v-flex xs12 class="justify-center"> -->
+                <img 
+                  height="40px"
+                  class="pa-2"
+                  src="~assets/icons/logo-afd-white.svg" 
+                />
+              <!-- </v-flex> -->
+            </v-layout>
+            <v-layout row justify-center>
+              <!-- <v-flex xs12 order-md3 order-xs2> -->
+                <div class="text-xs-center text-uppercase">
+                  {{ $t('intro.catchPhrase_1') }}
+                  <span>
+                    <b> {{ $t('intro.catchPhrase_2') }} </b>
+                  </span>
+                </div>    
+              <!-- </v-flex> -->
+            </v-layout>
+          </v-container>
+
+        </v-card-title>
+
+        <!-- </v-layout>  -->
+
+
+
+        <!-- TEXT CONTENTS -->
+        <transition name="slide">
+          <v-layout 
+            ref="cardContent"
             v-show="!findMoreActive"
-            class="text-xs-center px-5"
-            >
-            <!-- <v-card-text 
-              > -->
-
-              <!-- <p class="caption"> -->
-                <!-- currentDsId : {{ currentDsId }}<br> -->
-                <!-- cookieContent : {{ cookieContent.locale }} <br> -->
-                <!-- locale (store) : {{ locale }}<br> -->
-                <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
-                <!-- device : <code>{{ $device }}</code><br> -->
-                <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                <!-- triggerFav : <code>{{ triggerFav }}</code><br> -->
-              <!-- </p> -->
-              <!-- <br> -->
-
-              <p class="headline font-weight-bold ">
-                {{ itemData && getContentByLocale('mainContent') }}
-              </p>
-
-              <p>
-                debug develop - 01.2 <br>
-                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
-                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
-                <!-- <br> -->
-                
-                <!-- dsId : {{ dsId }}<br> -->
-                <!-- cards : {{ cards }}<br> -->
-                <!-- cardId : {{ cardId }}<br> -->
-                <!-- index : {{ index }}<br> -->
-
-                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
-                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
-                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
-
-
-              </p>
-
-              <!-- <p>
-                <v-btn 
-                  icon
-                  flat
-                  outline
-                  dark
-                  @click.native="switchFavorite"
-                  >
-                  <v-icon
-                    :color="isFavorite ? 'pink' : 'white' "
-                    >
-                    favorite
-                  </v-icon>
-                </v-btn>
-              </p> -->
-
-            <!-- </v-card-text> -->
-          </v-flex> 
-
-        </v-layout> 
-      </transition>
-
-
-      <!-- RESSOURCES && FAVORITES CONTENTS -->
-      <v-layout 
-        ref="cardMore"
-        :class="`pb-3 absolutePos ${ findMoreActive ? '' : '' }`"
-        :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
-        row
-        align-end
-        >
-
-        <!-- FIND MORE TITLE -->
-        <v-flex 
-          justify-center
-          align-center
-          xs8 offset-xs2
-          class="text-uppercase text-xs-center"
-          >
-          <p class="mb-0">
-            {{ $t('cards.findMore') }}
-          </p>
-          <v-btn
-            flat
-            icon
-            @click=" findMoreActive = !findMoreActive "
-            :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
-            >
-            <v-icon
-              >
-              close
-            </v-icon>
-          </v-btn>
-
-        </v-flex>
-
-        <!-- FAVORITES FOOTER -->
-          <!-- :style="`z-index:4; max-height:${ cardHeights['footer'] }; height:${ cardHeights['footer'] }`" -->
-        <v-flex
-          xs2
-          color="transparent" 
-          class="pr-2 absolutePos "
-          ref="cardFooter"
-          >
-          <v-layout
+            :class="` ${ findMoreActive ? '' : '' }`"
+            :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
             align-center
-            justify-end
+            justify-center
             >
-            <v-btn 
-              class="card-button"
-              icon
-              flat
-              outline
-              dark
 
-              @click.prevent.stop="switchFavorite()"
-              
+            <v-flex
+              v-show="!findMoreActive"
+              class="text-xs-center px-5"
               >
-              <!-- @mouseenter="switchHover()"
-              @mouseleave="switchHover()" -->
+              <!-- <v-card-text 
+                > -->
 
-              <!-- v-touch:tap="switchFavorite('tap')" -->
+                <!-- <p class="caption"> -->
+                  <!-- currentDsId : {{ currentDsId }}<br> -->
+                  <!-- cookieContent : {{ cookieContent.locale }} <br> -->
+                  <!-- locale (store) : {{ locale }}<br> -->
+                  <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+                  <!-- device : <code>{{ $device }}</code><br> -->
+                  <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
+                  <!-- triggerFav : <code>{{ triggerFav }}</code><br> -->
+                <!-- </p> -->
+                <!-- <br> -->
+
+                <p class="headline font-weight-bold ">
+                  {{ itemData && getContentByLocale('mainContent') }}
+                </p>
+
+                <!-- <p> -->
+                  <!-- debug j_integration_01 - 01.4 <br> -->
+
+                  <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+                  <!-- H : {{ cardWindow.height }} : cardWindow.height -->
+                  <!-- <br> -->
+                  
+                  <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
+                  <!-- dsId : {{ dsId }}<br> -->
+                  <!-- cards : {{ cards }}<br> -->
+                  <!-- cardId : {{ cardId }}<br> -->
+                  <!-- index : {{ index }}<br> -->
+
+                  <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+                  <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+                  <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+
+
+                <!-- </p> -->
+
+                <!-- <p>
+                  <v-btn 
+                    icon
+                    flat
+                    outline
+                    dark
+                    @click.native="switchFavorite"
+                    >
+                    <v-icon
+                      :color="isFavorite ? 'pink' : 'white' "
+                      >
+                      favorite
+                    </v-icon>
+                  </v-btn>
+                </p> -->
+
+              <!-- </v-card-text> -->
+            </v-flex> 
+
+          </v-layout> 
+        </transition>
+
+
+        <!-- RESSOURCES && FAVORITES CONTENTS -->
+        <v-layout 
+          ref="cardMore"
+          :class="`pb-3  ${ findMoreActive ? '' : '' }`"
+          :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
+          row
+          align-end
+          >
+
+          <!-- FIND MORE TITLE -->
+          <v-flex 
+            justify-center
+            align-center
+            xs8 offset-xs2
+            class="text-uppercase text-xs-center"
+            >
+            <p class="mb-0">
+              {{ $t('cards.findMore') }}
+            </p>
+            <v-btn
+              flat
+              icon
+              @click=" findMoreActive = !findMoreActive "
+              :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
+              >
               <v-icon
-                :color="isFavorite ? 'pink' : 'white' "
                 >
-                favorite
+                close
               </v-icon>
             </v-btn>
-          </v-layout>
-        </v-flex>
-        
-      </v-layout>
 
+          </v-flex>
 
-    
-      <!-- CONTENT RESOURCES -->
-      <transition name="slide">
-        <v-flex xs12
-          class="absolutePos"
-          :style="`height:${ cardHeights['content'] }`"
-          v-show="findMoreActive"
-          >
-          <v-card-text
+          <!-- FAVORITES FOOTER -->
+            <!-- :style="`z-index:4; max-height:${ cardHeights['footer'] }; height:${ cardHeights['footer'] }`" -->
+          <v-flex
+            xs2
+            color="transparent" 
+            class="pr-2  "
+            ref="cardFooter"
             >
-            <v-divider></v-divider>
-
-            <div 
-              :class="`mt-4 limited-height`"
-              v-body-scroll-lock="true"
-              :style="`max-height:${ cardHeights['resources'] }`"
+            <v-layout
+              align-center
+              justify-end
               >
+              <v-btn 
+                class="card-button"
+                icon
+                flat
+                outline
+                dark
 
-              <v-list-tile
-                v-for="favField in resourcesList.favFields"
-                :key="favField.textFieldCode"
-                style="z-index: 25"
-                class="text-xs-center"
-                >
+                @click.prevent.stop="switchFavorite()"
                 
-                <v-list-tile-action
-                  class="near-icon"
+                >
+                <!-- @mouseenter="switchHover()"
+                @mouseleave="switchHover()" -->
+
+                <!-- v-touch:tap="switchFavorite('tap')" -->
+                <v-icon
+                  :color="isFavorite ? 'pink' : 'white' "
                   >
-                  <v-icon small>
-                    fas fa-arrow-right
-                  </v-icon>
-                </v-list-tile-action>
-
-                <v-list-tile-content>
-                  <v-list-tile-title>
-                    <a 
-                      class="white--text"
-                      :href="itemData[ favField.linkFieldCode ]"
-                      >
-                      {{ itemData[ favField.textFieldCode ] }}
-                    </a>
-                  </v-list-tile-title>
-                </v-list-tile-content>
+                  favorite
+                </v-icon>
+              </v-btn>
+            </v-layout>
+          </v-flex>
+          
+        </v-layout>
 
 
-              </v-list-tile>
+      
+        <!-- CONTENT RESOURCES -->
+        <transition name="slide">
+          <v-flex xs12
+            class=""
+            :style="`height:${ cardHeights['content'] }`"
+            v-show="findMoreActive"
+            >
+            <v-card-text
+              >
+              <v-divider></v-divider>
+
+              <div 
+                :class="`mt-4 limited-height`"
+                v-body-scroll-lock="true"
+                :style="`max-height:${ cardHeights['resources'] }`"
+                >
+
+                <v-list-tile
+                  v-for="favField in resourcesList.favFields"
+                  :key="favField.textFieldCode"
+                  style="z-index: 25"
+                  class="text-xs-center"
+                  >
+                  
+                  <v-list-tile-action
+                    class="near-icon"
+                    >
+                    <v-icon small>
+                      fas fa-arrow-right
+                    </v-icon>
+                  </v-list-tile-action>
+
+                  <v-list-tile-content>
+                    <v-list-tile-title>
+                      <a 
+                        class="white--text"
+                        :href="itemData[ favField.linkFieldCode ]"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </a>
+                    </v-list-tile-title>
+                  </v-list-tile-content>
 
 
-            </div>
-
-          </v-card-text>
-
-        </v-flex>
-      </transition>
+                </v-list-tile>
 
 
+              </div>
 
-      </v-layout> 
+            </v-card-text>
 
+          </v-flex>
+        </transition>
 
 
 
+        <!-- </v-layout>  -->
 
-    </div>
+
+
+
+
+      </div>
 
     </v-card>
 
@@ -271,6 +289,7 @@ export default {
     // debug
     'isPauseInteractParent',
     'cardWindow',
+    'cardColorIndex',
 
     'cardWidth',
     'breakPoint',
@@ -412,66 +431,111 @@ export default {
 
 <style lang="scss" scoped>
 
-.absolutePos{
-  // position: absolute;
-  // left: 50vw;
-}
-.rounded-borders {
-  border-radius: 12px;
-}
-.full-height{
-  height: 100%;
-}
-.limited-height{
-  // max-height: 55vh;
-  overflow-y: auto;
-}
-.close-to-plus-in{
-  transform: rotate(45deg)
-}
-@keyframes rollin {
-  0% { transform: rotate(0); }
-  100% { transform: rotate(45deg); }
-}
-@keyframes rollout {
-  0% { transform: rotate(0); }
-  100% { transform: rotate(-45deg); }
-}
-.roll-in { 
-  animation: rollin .7s cubic-bezier(0.55, 0.085, 0.68, 0.53) ; 
-}
-.roll-out { 
-  animation: rollout .7s cubic-bezier(0.55, 0.085, 0.68, 0.53) ; 
-}
-.slide-enter-active {
-   -moz-transition-duration: 0.4s;
-   -webkit-transition-duration: 0.4s;
-   -o-transition-duration: 0.4s;
-   transition-duration: 0.4s;
-   -moz-transition-timing-function: ease-in;
-   -webkit-transition-timing-function: ease-in;
-   -o-transition-timing-function: ease-in;
-   transition-timing-function: ease-in;
-}
-.slide-leave-active {
-   -moz-transition-duration: 0.4s;
-   -webkit-transition-duration: 0.4s;
-   -o-transition-duration: 0.4s;
-   transition-duration: 0.4s;
-   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-.slide-enter-to, .slide-leave {
-   max-height: 100px;
-   overflow: hidden;
-}
-.slide-enter, .slide-leave-to {
-   overflow: hidden;
-   max-height: 0;
-}
-.near-icon{
-  min-width: 30px;
-}
+  // .absolutePos{
+    // position: absolute;
+    // left: 50vw;
+  // }
+  .rounded-borders {
+    border-radius: 12px;
+  }
+  .full-height{
+    height: 100%;
+  }
+  .limited-height{
+    // max-height: 55vh;
+    overflow-y: auto;
+  }
+  .close-to-plus-in{
+    transform: rotate(45deg)
+  }
+  @keyframes rollin {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(45deg); }
+  }
+  @keyframes rollout {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(-45deg); }
+  }
+  .roll-in { 
+    animation: rollin .7s cubic-bezier(0.55, 0.085, 0.68, 0.53) ; 
+  }
+  .roll-out { 
+    animation: rollout .7s cubic-bezier(0.55, 0.085, 0.68, 0.53) ; 
+  }
+  .slide-enter-active {
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+  .slide-leave-active {
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  .slide-enter-to, .slide-leave {
+    max-height: 100px;
+    overflow: hidden;
+  }
+  .slide-enter, .slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
+  }
+  .near-icon{
+    min-width: 30px;
+  }
+
+
+
+  @import '~assets/css/colors-IFS_AFD.scss';
+
+  $circles: url( '~assets/icons/background-circles.svg' ) ;
+
+  .card-color{
+
+    &-1{
+      background-color : $card-orange !important;    
+    }
+    &-2{
+      background-color : $card-pink !important;
+    }
+    &-3{
+      background-color : $card-turquoise !important;
+    }
+    &-4{
+      background-color : $card-beige !important;
+    }
+    &-5{
+      background-color : $card-red !important;
+    }
+    &-6{
+      background-color : $card-yellow !important;
+    }
+    &-7{
+      background-color : $card-green !important;
+    }
+    &-8{
+      background-color : $card-blue !important;
+    }
+
+    // background-image: $circles linear-gradient( rgba(46,34,101,0.5), rgba(255,0,0,0) ) ;
+    // background-image : $circles ;
+    background-position: center center;
+    background-image : url(~assets/icons/background-circles.svg);
+    background-size: cover ; 
+
+// @include filter-gradient(#002e2265, #802e2265, vertical);
+// @include background-image(linear-gradient(top,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 100%));
+
+  }
+
 </style>

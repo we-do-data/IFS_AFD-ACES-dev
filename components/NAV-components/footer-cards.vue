@@ -8,7 +8,7 @@
     sm8 offset-md2
     md6 offset-md3
     fixed
-    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } centered`"
+    :class="`${ (showNext)? 'mx-0 mb-5' : 'mx-0 mb-4' } centered`"
     :style="`height: 32px; width:${ cardWindow.width }px`"
     >
 
@@ -27,13 +27,13 @@
             v-if="!showNext"
             v-for="btn in footerBtnsLeft"
             :key="btn.textCode"
-            class="primary mr-0 text-xs-right "
+            class="white mr-0 text-xs-right "
             flat
             icon
             @click.prevent="skip(false)"
             >
             <v-icon
-              color="white"
+              color="primary"
               >
               {{ btn.icon }}
             </v-icon>
@@ -51,12 +51,11 @@
             >
 
             <v-avatar 
-              class="previous-translated"
-              color="primary"
+              class="previous-translated white"
               size="36px"
               >
               <v-icon
-                color="white"
+                color="primary"
                 >
                 {{ btn.icon }}
               </v-icon>
@@ -80,8 +79,9 @@
             v-for="btn in footerBtnsCenter"
             :key="btn.textCode"
             :to="btn.to"
+            class="white"
             icon
-            class="primary "
+            color="primary"
             flat
             >
             <v-icon>
@@ -98,13 +98,13 @@
             v-if="!showNext"
             v-for="btn in footerBtnsRight"
             :key="btn.textCode"
-            class="primary mr-0 text-xs-right "
+            class="white mr-0 text-xs-right "
             flat
             icon
             @click.prevent="skip()"
             >
             <v-icon
-              color="white"
+              color="primary"
               >
               {{ btn.icon }}
             </v-icon>
@@ -130,11 +130,11 @@
 
             <v-avatar 
               class="next-translated"
-              color="primary"
+              color="white"
               size="36px"
               >
               <v-icon
-                color="white"
+                color="primary"
                 >
                 {{ btn.icon }}
               </v-icon>
@@ -193,7 +193,7 @@ export default {
         { textCode: "cards.next", icon: "fas fa-arrow-right", to: "/next" },
       ],
 
-      showNextBreakpoints : [ 'xl' ],
+      showNextBreakpoints : [ 'md', 'lg', 'xl' ],
 
     }
 
@@ -251,9 +251,9 @@ export default {
 
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
-        case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
-        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
-        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
+        case 'md': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 4.5) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
       }
     },
 

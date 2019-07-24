@@ -1,127 +1,105 @@
 <template>
 
   <div class="navbar-above-all"
+    v-if="locSelected"
     >
     <!-- :style="`width:100px; height:32px`" -->
 
     <v-toolbar 
       color="transparent" 
       :dark="!isDrawerLeft"
+      class="pr-4"
       flat
       fixed
       :style="`width: ${ cardWindow.width }px`"
       >
 
-      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-
-      <!-- BTN HOME -->
-      <!-- <v-btn 
-        icon
-        to="/">
-        <v-icon>fas fa-home</v-icon>
-      </v-btn> -->
-
-      <!-- TITLE -->
-      <!-- <v-toolbar-title 
-        class="white--text"
-        to="/">
-        {{ $t('basicDict.welcome')}}
-      </v-toolbar-title> -->
-
       <v-spacer></v-spacer>
 
-      <!-- <v-toolbar-title
-        class="primary--text"
-        >
-        {{ mainLogoUrl }}
-      </v-toolbar-title> -->
 
-      <!-- <v-spacer></v-spacer> -->
-
-      <!-- BTN SEARCH -->
-      <!-- <v-btn icon>
-        <v-icon>search</v-icon>
-      </v-btn> -->
-
-      <!-- BTN FAVS -->
-      <!-- <v-btn icon>
-        <v-icon>favorite</v-icon>
-      </v-btn> -->
-
-
-      <!-- LOCALES AND PAGES -->
-      <v-menu
-        v-if="isDrawerLeft && hasManyLocales"
-        offset-y 
-        open-on-click 
-        nudge-bottom 
-        nudge-left
-        >
-        
-        <template 
-          v-slot:activator="{ on }"
+        <!-- LOCALES AND PAGES -->
+        <v-menu
+          v-if="isDrawerLeft && hasManyLocales"
+          offset-y 
+          open-on-click 
+          nudge-bottom 
+          nudge-left
           >
-          <v-toolbar-title 
-            v-on="on"
+          
+          <template 
+            v-slot:activator="{ on }"
             >
-            <span
-              class="text-uppercase grey--text subheading"
+            <v-toolbar-title 
+              v-on="on"
               >
-              {{ locale }}
-            </span>
-            <v-icon
-              color="grey"
+              <span
+                class="text-uppercase grey--text subheading"
+                >
+                {{ locale }}
+              </span>
+              <v-icon
+                color="grey"
+                >
+                arrow_drop_down
+              </v-icon>
+            </v-toolbar-title>
+          </template>
+
+          <v-list>
+            <v-list-tile
+              v-for="loc in locales"
+              :key="loc.code"
+              @click="changeLocale(loc)"
               >
-              arrow_drop_down
-            </v-icon>
-          </v-toolbar-title>
-        </template>
+              <v-list-tile-title
+                :class="`${ loc.code !== locale ? 'font-weight-thin' : ''}`"
+                >
+                {{ loc.name }}
+              </v-list-tile-title>
+            </v-list-tile>
+          </v-list>
 
-        <v-list>
-          <v-list-tile
-            v-for="loc in locales"
-            :key="loc.code"
-            @click="changeLocale(loc)"
-            >
-            <v-list-tile-title
-              :class="`${ loc.code !== locale ? 'font-weight-thin' : ''}`"
-              >
-              {{ loc.name }}
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
+        </v-menu>
 
-      </v-menu>
-
-      <v-btn 
-        v-if="isDrawerLeft && !hasManyLocales"
-        v-for="loc in locales"
-        :key="loc.code"
-        flat
-        small
-        @click="changeLocale(loc)"
-        :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage ? 'white--text' : 'grey--text'} ${ loc.code !== locale ? 'font-weight-thin' : ''}`"
+      <v-layout
+        row wrap
         >
-        <span
+        <v-layout
+          justify-end
           >
-          {{ loc.code }}
-        </span>
-      </v-btn>
 
-      <v-btn
-        v-show="!isDrawerLeft"
-        icon
-        flat
-        :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
-        color="primary"
-        @click.stop="closeDrawer()"
-        >
-        <v-icon>
-          fas fa-bars
-        </v-icon>
-      </v-btn>
+        <!-- many locales -->
+        <v-btn 
+          v-if="isDrawerLeft && !hasManyLocales"
+          v-for="loc in locales"
+          :key="loc.code"
+          flat
+          small
+          @click="changeLocale(loc)"
+          :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} ${ loc.code !== locale ? 'font-weight-thin' : ''}`"
+          >
+          <span
+            >
+            {{ loc.code }}
+          </span>
+        </v-btn>
 
+      </v-layout>
+      </v-layout>
 
+        <!-- BURGER -->
+        <v-btn
+          v-show="!isDrawerLeft"
+          icon
+          flat
+          :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
+          :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
+          @click.stop="closeDrawer()"
+          >
+          <v-icon>
+            fas fa-bars
+          </v-icon>
+        </v-btn>
 
 
     </v-toolbar>
@@ -133,7 +111,7 @@
       absolute
       floating
       :right="!isDrawerLeft"
-      :class="isDrawerLeft ? 'transparent' : 'grey'"
+      :class="isDrawerLeft ? 'transparent' : 'primary'"
       style="z-index: 50"
       :dark="!isDrawerLeft"
       >
@@ -199,6 +177,7 @@
 
           <v-divider
             v-if="item.isDivider"
+            :class="`${ isCardPage || !isDrawerLeft ? 'white' : 'primary' }`"
             >
           </v-divider>
 
@@ -209,7 +188,7 @@
             
             <v-list-tile-title 
               @click="closeDrawer()"
-              :class="`text-uppercase ${ isCurrentPage(item) ? '' : 'font-weight-thin' }`"
+              :class="`${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} text-uppercase ${ isCurrentPage(item) ? '' : 'font-weight-thin' }`"
               >
 
               {{ $t( 'drawer.'+ item.titleCode)  }}
@@ -292,6 +271,7 @@ export default {
       log : state => state.log, 
       locale : state => state.locale,
       locales : state => state.locales,
+      locSelected: state => state.locSelected,
 
       cardWindow : state => state.cardWindow,
 
@@ -320,7 +300,7 @@ export default {
       console.log("C-navbar-isCardPage/  this.$nuxt.$route", this.$nuxt.$route)
       let isCardPage = this.$nuxt.$route.fullPath.startsWith('/cards')
       return isCardPage 
-    }
+    },
 
 
   },
@@ -368,6 +348,7 @@ export default {
   z-index: 25;
 }
 
+/* 
 .card-margin-in-view-percents{
   margin-top: 4vh !important;
   margin-right: 2vw !important;
@@ -375,7 +356,7 @@ export default {
 .card-margin-in-pixels{
   margin-top: 25px !important;
   margin-right: 5px !important;
-}
+} */
 
 
 </style>

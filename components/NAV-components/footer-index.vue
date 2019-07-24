@@ -10,18 +10,26 @@
     <v-layout 
       justify-center
       >
-    
-      <v-btn 
+
+      <div
         v-for="(btn, indexBtn) in footerBtns"
-        round
-        class="btn-gradient white--text"
         :key="indexBtn"
-        :to="btn.to"
         >
-        <!-- color="white" -->
-        <!-- outline -->
-        {{ $t('links.' + btn.textCode) }}
-      </v-btn>
+        <v-btn 
+          round
+          flat
+          class="primary btn-footer"
+          color="primary"
+          outline
+          :to="btn.to"
+          >
+          <span
+            >
+            {{ $t('links.' + btn.textCode) }}
+          </span>
+        </v-btn>
+
+      </div>
 
     </v-layout>
     
@@ -68,6 +76,11 @@ export default {
 
     ...mapGetters({
     }),
+
+    isCardPage(){
+      return false
+    },
+
   },
 
   methods: {

@@ -9,7 +9,14 @@
 
   "intro" : {
     "chooseLang" : "choisissez une langue",
+
     "catchPhrase" : "Boostez votre créativité grâce aux cartes de développement ACES de l'AFD",
+    "catchPhrase_1" : "Jouez avec les ",
+    "catchPhrase_2" : "transitions",
+
+    "pitchPhrase_1" : "Boostez votre créativité",
+    "pitchPhrase_2" : "pour vos projets de transition",
+
     "getAnAce" : "voir une carte"
   },
 
