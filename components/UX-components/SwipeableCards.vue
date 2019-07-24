@@ -5,6 +5,7 @@
     id="swipeable-cards"
     fill-height
     align-center
+
     justify-center
     wrap
     >
@@ -17,10 +18,9 @@
     <v-flex
       v-if="current"
       :class="`card card--one full-height fixed fixed--center ${ isVisible ? 'transition' :'' }`"
-      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }`"
+      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
 
-        <!-- :interact-event-bus-events="this.$bus" -->
       <InteractDraggable
         v-if="isVisible"
         id="mainDraggableCard"
@@ -48,24 +48,9 @@
         @draggedLeft="emitAndNext('skip')"
         @draggedUp="emitAndNext('skip')"
 
-
         @clickDraggableBtn="getClickSignal"
         >
-        <!-- @skip="emitAndNext('skip')" -->
 
-        <!-- 
-        @draggedDown="draggedDown"
-        @draggedLeft="draggedLeft"
-        @draggedRight="draggedRight"
-        @draggedUp="draggedUp" 
-        -->
-        <!-- 
-        @draggedRight="emitAndNext('match')"
-        @draggedLeft="emitAndNext('reject')"
-        @draggedUp="emitAndNext('skip')"
-        -->
-
-          <!-- :dsId="dsId" -->
         <CardData
 
           :itemData="current"
@@ -76,6 +61,7 @@
           :breakPoint="this.$vuetify.breakpoint.name"
 
           :isPauseInteractParent="isPauseInteract"
+          :cardWindow="cardWindow"
 
           @needPauseInteract="pauseInteract"
           @click="stopPropagation"
@@ -91,12 +77,12 @@
     <v-flex
       v-if="getNexCard()"
       class="card card--two fixed fixed--center"
-      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }`"
+      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
-        <!-- :dsId="dsId" -->
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
+        :cardWindow="cardWindow"
         >
       </CardData>
     </v-flex> 
@@ -106,12 +92,12 @@
     <v-flex
       v-if="index + 2 < cards.length"
       class="card card--three fixed fixed--center"
-      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }`"
+      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }; ${ centerCardStyle }`"
       >
-        <!-- :dsId="dsId" -->
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights"
+        :cardWindow="cardWindow"
         >
       </CardData>
     </v-flex>
@@ -169,16 +155,22 @@ export default {
       
       // UI data
       breakPointCode : undefined,
-      windowWidth : 0,
-  
-      cardHeight: "75vh",
-      cardHeights: {
-        title: "10vh",
-        content: "54vh",
-        more: "12vh",
-        resources: "39vh",
-        // footer: "8vh"
-      },
+      // windowWidth : 0,
+
+      // cardWindow: {
+      //   width: 0,
+      //   height: 0
+      // },
+
+      // cardHeight: "75vh",
+      // cardHeights: {
+      //   title: "10vh",
+      //   content: "54vh",
+      //   more: "12vh",
+      //   resources: "39vh",
+      //   // footer: "8vh"
+      // },
+
       // cards iteration variables
       isVisible: true,
 
@@ -207,22 +199,52 @@ export default {
 
     }
   },
+
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+
   computed: {
+
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
+
+      cardWindow : state => state.cardWindow,
+
       dsId : state => state.cards.currentDsId,
       cards : state => state.cards.currentCardsArrray,
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
     }),
+
     ...mapGetters({
       cardsLength : 'cards/getCardsArrrayLength',
     }),
     current() {
       return this.cards && this.cards[ this.index ]
     },
-    
+
+    centerCardStyle() {
+      return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) }px;`
+    },
+    cardHeight() { 
+      return ( this.cardWindow.height * .75 ) + "px" 
+    },
+    cardHeights() {
+      return {
+        title: ( this.cardWindow.height * .10) + "px",
+        content: ( this.cardWindow.height * .54 ) + "px",
+        more: ( this.cardWindow.height * .12 ) + "px",
+        resources: ( this.cardWindow.height * .39 ) + "px",
+        // footer: ( this.cardWindow.height * .08 ) + "px",
+      }
+    },
+
     next() {
       return this.cards && this.cards[ this.index + 1 ]
     },
@@ -236,7 +258,30 @@ export default {
     },
   },
   methods: {
-    
+
+    handleResize() {
+
+
+
+      // if ( isFromAndroidOs  ) {
+      //   this.cardWindow.width = window.innerHeight
+      //   this.cardWindow.height = window.innerWidth
+      // } else {
+      //   this.cardWindow.width = window.innerWidth
+      //   this.cardWindow.height = window.innerHeight
+      // }
+
+      // this.cardWindow.width = window.innerWidth
+      // this.cardWindow.height = window.innerHeight
+
+      let currentWindow = { 
+        width : window.innerWidth,
+        height : window.innerHeight
+      }
+      this.$store.commit('setCardWindow', currentWindow )
+
+    },
+
     getClickSignal(event){
       console.log("C-SwipeableCards-getClickSignal / event : ", event )
       e.stopImmediatePropagation()
@@ -253,15 +298,22 @@ export default {
 
     // compute card width
     cardWidth ( widthPercent ) {
-      let maxWidth = 100
-      let zWidth = maxWidth * widthPercent
-      let step = 10
+      // let maxWidth = 100
+      // let zWidth = maxWidth * widthPercent 
+      let step = .1
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return zWidth + 'vw'
-        case 'sm': return ( zWidth - (step * 4) ) + 'vw'
-        case 'md': return ( zWidth - (step * 5) ) + 'vw'
-        case 'lg': return ( zWidth - (step * 6) ) + 'vw'
-        case 'xl': return ( zWidth - (step * 7) ) + 'vw'
+
+        // case 'xs': return zWidth + 'vw'
+        // case 'sm': return ( zWidth - (step * 4) ) + 'vw'
+        // case 'md': return ( zWidth - (step * 5) ) + 'vw'
+        // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
+        // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
+
+        case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
+        case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
+        case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
       }
     },
     getNexCard(){
@@ -277,8 +329,6 @@ export default {
     // cf : https://codesandbox.io/s/5wo373kqwk
     skip() {
       console.log("C-SwipeableCards / skip ..." )
-      // InteractEventBus.$emit(EVENTS.SKIP)
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT)
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT)
       // this.emitAndNext('skip')
     },
@@ -309,7 +359,6 @@ export default {
       console.log("C-SwipeableCards-pauseInteract / isPause :", isPause )
       this.isPauseInteract = isPause
     },
-
 
 
 
@@ -366,8 +415,6 @@ export default {
 
 
 
-
-
     // draggedDown() {
     //   console.log("dragged down!");
     //   this.shiftCard();
@@ -388,18 +435,15 @@ export default {
 
 
     // dragDown() {
-    //   InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_DOWN);
+    //   this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_DOWN);
     // },
     dragLeft() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_LEFT);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_LEFT);
     },
     dragRight() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
     },
     dragUp() {
-      // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_UP);
       this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_UP);
     },
   }
@@ -407,6 +451,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .full-height{
   height: 100%;
 }
@@ -500,11 +545,13 @@ export default {
 // }
 .fixed {
   position: fixed;
-  &--center {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+  // &--center {
+  //   top: 357px;
+  //   left: 199px; 
+  //   // left: 50%;
+  //   // top: 50%;
+  //   // transform: translate(-50%, -50%);
+  // }
 }
 // .rounded-borders {
 //   border-radius: 12px;
@@ -559,14 +606,14 @@ export default {
   // }
 }
 .transition {
-  animation: appear 400ms ease-in;
+  animation: appear 300ms ease-in-out;
 }
 @keyframes appear {
   from {
-    transform: translate(-50%, -47%);
+    transform : translate(-50%, -57%) scaleX(.85) ;
   }
   to {
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -60%) scaleX(.9);
   }
 }
 </style>

@@ -6,7 +6,7 @@ export default function ({ req, store, app, redirect }) {
   let parsed = undefined 
 
   if (process.server) {
-    // console.log('-MW-checkCookieLocale : process.server == TRUE ')
+    console.log('-MW-checkCookieLocale : process.server == TRUE ')
     if (req.headers.cookie) {
       let cookie = req.headers.cookie
       parsed = cookieparser.parse(cookie)
@@ -14,7 +14,7 @@ export default function ({ req, store, app, redirect }) {
   }
 
   else {
-    // console.log('-MW-checkCookieLocale : process.server == FALSE ')
+    console.log('-MW-checkCookieLocale : process.server == FALSE ')
     let cookie = document.cookie
     parsed = cookieparser.parse(cookie)
   }

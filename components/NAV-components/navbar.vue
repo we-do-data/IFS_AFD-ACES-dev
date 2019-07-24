@@ -1,12 +1,15 @@
 <template>
 
-  <div class="navbar-above-all">
+  <div class="navbar-above-all"
+    >
+    <!-- :style="`width:100px; height:32px`" -->
 
     <v-toolbar 
       color="transparent" 
       :dark="!isDrawerLeft"
       flat
       fixed
+      :style="`width: ${ cardWindow.width }px`"
       >
 
       <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
@@ -46,7 +49,7 @@
       </v-btn> -->
 
 
-      <!-- LOCALES -->
+      <!-- LOCALES AND PAGES -->
       <v-menu
         v-if="isDrawerLeft && hasManyLocales"
         offset-y 
@@ -289,6 +292,8 @@ export default {
       log : state => state.log, 
       locale : state => state.locale,
       locales : state => state.locales,
+
+      cardWindow : state => state.cardWindow,
 
       mainLogoUrl : state => state.mainLogoUrl, 
 

@@ -199,6 +199,8 @@ export default {
     '~/plugins/i18n.js',
     // '~/plugins/loadGSheetData',
     '~/plugins/vue-touch-events.js',
+    // '~/plugins/vh-for-mobile.js',
+    '~/plugins/scroll-lock.js',
     '~/plugins/eventBus'
   ],
 
@@ -214,6 +216,7 @@ export default {
     '@nuxtjs/pwa',
 
     'nuxt-device-detect',
+    'nuxt-user-agent',
 
   ],
 

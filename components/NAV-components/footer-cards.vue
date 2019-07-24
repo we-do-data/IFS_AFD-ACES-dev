@@ -4,14 +4,13 @@
 
   <v-footer 
     color="transparent"
-        xs10 offset-xs1
+    xs10 offset-xs1
     sm8 offset-md2
     md6 offset-md3
-    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } pb-2 centered`"
+    fixed
+    :class="`${ (showNext)? 'ma-4' : 'mx-0 mb-4' } centered`"
+    :style="`height: 32px; width:${ cardWindow.width }px`"
     >
-
-    <!-- <v-layout
-      > -->
 
     <div
       :style="`z-index: 4; width:${ cardWidth( .9 ) }`"
@@ -223,12 +222,22 @@ export default {
 
   },
 
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+
   computed: {
 
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
       locSelected : state => state.locSelected,
+
+      cardWindow : state => state.cardWindow,
 
       index : state => state.cards.currentCardIndex,
 
@@ -245,21 +254,48 @@ export default {
 
   methods: {
 
+    handleResize() {
+
+      // if ( needInvertAndroid  ) {
+      //   this.cardWindow.width = window.innerHeight
+      //   this.cardWindow.height = window.innerWidth
+      // } else {
+      //   this.cardWindow.width = window.innerWidth
+      //   this.cardWindow.height = window.innerHeight
+      // }
+
+      // this.cardWindow.width = window.innerWidth
+      // this.cardWindow.height = window.innerHeight
+
+      let currentWindow = { 
+        width : window.innerWidth,
+        height : window.innerHeight
+      }
+      this.$store.commit('setCardWindow', currentWindow )
+    },
+
     ...mapMutations({
       setCurrentCardIndex: 'cards/setCurrentCardIndex',
       setPreviousCurrentCardIndex : 'cards/setPreviousCurrentCardIndex'
     }),
 
     cardWidth ( widthPercent ) {
-      let maxWidth = 80
-      let zWidth = maxWidth * widthPercent
-      let step = 10
+      // let maxWidth = 100
+      // let zWidth = maxWidth * widthPercent 
+      let step = .1
       switch (this.$vuetify.breakpoint.name) {
-        case 'xs': return zWidth + 'vw'
-        case 'sm': return ( zWidth - (step * 2) ) + 'vw'
-        case 'md': return ( zWidth - (step * 3) ) + 'vw'
-        case 'lg': return ( zWidth - (step * 4) ) + 'vw'
-        case 'xl': return ( zWidth - (step * 5) ) + 'vw'
+
+        // case 'xs': return zWidth + 'vw'
+        // case 'sm': return ( zWidth - (step * 4) ) + 'vw'
+        // case 'md': return ( zWidth - (step * 5) ) + 'vw'
+        // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
+        // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
+
+        case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
+        case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
+        case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
       }
     },
 

@@ -1,3 +1,5 @@
+console.log('>>> plugins / vue-touch-events.js ...');
+
 import Vue from 'vue'
 import Vue2TouchEvents from 'vue2-touch-events'
 

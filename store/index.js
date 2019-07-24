@@ -21,13 +21,20 @@ export const state = () => ({
   showNav : false,
   firstVisit: true,
 
+  cardWindow: {
+    width: 0,
+    height: 0
+  },
+  mobileWidthCorrection : 0,
+  mobileHeightCorrection : 0,
+
 })
 
 export const getters = {
 
   // INTERNATIONALIZATION
   getDefaultLocale : (state, getters) => {
-    console.log("S-index-G-getDefaultLocale ...")
+    state.log && console.log("S-index-G-getDefaultLocale ...")
     return process.env.CONFIG_APP.defaultLocale
   },
 
@@ -90,6 +97,19 @@ export const mutations = {
   setFirstVisit(state, value){
     console.log("S-index-M-setLocSelected ...")
     state.firstVisit = value
+  },
+
+  setCardWindow (state, cardWithHeight){
+
+    let isFromAndroidOs = this.$ua.isFromAndroidOs()
+    let isMobile = this.$device.isMobileOrTablet
+    let isChrome = this.$ua.browser() === 'Chrome'
+    
+    let mobileWidthCorrection = ( isMobile && isFromAndroidOs && isChrome ) ? state.mobileWidthCorrection : 0  
+    let mobileHeightCorrection = ( isMobile && isFromAndroidOs && isChrome ) ? state.mobileHeightCorrection : 0  
+
+    state.cardWindow.width = cardWithHeight.width - mobileWidthCorrection
+    state.cardWindow.height = cardWithHeight.height - mobileHeightCorrection
   },
 
 }

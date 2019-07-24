@@ -61,6 +61,18 @@
                 {{ itemData && getContentByLocale('mainContent') }}
               </p>
 
+              <p>
+                debug - 01.3 <br>
+                W :{{ cardWindow.width }} : cardWindow.width<br>
+                H : {{ cardWindow.height }} : cardWindow.height
+                <br>
+
+                <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet
+                <br> {{ $ua.browser() }} : $ua.browser() 
+                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs()
+
+              </p>
+
               <!-- <p>
                 <v-btn 
                   icon
@@ -169,6 +181,7 @@
 
             <div 
               :class="`mt-4 limited-height`"
+              v-body-scroll-lock="true"
               :style="`max-height:${ cardHeights['resources'] }`"
               >
 
@@ -225,6 +238,7 @@
 
 
 <script>
+
 // based and adapted from : https://www.josephharveyangeles.com/blog/2019/kittynder
 var cookieparser = require('cookieparser')
 import Cookie from 'js-cookie'
@@ -236,6 +250,10 @@ import { InteractEventBus } from 'vue2-interact'
 
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
 
+// import { chooseTemplate } from '~/plugins/utils.js'
+
+// cf : https://codepen.io/sethdavis512/pen/EvNKWw
+
 export default {
   name: 'CardData',
   components: { 
@@ -246,6 +264,7 @@ export default {
     
     // debug
     'isPauseInteractParent',
+    'cardWindow',
 
     'cardWidth',
     'breakPoint',
@@ -272,8 +291,10 @@ export default {
       // debug cookies - btns - mobile
       isPauseInteract : false,
       triggerFav : false,
+
     }
   },
+
   computed: {
 
     ...mapState({
@@ -314,6 +335,7 @@ export default {
     }
   },
   methods: {
+
     getContentByLocale( fieldCode ){
       // console.log("C-CardData-getContentByLocale..." )
       let currentLocale = this.locale
