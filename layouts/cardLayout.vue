@@ -99,9 +99,9 @@ export default {
     margin-top: 75px;
   } */
 
-  .no-scroll{
+  /* .no-scroll{
     overflow: hidden;
-  }
+  } */
   .fixed-bottom{
     position: fixed;
     bottom: 0;

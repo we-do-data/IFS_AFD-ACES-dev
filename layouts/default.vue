@@ -1,5 +1,6 @@
 <template>
   <v-app
+    class="no-scroll"
     >
     <!-- class="splashscreen-gradient" -->
 
