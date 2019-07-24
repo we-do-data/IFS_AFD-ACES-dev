@@ -62,14 +62,14 @@
               </p>
 
               <p>
-                debug - 01.3 <br>
-                W :{{ cardWindow.width }} : cardWindow.width<br>
-                H : {{ cardWindow.height }} : cardWindow.height
+                develop - 01.1 <br>
+                <!-- W :{{ cardWindow.width }} : cardWindow.width<br>
+                H : {{ cardWindow.height }} : cardWindow.height -->
                 <br>
 
-                <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet
+                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet
                 <br> {{ $ua.browser() }} : $ua.browser() 
-                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs()
+                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
 
               </p>
 
