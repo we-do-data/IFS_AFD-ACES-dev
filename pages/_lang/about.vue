@@ -10,7 +10,7 @@
       lg6 offset-lg3
       >
       
-      <h1 class="text-xs-center">
+      <h1 class="text-xs-center text-uppercase primary--text">
         {{ $t('about.title') }}
       </h1>
 
