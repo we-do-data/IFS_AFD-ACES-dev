@@ -18,30 +18,23 @@
 
           <v-container fluid>
             <v-layout row justify-center align-center>
-              <!-- <v-flex xs12 class="justify-center"> -->
-                <img 
-                  height="40px"
-                  class="pa-2"
-                  src="~assets/icons/logo-afd-white.svg" 
-                />
-              <!-- </v-flex> -->
+              <img 
+                height="40px"
+                class="pa-2"
+                src="~assets/icons/logo-afd-white.svg" 
+              />
             </v-layout>
             <v-layout row justify-center>
-              <!-- <v-flex xs12 order-md3 order-xs2> -->
-                <div class="text-xs-center text-uppercase">
-                  {{ $t('intro.catchPhrase_1') }}
-                  <span>
-                    <b> {{ $t('intro.catchPhrase_2') }} </b>
-                  </span>
-                </div>    
-              <!-- </v-flex> -->
+              <div class="text-xs-center text-uppercase">
+                {{ $t('intro.catchPhrase_1') }}
+                <span>
+                  <b> {{ $t('intro.catchPhrase_2') }} </b>
+                </span>
+              </div> 
             </v-layout>
           </v-container>
 
         </v-card-title>
-
-        <!-- </v-layout>  -->
-
 
 
         <!-- TEXT CONTENTS -->
@@ -59,61 +52,40 @@
               v-show="!findMoreActive"
               class="text-xs-center px-5"
               >
-              <!-- <v-card-text 
-                > -->
 
-                <!-- <p class="caption"> -->
-                  <!-- currentDsId : {{ currentDsId }}<br> -->
-                  <!-- cookieContent : {{ cookieContent.locale }} <br> -->
-                  <!-- locale (store) : {{ locale }}<br> -->
-                  <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
-                  <!-- device : <code>{{ $device }}</code><br> -->
-                  <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                  <!-- triggerFav : <code>{{ triggerFav }}</code><br> -->
-                <!-- </p> -->
+              <!-- <p class="caption"> -->
+                <!-- currentDsId : {{ currentDsId }}<br> -->
+                <!-- cookieContent : {{ cookieContent.locale }} <br> -->
+                <!-- locale (store) : {{ locale }}<br> -->
+                <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+                <!-- device : <code>{{ $device }}</code><br> -->
+                <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
+                <!-- triggerFav : <code>{{ triggerFav }}</code><br> -->
+              <!-- </p> -->
+              <!-- <br> -->
+
+              <p class="headline font-weight-bold ">
+                {{ itemData && getContentByLocale('mainContent') }}
+              </p>
+
+              <!-- <p> -->
+                <!-- debug j_integration_01 - 01.4 <br> -->
+
+                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
                 <!-- <br> -->
+                
+                <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
+                <!-- dsId : {{ dsId }}<br> -->
+                <!-- cards : {{ cards }}<br> -->
+                <!-- cardId : {{ cardId }}<br> -->
+                <!-- index : {{ index }}<br> -->
 
-                <p class="headline font-weight-bold ">
-                  {{ itemData && getContentByLocale('mainContent') }}
-                </p>
+                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+              <!-- </p> -->
 
-                <!-- <p> -->
-                  <!-- debug j_integration_01 - 01.4 <br> -->
-
-                  <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
-                  <!-- H : {{ cardWindow.height }} : cardWindow.height -->
-                  <!-- <br> -->
-                  
-                  <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
-                  <!-- dsId : {{ dsId }}<br> -->
-                  <!-- cards : {{ cards }}<br> -->
-                  <!-- cardId : {{ cardId }}<br> -->
-                  <!-- index : {{ index }}<br> -->
-
-                  <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
-                  <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
-                  <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
-
-
-                <!-- </p> -->
-
-                <!-- <p>
-                  <v-btn 
-                    icon
-                    flat
-                    outline
-                    dark
-                    @click.native="switchFavorite"
-                    >
-                    <v-icon
-                      :color="isFavorite ? 'pink' : 'white' "
-                      >
-                      favorite
-                    </v-icon>
-                  </v-btn>
-                </p> -->
-
-              <!-- </v-card-text> -->
             </v-flex> 
 
           </v-layout> 
@@ -245,13 +217,6 @@
 
           </v-flex>
         </transition>
-
-
-
-        <!-- </v-layout>  -->
-
-
-
 
 
       </div>
