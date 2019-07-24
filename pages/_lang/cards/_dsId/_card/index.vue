@@ -1,38 +1,8 @@
 <template>
 
-  <!-- <v-container> -->
-
-    <!-- <v-layout 
-      fill-height
-      row wrap 
-      > -->
-
-      <!-- <v-flex 
-        xs10 offset-xs1
-        sm8 offset-md2
-        md6 offset-md3 
-        > -->
-
-        <!-- <SwipeableCards
-          :cardsArray="cardsArray"
-          :dsId="dsId"
-          :cardId="cardId"
-          > -->
-        <SwipeableCards
-          >
-        </SwipeableCards>
-
-      <!-- </v-flex> -->
-
-    <!-- </v-layout> -->
-
-  <!-- <FooterCards
-    class="fixed-bottom"
-    @reloadPreviousItem="reloadPreviousItem()"
+  <SwipeableCards
     >
-  </FooterCards> -->
-
-  <!-- </v-container> -->
+  </SwipeableCards>
 
 </template>
 
@@ -109,8 +79,10 @@ export default {
       // put card on top of the deck 
       randomizedCards = randomizedCards.filter( item => { return item !== currentCard })
       randomizedCards.unshift( currentCard )
-    }
 
+      this.resetCardIndex( )
+
+    }
 
     // set data stack locally
     // this.cardsArray = cardsArray
@@ -168,6 +140,7 @@ export default {
       setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
       setCurrentCardId: 'cards/setCurrentCardId',
       // setCurrentCardIndex: 'cards/setCurrentCardIndex',
+      resetCardIndex: 'cards/resetCurrentCardIndex'
     }),
 
     reloadPreviousItem(){

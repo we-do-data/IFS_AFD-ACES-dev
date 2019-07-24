@@ -155,21 +155,6 @@ export default {
       
       // UI data
       breakPointCode : undefined,
-      // windowWidth : 0,
-
-      // cardWindow: {
-      //   width: 0,
-      //   height: 0
-      // },
-
-      // cardHeight: "75vh",
-      // cardHeights: {
-      //   title: "10vh",
-      //   content: "54vh",
-      //   more: "12vh",
-      //   resources: "39vh",
-      //   // footer: "8vh"
-      // },
 
       // cards iteration variables
       isVisible: true,
@@ -179,23 +164,11 @@ export default {
       // interactjs
       isPauseInteract : false,
       
-      // interactEventBus: {
-      //   draggedRight: EVENTS.SKIP,
-      //   draggedLeft: EVENTS.SKIP,
-      //   draggedUp: EVENTS.SKIP
-      // },
-      
       interactEventBus: {
         draggedRight: INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT,
         draggedLeft: INTERACT_EVENTS.INTERACT_DRAGGED_LEFT,
         draggedUp: INTERACT_EVENTS.INTERACT_DRAGGED_UP
       },
-
-      // interactEventBus: {
-      //   draggedRight: 'skip',
-      //   draggedLeft: 'skip',
-      //   draggedUp: 'skip'
-      // },
 
     }
   },
@@ -220,6 +193,7 @@ export default {
       cards : state => state.cards.currentCardsArrray,
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
+      
     }),
 
     ...mapGetters({
@@ -261,19 +235,6 @@ export default {
 
     handleResize() {
 
-
-
-      // if ( isFromAndroidOs  ) {
-      //   this.cardWindow.width = window.innerHeight
-      //   this.cardWindow.height = window.innerWidth
-      // } else {
-      //   this.cardWindow.width = window.innerWidth
-      //   this.cardWindow.height = window.innerHeight
-      // }
-
-      // this.cardWindow.width = window.innerWidth
-      // this.cardWindow.height = window.innerHeight
-
       let currentWindow = { 
         width : window.innerWidth,
         height : window.innerHeight
@@ -298,16 +259,9 @@ export default {
 
     // compute card width
     cardWidth ( widthPercent ) {
-      // let maxWidth = 100
-      // let zWidth = maxWidth * widthPercent 
+
       let step = .1
       switch (this.$vuetify.breakpoint.name) {
-
-        // case 'xs': return zWidth + 'vw'
-        // case 'sm': return ( zWidth - (step * 4) ) + 'vw'
-        // case 'md': return ( zWidth - (step * 5) ) + 'vw'
-        // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
-        // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
 
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
@@ -365,6 +319,7 @@ export default {
     emitAndNext(event) {
       console.log("C-SwipeableCards-emitAndNext / event :", event )
       console.log("C-SwipeableCards-emitAndNext / this.index (A) :", this.index )
+
       // emit event to parent
       // this.$emit(event, this.index)
       // make card disappear
@@ -455,94 +410,7 @@ export default {
 .full-height{
   height: 100%;
 }
-// .container {
-//   // background: #eceff1;
-//   width: 100%;
-//   height: 100vh;
-// }
-// .header {
-//   width: 100%;
-//   height: 60vh;
-//   z-index: 0;
-//   top: 0;
-//   left: 0;
-//   color: white;
-//   text-align: center;
-//   font-style: italic;
-//   font-family: 'Engagement', cursive;
-//   background: #f953c6;
-//   background: -webkit-linear-gradient(to top, #b91d73, #f953c6);
-//   background: linear-gradient(to top, #b91d73, #f953c6);
-//   clip-path: polygon(0 1%, 100% 0%, 100% 76%, 0 89%);
-//   display: flex;
-//   justify-content: space-between;
-//   span {
-//     display: block;
-//     font-size: 4rem;
-//     padding-top: 2rem;
-//     text-shadow: 1px 1px 1px red;
-//   }
-//   i {
-//     padding: 24px;
-//   }
-// }
-// .footer {
-//   width: 77vw;
-//   bottom: 0;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   display: flex;
-//   padding-bottom: 30px;
-//   justify-content: space-around;
-//   align-items: center;
-// }
-// .btn {
-//   position: relative;
-//   width: 50px;
-//   height: 50px;
-//   padding: .2rem;
-//   border-radius: 50%;
-//   background-color: white;
-//   box-shadow: 0 6px 6px -3px rgba(0,0,0,0.02), 0 10px 14px 1px rgba(0,0,0,0.02), 0 4px 18px 3px rgba(0,0,0,0.02);
-//   cursor: pointer;
-//   transition: all .3s ease;
-//   user-select: none;
-//   -webkit-tap-highlight-color:transparent;
-//   &:active {
-//     transform: translateY(4px);
-//   }
-//   i {
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     &::before {
-//       content: '';
-//     }
-//   }
-//   &--like {
-//     background-color: red;
-//     padding: .5rem;
-//     color: white;
-//     box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
-//     i {
-//       font-size: 32px;
-//     }
-//   }
-//   &--decline {
-//     color: red;
-//   }
-//   &--skip {
-//     color: green;
-//   }
-// }
-// .flex {
-//   display: flex;
-//   &--center {
-//     align-items: center;
-//     justify-content: center;
-//   }
-// }
+
 .fixed {
   position: fixed;
   // &--center {
@@ -553,9 +421,7 @@ export default {
   //   // transform: translate(-50%, -50%);
   // }
 }
-// .rounded-borders {
-//   border-radius: 12px;
-// }
+
 .card {
   // height: 70vh;
   // height: 85%;

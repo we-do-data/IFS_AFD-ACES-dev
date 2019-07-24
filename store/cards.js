@@ -36,6 +36,10 @@ export const mutations = {
     console.log("S-cards-M-setCurrentCardIndex / cardIndex : ", cardIndex )
     state.currentCardIndex = cardIndex
   },
+  resetCurrentCardIndex(state){
+    console.log("S-cards-M-resetCurrentCardIndex ..." )
+    state.currentCardIndex = 0
+  },
 
   nextCurrentCardIndex( state ){
     state.currentCardIndex += 1
