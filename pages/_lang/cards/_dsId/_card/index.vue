@@ -109,8 +109,10 @@ export default {
       // put card on top of the deck 
       randomizedCards = randomizedCards.filter( item => { return item !== currentCard })
       randomizedCards.unshift( currentCard )
-    }
 
+      this.resetCardIndex( )
+
+    }
 
     // set data stack locally
     // this.cardsArray = cardsArray
@@ -168,6 +170,7 @@ export default {
       setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
       setCurrentCardId: 'cards/setCurrentCardId',
       // setCurrentCardIndex: 'cards/setCurrentCardIndex',
+      resetCardIndex: 'cards/resetCurrentCardIndex'
     }),
 
     reloadPreviousItem(){

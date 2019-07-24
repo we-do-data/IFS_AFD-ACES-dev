@@ -62,14 +62,20 @@
               </p>
 
               <p>
-                debug - 01.3 <br>
-                W :{{ cardWindow.width }} : cardWindow.width<br>
-                H : {{ cardWindow.height }} : cardWindow.height
-                <br>
+                debug develop - 01.1 <br>
+                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
+                <!-- <br> -->
+                
+                dsId : {{ dsId }}<br>
+                <!-- cards : {{ cards }}<br> -->
+                cardId : {{ cardId }}<br>
+                index : {{ index }}<br>
 
-                <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet
-                <br> {{ $ua.browser() }} : $ua.browser() 
-                <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs()
+                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+
 
               </p>
 
@@ -300,10 +306,16 @@ export default {
     ...mapState({
       log : state => state.log, 
       locale : state => state.locale,
+
       dsId : state => state.cards.currentDsId,
+      cards : state => state.cards.currentCardsArrray,
+      cardId : state => state.cards.currentCardId,
+      index : state => state.cards.currentCardIndex,
+
       contentFields : state => state.data.contentFields,
       // itemIdField : state => state.users.itemIdField,
-      favorites : state => state.users.favorites
+      favorites : state => state.users.favorites,
+
     }),
 
     ...mapGetters({

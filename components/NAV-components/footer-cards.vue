@@ -69,10 +69,7 @@
               {{ $t( btn.textCode ) }}
             </span>
 
-
-
           </v-btn>
-
 
         </v-layout>
 
@@ -93,22 +90,9 @@
           </v-btn>
         </v-layout>
 
-        <!-- <v-spacer></v-spacer> -->
 
         <!-- RIGHT SIDE ICONS  -->
         <v-layout justify-end >
-
-          <!-- <v-btn
-            flat
-            color="grey"
-            @click.prevent="skip"
-            >
-            <span
-              v-show="showNext"
-              >
-              {{ $t('cards.next') }}
-            </span>
-          </v-btn> -->
 
           <v-btn 
             v-if="!showNext"
@@ -173,7 +157,6 @@
 <script>
 
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-// import { InteractEventBus } from 'vue2-interact'
 
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
 
@@ -211,12 +194,6 @@ export default {
       ],
 
       showNextBreakpoints : [ 'xl' ],
-      
-      // interactEventBus: {
-      //   draggedRight: EVENTS.SKIP,
-      //   draggedLeft: EVENTS.SKIP,
-      //   draggedUp: EVENTS.SKIP
-      // },
 
     }
 
@@ -255,18 +232,6 @@ export default {
   methods: {
 
     handleResize() {
-
-      // if ( needInvertAndroid  ) {
-      //   this.cardWindow.width = window.innerHeight
-      //   this.cardWindow.height = window.innerWidth
-      // } else {
-      //   this.cardWindow.width = window.innerWidth
-      //   this.cardWindow.height = window.innerHeight
-      // }
-
-      // this.cardWindow.width = window.innerWidth
-      // this.cardWindow.height = window.innerHeight
-
       let currentWindow = { 
         width : window.innerWidth,
         height : window.innerHeight
@@ -275,21 +240,14 @@ export default {
     },
 
     ...mapMutations({
-      setCurrentCardIndex: 'cards/setCurrentCardIndex',
+      // setCurrentCardIndex: 'cards/setCurrentCardIndex',
       setPreviousCurrentCardIndex : 'cards/setPreviousCurrentCardIndex'
     }),
 
     cardWidth ( widthPercent ) {
-      // let maxWidth = 100
-      // let zWidth = maxWidth * widthPercent 
+
       let step = .1
       switch (this.$vuetify.breakpoint.name) {
-
-        // case 'xs': return zWidth + 'vw'
-        // case 'sm': return ( zWidth - (step * 4) ) + 'vw'
-        // case 'md': return ( zWidth - (step * 5) ) + 'vw'
-        // case 'lg': return ( zWidth - (step * 6) ) + 'vw'
-        // case 'xl': return ( zWidth - (step * 7) ) + 'vw'
 
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
@@ -305,13 +263,9 @@ export default {
 
       if ( isNext ){
         // swipe to next
-        // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
         this.$bus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_RIGHT);
-        // this.$bus.$emit('skip');
       } else {
         // reload previous
-        // InteractEventBus.$emit(INTERACT_EVENTS.INTERACT_DRAGGED_LEFT);
-        // this.$emit('reloadPreviousItem')
         this.setPreviousCurrentCardIndex()
       }
 

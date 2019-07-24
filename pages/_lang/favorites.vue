@@ -35,6 +35,9 @@
 
       <br>
 
+      <!-- DEBUG -->
+      favorites : <br><pre><code>{{ favorites }}</code></pre><br>
+
       <!-- FAVORITES LIST -->
       <div
         v-for="dsFavorites in favorites"
@@ -51,6 +54,7 @@
 
           <v-list-tile
             :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
+            @click.native="mutateCardIndex( item )"
             >
 
             <!-- icon -->
@@ -96,7 +100,7 @@
 
 <script>
 
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
 
@@ -156,6 +160,10 @@ export default {
   },
 
   methods: {
+    
+    ...mapMutations({
+      setCardIndex : 'cards/setsetCurrentCardIndex',
+    }),
 
     goBack(e){
       e.preventDefault()
@@ -196,6 +204,11 @@ export default {
       console.log("P-FavoritesPage-getFavoriteText / fieldByLocale : ", fieldByLocale )
 
       return itemData && itemData[ fieldByLocale ]
+    },
+
+    mutateCardIndex( item ){
+      console.log("P-FavoritesPage-mutateCardIndex / item : ", item )
+      // this.setCardIndex( item )
     }
 
 
