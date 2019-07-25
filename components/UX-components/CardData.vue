@@ -107,7 +107,7 @@
         <!-- RESSOURCES && FAVORITES CONTENTS -->
         <v-layout 
           ref="cardMore"
-          :class="`pb-3  ${ findMoreActive ? '' : '' }`"
+          :class="` ${ findMoreActive ? '' : 'pb-3' }`"
           :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
           row
           align-end
@@ -142,7 +142,7 @@
           <v-flex
             xs2
             color="transparent" 
-            :class="`${ $device.isMobileOrTablet? 'pr-2 pb-1' : 'pb-2 pr-3' }`"
+            :class="`${ $device.isMobileOrTablet? 'pr-2 pb-0' : 'pb-2 pr-3' }`"
             ref="cardFooter"
             >
             <v-layout
@@ -153,9 +153,7 @@
                 class="card-button white"
                 icon
                 flat
-
-                @click.prevent.stop="switchFavorite()"
-                
+                @click="switchFavorite()"
                 >
                 <!-- @mouseenter="switchHover()"
                 @mouseleave="switchHover()" -->
