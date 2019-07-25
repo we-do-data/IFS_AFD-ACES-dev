@@ -264,6 +264,7 @@ export default {
     */
     // vendor: ['vue-i18n'],
     extend(config, ctx) {
+
     }
   }
 }

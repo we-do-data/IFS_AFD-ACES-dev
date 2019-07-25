@@ -112,7 +112,7 @@
         <br>
         <img 
           height="75px"
-          src="~assets/icons/heart-stroke-X.svg" 
+          src="/icons/heart-stroke-X.svg" 
           />
       </div>
 

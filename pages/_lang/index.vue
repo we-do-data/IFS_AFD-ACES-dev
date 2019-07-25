@@ -29,22 +29,6 @@
         </b>
       </h2> -->
 
-
-          <!-- <v-icon
-            class="blue"
-            > -->
-
-            <!-- <svg-icon 
-              name="alarm" 
-              :size="36">
-            </svg-icon> -->
-
-            <img 
-              :src="`/icons/icon-prev-M.svg`"
-            />
-
-         <!-- </v-icon> -->
-
       <!-- LOCALE SELECTION -->
       <div 
         v-show="!locSelected"

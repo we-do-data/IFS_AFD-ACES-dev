@@ -18,14 +18,15 @@
 
           <v-container fluid>
             <v-layout row justify-center align-center>
+                <!-- height="40px" -->
               <img 
-                height="40px"
-                class="pa-2"
+                :height="logoHeight"
+                class="pa-2 my-3"
                 src="/icons/logo-afd-white.svg" 
               />
             </v-layout>
             <v-layout row justify-center>
-              <div class="text-xs-center text-uppercase">
+              <div class="text-xs-center text-uppercase light-opacity">
                 {{ $t('intro.catchPhrase_1') }}
                 <span>
                   <b> {{ $t('intro.catchPhrase_2') }} </b>
@@ -72,6 +73,10 @@
 
               <!-- <p> -->
                 <!-- debug j_integration_01 - 01.4 <br> -->
+                <!-- <div 
+                  v-html="require('../../assets/svg/icon-heart-M.svg' )"
+                >
+                </div> -->
 
                 <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
                 <!-- H : {{ cardWindow.height }} : cardWindow.height -->
@@ -132,7 +137,7 @@
           <v-flex
             xs2
             color="transparent" 
-            class="pr-2  "
+            class="pr-4 pb-3"
             ref="cardFooter"
             >
             <v-layout
@@ -160,13 +165,13 @@
                 <img 
                   v-if="isFavorite"
                   height="36px"
-                  src="/icons/icon-heart-M.svg"
+                  src="/icons/icon-heart-M-fill.svg"
                   />
 
                 <img 
                   v-else
                   height="36px"
-                  src="~assets/icons/icon-heart-M.svg"
+                  src="/icons/icon-heart-M.svg"
                   />
 
               </v-btn>
@@ -174,7 +179,6 @@
           </v-flex>
           
         </v-layout>
-
 
       
         <!-- CONTENT RESOURCES -->
@@ -309,6 +313,8 @@ export default {
       log : state => state.log, 
       locale : state => state.locale,
 
+      cardWindow : state => state.cardWindow,
+
       dsId : state => state.cards.currentDsId,
       cards : state => state.cards.currentCardsArrray,
       cardId : state => state.cards.currentCardId,
@@ -338,8 +344,15 @@ export default {
       return this.isInFavorites( itemPayload )
     },
 
-    chooseBackground() {
-      
+    // compute logo height
+    logoHeight( ) {
+      let windowHeight = this.cardWindow.height
+      switch (true) {
+          case (windowHeight < 700): return '50px'
+          case (windowHeight < 900): return '60px'
+          case (windowHeight < 1000): return '65px'
+          default:  return '40px'
+      }
     },
 
     cookieContent(){
@@ -414,12 +427,15 @@ export default {
 
 <style lang="scss" scoped>
 
+  .light-opacity{
+    opacity : .5;
+  }
   // .absolutePos{
     // position: absolute;
     // left: 50vw;
   // }
   .rounded-borders {
-    border-radius: 12px;
+    border-radius: 20px;
   }
   .full-height{
     height: 100%;
@@ -481,7 +497,7 @@ export default {
 
   @import '~assets/css/colors-IFS_AFD.scss';
 
-  $circles: url( '~assets/icons/background-circles.svg' ) ;
+  $circles: url( '~statics/icons/background-circles.svg' ) ;
 
   .card-color{
 
@@ -513,7 +529,7 @@ export default {
     // background-image: $circles linear-gradient( rgba(46,34,101,0.5), rgba(255,0,0,0) ) ;
     // background-image : $circles ;
     background-position: center center;
-    background-image : url(~assets/icons/background-circles.svg);
+    background-image : url(~assets/svg/background-circles.svg);
     background-size: cover ; 
 
 // @include filter-gradient(#002e2265, #802e2265, vertical);

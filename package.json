@@ -5,6 +5,10 @@
   "author": "Julien_P",
   "private": true,
   "scripts": {
+
+    "icons": "vsvg -s src/assets/svg -t src/components/icons",
+    "prebuild": "npm run icons",
+
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -40,6 +44,7 @@
     "nodemon": "^1.18.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "svg-sprite-loader": "^4.1.6"
+    "svg-sprite-loader": "^4.1.6",
+    "vue-svg-loader": "^0.12.0"
   }
 }

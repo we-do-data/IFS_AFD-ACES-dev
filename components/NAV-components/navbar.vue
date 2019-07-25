@@ -1,8 +1,8 @@
 <template>
 
   <div class="navbar-above-all"
-    v-if="locSelected"
     >
+    <!-- v-if="locSelected" -->
     <!-- :style="`width:100px; height:32px`" -->
 
     <v-toolbar 
