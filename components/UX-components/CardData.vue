@@ -386,7 +386,7 @@ export default {
     quoteClass( fieldCode ) {
       let textLength = this.getContentLength( fieldCode )
       // let windowHeight = this.cardWindow.height
-      let mobileHandicap = this.$device.isMobileOrTablet ? 20 : 0
+      let mobileHandicap = this.$device.isMobileOrTablet ? 25 : 0
       switch (true) {
           case (textLength + mobileHandicap < 10 ): return 'display-4'
           case (textLength + mobileHandicap < 20 ): return 'display-3'
