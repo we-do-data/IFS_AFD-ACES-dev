@@ -142,7 +142,7 @@
           <v-flex
             xs2
             color="transparent" 
-            class="pr-4 pb-3"
+            :class="`${ $device.isMobileOrTablet? 'pr-2 pb-1' : 'pb-2 pr-3' }`"
             ref="cardFooter"
             >
             <v-layout
