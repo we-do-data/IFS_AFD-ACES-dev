@@ -387,7 +387,8 @@ export default {
     // compute logo height
     quoteClass( fieldCode ) {
       let textLength = this.getContentLength( fieldCode )
-      let mobileHandicap = this.$device.isMobileOrTablet ? 10 : 0
+      // let windowHeight = this.cardWindow.height
+      let mobileHandicap = this.$device.isMobileOrTablet ? 20 : 0
       switch (true) {
           case (textLength < 10 + mobileHandicap ): return 'display-4'
           case (textLength < 20 + mobileHandicap ): return 'display-3'
