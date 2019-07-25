@@ -63,7 +63,7 @@
                 <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
                 <!-- device : <code>{{ $device }}</code><br> -->
                 <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                d2.08 / triggerFav : <code>{{ triggerFav }}</code><br>
+                <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
               <!-- </p> -->
               <!-- <br> -->
 
@@ -143,10 +143,10 @@
             xs3
             justify-end
             align-center
-            color="transparent" 
             :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
-            ref="cardFooter"
             >
+            <!-- color="transparent"  -->
+            <!-- ref="cardFooter" -->
             <!-- <v-layout
               align-center
               justify-end
@@ -161,10 +161,11 @@
                 <!-- @mouseenter="switchHover()"
                 @mouseleave="switchHover()" -->
 
+                  <!-- :color="isFavorite ? 'pink' : 'grey' " -->
                 <v-icon
-                  :color="isFavorite ? 'pink' : 'grey' "
+                  color="pink"
                   >
-                  favorite
+                  {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
                 </v-icon>
 
                 <!-- <img 
@@ -196,7 +197,7 @@
                 :style="`max-height:${ cardHeights['resources'] }`"
                 >
 
-                d2.08 / triggerFind : <code>{{ triggerFind }}</code><br>
+                <!-- d2.08 / triggerFind : <code>{{ triggerFind }}</code><br> -->
 
                 <!-- <v-list-tile
                   v-for="favField in resourcesList.favFields"
@@ -409,24 +410,24 @@ export default {
       // find correct field code
       return this.itemData[ fieldByLocale ]
     },
-    computeContentHeight(){
-      // console.log("C-CardData-computeContentHeight..." )
-      // console.log("C-CardData-computeContentHeight / this.$refs :", this.$refs )
-      // if ( this.cardData != {} ){
-        let heightCard = this.$refs.currentCard.clientHeight
-        let heightTitle = this.$refs.cardTitle.clientHeight
-        let heightFooter = this.$refs.cardFooter.clientHeight
-        // console.log("C-CardData-computeContentHeight / heightCard :", heightCard )
-        // console.log("C-CardData-computeContentHeight / heightTitle :", heightTitle )
-        // console.log("C-CardData-computeContentHeight / heightFooter :", heightFooter )
-        let heightContent = heightCard - ( heightTitle + heightFooter )
-        // console.log("C-CardData-computeContentHeight / heightContent :", heightContent )
+    // computeContentHeight(){
+    //   // console.log("C-CardData-computeContentHeight..." )
+    //   // console.log("C-CardData-computeContentHeight / this.$refs :", this.$refs )
+    //   // if ( this.cardData != {} ){
+    //     let heightCard = this.$refs.currentCard.clientHeight
+    //     let heightTitle = this.$refs.cardTitle.clientHeight
+    //     let heightFooter = this.$refs.cardFooter.clientHeight
+    //     // console.log("C-CardData-computeContentHeight / heightCard :", heightCard )
+    //     // console.log("C-CardData-computeContentHeight / heightTitle :", heightTitle )
+    //     // console.log("C-CardData-computeContentHeight / heightFooter :", heightFooter )
+    //     let heightContent = heightCard - ( heightTitle + heightFooter )
+    //     // console.log("C-CardData-computeContentHeight / heightContent :", heightContent )
     
-        return heightContent
-      // } else {
-      //   return 
-      // }
-    },
+    //     return heightContent
+    //   // } else {
+    //   //   return 
+    //   // }
+    // },
     switchHover(){
       console.log("C-CardData-switchHover..." )
       this.isPauseInteract = !this.isPauseInteract
