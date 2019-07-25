@@ -164,6 +164,7 @@
                   <!-- :color="isFavorite ? 'pink' : 'grey' " -->
                 <v-icon
                   color="pink"
+                  small
                   >
                   {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
                 </v-icon>
