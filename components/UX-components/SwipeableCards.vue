@@ -57,7 +57,7 @@
           
           :cardHeights="cardHeights"
           :cardWidth="cardWidth( .9 )"
-          :cardColorIndex="getRandomColorIndex(0)"
+          :cardColorIndex="getRandomColorIndex( index )"
 
           :breakPoint="this.$vuetify.breakpoint.name"
 
@@ -85,7 +85,7 @@
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
         :cardWindow="cardWindow"
-        :cardColorIndex="getRandomColorIndex(1)"
+        :cardColorIndex="getRandomColorIndex( index + 1)"
         >
       </CardData>
     </v-flex> 
@@ -101,7 +101,7 @@
         :itemData="{}"
         :cardHeights="cardHeights"
         :cardWindow="cardWindow"
-        :cardColorIndex="getRandomColorIndex(2)"
+        :cardColorIndex="getRandomColorIndex( index + 2)"
         >
       </CardData>
     </v-flex>
@@ -215,14 +215,14 @@ export default {
       return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) }px;`
     },
     cardHeight() { 
-      return ( this.cardWindow.height * .65 ) + "px" 
+      return ( this.cardWindow.height * .7 ) + "px" 
     },
     cardHeights() {
       return {
         title: ( this.cardWindow.height * .20) + "px",
-        content: ( this.cardWindow.height * .34 ) + "px",
+        content: ( this.cardWindow.height * .39 ) + "px",
         more: ( this.cardWindow.height * .12 ) + "px",
-        resources: ( this.cardWindow.height * .19 ) + "px",
+        resources: ( this.cardWindow.height * .24 ) + "px",
         // footer: ( this.cardWindow.height * .08 ) + "px",
       }
     },
@@ -252,8 +252,9 @@ export default {
 
     },
 
-    getRandomColorIndex( level ){
-      return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
+    getRandomColorIndex( cardIndex ){
+      return cardIndex % 8
+      // return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
     },
 
     getClickSignal(event){

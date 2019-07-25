@@ -20,6 +20,12 @@
     "getAnAce" : "voir une carte"
   },
 
+  "banner" : {
+    "bannerMessage" : "Ce site utilise des cookies pour vous permettre une meilleure expérience d'utilisation",
+    "gotIt" : "J'ai compris",
+    "learnMore" : "En savoir plus"
+  },
+
   "basicDict"  : {
     "welcome" : "Bienvenue sur Sheet-loads",
     "continue" : "continuer"

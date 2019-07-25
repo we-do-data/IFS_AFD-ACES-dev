@@ -20,6 +20,7 @@ export const state = () => ({
   // UX OPTIONS
   showNav : false,
   firstVisit: true,
+  isCookieBannerVisible : true,
 
   cardWindow: {
     width: 0,
@@ -119,6 +120,10 @@ export const mutations = {
     state.cardWindow.width = cardWithHeight.width - mobileWidthCorrection
     state.cardWindow.height = cardWithHeight.height - mobileHeightCorrection
   },
+
+  disableCookieBanner(state){
+    state.isCookieBannerVisible = false
+  }
 
 }
 

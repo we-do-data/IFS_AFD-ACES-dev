@@ -20,11 +20,8 @@
     <FooterCards>
     </FooterCards>
 
-    <!-- <FooterCards
-      class="fixed-bottom"
-      >
-    </FooterCards> -->
-      <!-- @reloadPreviousItem="reloadPreviousItem()" -->
+    <!-- COOKIES BANNER -->
+    <CookiesBanner/>
 
   </v-app>
 </template>
@@ -35,6 +32,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Navbar from '~/components/NAV-components/navbar.vue'
 import FooterCards from '~/components/NAV-components/footer-cards'
+import CookiesBanner from '~/components/NAV-components/cookies-banner.vue'
 
 export default {
 
@@ -48,7 +46,8 @@ export default {
 
   components: {
     Navbar,
-    FooterCards
+    FooterCards,
+    CookiesBanner
   },
 
   props: [

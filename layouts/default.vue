@@ -20,6 +20,9 @@
     <FooterIndex>
     </FooterIndex>
 
+    <!-- COOKIES BANNER -->
+    <CookiesBanner/>
+
   </v-app>
 </template>
 
@@ -29,6 +32,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Navbar from '~/components/NAV-components/navbar.vue'
 import FooterIndex from '~/components/NAV-components/footer-index.vue'
+import CookiesBanner from '~/components/NAV-components/cookies-banner.vue'
 
 export default {
 
@@ -36,7 +40,8 @@ export default {
 
   components: {
     Navbar,
-    FooterIndex
+    FooterIndex,
+    CookiesBanner
   },
 
   props: [

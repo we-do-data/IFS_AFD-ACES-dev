@@ -54,7 +54,9 @@
               >
 
               <!-- <p class="caption"> -->
-                <!-- currentDsId : {{ currentDsId }}<br> -->
+                <!-- dsId : {{ dsId }}<br> -->
+                <!-- cardId : {{ cardId }}<br> -->
+                <!-- itemData : {{ itemData }}<br> -->
                 <!-- cookieContent : {{ cookieContent.locale }} <br> -->
                 <!-- locale (store) : {{ locale }}<br> -->
                 <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->

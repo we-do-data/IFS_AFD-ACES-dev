@@ -17,6 +17,8 @@ $card-yellow : #f1a21e;
 $card-green : #3dad4b;
 $card-blue : #5599d6;
 
+// cookies
+$cookie-background : #110D26;
 
 // Needs latest Compass, add '@import "compass"' to your scss
 // Permalink - use to edit and share this gradient:
@@ -55,4 +57,8 @@ $card-blue : #5599d6;
 	background: linear-gradient(to right, $main-secondary , $gradient-btn-end) !important;
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent !important;
+}
+
+.cookie-background{
+  background-color : $cookie-background !important;
 }

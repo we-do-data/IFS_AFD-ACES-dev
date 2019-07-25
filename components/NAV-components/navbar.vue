@@ -326,23 +326,23 @@ export default {
       currentPagePathArray = currentPagePathArray.filter( el => {
         return el !== ""
       })
-      console.log("C-navbar-isCurrentPage / currentPagePathArray : ", currentPagePathArray )
-        console.log("C-navbar-isCurrentPage / currentPagePathArray.slice(1) : ", currentPagePathArray.length > 0 && currentPagePathArray.slice(1) )
+      // console.log("C-navbar-isCurrentPage / currentPagePathArray : ", currentPagePathArray )
+      // console.log("C-navbar-isCurrentPage / currentPagePathArray.slice(1) : ", currentPagePathArray.length > 0 && currentPagePathArray.slice(1) )
 
       // console.log("C-navbar-isCurrentPage / this.localesCodes : ", this.localesCodes)
       let localesPathsStarts = this.localesCodes.map( locCode => {
         return '/' + locCode
       })
-      console.log("C-navbar-isCurrentPage / localesPathsStarts : ", localesPathsStarts )
+      // console.log("C-navbar-isCurrentPage / localesPathsStarts : ", localesPathsStarts )
 
-      console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
+      // console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
       // console.log("C-navbar-isCurrentPage / item.to  : ", item.to )
 
       // case route begins with a locale param
       if ( this.localesCodes.includes(currentPagePathArray[0]) ){
-        console.log("C-navbar-isCurrentPage / localesPathsStarts.includes(currentPagePathArray[0]) ...")
+        // console.log("C-navbar-isCurrentPage / localesPathsStarts.includes(currentPagePathArray[0]) ...")
         currentPage = "/" + currentPagePathArray.slice(1).join( '/' )
-        console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
+        // console.log("C-navbar-isCurrentPage / currentPage : ", currentPage)
       }
 
       if ( item.to === '/' ){

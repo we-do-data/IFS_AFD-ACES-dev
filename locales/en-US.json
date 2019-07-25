@@ -20,6 +20,12 @@
     "getAnAce" : "Get a card"
   },
 
+  "banner" : {
+    "bannerMessage" : "This website uses cookies to ensure you the best experience on your mobile",
+    "gotIt" : "Got it",
+    "learnMore" : "Learn more"
+  },
+
   "basicDict" : {
     "welcome" : "Welcome to Sheet-Loads",
     "continue" : "continue"
