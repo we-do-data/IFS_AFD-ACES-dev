@@ -201,7 +201,8 @@ export default {
     '~/plugins/vue-touch-events.js',
     // '~/plugins/vh-for-mobile.js',
     '~/plugins/scroll-lock.js',
-    '~/plugins/eventBus'
+    '~/plugins/eventBus',
+    '~/plugins/svg-icons',
   ],
 
   /*

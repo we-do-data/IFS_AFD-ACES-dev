@@ -10,12 +10,24 @@
       lg6 offset-lg3
       >
       
-      <h1 class="text-xs-center text-uppercase primary--text">
-        {{ getTotalFavorites }}
-        {{ $t('favorites.title') }}
-      </h1>
+      <p class="text-xs-center text-uppercase primary--text font-weight-thin display-1 mb-0">
+        
+        <span
+          v-if="getTotalFavorites > 0"
+          >
+          {{ getTotalFavorites }}
+          {{ $t('favorites.title') }}
+        </span>
 
-      <v-layout justify-center>
+        <span
+          v-else
+          >
+          {{ $t('favorites.title_empty') }}
+        </span>
+
+      </p>
+
+      <v-layout justify-center mb-2>
         <v-btn 
           flat
           icon
@@ -30,14 +42,15 @@
 
       <hr>
 
-      <h3 class="pt-3">
+      <!-- <h3 class="pt-3">
         {{ $t('favorites.headline') }}
-      </h3>
+      </h3> -->
 
-      <br>
+      <!-- <br> -->
 
       <!-- FAVORITES LIST -->
       <div
+        v-if="getTotalFavorites > 0"
         v-for="dsFavorites in favorites"
         :key="dsFavorites.dsId"
         >
@@ -88,6 +101,20 @@
   
       </div>
 
+      <div v-else 
+        class="text-xs-center">
+
+        <h3 class="pt-3 secondary--text my-3">
+          {{ $t('favorites.introduction_empty_01') }}<br>
+          {{ $t('favorites.introduction_empty_02') }}<br>
+          {{ $t('favorites.introduction_empty_03') }}<br>
+        </h3>
+        <br>
+        <img 
+          height="75px"
+          src="~assets/icons/heart-stroke-X.svg" 
+          />
+      </div>
 
     </v-flex>
 

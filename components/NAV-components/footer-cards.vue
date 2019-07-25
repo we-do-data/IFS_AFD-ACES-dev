@@ -20,7 +20,7 @@
         row wrap
         >
 
-        <!-- LEFT SIDE ICONS  -->
+        <!-- LEFT-SIDE ICONS  -->
         <v-layout justify-start >
 
           <v-btn 
@@ -32,11 +32,27 @@
             icon
             @click.prevent="skip(false)"
             >
+
             <v-icon
               color="primary"
-              >
+              > 
               {{ btn.icon }}
             </v-icon>
+            
+            <!-- 
+            <v-avatar 
+              class="previous-translated white"
+              size="36px"
+              > -->
+              
+              <!-- <img 
+                height="36px"
+                :src="btn.asset" 
+                /> -->
+                <!-- src="~assets/icons/icon-prev-M.svg"  -->
+
+            <!-- </v-avatar> -->
+
           </v-btn>
           
 
@@ -54,11 +70,17 @@
               class="previous-translated white"
               size="36px"
               >
+                
               <v-icon
                 color="primary"
                 >
                 {{ btn.icon }}
               </v-icon>
+              <!-- <img 
+                height="36px"
+                :src="btn.asset" 
+                /> -->
+
             </v-avatar>
 
             <span
@@ -73,7 +95,7 @@
         </v-layout>
 
 
-        <!-- CENTER SIDE ICONS -->
+        <!-- CENTER-SIDE ICONS -->
         <v-layout justify-center>
           <v-btn 
             v-for="btn in footerBtnsCenter"
@@ -180,17 +202,17 @@ export default {
     return {
 
       footerBtnsLeft : [
-        { textCode: "cards.previous", icon: "fas fa-undo-alt", to: "/previous" },
+        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "~/assets/icons/icon-prev-M.svg", to: "/previous" },
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", to: "/about" },
-        { textCode: "facebook", icon: "fab fa-facebook", to: "/credits" },
-        { textCode: "screenshot", icon: "fas fa-camera", to: "/credits" },
+        { textCode: "twitter", icon: "fab fa-twitter", asset: "~assets/icons/icon-twitter-M.svg" , to: "/about" },
+        { textCode: "facebook", icon: "fab fa-facebook", asset: "~assets/icons/icon-screenshot-M.svg" , to: "/credits" },
+        { textCode: "screenshot", icon: "fas fa-camera", asset: "~assets/icons/icon-twitter-M.svg" , to: "/credits" },
       ],
 
       footerBtnsRight : [
-        { textCode: "cards.next", icon: "fas fa-arrow-right", to: "/next" },
+        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "~assets/icons/icon-next-M.svg", to: "/next" },
       ],
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],

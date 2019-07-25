@@ -83,8 +83,13 @@
   },
 
   "favorites" : {
-    "title" : "Favoris ACES",
+    "title_singular" : "Carte en favoris",
+    "title_empty" : "Pas de carte en favoris",
+    "title" : "Cartes en favoris",
     "headline" : "headline de favoris",
+    "introduction_empty_01" : "Parcourez les cartes,",
+    "introduction_empty_02" : "si vous cliquez sur le bouton 'j'aime'",
+    "introduction_empty_03" : "vos cartes favorites apparaîtront ici",
     "introduction" : "Cette page liste cartes favorites"
   },
 

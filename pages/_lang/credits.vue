@@ -10,11 +10,11 @@
       lg6 offset-lg3
       >
       
-      <h1 class="text-xs-center text-uppercase primary--text">
+      <p class="text-xs-center text-uppercase primary--text font-weight-thin display-1 mb-0">
         {{ $t('credits.title') }}
-      </h1>
+      </p>
 
-      <v-layout justify-center>
+      <v-layout justify-center mb-2>
         <v-btn 
           flat
           icon
