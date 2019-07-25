@@ -63,7 +63,7 @@
                 <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
                 <!-- device : <code>{{ $device }}</code><br> -->
                 <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                triggerFav : <code>{{ triggerFav }}</code><br>
+                d2.01 / triggerFav : <code>{{ triggerFav }}</code><br>
               <!-- </p> -->
               <!-- <br> -->
 
@@ -117,7 +117,7 @@
           <v-flex 
             justify-center
             align-center
-            xs8 offset-xs2
+            xs6 offset-xs3
             class="text-uppercase text-xs-center"
             >
             <p class="mb-0 light-letter-spacing">
@@ -140,9 +140,11 @@
           <!-- FAVORITES FOOTER -->
             <!-- :style="`z-index:4; max-height:${ cardHeights['footer'] }; height:${ cardHeights['footer'] }`" -->
           <v-flex
-            xs2
+            xs3
+            justify-end
+            align-center
             color="transparent" 
-            :class="`${ $device.isMobileOrTablet? 'pr-2 pb-0' : 'pb-2 pr-3' }`"
+            :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
             ref="cardFooter"
             >
             <!-- <v-layout
@@ -153,7 +155,7 @@
                 class="card-button white"
                 icon
                 flat
-                @click="switchFavorite()"
+                @click.native="switchFavorite()"
                 >
                 <!-- v-touch:tap="switchFavorite()" -->
                 <!-- @mouseenter="switchHover()"
