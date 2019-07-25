@@ -63,7 +63,7 @@
                 <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
                 <!-- device : <code>{{ $device }}</code><br> -->
                 <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                d2.01 / triggerFav : <code>{{ triggerFav }}</code><br>
+                d2.08 / triggerFav : <code>{{ triggerFav }}</code><br>
               <!-- </p> -->
               <!-- <br> -->
 
@@ -124,10 +124,10 @@
               {{ $t('cards.findMore') }}
             </p>
             <v-btn
+              :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
               flat
               icon
-              @click=" findMoreActive = !findMoreActive "
-              :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
+              @click="triggerFind = !triggerFind; findMoreActive = !findMoreActive"
               >
               <v-icon
                 >
@@ -155,28 +155,21 @@
                 class="card-button white"
                 icon
                 flat
-                @click.native="switchFavorite()"
+                @click.prevent.stop="switchFavorite()"
                 >
                 <!-- v-touch:tap="switchFavorite()" -->
                 <!-- @mouseenter="switchHover()"
                 @mouseleave="switchHover()" -->
 
-                <!-- <v-icon
-                  :color="isFavorite ? 'pink' : 'white' "
+                <v-icon
+                  :color="isFavorite ? 'pink' : 'grey' "
                   >
                   favorite
-                </v-icon> -->
-
-                  <!-- v-if="isFavorite" -->
-                <img 
-                  height="36px"
-                  :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
-                  />
+                </v-icon>
 
                 <!-- <img 
-                  v-else
                   height="36px"
-                  src="/icons/icon-heart-M.svg"
+                  :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
                   /> -->
 
               </v-btn>
@@ -202,6 +195,8 @@
                 v-body-scroll-lock="true"
                 :style="`max-height:${ cardHeights['resources'] }`"
                 >
+
+                d2.08 / triggerFind : <code>{{ triggerFind }}</code><br>
 
                 <!-- <v-list-tile
                   v-for="favField in resourcesList.favFields"
@@ -323,6 +318,7 @@ export default {
       // debug cookies - btns - mobile
       isPauseInteract : false,
       triggerFav : false,
+      triggerFind : false,
 
     }
   },
