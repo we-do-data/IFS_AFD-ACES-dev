@@ -390,10 +390,10 @@ export default {
       // let windowHeight = this.cardWindow.height
       let mobileHandicap = this.$device.isMobileOrTablet ? 20 : 0
       switch (true) {
-          case (textLength < 10 + mobileHandicap ): return 'display-4'
-          case (textLength < 20 + mobileHandicap ): return 'display-3'
-          case (textLength < 40 + mobileHandicap ): return 'display-2'
-          case (textLength < 60 + mobileHandicap ): return 'display-1'
+          case (textLength + mobileHandicap < 10 ): return 'display-4'
+          case (textLength + mobileHandicap < 20 ): return 'display-3'
+          case (textLength + mobileHandicap < 40 ): return 'display-2'
+          case (textLength + mobileHandicap < 60 ): return 'display-1'
           default:  return 'headline'
       }
     },
