@@ -18,7 +18,6 @@
 
           <v-container fluid>
             <v-layout row justify-center align-center>
-                <!-- height="40px" -->
               <img 
                 :height="logoHeight"
                 class="pa-2 my-3"
@@ -43,7 +42,7 @@
           <v-layout 
             ref="cardContent"
             v-show="!findMoreActive"
-            :class="` ${ findMoreActive ? '' : '' }`"
+            :class="`${ findMoreActive ? '' : '' }`"
             :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
             align-center
             justify-center
@@ -51,7 +50,7 @@
 
             <v-flex
               v-show="!findMoreActive"
-              class="text-xs-center px-5"
+              :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 3 }`"
               >
 
               <!-- <p class="caption"> -->
