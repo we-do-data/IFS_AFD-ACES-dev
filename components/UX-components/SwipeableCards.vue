@@ -56,18 +56,16 @@
           :itemData="current"
           
           :cardHeights="cardHeights"
-          :cardWidth="cardWidth( .9 )"
           :cardColorIndex="getRandomColorIndex( index )"
 
           :breakPoint="this.$vuetify.breakpoint.name"
 
           :isPauseInteractParent="isPauseInteract"
-          :cardWindow="cardWindow"
-
 
           @needPauseInteract="pauseInteract"
           @click="stopPropagation"
           >
+          <!-- :cardWindow="cardWindow" -->
         </CardData>
 
       </InteractDraggable>
@@ -84,9 +82,9 @@
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights"
-        :cardWindow="cardWindow"
         :cardColorIndex="getRandomColorIndex( index + 1)"
         >
+        <!-- :cardWindow="cardWindow" -->
       </CardData>
     </v-flex> 
 
@@ -100,9 +98,9 @@
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights"
-        :cardWindow="cardWindow"
         :cardColorIndex="getRandomColorIndex( index + 2)"
         >
+        <!-- :cardWindow="cardWindow" -->
       </CardData>
     </v-flex>
 
@@ -490,10 +488,12 @@ export default {
   }
   @keyframes appear {
     from {
-      transform : translate(-50%, -57%) scaleX(.85) ;
+      transform : translate(-50%, -57%) scaleX(.95)  ;
+      // transform : translate(-50%, -57%) ;
     }
     to {
-      transform: translate(-50%, -60%) scaleX(.9);
+      transform: translate(-50%, -60%) scaleX(1);
+      // transform: translate(-50%, -60%) ;
     }
   }
 

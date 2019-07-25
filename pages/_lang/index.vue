@@ -10,14 +10,14 @@
 
       <!-- LOGO -->
       <p>
-        <img 
+        <!-- <img 
           v-if="locSelected"
           height="120px"
-          src="/icons/logo-afd-color.svg" />
+          src="/icons/logo-afd-color.svg" /> -->
         <img 
-          v-else
-          height="120px"
-          src="/icons/logo-afd-white.svg" />
+          :height="`${ $device.isMobileOrTablet ? '90px' : '120px'}`"
+          :src="`/icons/logo-afd-${ locSelected ? 'color' : 'white' }.svg`" 
+          />
       </p>
 
       <!-- <h2
@@ -74,20 +74,23 @@
           >
             <p>
               {{ $t('intro.pitchPhrase_1') }}
-            <!-- </p>
-            <p> -->
-            <br>
+              <br>
               {{ $t('intro.pitchPhrase_2') }}
             </p>
         </div>
 
         <v-btn 
           round
-          class="btn-gradient"
+          class="btn-gradient "
           color="primary"
+          large
           :to="(isFirstVisit)? '/about' : '/cards' "
           >
+          <span
+            class="card-btn-text px-4"
+            >
           {{ $t('intro.getAnAce')}}
+          </span>
         </v-btn>
 
       </div>
@@ -103,8 +106,8 @@
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
-import GameCardsStack from '~/components/UX-components/GameCardsStack'
-import BasicTable from '~/components/DATA-components/basic-table'
+// import GameCardsStack from '~/components/UX-components/GameCardsStack'
+// import BasicTable from '~/components/DATA-components/basic-table'
 
 export default {
 
@@ -112,8 +115,8 @@ export default {
   transition: 'static',
 
   components: {
-    BasicTable,
-    GameCardsStack
+    // BasicTable,
+    // GameCardsStack
   },
 
   middleware : [

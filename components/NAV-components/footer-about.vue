@@ -4,25 +4,24 @@
     <!-- v-show="isFirstVisit"  -->
   <v-footer 
     color="transparent"
-    class="ma-3 pb-5"
+    class="ma-3 pb-5 mb-5"
     >
 
     <v-layout 
       justify-center
       >
     
-      <v-btn 
+      <!-- <v-btn 
         v-for="(btn, indexBtn) in footerBtns"
         round
-        class="btn-gradient white--text"
+        class="btn-gradient card-btn-text white--text light-letter-spacing"
         :key="indexBtn"
         @click="goToCards()"
         >
-        <!-- outline -->
-        <!-- color="white" -->
-        <!-- :to="btn.to" -->
         {{ $t(btn.textCode) }}
-      </v-btn>
+      </v-btn> -->
+
+      <ButtonCard/>
 
     </v-layout>
     
@@ -33,12 +32,14 @@
 <script>
 
 import { mapState, mapGetters, mapActions } from 'vuex'
+import ButtonCard from '~/components/NAV-components/button-card.vue'
 
 export default {
 
   name: "FooterAbout",
 
   components: {
+    ButtonCard,
   },
 
   props: [

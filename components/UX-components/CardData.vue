@@ -67,7 +67,12 @@
               <!-- </p> -->
               <!-- <br> -->
 
-              <p class="headline font-weight-bold ">
+                <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
+                <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
+
+              <p 
+                :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
+                >
                 {{ itemData && getContentByLocale('mainContent') }}
               </p>
 
@@ -115,7 +120,7 @@
             xs8 offset-xs2
             class="text-uppercase text-xs-center"
             >
-            <p class="mb-0">
+            <p class="mb-0 light-letter-spacing">
               {{ $t('cards.findMore') }}
             </p>
             <v-btn
@@ -198,40 +203,55 @@
                 :style="`max-height:${ cardHeights['resources'] }`"
                 >
 
-                <v-list-tile
+                <!-- <v-list-tile
+                  v-for="favField in resourcesList.favFields"
+                  :key="favField.textFieldCode"
+                  style="z-index: 25"
+                  class="text-xs-center py-0"
+                  >
+                  <img 
+                    class="near-icon"
+                    height="36px"
+                    color="white"
+                    src="/icons/icon-arrowRight-S.svg"
+                    />
+                  <a 
+                    class="white--text favorites-text"
+                    :href="itemData[ favField.linkFieldCode ]"
+                    >
+                    {{ itemData[ favField.textFieldCode ] }}
+                  </a>
+                </v-list-tile> -->
+
+                <div
                   v-for="favField in resourcesList.favFields"
                   :key="favField.textFieldCode"
                   style="z-index: 25"
                   class="text-xs-center"
                   >
-                  
-                  <v-list-tile-action
-                    class="near-icon"
-                    >
-                    <!-- <v-icon small>
-                      fas fa-arrow-right
-                    </v-icon> -->
-                    <img 
-                      height="36px"
-                      color="white"
-                      src="/icons/icon-arrowRight-S.svg"
-                      />
-                  </v-list-tile-action>
 
-                  <v-list-tile-content>
-                    <v-list-tile-title>
+                  <p 
+                    class="favorites-text "
+                    >
+                    <v-icon 
+                      small
+                      left
+                      >
+                      arrow_forward
+                    </v-icon>
+
+                    <span
+                      >
                       <a 
-                        class="white--text"
+                        class="white--text favorites-text-link"
                         :href="itemData[ favField.linkFieldCode ]"
                         >
                         {{ itemData[ favField.textFieldCode ] }}
                       </a>
-                    </v-list-tile-title>
-                  </v-list-tile-content>
-
-
-                </v-list-tile>
-
+                    </span>
+                  </p>
+                
+                </div>
 
               </div>
 
@@ -275,17 +295,17 @@ export default {
     
     // debug
     'isPauseInteractParent',
-    'cardWindow',
+    // 'cardWindow',
     'cardColorIndex',
 
-    'cardWidth',
+    // 'cardWidth',
     'breakPoint',
     'cardHeights',
     'currentDsId'
   ],
   beforeMount() {
-    console.log("C-CardData / beforeMount....")
-    console.log("C-CardData / beforeMount / this.currentDsId : ", this.currentDsId )
+    // console.log("C-CardData / beforeMount....")
+    // console.log("C-CardData / beforeMount / this.currentDsId : ", this.currentDsId )
     this.idField = this.currentIdField( this.dsId )
     this.resourcesList = this.getCardResourcesFields( this.dsId )
   },
@@ -344,6 +364,7 @@ export default {
       return this.isInFavorites( itemPayload )
     },
 
+
     // compute logo height
     logoHeight( ) {
       let windowHeight = this.cardWindow.height
@@ -363,19 +384,28 @@ export default {
   },
   methods: {
 
+    // compute logo height
+    quoteClass( fieldCode ) {
+      let textLength = this.getContentLength( fieldCode )
+      switch (true) {
+          case (textLength < 10): return 'display-4'
+          case (textLength < 20): return 'display-3'
+          case (textLength < 40): return 'display-2'
+          case (textLength < 60): return 'display-1'
+          default:  return 'headline'
+      }
+    },
+
+    getContentLength( fieldCode ){
+      // console.log("C-CardData-getContentLength..." )
+      let content = this.getContentByLocale( fieldCode )
+      // console.log("C-CardData-getContentLength..." )
+      return content && content.length
+    },
+
     getContentByLocale( fieldCode ){
       // console.log("C-CardData-getContentByLocale..." )
       let currentLocale = this.locale
-      // let contentFieldsObject = this.contentFields.find( fieldObj => {
-      //   return this.dsId == fieldObj.dsId
-      // }) 
-      // let contentFields = contentFieldsObject.contentsFields
-      // // console.log("C-CardData-getContentByLocale / contentFields : ", contentFields )
-      // let contentColName = contentFields.find( field => {
-      //   return fieldCode === field.itemAppFieldCode
-      // })
-      // let fieldByLocale = contentColName && contentColName[ currentLocale ]
-      // console.log("C-CardData-getContentByLocale / fieldByLocale :", fieldByLocale)
       let fieldByLocale = this.getContentField( this.dsId, currentLocale, fieldCode )
       console.log("C-CardData-getContentByLocale / fieldByLocale :", fieldByLocale)
       // find correct field code
@@ -427,9 +457,8 @@ export default {
 
 <style lang="scss" scoped>
 
-  .light-opacity{
-    opacity : .5;
-  }
+
+
   // .absolutePos{
     // position: absolute;
     // left: 50vw;

@@ -1,4 +1,44 @@
 $fs-h2: rem(24px);
 $fw-bold: 700;
 
+// conversion from .ttf with :  https://www.font-converter.net
 
+@import "../fonts/AbrilFatface-Regular/style.css";
+@import "../fonts/Roboto-Black/style.css";
+@import "../fonts/Roboto-Regular/style.css";
+@import "../fonts/RobotoSlab-Bold/style.css";
+
+.quote-text{
+  font-family: "AbrilFatface-Regular" !important;
+}
+
+.light-opacity{
+  opacity : .5;
+  // font-family: "Roboto-Black" !important;
+  letter-spacing: .15em !important; 
+}
+.card-btn-text{
+  font-family: "RobotoSlab-Bold" !important;
+  letter-spacing: .05em !important; 
+  text-transform: none !important;
+}
+.light-letter-spacing{
+  font-family: "Roboto-Regular" !important;
+  letter-spacing: .05em !important; 
+}
+.text-menu{
+  font-family: "Roboto-Regular" !important;
+  letter-spacing: .15em !important; 
+}
+.favorites-text{
+  font-family: "RobotoSlab-Bold" !important;
+  letter-spacing: .02em !important; 
+  opacity: 1 !important;
+  &-link{
+    text-decoration: none;
+    border-bottom: 1px solid white;
+  }
+}
+.favorites-text:hover{
+  opacity: .5 !important;
+}

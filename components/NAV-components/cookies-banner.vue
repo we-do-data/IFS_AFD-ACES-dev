@@ -6,7 +6,7 @@
     padless
     class="cookie-background"
     fixed
-    height="110px"
+    :height="`${ $device.isMobileOrTablet ? '130px' : '100px'}`"
     transition="slide-y-transition"
     >
 
@@ -31,8 +31,8 @@
           <strong>
             {{ $t('banner.bannerMessage') }} &nbsp;
              <!-- / {{ $vuetify.breakpoint.name }} -->
-            <br v-if="!breakViews.includes($vuetify.breakpoint.name)">
-            <!-- <br> -->
+            <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
+            <br>
             <a 
               class="secondary--text"
               > 

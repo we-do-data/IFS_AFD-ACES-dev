@@ -16,7 +16,6 @@
 
       <v-spacer></v-spacer>
 
-
       <!-- LOCALES AND PAGES -->
       <v-menu
         v-if="isDrawerLeft && hasManyLocales"
@@ -33,7 +32,7 @@
             v-on="on"
             >
             <span
-              class="text-uppercase grey--text subheading"
+              class="text-uppercase grey--text subheading text-menu"
               >
               {{ locale }}
             </span>
@@ -52,7 +51,7 @@
             @click="changeLocale(loc)"
             >
             <v-list-tile-title
-              :class="`${ loc.code !== locale ? 'font-weight-thin' : ''}`"
+              :class="`text-menu ${ loc.code !== locale ? 'font-weight-bold' : 'menu-off'}`"
               >
               {{ loc.name }}
             </v-list-tile-title>
@@ -68,44 +67,44 @@
           justify-end
           >
 
-        <!-- many locales -->
-        <v-btn 
-          v-if="isDrawerLeft && !hasManyLocales"
-          v-for="loc in locales"
-          :key="loc.code"
-          flat
-          small
-          @click="changeLocale(loc)"
-          :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} ${ loc.code !== locale ? 'font-weight-thin' : ''}`"
-          >
-          <span
+          <!-- many locales -->
+          <v-btn 
+            v-if="isDrawerLeft && !hasManyLocales"
+            v-for="loc in locales"
+            :key="loc.code"
+            flat
+            small
+            @click="changeLocale(loc)"
+            :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage ? 'white--text' : 'primary--text'}`"
             >
-            {{ loc.code }}
-          </span>
-        </v-btn>
+            <span
+              :class="`text-menu ${ loc.code !== locale ? 'menu-off' : 'font-weight-bold'}`"
+              >
+              {{ loc.code }}
+            </span>
+          </v-btn>
+
+        </v-layout>
 
       </v-layout>
-      </v-layout>
 
-        <!-- BURGER -->
-        <v-btn
-          v-show="!isDrawerLeft"
-          icon
-          flat
-          :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
-          :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
-          @click.stop="closeDrawer()"
-          >
-          <!-- <v-icon>
-            fas fa-bars
-          </v-icon> -->
-          <img 
-            height="36px"
-            src="/icons/icon-burger-M.svg"
-            />
-
-        </v-btn>
-
+      <!-- BURGER -->
+      <v-btn
+        v-show="!isDrawerLeft"
+        icon
+        flat
+        :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
+        :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
+        @click.stop="closeDrawer()"
+        >
+        <!-- <v-icon>
+          fas fa-bars
+        </v-icon> -->
+        <img 
+          height="36px"
+          src="/icons/icon-burger-M.svg"
+          />
+      </v-btn>
 
     </v-toolbar>
 
@@ -159,7 +158,7 @@
           >
           <v-list-tile-content>
             <v-list-tile-title
-              :class="`text-uppercase ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
+              :class="`text-uppercase text-menu ${ (loc.code === locale) ? 'font-weight-bold' : 'menu-off' }`"
               >
               {{ loc.code }}
             </v-list-tile-title>
@@ -182,7 +181,7 @@
 
           <v-divider
             v-if="item.isDivider"
-            :class="`${ isCardPage || !isDrawerLeft ? 'white' : 'primary' }`"
+            :class="`${ isCardPage || !isDrawerLeft ? 'menu-divider-on-dark' : 'menu-divider-on-white'}`"
             >
           </v-divider>
 
@@ -193,10 +192,14 @@
             
             <v-list-tile-title 
               @click="closeDrawer()"
-              :class="`${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} text-uppercase ${ isCurrentPage(item) ? '' : 'font-weight-thin' }`"
+              :class="`${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} text-uppercase text-menu`"
               >
 
-              {{ $t( 'drawer.'+ item.titleCode)  }}
+              <span
+                :class="`${ isCurrentPage(item) ? 'font-weight-bold' : 'menu-off' }`"
+                >
+                {{ $t( 'drawer.'+ item.titleCode)  }}
+              </span>
 
               <!-- append heart icon if favorite -->
               <v-icon 

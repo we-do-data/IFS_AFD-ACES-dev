@@ -1,124 +1,119 @@
 <template>
+  
+
+  <v-flex 
+    xs10 offset-xs1
+    md8 offset-md2
+    lg6 offset-lg3
+    >
     
-  <!-- <v-layout 
-    class="skip-navbar-content"
-    > -->
-
-    <v-flex 
-      xs10 offset-xs1
-      md8 offset-md2
-      lg6 offset-lg3
-      >
+    <p class="text-xs-center headline light-letter-spacing text-uppercase primary--text font-weight-thin mb-0">
       
-      <p class="text-xs-center text-uppercase primary--text font-weight-thin display-1 mb-0">
-        
-        <span
-          v-if="getTotalFavorites > 0"
-          >
-          {{ getTotalFavorites }}
-          {{ $t('favorites.title') }}
-        </span>
-
-        <span
-          v-else
-          >
-          {{ $t('favorites.title_empty') }}
-        </span>
-
-      </p>
-
-      <v-layout justify-center mb-2>
-        <v-btn 
-          flat
-          icon
-          color="primary"
-          @click="goBack"
-          >
-          <v-icon>
-            close
-          </v-icon>
-        </v-btn>
-      </v-layout>
-
-      <hr>
-
-      <!-- <h3 class="pt-3">
-        {{ $t('favorites.headline') }}
-      </h3> -->
-
-      <!-- <br> -->
-
-      <!-- FAVORITES LIST -->
-      <div
+      <span
         v-if="getTotalFavorites > 0"
-        v-for="dsFavorites in favorites"
-        :key="dsFavorites.dsId"
+        >
+        {{ getTotalFavorites }}
+        {{ $t('favorites.title') }}
+      </span>
+
+      <span
+        v-else
+        >
+        {{ $t('favorites.title_empty') }}
+      </span>
+
+    </p>
+
+    <v-layout justify-center mb-2>
+      <v-btn 
+        flat
+        icon
+        color="primary"
+        @click="goBack"
+        >
+        <v-icon>
+          close
+        </v-icon>
+      </v-btn>
+    </v-layout>
+
+    <hr>
+
+    <!-- <h3 class="pt-3">
+      {{ $t('favorites.headline') }}
+    </h3> -->
+
+    <!-- <br> -->
+
+    <!-- FAVORITES LIST -->
+    <div
+      v-if="getTotalFavorites > 0"
+      v-for="dsFavorites in favorites"
+      :key="dsFavorites.dsId"
+      >
+
+
+      <v-list 
+        v-for="item in dsFavorites.favorites"
+        :key="item[ getItemIdField( dsFavorites.dsId ) ]"
+        three-lines
+        class="transparent limited-height py-0"
         >
 
-
-        <v-list 
-          v-for="item in dsFavorites.favorites"
-          :key="item[ getItemIdField( dsFavorites.dsId ) ]"
-          three-lines
-          class="transparent limited-height py-0"
+        <v-list-tile
+          :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
+          @click.native="mutateCardIndex( item )"
           >
 
-          <v-list-tile
-            :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
-            @click.native="mutateCardIndex( item )"
-            >
+          <!-- icon -->
+          <v-list-tile-action>
+            <v-icon color="pink">
+              favorite
+            </v-icon>
+          </v-list-tile-action>
 
-            <!-- icon -->
-            <v-list-tile-action>
-              <v-icon color="pink">
-                favorite
+          <!-- favorite title -->
+          <v-list-tile-content>
+            <v-list-tile-title>
+              
+              <span 
+                class="primary--text favorites-text"
+                >
+                "{{ getFavoriteItem( dsFavorites.dsId, item, 'favText' ) }}"
+              </span>
+              <v-icon
+                class="primary-smooth"
+                >
+                chevron_right
               </v-icon>
-            </v-list-tile-action>
 
-            <!-- favorite title -->
-            <v-list-tile-content>
-              <v-list-tile-title>
-                
-                <span 
-                  class=""
-                  >
-                  "{{ getFavoriteItem( dsFavorites.dsId, item, 'favText' ) }}"
-                </span>
-                <v-icon
-                  color="grey"
-                  >
-                  chevron_right
-                </v-icon>
+            </v-list-tile-title>
+          </v-list-tile-content>
+        
+        </v-list-tile>
 
-              </v-list-tile-title>
-            </v-list-tile-content>
-          
-          </v-list-tile>
+        <v-divider inset></v-divider>
 
-          <v-divider inset></v-divider>
-  
-        </v-list>
-  
-      </div>
+      </v-list>
 
-      <div v-else 
-        class="text-xs-center">
+    </div>
 
-        <h3 class="pt-3 secondary--text my-3">
-          {{ $t('favorites.introduction_empty_01') }}<br>
-          {{ $t('favorites.introduction_empty_02') }}<br>
-          {{ $t('favorites.introduction_empty_03') }}<br>
-        </h3>
-        <br>
-        <img 
-          height="75px"
-          src="/icons/heart-stroke-X.svg" 
-          />
-      </div>
+    <div v-else 
+      class="text-xs-center">
 
-    </v-flex>
+      <h3 class="pt-3 secondary--text my-3 favorites-text ">
+        {{ $t('favorites.introduction_empty_01') }}<br>
+        {{ $t('favorites.introduction_empty_02') }}<br>
+        {{ $t('favorites.introduction_empty_03') }}<br>
+      </h3>
+      <br>
+      <img 
+        height="75px"
+        src="/icons/heart-stroke-X.svg" 
+        />
+    </div>
 
-  <!-- </v-layout> -->
+  </v-flex>
 
 </template>
 

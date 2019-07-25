@@ -1,51 +1,45 @@
 <template>
-    
-  <!-- <v-layout 
-    class="skip-navbar-content"
-    > -->
 
-    <v-flex 
-      xs10 offset-xs1
-      md8 offset-md2
-      lg6 offset-lg3
+  <v-flex 
+    xs10 offset-xs1
+    md8 offset-md2
+    lg6 offset-lg3
+    >
+    
+    <p class="text-xs-center headline light-letter-spacing text-uppercase primary--text font-weight-thin mb-0">
+      {{ $t('about.title') }}
+    </p>
+
+    <v-layout justify-center mb-2>
+      <v-btn 
+        flat
+        icon
+        color="primary"
+        @click="goBack"
+        >
+        <v-icon>
+          close
+        </v-icon>
+      </v-btn>
+    </v-layout>
+
+    <hr>
+
+    <div 
+      class="limited-height"
       >
-      
-      <p class="text-xs-center text-uppercase primary--text font-weight-thin display-1 mb-0">
-        {{ $t('about.title') }}
+
+      <h3 class="pt-3">
+        {{ $t('about.headline') }}
+      </h3>
+
+      <p class="pt-4">
+        {{ $t('about.content') }}
       </p>
 
-      <v-layout justify-center mb-2>
-        <v-btn 
-          flat
-          icon
-          color="primary"
-          @click="goBack"
-          >
-          <v-icon>
-            close
-          </v-icon>
-        </v-btn>
-      </v-layout>
+    </div>
 
-      <hr>
-
-      <div 
-        class="limited-height"
-        >
-
-        <h3 class="pt-3">
-          {{ $t('about.headline') }}
-        </h3>
-
-        <p class="pt-4">
-          {{ $t('about.content') }}
-        </p>
-
-      </div>
-
-    </v-flex>
-
-  <!-- </v-layout> -->
+  </v-flex>
 
 </template>
 

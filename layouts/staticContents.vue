@@ -8,7 +8,19 @@
     <Navbar>
     </Navbar>
 
+
+    <v-layout
+      justify-center
+      mt-5
+      >
+      <img 
+        v-if="locSelected"
+        height="60px"
+        src="/icons/logo-afd-color.svg" />
+    </v-layout>
+
     <v-layout fill-height>
+
 
       <!-- CONTENTS -->
       <v-content>

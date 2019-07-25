@@ -1,6 +1,8 @@
 // Primary / splashscreen
 $primary: #2e2265;
 $primary-light: #572a99;
+$primary-smooth: #cbc8d8;
+$menu-off: #6a6192;
 $main-background-bottom : #c4281a;
 
 // Secondary / gradient button
@@ -50,7 +52,21 @@ $cookie-background : #110D26;
   color : white !important;
 }
 
-
+// color AFS special
+.primary-smooth{
+  color : $primary-smooth !important;
+}
+.menu-off{
+  color : $menu-off !important;
+}
+.menu-divider{
+  &-on-white{
+    border-color: $menu-off !important;
+  }
+  &-on-dark{
+    border-color: $menu-off !important;
+  }
+}
 
 // gradient texts
 .text-gradient{
