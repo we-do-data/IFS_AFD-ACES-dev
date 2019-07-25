@@ -558,11 +558,11 @@ export default {
     // background-image: $circles linear-gradient( rgba(46,34,101,0.5), rgba(255,0,0,0) ) ;
     // background-image : $circles ;
     background-position: center center;
-    background-image : url(~assets/svg/background-circles.svg);
+    background-image : url(~assets/svg/background-circles.svg), linear-gradient(bottom,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 100%);
     background-size: cover ; 
 
-// @include filter-gradient(#002e2265, #802e2265, vertical);
-// @include background-image(linear-gradient(top,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 100%));
+    // @include filter-gradient(#002e2265, #802e2265, vertical);
+    // @include background-image(linear-gradient(top,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 100%));
 
   }
 
