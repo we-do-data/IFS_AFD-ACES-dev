@@ -387,11 +387,12 @@ export default {
     // compute logo height
     quoteClass( fieldCode ) {
       let textLength = this.getContentLength( fieldCode )
+      let mobileHandicap = this.$device.isMobileOrTablet ? 10 : 0
       switch (true) {
-          case (textLength < 10): return 'display-4'
-          case (textLength < 20): return 'display-3'
-          case (textLength < 40): return 'display-2'
-          case (textLength < 60): return 'display-1'
+          case (textLength < 10 + mobileHandicap ): return 'display-4'
+          case (textLength < 20 + mobileHandicap ): return 'display-3'
+          case (textLength < 40 + mobileHandicap ): return 'display-2'
+          case (textLength < 60 + mobileHandicap ): return 'display-1'
           default:  return 'headline'
       }
     },
