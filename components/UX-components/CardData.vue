@@ -21,7 +21,7 @@
               <img 
                 height="40px"
                 class="pa-2"
-                src="~assets/icons/logo-afd-white.svg" 
+                src="/icons/logo-afd-white.svg" 
               />
             </v-layout>
             <v-layout row justify-center>
@@ -140,11 +140,9 @@
               justify-end
               >
               <v-btn 
-                class="card-button"
+                class="card-button white"
                 icon
                 flat
-                outline
-                dark
 
                 @click.prevent.stop="switchFavorite()"
                 
@@ -153,11 +151,24 @@
                 @mouseleave="switchHover()" -->
 
                 <!-- v-touch:tap="switchFavorite('tap')" -->
-                <v-icon
+                <!-- <v-icon
                   :color="isFavorite ? 'pink' : 'white' "
                   >
                   favorite
-                </v-icon>
+                </v-icon> -->
+
+                <img 
+                  v-if="isFavorite"
+                  height="36px"
+                  src="/icons/icon-heart-M.svg"
+                  />
+
+                <img 
+                  v-else
+                  height="36px"
+                  src="~assets/icons/icon-heart-M.svg"
+                  />
+
               </v-btn>
             </v-layout>
           </v-flex>
@@ -193,9 +204,14 @@
                   <v-list-tile-action
                     class="near-icon"
                     >
-                    <v-icon small>
+                    <!-- <v-icon small>
                       fas fa-arrow-right
-                    </v-icon>
+                    </v-icon> -->
+                    <img 
+                      height="36px"
+                      color="white"
+                      src="/icons/icon-arrowRight-S.svg"
+                      />
                   </v-list-tile-action>
 
                   <v-list-tile-content>

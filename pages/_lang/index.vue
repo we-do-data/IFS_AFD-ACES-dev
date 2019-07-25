@@ -13,11 +13,11 @@
         <img 
           v-if="locSelected"
           height="120px"
-          src="~assets/icons/logo-afd-color.svg" />
+          src="/icons/logo-afd-color.svg" />
         <img 
           v-else
           height="120px"
-          src="~assets/icons/logo-afd-white.svg" />
+          src="/icons/logo-afd-white.svg" />
       </p>
 
       <!-- <h2
@@ -29,12 +29,21 @@
         </b>
       </h2> -->
 
-      <!-- <v-divider
-        v-show="locSelected"
-        class="ma-2"
-        >
-      </v-divider > -->
 
+          <!-- <v-icon
+            class="blue"
+            > -->
+
+            <!-- <svg-icon 
+              name="alarm" 
+              :size="36">
+            </svg-icon> -->
+
+            <img 
+              :src="`/icons/icon-prev-M.svg`"
+            />
+
+         <!-- </v-icon> -->
 
       <!-- LOCALE SELECTION -->
       <div 

@@ -96,9 +96,14 @@
           :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
           @click.stop="closeDrawer()"
           >
-          <v-icon>
+          <!-- <v-icon>
             fas fa-bars
-          </v-icon>
+          </v-icon> -->
+          <img 
+            height="36px"
+            src="/icons/icon-burger-M.svg"
+            />
+
         </v-btn>
 
 

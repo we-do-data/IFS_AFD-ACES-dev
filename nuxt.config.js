@@ -218,9 +218,15 @@ export default {
 
     'nuxt-device-detect',
     'nuxt-user-agent',
+    
     'nuxt-svg',
+    // '@nuxtjs/svg-sprite',
 
   ],
+
+  // svgSprite: {
+  //   input: '~/assets/icons/'
+  // },
 
   devModules: [
     '@nuxtjs/vuetify'

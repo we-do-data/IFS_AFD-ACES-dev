@@ -27,18 +27,27 @@
             v-if="!showNext"
             v-for="btn in footerBtnsLeft"
             :key="btn.textCode"
-            class="white mr-0 text-xs-right "
+            class="white ml-0 text-xs-right "
             flat
             icon
             @click.prevent="skip(false)"
             >
 
-            <v-icon
+            <!-- <v-icon
               color="primary"
               > 
               {{ btn.icon }}
-            </v-icon>
-            
+            </v-icon> -->
+            <img 
+              height="36px"
+              :src="btn.asset"
+              />
+
+            <!-- <svg-icon 
+              name="icon-prev-M" 
+              :size="36">
+            </svg-icon> -->
+
             <!-- 
             <v-avatar 
               class="previous-translated white"
@@ -55,7 +64,6 @@
 
           </v-btn>
           
-
           <v-btn 
             v-else
             v-for="btn in footerBtnsLeft"
@@ -71,15 +79,16 @@
               size="36px"
               >
                 
-              <v-icon
+              <!-- <v-icon
                 color="primary"
                 >
                 {{ btn.icon }}
-              </v-icon>
-              <!-- <img 
+              </v-icon> -->
+
+              <img 
                 height="36px"
-                :src="btn.asset" 
-                /> -->
+                :src="btn.asset"
+                />
 
             </v-avatar>
 
@@ -106,9 +115,13 @@
             color="primary"
             flat
             >
-            <v-icon>
+            <!-- <v-icon>
               {{ btn.icon }}
-            </v-icon>
+            </v-icon> -->
+            <img 
+              height="36px"
+              :src="btn.asset"
+              />
           </v-btn>
         </v-layout>
 
@@ -125,14 +138,17 @@
             icon
             @click.prevent="skip()"
             >
-            <v-icon
+            <!-- <v-icon
               color="primary"
               >
               {{ btn.icon }}
-            </v-icon>
+            </v-icon> -->
+            <img 
+              height="36px"
+              :src="btn.asset"
+              />
           </v-btn>
           
-
           <v-btn 
             v-else
             v-for="btn in footerBtnsRight"
@@ -155,17 +171,21 @@
               color="white"
               size="36px"
               >
-              <v-icon
+              <!-- <v-icon
                 color="primary"
                 >
                 {{ btn.icon }}
-              </v-icon>
+              </v-icon> -->
+              <img 
+                height="36px"
+                :src="btn.asset"
+                />
             </v-avatar>
 
           </v-btn>
 
-
         </v-layout>
+
 
       </v-layout>
 
@@ -202,17 +222,17 @@ export default {
     return {
 
       footerBtnsLeft : [
-        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "~/assets/icons/icon-prev-M.svg", to: "/previous" },
+        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M.svg", to: "/previous" },
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", asset: "~assets/icons/icon-twitter-M.svg" , to: "/about" },
-        { textCode: "facebook", icon: "fab fa-facebook", asset: "~assets/icons/icon-screenshot-M.svg" , to: "/credits" },
-        { textCode: "screenshot", icon: "fas fa-camera", asset: "~assets/icons/icon-twitter-M.svg" , to: "/credits" },
+        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M.svg" , to: "/about" },
+        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M.svg" , to: "/credits" },
+        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M.svg" , to: "/credits" },
       ],
 
       footerBtnsRight : [
-        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "~assets/icons/icon-next-M.svg", to: "/next" },
+        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "/icons/icon-next-M.svg", to: "/next" },
       ],
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],
