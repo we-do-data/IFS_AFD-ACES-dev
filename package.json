@@ -5,8 +5,6 @@
   "author": "Julien_P",
   "private": true,
   "scripts": {
-    "icons": "vsvg -s src/assets/svg -t src/components/icons",
-    "prebuild": "npm run icons",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
