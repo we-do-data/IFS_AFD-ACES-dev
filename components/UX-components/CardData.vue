@@ -63,7 +63,7 @@
                 <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
                 <!-- device : <code>{{ $device }}</code><br> -->
                 <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                <!-- triggerFav : <code>{{ triggerFav }}</code><br> -->
+                triggerFav : <code>{{ triggerFav }}</code><br>
               <!-- </p> -->
               <!-- <br> -->
 
