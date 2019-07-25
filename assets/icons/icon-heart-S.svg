@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-heart-S" data-name="icon-heart-S" viewBox="0 0 13 12">
+      <path d="M12.0469,1.1189A3.1725,3.1725,0,0,0,7.349,1.0765a3.5849,3.5849,0,0,0-.8408,1.4709,3.5945,3.5945,0,0,0-.8173-1.4858A3.1724,3.1724,0,0,0,.993,1.0191a3.7272,3.7272,0,0,0-.04,5.0224l0,0L6.4332,12,12.007,6.1412A3.7272,3.7272,0,0,0,12.0469,1.1189Z" fill="#de4a5b"/>
+    </symbol>
+  </defs>
   <title>icon-heart-S</title>
-  <g id="icon-heart-S">
-    <path d="M24.547,14.119a3.172,3.172,0,0,0-4.7-.042,3.585,3.585,0,0,0-.841,1.471,3.6,3.6,0,0,0-.817-1.486,3.172,3.172,0,0,0-4.7-.042,3.727,3.727,0,0,0-.04,5.022h0L18.933,25l5.574-5.859A3.727,3.727,0,0,0,24.547,14.119Z" fill="#de4a5b"/>
-  </g>
+  <use width="13" height="12" transform="translate(12.5 13)" xlink:href="#icon-heart-S"/>
 </svg>
