@@ -155,27 +155,27 @@
                 flat
                 @click="switchFavorite()"
                 >
+                <!-- v-touch:tap="switchFavorite()" -->
                 <!-- @mouseenter="switchHover()"
                 @mouseleave="switchHover()" -->
 
-                <!-- v-touch:tap="switchFavorite('tap')" -->
                 <!-- <v-icon
                   :color="isFavorite ? 'pink' : 'white' "
                   >
                   favorite
                 </v-icon> -->
 
+                  <!-- v-if="isFavorite" -->
                 <img 
-                  v-if="isFavorite"
                   height="36px"
-                  src="/icons/icon-heart-M-fill.svg"
+                  :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
                   />
 
-                <img 
+                <!-- <img 
                   v-else
                   height="36px"
                   src="/icons/icon-heart-M.svg"
-                  />
+                  /> -->
 
               </v-btn>
             <!-- </v-layout> -->
