@@ -145,10 +145,10 @@
             :class="`${ $device.isMobileOrTablet? 'pr-2 pb-0' : 'pb-2 pr-3' }`"
             ref="cardFooter"
             >
-            <v-layout
+            <!-- <v-layout
               align-center
               justify-end
-              >
+              > -->
               <v-btn 
                 class="card-button white"
                 icon
@@ -178,7 +178,7 @@
                   />
 
               </v-btn>
-            </v-layout>
+            <!-- </v-layout> -->
           </v-flex>
           
         </v-layout>
