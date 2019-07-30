@@ -1,165 +1,197 @@
 <template>
 
-<!-- FOOTER INDEX -->
+  <!-- FOOTER CARDS -->
+  <div>
 
-  <v-footer 
-    color="transparent"
-    xs10 offset-xs1
-    sm8 offset-md2
-    md6 offset-md3
-    fixed
-    :class="`${ (showNext)? 'mx-0 mb-5' : 'mx-0 mb-4' } centered`"
-    :style="`height: 32px; width:${ cardWindow.width }px`"
-    >
-
-    <div
-      :style="`z-index: 4; width:${ cardWidth( .9 ) }`"
+    <v-footer 
+      color="transparent"
+      xs10 offset-xs1
+      sm8 offset-md2
+      md6 offset-md3
+      fixed
+      :class="`${ (showNext)? 'mx-0 mb-5' : 'mx-0 mb-4' } centered`"
+      :style="`height: 32px; width:${ cardWindow.width }px`"
       >
 
-      <v-layout
-        row wrap
+      <div
+        :style="`z-index: 4; width:${ cardWidth( .9 ) }`"
         >
 
-        <!-- LEFT-SIDE ICONS  -->
-        <v-layout justify-start >
+        <v-layout
+          row wrap
+          >
 
-          <v-hover 
-            v-for="btn in footerBtnsLeft"
-            :key="btn.textCode"
-            v-slot:default="{ hover }"
-            >
-            <v-btn 
-              v-if="!showNext"
-              :class="`ml-0 text-xs-right ${ hover ? 'accent' : 'white'}`"
-              flat
-              icon
-              @click.prevent="skip(false)"
+          <!-- LEFT-SIDE ICONS  -->
+          <v-layout justify-start >
+
+            <v-hover 
+              v-for="btn in footerBtnsLeft"
+              :key="btn.textCode"
+              v-slot:default="{ hover }"
               >
-              <img 
-                height="36px"
-                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
-                />
-            </v-btn>
-            
-            <v-btn 
-              v-else
-              class="transparent mr-3 pr-3 pl-2 text-xs-right "
-              round
-              flat
-              @click.prevent="skip(false)"
-              >
-
-              <v-avatar 
-                :class="`previous-translated ${ hover ? 'accent' : 'white'}`"
-                size="36px"
-                >
-
-                <img 
-                  height="36px"
-                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
-                  />
-
-              </v-avatar>
-
-              <span
-                v-show="showNext"
-                :class="`${ hover ? 'white' : 'grey'}--text ml-2`"
-                >
-                {{ $t( btn.textCode ) }}
-              </span>
-
-            </v-btn>
-
-          </v-hover>
-
-        </v-layout>
-
-
-        <!-- CENTER-SIDE ICONS -->
-        <v-layout justify-center>
-
-          <v-hover
-            v-for="btn in footerBtnsCenter"
-            :key="btn.textCode"
-            v-slot:default="{ hover }"
-            >
-            <v-btn 
-              :to="btn.to"
-              icon
-              :class="`${ hover ? 'accent' : 'white'}`"
-              flat
-              >
-              <img 
-                height="36px"
-                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
-                />
-            </v-btn>
-          </v-hover>
-        </v-layout>
-
-
-        <!-- RIGHT SIDE ICONS  -->
-        <v-layout justify-end >
-
-
-          <v-hover 
-            v-for="btn in footerBtnsRight"
-            :key="btn.textCode"
-            v-slot:default="{ hover }"
-            >
-
-            <v-btn 
-              v-if="!showNext"
-              :class="`${ hover ? 'accent' : 'white'} mr-0 text-xs-right`"
-              flat
-              icon
-              @click.prevent="skip()"
-              >
-              <img 
-                height="36px"
-                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
-                />
-            </v-btn>
-            
-            <v-btn 
-              v-else
-              class="transparent mr-3 pr-2 pl-3 text-xs-right "
-              round
-              flat
-              @click.prevent="skip()"
-              >
-
-              <span
-                v-show="showNext"
-                :class="`${ hover ? 'white' : 'grey'}--text mr-2`"
-                >
-                {{ $t( btn.textCode ) }}
-              </span>
-
-              <v-avatar 
-                class="next-translated"
-                :color="`${ hover ? 'accent' : 'white'}`"
-                size="36px"
+              <v-btn 
+                v-if="!showNext"
+                :class="`ml-0 text-xs-right ${ hover ? 'accent' : 'white'}`"
+                flat
+                icon
+                @click.prevent="skip(false)"
                 >
                 <img 
                   height="36px"
                   :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
                   />
-              </v-avatar>
+              </v-btn>
+              
+              <v-btn 
+                v-else
+                class="transparent mr-3 pr-3 pl-2 text-xs-right "
+                round
+                flat
+                @click.prevent="skip(false)"
+                >
 
-            </v-btn>
+                <v-avatar 
+                  :class="`previous-translated ${ hover ? 'accent' : 'white'}`"
+                  size="36px"
+                  >
 
-          </v-hover>
+                  <img 
+                    height="36px"
+                    :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                    />
+
+                </v-avatar>
+
+                <span
+                  v-show="showNext"
+                  :class="`${ hover ? 'white' : 'grey'}--text ml-2`"
+                  >
+                  {{ $t( btn.textCode ) }}
+                </span>
+
+              </v-btn>
+
+            </v-hover>
+
+          </v-layout>
+
+
+          <!-- CENTER-SIDE ICONS -->
+          <v-layout justify-center>
+
+            <v-hover
+              v-for="btn in footerBtnsCenter"
+              :key="btn.textCode"
+              v-slot:default="{ hover }"
+              >
+                <!-- :to="btn.to" -->
+              <v-btn 
+                icon
+                :class="`${ hover ? 'accent' : 'white'}`"
+                flat
+                @click.prevent="triggerCard( btn.function )"
+                >
+                <img 
+                  height="36px"
+                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  />
+              </v-btn>
+            </v-hover>
+          </v-layout>
+
+
+          <!-- RIGHT SIDE ICONS  -->
+          <v-layout justify-end >
+
+
+            <v-hover 
+              v-for="btn in footerBtnsRight"
+              :key="btn.textCode"
+              v-slot:default="{ hover }"
+              >
+
+              <v-btn 
+                v-if="!showNext"
+                :class="`${ hover ? 'accent' : 'white'} mr-0 text-xs-right`"
+                flat
+                icon
+                @click.prevent="skip()"
+                >
+                <img 
+                  height="36px"
+                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  />
+              </v-btn>
+              
+              <v-btn 
+                v-else
+                class="transparent mr-3 pr-2 pl-3 text-xs-right "
+                round
+                flat
+                @click.prevent="skip()"
+                >
+
+                <span
+                  v-show="showNext"
+                  :class="`${ hover ? 'white' : 'grey'}--text mr-2`"
+                  >
+                  {{ $t( btn.textCode ) }}
+                </span>
+
+                <v-avatar 
+                  class="next-translated"
+                  :color="`${ hover ? 'accent' : 'white'}`"
+                  size="36px"
+                  >
+                  <img 
+                    height="36px"
+                    :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                    />
+                </v-avatar>
+
+              </v-btn>
+
+            </v-hover>
+
+          </v-layout>
+
 
         </v-layout>
 
+      </div>
 
-      </v-layout>
+    </v-footer>
 
+    <br>
+
+    <div
+      :style="'opacity:0'"
+      >
+      <div
+        ref="printMe"
+        :style="`z-index: 2; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`"
+        >
+
+          <CardData
+
+            id="current-card-export"
+
+            :itemData="current"
+            :isExport="true"
+            
+            :cardHeights="cardHeights"
+            :cardColorIndex="getRandomColorIndex( index )"
+
+            :breakPoint="this.$vuetify.breakpoint.name"
+
+            >
+          </CardData>
+
+      </div>
     </div>
 
-  </v-footer>
 
+  </div> 
 
 </template>
 
@@ -169,12 +201,15 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
 
+import CardData from '~/components/UX-components/CardData'
+
 
 export default {
 
   name: "FooterCards",
 
   components: {
+    CardData,
   },
 
   props: [
@@ -184,18 +219,25 @@ export default {
     console.log("C-FooterCards / beforeMount....")
   },
 
+  mounted : function(){
+    console.log("C-overflownContent-mounted / this.$refs : ", this.$refs)
+    this.isMounted = true
+  },
+
   data() {
 
     return {
+
+      isMounted: false,
 
       footerBtnsLeft : [
         { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M", to: "/previous" },
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about" },
-        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits" },
-        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits" },
+        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about", function: "share_twitter" },
+        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits", function: "share_facebook" },
+        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits", function: "print_card" },
       ],
 
       footerBtnsRight : [
@@ -203,6 +245,13 @@ export default {
       ],
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],
+
+      cardExportSize: {
+        height: 552,
+        width: 340
+      },
+
+      output: undefined,
 
     }
 
@@ -225,6 +274,9 @@ export default {
 
       cardWindow : state => state.cardWindow,
 
+      cards : state => state.cards.currentCardsArrray,
+      index : state => state.cards.currentCardIndex,
+
       index : state => state.cards.currentCardIndex,
 
     }),
@@ -232,10 +284,29 @@ export default {
     ...mapGetters({
     }),
 
+    current() {
+      return this.cards && this.cards[ this.index ]
+    },
+
     showNext(){
       let screenBreakPoint = this.$vuetify.breakpoint.name
       return this.showNextBreakpoints.includes(screenBreakPoint)
-    }
+    },
+
+    cardHeight() { 
+      return ( this.cardWindow.height * .7 ) + "px" 
+    },
+
+    cardHeights() {
+      return {
+        title: ( this.cardWindow.height * .20) + "px",
+        content: ( this.cardWindow.height * .39 ) + "px",
+        more: ( this.cardWindow.height * .12 ) + "px",
+        resources: ( this.cardWindow.height * .24 ) + "px",
+        // footer: ( this.cardWindow.height * .08 ) + "px",
+      }
+    },
+
   },
 
   methods: {
@@ -279,6 +350,44 @@ export default {
       }
 
     },
+
+    getRandomColorIndex( cardIndex ){
+      return cardIndex % 8
+      // return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
+    },
+
+    triggerCard( functionName ){
+      console.log("C-FooterCards-triggerCard / functionName: ", functionName )
+      console.log("C-FooterCards-triggerCard / this.current : ", this.current  )
+      
+      this.print() 
+
+      if ( functionName === 'print_card' ){
+
+      } 
+
+    },
+
+    async print() {
+
+      const el = this.$refs.printMe;
+      // add option type to get the image version
+      // if not provided the promise will return 
+      // the canvas.
+      const options = {
+        type: 'dataURL'
+      }
+      this.output = await this.$html2canvas( el, options )
+      console.log("C-FooterCards-prinnt / this.output: ", this.output )
+
+      var link = document.createElement("a")
+      link.download = 'afd_export.jpg'
+      link.href = this.output
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      return false
+    }
 
   },
 

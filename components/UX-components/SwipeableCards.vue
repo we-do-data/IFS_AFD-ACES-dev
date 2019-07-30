@@ -53,6 +53,8 @@
 
         <CardData
 
+          id="current-card"
+
           :itemData="current"
           
           :cardHeights="cardHeights"
@@ -141,17 +143,22 @@ import InteractDraggable from '~/components/UX-components/InteractDraggable'
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
 
 export default {
+
   name: 'SwipeableCards',
+
   components: { 
     CardData,
     InteractDraggable,
     // Vue2InteractDraggable,
   },
+
   props: [
   ],
+  
   mounted: function() {
     console.log("C-SwipeableCards / mounted....")
   },
+  
   data() {
     return {
       

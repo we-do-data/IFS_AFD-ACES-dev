@@ -203,6 +203,7 @@ export default {
     '~/plugins/scroll-lock.js',
     '~/plugins/eventBus',
     '~/plugins/svg-icons',
+    '~/plugins/vue-html-to-canvas',
   ],
 
   /*

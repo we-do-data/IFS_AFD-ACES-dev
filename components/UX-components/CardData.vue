@@ -13,7 +13,7 @@
         <v-card-title 
           ref="cardTitle"
           class="justify-center pa-0 "
-          :style="`max-height:${ cardHeights['title'] };height:${ cardHeights['title'] }`"
+          :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`"
           >
 
           <v-container fluid>
@@ -106,6 +106,7 @@
         <!-- RESSOURCES && FAVORITES CONTENTS -->
         <v-layout 
           ref="cardMore"
+          v-show="!isExport"
           :class="` ${ findMoreActive ? '' : 'pb-3' }`"
           :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
           row
@@ -288,6 +289,8 @@ export default {
   props: [
     'itemData',
     // 'dsId',
+
+    "isExport",
     
     // debug
     'isPauseInteractParent',
