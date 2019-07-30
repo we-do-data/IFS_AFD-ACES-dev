@@ -10,7 +10,7 @@
     <p class="text-xs-center headline light-letter-spacing text-uppercase primary--text font-weight-thin mb-0">
       
       <span
-        v-if="getTotalFavorites > 0"
+        v-if="getTotalFavorites && getTotalFavorites > 0"
         >
         {{ getTotalFavorites }}
         {{ $t('favorites.title') }}

@@ -23,166 +23,133 @@
         <!-- LEFT-SIDE ICONS  -->
         <v-layout justify-start >
 
-          <v-btn 
-            v-if="!showNext"
+          <v-hover 
             v-for="btn in footerBtnsLeft"
             :key="btn.textCode"
-            class="white ml-0 text-xs-right "
-            flat
-            icon
-            @click.prevent="skip(false)"
+            v-slot:default="{ hover }"
             >
-
-            <!-- <v-icon
-              color="primary"
-              > 
-              {{ btn.icon }}
-            </v-icon> -->
-            <img 
-              height="36px"
-              :src="btn.asset"
-              />
-
-            <!-- <svg-icon 
-              name="icon-prev-M" 
-              :size="36">
-            </svg-icon> -->
-
-            <!-- 
-            <v-avatar 
-              class="previous-translated white"
-              size="36px"
-              > -->
-              
-              <!-- <img 
-                height="36px"
-                :src="btn.asset" 
-                /> -->
-                <!-- src="~assets/icons/icon-prev-M.svg"  -->
-
-            <!-- </v-avatar> -->
-
-          </v-btn>
-          
-          <v-btn 
-            v-else
-            v-for="btn in footerBtnsLeft"
-            :key="btn.textCode"
-            class="transparent mr-3 pr-2 pl-3 text-xs-right "
-            round
-            flat
-            @click.prevent="skip(false)"
-            >
-
-            <v-avatar 
-              class="previous-translated white"
-              size="36px"
+            <v-btn 
+              v-if="!showNext"
+              :class="`ml-0 text-xs-right ${ hover ? 'accent' : 'white'}`"
+              flat
+              icon
+              @click.prevent="skip(false)"
               >
-                
-              <!-- <v-icon
-                color="primary"
-                >
-                {{ btn.icon }}
-              </v-icon> -->
-
               <img 
                 height="36px"
-                :src="btn.asset"
+                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
                 />
-
-            </v-avatar>
-
-            <span
-              v-show="showNext"
-              class="grey--text mr-2"
+            </v-btn>
+            
+            <v-btn 
+              v-else
+              class="transparent mr-3 pr-3 pl-2 text-xs-right "
+              round
+              flat
+              @click.prevent="skip(false)"
               >
-              {{ $t( btn.textCode ) }}
-            </span>
 
-          </v-btn>
+              <v-avatar 
+                :class="`previous-translated ${ hover ? 'accent' : 'white'}`"
+                size="36px"
+                >
+
+                <img 
+                  height="36px"
+                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  />
+
+              </v-avatar>
+
+              <span
+                v-show="showNext"
+                :class="`${ hover ? 'white' : 'grey'}--text ml-2`"
+                >
+                {{ $t( btn.textCode ) }}
+              </span>
+
+            </v-btn>
+
+          </v-hover>
 
         </v-layout>
 
 
         <!-- CENTER-SIDE ICONS -->
         <v-layout justify-center>
-          <v-btn 
+
+          <v-hover
             v-for="btn in footerBtnsCenter"
             :key="btn.textCode"
-            :to="btn.to"
-            class="white"
-            icon
-            color="primary"
-            flat
+            v-slot:default="{ hover }"
             >
-            <!-- <v-icon>
-              {{ btn.icon }}
-            </v-icon> -->
-            <img 
-              height="36px"
-              :src="btn.asset"
-              />
-          </v-btn>
+            <v-btn 
+              :to="btn.to"
+              icon
+              :class="`${ hover ? 'accent' : 'white'}`"
+              flat
+              >
+              <img 
+                height="36px"
+                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                />
+            </v-btn>
+          </v-hover>
         </v-layout>
 
 
         <!-- RIGHT SIDE ICONS  -->
         <v-layout justify-end >
 
-          <v-btn 
-            v-if="!showNext"
+
+          <v-hover 
             v-for="btn in footerBtnsRight"
             :key="btn.textCode"
-            class="white mr-0 text-xs-right "
-            flat
-            icon
-            @click.prevent="skip()"
-            >
-            <!-- <v-icon
-              color="primary"
-              >
-              {{ btn.icon }}
-            </v-icon> -->
-            <img 
-              height="36px"
-              :src="btn.asset"
-              />
-          </v-btn>
-          
-          <v-btn 
-            v-else
-            v-for="btn in footerBtnsRight"
-            :key="btn.textCode"
-            class="transparent mr-3 pr-2 pl-3 text-xs-right "
-            round
-            flat
-            @click.prevent="skip()"
+            v-slot:default="{ hover }"
             >
 
-            <span
-              v-show="showNext"
-              class="grey--text mr-2"
+            <v-btn 
+              v-if="!showNext"
+              :class="`${ hover ? 'accent' : 'white'} mr-0 text-xs-right`"
+              flat
+              icon
+              @click.prevent="skip()"
               >
-              {{ $t( btn.textCode ) }}
-            </span>
-
-            <v-avatar 
-              class="next-translated"
-              color="white"
-              size="36px"
-              >
-              <!-- <v-icon
-                color="primary"
-                >
-                {{ btn.icon }}
-              </v-icon> -->
               <img 
                 height="36px"
-                :src="btn.asset"
+                :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
                 />
-            </v-avatar>
+            </v-btn>
+            
+            <v-btn 
+              v-else
+              class="transparent mr-3 pr-2 pl-3 text-xs-right "
+              round
+              flat
+              @click.prevent="skip()"
+              >
 
-          </v-btn>
+              <span
+                v-show="showNext"
+                :class="`${ hover ? 'white' : 'grey'}--text mr-2`"
+                >
+                {{ $t( btn.textCode ) }}
+              </span>
+
+              <v-avatar 
+                class="next-translated"
+                :color="`${ hover ? 'accent' : 'white'}`"
+                size="36px"
+                >
+                <img 
+                  height="36px"
+                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  />
+              </v-avatar>
+
+            </v-btn>
+
+          </v-hover>
 
         </v-layout>
 
@@ -222,17 +189,17 @@ export default {
     return {
 
       footerBtnsLeft : [
-        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M.svg", to: "/previous" },
+        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M", to: "/previous" },
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M.svg" , to: "/about" },
-        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M.svg" , to: "/credits" },
-        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M.svg" , to: "/credits" },
+        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about" },
+        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits" },
+        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits" },
       ],
 
       footerBtnsRight : [
-        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "/icons/icon-next-M.svg", to: "/next" },
+        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "/icons/icon-next-M", to: "/next" },
       ],
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],

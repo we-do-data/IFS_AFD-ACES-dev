@@ -92,22 +92,27 @@
       </v-layout>
 
       <!-- BURGER -->
-      <v-btn
-        v-show="!isDrawerLeft"
-        icon
-        flat
-        :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
-        :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
-        @click.stop="closeDrawer()"
-        >
-        <!-- <v-icon>
-          fas fa-bars
-        </v-icon> -->
-        <img 
-          height="36px"
-          src="/icons/icon-burger-M.svg"
-          />
-      </v-btn>
+      <!-- <v-hover
+        v-slot:default="{ hover }"
+        > -->
+        <v-btn
+          v-show="!isDrawerLeft"
+          icon
+          flat
+          :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
+          @click.stop="closeDrawer()"
+          :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
+          >
+          <!-- <v-icon>
+            fas fa-bars
+          </v-icon> -->
+          <img 
+            height="36px"
+            :src="`/icons/icon-burger-M.svg`"
+            />
+            <!-- :src="`/icons/icon-burger-M${ hover ? '-white' : '' }.svg`" -->
+        </v-btn>
+      <!-- </v-hover> -->
 
     </v-toolbar>
 
@@ -118,8 +123,8 @@
       absolute
       floating
       :right="!isDrawerLeft"
-      :class="`${isDrawerLeft ? 'transparent' : 'primary'} ${ drawer ? 'shadow' : '' }`"
-      style="z-index: 50"
+      :class="`${isDrawerLeft ? 'transparent' : 'primary'} ${ !isDrawerLeft && drawer ? 'shadow' : '' }`"
+      style="z-index: 50; opacity: .95"
       :dark="!isDrawerLeft"
       >
 
