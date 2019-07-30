@@ -1,13 +1,12 @@
 <template>
   <v-app
-    class="no-scroll"
+    class="no-scroll white-background"
     >
     <!-- class="splashscreen-gradient" -->
 
     <!-- NAVBAR & DRAWERS-->
     <Navbar>
     </Navbar>
-
 
     <v-layout
       justify-center
@@ -19,16 +18,13 @@
         src="/icons/logo-afd-color.svg" />
     </v-layout>
 
+    <!-- CONTENTS -->
     <v-layout fill-height>
-
-
-      <!-- CONTENTS -->
       <v-content>
-        <v-container fill-height>
+        <v-container>
           <nuxt />
         </v-container>
       </v-content>
-
     </v-layout>
 
     <!-- FOOTER CONTENTS -->

@@ -9,13 +9,13 @@
     <div>
 
       <!-- LOGO -->
-      <p>
+      <p class="pb-3">
         <!-- <img 
           v-if="locSelected"
           height="120px"
           src="/icons/logo-afd-color.svg" /> -->
         <img 
-          :height="`${ $device.isMobileOrTablet ? '90px' : '120px'}`"
+          :height="`${ $device.isMobileOrTablet ? '80px' : '90px'}`"
           :src="`/icons/logo-afd-${ locSelected ? 'color' : 'white' }.svg`" 
           />
       </p>
@@ -36,7 +36,7 @@
         >
 
         <p 
-          :class="`${ locSelected ? 'primary' : 'white' }--text`"
+          :class="`light-letter-spacing primary-smooth`"
           >
           {{ $t('intro.chooseLang') }}
         </p>
@@ -46,7 +46,7 @@
           :key="index"
           outline
           color="white"
-          :class="`text-uppercase ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
+          :class="`text-uppercase btn-simple ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
           round 
           dark
           @click="changeLocale(loc, false)"
@@ -61,16 +61,21 @@
       <div  v-show="locSelected">
 
         <p 
-          class="text-gradient text-uppercase title mt-4 mb-5 "
+          class="text-gradient text-uppercase title mt-4"
           >
           {{ $t('intro.catchPhrase_1') }}
           <b>
           {{ $t('intro.catchPhrase_2') }}
-          </b>
+          </b>        
         </p>
 
+        <v-divider
+          class="divider-smooth"
+          >
+        </v-divider>
+
         <div 
-          class="primary--text font-weight-thin text-uppercase subtitle-1 my-4 py-3"
+          class="primary--text font-weight-thin text-uppercase subtitle-1 my-4"
           >
             <p>
               {{ $t('intro.pitchPhrase_1') }}

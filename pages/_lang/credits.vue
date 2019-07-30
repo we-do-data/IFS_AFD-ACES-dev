@@ -2,6 +2,7 @@
     
 
   <v-flex 
+    pt-5 mt-5
     xs10 offset-xs1
     md8 offset-md2
     lg6 offset-lg3
@@ -24,21 +25,27 @@
       </v-btn>
     </v-layout>
 
-    <hr>
+    <v-divider
+      class="divider-smooth"
+      >
+    </v-divider>
 
-    <div
-      class="limited-height"
+
+    <OverflownContent
+      :maxHeightPercent="maxHeight"
       >
 
-      <h3 class="pt-3">
-        {{ $t('credits.headline') }}
+      <h3
+        class="pt-3 primary--text">
+        {{ $t( 'credits.headline' ) }}
       </h3>
 
-      <p class="pt-4">
-        {{ $t('credits.content') }}
+      <p 
+        class="pt-4 text-static-contents primary--text">
+        {{ $t( 'credits.content' ) }}
       </p>
-    
-    </div>
+
+    </OverflownContent>
 
   </v-flex>
 
@@ -50,6 +57,8 @@
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
+import OverflownContent from '~/components/UX-components/overflownContent'
+
 export default {
 
   name: "CreditsPage",
@@ -58,6 +67,7 @@ export default {
   transition: 'static',
 
   components: {
+    OverflownContent,
   },
 
   middleware : [
@@ -70,8 +80,12 @@ export default {
     console.log("P-CreditsPage / beforeMount....")
   },
 
+  mounted : function(){
+  },
+
   data() {
     return {
+      maxHeight: .4,
     }
   },
 
@@ -83,8 +97,9 @@ export default {
     }),
 
     ...mapGetters({
-
     }),
+
+
   },
 
   methods: {
@@ -104,11 +119,6 @@ export default {
 
   .skip-navbar-content{
     margin-top: 200px;
-  }
-
-  .limited-height{
-    max-height: 85vw;
-    overflow-y: auto;
   }
 
 </style>

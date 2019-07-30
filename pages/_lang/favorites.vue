@@ -1,7 +1,7 @@
 <template>
   
-
   <v-flex 
+    pt-5 mt-5
     xs10 offset-xs1
     md8 offset-md2
     lg6 offset-lg3
@@ -37,81 +37,94 @@
       </v-btn>
     </v-layout>
 
-    <hr>
+    <v-divider
+      class="divider-smooth"
+      >
+    </v-divider>
 
-    <!-- <h3 class="pt-3">
-      {{ $t('favorites.headline') }}
-    </h3> -->
 
-    <!-- <br> -->
+    <!-- DEBUG -->
+    <!-- isOverflowing : {{ isOverflowing}} -->
 
-    <!-- FAVORITES LIST -->
-    <div
-      v-if="getTotalFavorites > 0"
-      v-for="dsFavorites in favorites"
-      :key="dsFavorites.dsId"
+    <OverflownContent
+      :maxHeightPercent="maxHeight"
+      :textColor="'rgba(46, 34, 101, 1)'"
+      @scrollChange="setIsOverflowing"
       >
 
 
-      <v-list 
-        v-for="item in dsFavorites.favorites"
-        :key="item[ getItemIdField( dsFavorites.dsId ) ]"
-        three-lines
-        class="transparent limited-height py-0"
+      <!-- FAVORITES LIST -->
+      <div
+        v-if="getTotalFavorites && getTotalFavorites > 0"
+        v-for="dsFavorites in favorites"
+        :key="dsFavorites.dsId"
         >
 
-        <v-list-tile
-          :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
-          @click.native="mutateCardIndex( item )"
+        <v-list 
+          v-for="item in dsFavorites.favorites"
+          :key="item[ getItemIdField( dsFavorites.dsId ) ]"
+          three-lines
+          class="transparent py-0"
           >
 
-          <!-- icon -->
-          <v-list-tile-action>
-            <v-icon color="pink">
-              favorite
-            </v-icon>
-          </v-list-tile-action>
+          <v-list-tile
+            :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
+            @click.native="mutateCardIndex( item )"
+            >
 
-          <!-- favorite title -->
-          <v-list-tile-content>
-            <v-list-tile-title>
-              
-              <span 
-                class="primary--text favorites-text"
+            <!-- icon -->
+            <v-list-tile-action>
+              <v-icon 
+                color="pink"
                 >
-                "{{ getFavoriteItem( dsFavorites.dsId, item, 'favText' ) }}"
-              </span>
-              <v-icon
-                class="primary-smooth"
-                >
-                chevron_right
+                favorite
               </v-icon>
+            </v-list-tile-action>
 
-            </v-list-tile-title>
-          </v-list-tile-content>
-        
-        </v-list-tile>
+            <!-- favorite title -->
+            <v-list-tile-content>
+              <v-list-tile-title>
+                
+                <span 
+                  class="primary--text favorites-text"
+                  >
+                  "{{ getFavoriteItem( dsFavorites.dsId, item, 'favText' ) }}"
+                </span>
+                <v-icon
+                  class="primary-smooth"
+                  >
+                  chevron_right
+                </v-icon>
 
-        <v-divider inset></v-divider>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          
+          </v-list-tile>
 
-      </v-list>
+          <v-divider inset></v-divider>
 
-    </div>
+        </v-list>
 
-    <div v-else 
-      class="text-xs-center">
+      </div>
 
-      <h3 class="pt-3 secondary--text my-3 favorites-text ">
-        {{ $t('favorites.introduction_empty_01') }}<br>
-        {{ $t('favorites.introduction_empty_02') }}<br>
-        {{ $t('favorites.introduction_empty_03') }}<br>
-      </h3>
-      <br>
-      <img 
-        height="75px"
-        src="/icons/heart-stroke-X.svg" 
-        />
-    </div>
+      <div v-else 
+        class="text-xs-center">
+
+        <h3 class="pt-3 secondary--text my-3 favorites-text ">
+          {{ $t('favorites.introduction_empty_01') }}<br>
+          {{ $t('favorites.introduction_empty_02') }}<br>
+          {{ $t('favorites.introduction_empty_03') }}<br>
+        </h3>
+        <br>
+        <img 
+          height="75px"
+          src="/icons/heart-stroke-X.svg" 
+          />
+      </div>
+
+
+    </OverflownContent>
+
 
   </v-flex>
 
@@ -121,6 +134,8 @@
 <script>
 
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
+import OverflownContent from '~/components/UX-components/overflownContent'
 
 export default {
 
@@ -135,6 +150,7 @@ export default {
 
   components: {
     // FooterAbout,
+    OverflownContent
   },
 
   middleware : [
@@ -147,10 +163,17 @@ export default {
     console.log("P-FavoritesPage / beforeMount....")
   },
 
+  mounted : function(){
+    // console.log("P-FavoritesPage-mounted / this.$refs : ", this.$refs)
+    this.isMounted = true
+  },
+
   data() {
     return {
+      isMounted: false,
       idField: undefined,
-
+      maxHeight: .45,
+      isOverflowing: false,
     }
   },
 
@@ -185,7 +208,8 @@ export default {
         totalFavs += dsTotal
       }
       return totalFavs
-    }
+    },
+
 
   },
 
@@ -194,6 +218,10 @@ export default {
     ...mapMutations({
       setCardIndex : 'cards/setsetCurrentCardIndex',
     }),
+
+    setIsOverflowing(value){
+      this.isOverflowing = value
+    },
 
     goBack(e){
       e.preventDefault()
@@ -254,8 +282,5 @@ export default {
   margin-top: 200px;
 }
 
-.limited-height{
-  max-height: 80vw;
-  overflow-y: auto;
-}
+
 </style>

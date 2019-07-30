@@ -1,6 +1,6 @@
 <template>
   <v-app
-    class="no-scroll"
+    class="no-scroll white-background"
     :class="`${ locSelected? '' : 'splashscreen-gradient'}`"
     >
     <!-- class="splashscreen-gradient" -->

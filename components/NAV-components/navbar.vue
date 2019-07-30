@@ -1,10 +1,13 @@
 <template>
 
   <div class="navbar-above-all"
+    v-if="!isIntroLocalePage"
     >
     <!-- v-if="locSelected" -->
     <!-- :style="`width:100px; height:32px`" -->
 
+
+    <!-- NAVBAR -->
     <v-toolbar 
       color="transparent" 
       :dark="!isDrawerLeft"
@@ -115,7 +118,7 @@
       absolute
       floating
       :right="!isDrawerLeft"
-      :class="isDrawerLeft ? 'transparent' : 'primary'"
+      :class="`${isDrawerLeft ? 'transparent' : 'primary'} ${ drawer ? 'shadow' : '' }`"
       style="z-index: 50"
       :dark="!isDrawerLeft"
       >
@@ -315,6 +318,12 @@ export default {
       return isCardPage 
     },
 
+    isIntroLocalePage(){
+      let isHomePage = this.isCurrentPage({ to : '/' })
+      let isLocSelected = this.locSelected
+      return isHomePage && !isLocSelected
+    },
+
 
   },
 
@@ -382,15 +391,9 @@ export default {
   z-index: 25;
 }
 
-/* 
-.card-margin-in-view-percents{
-  margin-top: 4vh !important;
-  margin-right: 2vw !important;
+.shadow{
+  box-shadow: -30px 0px 80px black !important;
 }
-.card-margin-in-pixels{
-  margin-top: 25px !important;
-  margin-right: 5px !important;
-} */
 
 
 </style>
