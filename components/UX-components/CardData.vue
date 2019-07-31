@@ -12,19 +12,29 @@
         <!-- LOGO TITLE -->
         <v-card-title 
           ref="cardTitle"
-          class="justify-center pa-0 "
+          class="justify-center pa-0"
           :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`"
           >
 
           <v-container fluid>
-            <v-layout row justify-center align-center>
+
+            <v-layout 
+                row 
+                justify-center 
+                align-center
+                >
               <img 
                 :height="logoHeight"
                 class="pa-2 my-3"
                 src="/icons/logo-afd-white.svg" 
               />
             </v-layout>
-            <v-layout row justify-center>
+
+            <v-layout 
+              v-show=" !$device.isMobileOrTablet || isExport"
+              row 
+              justify-center
+              >
               <div class="text-xs-center text-uppercase light-opacity">
                 {{ $t('intro.catchPhrase_1') }}
                 <span>
@@ -32,6 +42,7 @@
                 </span>
               </div> 
             </v-layout>
+
           </v-container>
 
         </v-card-title>
@@ -50,7 +61,7 @@
 
             <v-flex
               v-show="!findMoreActive"
-              :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 3 }`"
+              :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 4 }`"
               >
 
               <!-- <p class="caption"> -->
