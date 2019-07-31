@@ -56,6 +56,7 @@
           id="current-card"
 
           :itemData="current"
+          :isFirst="true"
           
           :cardHeights="cardHeights"
           :cardColorIndex="getRandomColorIndex( index )"

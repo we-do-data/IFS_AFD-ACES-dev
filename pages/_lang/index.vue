@@ -15,7 +15,7 @@
           height="120px"
           src="/icons/logo-afd-color.svg" /> -->
         <img 
-          :height="`${ $device.isMobileOrTablet ? '80px' : '90px'}`"
+          :height="`${ $device.isMobileOrTablet ? '50px' : '70px'}`"
           :src="`/icons/logo-afd-${ locSelected ? 'color' : 'white' }.svg`" 
           />
       </p>
@@ -28,6 +28,17 @@
         {{ $t('title.aces') }}
         </b>
       </h2> -->
+
+        <p 
+          :class="`${ locSelected ? 'text-gradient' : 'white--text' } text-uppercase title mt-4`"
+          >
+          <span class="text-menu">
+            {{ $t('intro.catchPhrase_1') }}
+          </span>
+          <span class="text-menu">
+            <b>{{ $t('intro.catchPhrase_2') }}</b>
+          </span>  
+        </p>
 
       <!-- LOCALE SELECTION -->
       <div 
@@ -62,16 +73,9 @@
       </div>
 
       <!-- GO TO ACES PAGE -->
-      <div  v-show="locSelected">
-
-        <p 
-          class="text-gradient text-uppercase title mt-4"
-          >
-          {{ $t('intro.catchPhrase_1') }}
-          <b>
-          {{ $t('intro.catchPhrase_2') }}
-          </b>        
-        </p>
+      <div  
+        v-show="locSelected"
+        >
 
         <v-divider
           class="divider-smooth"

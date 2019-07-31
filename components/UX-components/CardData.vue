@@ -288,6 +288,7 @@ export default {
   },
   props: [
     'itemData',
+    'isFirst',
     // 'dsId',
 
     "isExport",
