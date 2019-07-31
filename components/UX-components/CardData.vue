@@ -488,7 +488,11 @@ export default {
     z-index: 100;
     // box-shadow: 0 0 0 2px #e91e63, 0 0 0 4px white;
     opacity: 1;
-}
+    color: transparent;
+  }
+  // .second-border:before:hover{
+  //   opacity: 0;
+  // }
 
   // .absolutePos{
     // position: absolute;
