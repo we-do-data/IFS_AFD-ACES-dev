@@ -112,7 +112,7 @@ export default {
     },
 
     interactTransitionString() {
-      if (this.interactIsAnimating) return 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      if (this.interactIsAnimating) return 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
 
       return null;
     },
