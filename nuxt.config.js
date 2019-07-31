@@ -126,8 +126,8 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: process.env.NUXT_ENV_APP_TITLE + ' - %s' ,
+    title: process.env.NUXT_ENV_APP_TITLE || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

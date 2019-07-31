@@ -106,11 +106,11 @@
         <!-- RESSOURCES && FAVORITES CONTENTS -->
         <v-layout 
           ref="cardMore"
+          row
+          align-end
           v-show="!isExport"
           :class="` ${ findMoreActive ? '' : 'pb-3' }`"
           :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
-          row
-          align-end
           >
 
           <!-- FIND MORE TITLE -->
