@@ -475,18 +475,18 @@ export default {
 
 
   .second-border:before {
-    // content: "";
-    // display: block;
-    // position: absolute;
-    // top: -7px;
-    // left: -7px;
-    // border: solid 2px rgba(255,255, 255,1) !important;
-    // width: 50px;
-    // height: 50px;
-    // padding-bottom: 0;
-    // min-height: 100%;
-    // z-index: 100;
-    box-shadow: 0 0 0 2px #e91e63, 0 0 0 4px white;
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border: solid 2px rgba(255,255, 255,1) !important;
+    width: 46px;
+    height: 46px;
+    padding-bottom: 0;
+    min-height: 100%;
+    z-index: 100;
+    // box-shadow: 0 0 0 2px #e91e63, 0 0 0 4px white;
     opacity: 1;
 }
 
