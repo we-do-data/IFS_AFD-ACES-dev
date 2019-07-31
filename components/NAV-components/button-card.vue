@@ -6,6 +6,7 @@
       :key="indexBtn"
       class="btn-gradient card-btn-text white--text px-4"
       round
+      flat
       large
       @click="goToCards()"
       >
