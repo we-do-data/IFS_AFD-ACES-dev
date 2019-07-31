@@ -32,7 +32,7 @@
         ref="mainDraggableCard"
         class="full-height"
 
-        :interact-out-of-sight-x-coordinate="700"
+        :interact-out-of-sight-x-coordinate="900"
         :interact-max-rotation="15"
         :interact-x-threshold="200"
         :interact-y-threshold="200"
