@@ -478,7 +478,7 @@ export default {
     &--one {
       // width: 80vw;
       // width: 100%;
-      transform: translate(-50%, -55%);
+      transform: translate(-50%, -56%);
       // background: rgba(white, 1);
       // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     }
@@ -497,7 +497,7 @@ export default {
       // background: rgba(white, .8);
       // transform: translate(-46%, -46%);
       // transform: scale(1, .6);
-      transform: translate(-50%, -45%);
+      transform: translate(-50%, -44%);
       // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
     }
     // .text {
@@ -524,7 +524,7 @@ export default {
       // transform : translate(-50%, -57%) ;
     }
     to {
-      transform: translate(-50%, -55%) scale(1) ;
+      transform: translate(-50%, -56%) scale(1) ;
       // transform: translate(-50%, -60%) ;
     }
   }
