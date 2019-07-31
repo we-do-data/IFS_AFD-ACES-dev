@@ -1,7 +1,7 @@
 <template>
 
   <v-flex 
-    pt-5 mt-5
+    pt-4 mt-4
     xs10 offset-xs1
     md8 offset-md2
     lg6 offset-lg3
@@ -16,7 +16,7 @@
         flat
         icon
         color="primary"
-        @click="goBack"
+        @click="triggerClick"
         >
         <v-icon>
           close
@@ -111,6 +111,14 @@ export default {
   },
 
   methods: {
+
+    triggerClick(e){
+      if ( this.isFirstVisit ){
+        this.$router.push('/cards')
+      } else {
+        this.goBack(e)
+      }
+    },
 
     goBack(e){
       e.preventDefault()

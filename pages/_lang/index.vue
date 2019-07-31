@@ -36,24 +36,28 @@
         >
 
         <p 
-          :class="`light-letter-spacing primary-smooth`"
+          :class="`light-letter-spacing info--text`"
           >
           {{ $t('intro.chooseLang') }}
         </p>
-      
-        <v-btn 
+
+        <v-hover
           v-for="(loc, index) in locales"
           :key="index"
-          outline
-          color="white"
-          :class="`text-uppercase btn-simple ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
-          round 
-          dark
-          @click="changeLocale(loc, false)"
-          @mouseover="changeLocale(loc, true)"
+          v-slot:default="{ hover }"
           >
-          {{ loc.code }}
-        </v-btn>
+          <v-btn 
+            :outline="!hover"
+            color="white"
+            :class="`text-uppercase px-1 mx-2 btn-simple ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
+            round 
+            dark
+            @click="changeLocale(loc, false)"
+            @mouseover="changeLocale(loc, true)"
+            >
+            {{ loc.code }}
+          </v-btn>
+        </v-hover>
       
       </div>
 

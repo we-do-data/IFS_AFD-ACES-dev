@@ -15,10 +15,10 @@
         v-for="(btn, indexBtn) in footerBtns"
         :key="indexBtn"
         >
-        <v-btn 
+        <v-btn
           round
           flat
-          class="primary btn-footer "
+          class="primary btn-footer"
           color="primary"
           outline
           :to="btn.to"

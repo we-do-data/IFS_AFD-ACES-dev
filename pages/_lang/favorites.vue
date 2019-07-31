@@ -1,7 +1,7 @@
 <template>
   
   <v-flex 
-    pt-5 mt-5
+    pt-4 mt-4
     xs10 offset-xs1
     md8 offset-md2
     lg6 offset-lg3

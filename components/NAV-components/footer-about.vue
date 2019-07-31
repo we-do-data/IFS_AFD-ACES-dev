@@ -1,7 +1,5 @@
 <template>
 
-  <!-- FOOTER ABOUT -->
-    <!-- v-show="isFirstVisit"  -->
   <v-footer 
     color="transparent"
     class="ma-3 pb-5 mb-5"
@@ -10,16 +8,6 @@
     <v-layout 
       justify-center
       >
-    
-      <!-- <v-btn 
-        v-for="(btn, indexBtn) in footerBtns"
-        round
-        class="btn-gradient card-btn-text white--text light-letter-spacing"
-        :key="indexBtn"
-        @click="goToCards()"
-        >
-        {{ $t(btn.textCode) }}
-      </v-btn> -->
 
       <ButtonCard/>
 
