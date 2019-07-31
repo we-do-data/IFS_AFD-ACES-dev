@@ -520,11 +520,11 @@ export default {
   @keyframes appear {
     from {
       // transform : scaleX(.9411) ;
-      transform : translate(-50%, -58%) scaleX(.9411) ;
+      transform : translate(-50%, -55%) scale(.9411) ;
       // transform : translate(-50%, -57%) ;
     }
     to {
-      transform: translate(-50%, -60%) scaleX(1) ;
+      transform: translate(-50%, -60%) scale(1) ;
       // transform: translate(-50%, -60%) ;
     }
   }
