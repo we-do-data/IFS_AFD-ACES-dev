@@ -164,30 +164,35 @@
               align-center
               justify-end
               > -->
-              <v-btn 
-                class="card-button white second-border"
-                icon
-                flat
-                @click.prevent.stop="switchFavorite()"
+              <v-hover
+                v-slot:default="{ hover }"
                 >
-                <!-- v-touch:tap="switchFavorite()" -->
-                <!-- @mouseenter="switchHover()"
-                @mouseleave="switchHover()" -->
-
-                  <!-- :color="isFavorite ? 'pink' : 'grey' " -->
-                <v-icon
-                  color="pink"
-                  small
+                <v-btn 
+                  :class="`card-button ${ hover ? 'pink lighten-5' : 'white'} second-border`"
+                  icon
+                  flat
+                  @click.prevent.stop="switchFavorite()"
                   >
-                  {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
-                </v-icon>
+                  <!-- v-touch:tap="switchFavorite()" -->
+                  <!-- @mouseenter="switchHover()"
+                  @mouseleave="switchHover()" -->
 
-                <!-- <img 
-                  height="36px"
-                  :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
-                  /> -->
+                    <!-- :color="isFavorite ? 'pink' : 'grey' " -->
+                  <v-icon
+                    color="pink"
+                    small
+                    >
+                    {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
+                  </v-icon>
 
-              </v-btn>
+                  <!-- <img 
+                    height="36px"
+                    :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
+                    /> -->
+
+                </v-btn>
+              </v-hover>
+
             <!-- </v-layout> -->
           </v-flex>
           
