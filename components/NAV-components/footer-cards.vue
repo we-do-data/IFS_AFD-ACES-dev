@@ -89,7 +89,7 @@
                 icon
                 :class="`${ hover ? 'accent' : 'white'}`"
                 flat
-                @click.prevent="triggerCard( btn.function )"
+                @click.stop="triggerCard( btn )"
                 >
                 <img 
                   height="36px"
@@ -235,8 +235,8 @@ export default {
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about", function: "share_twitter" },
-        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits", function: "share_facebook" },
+        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about", function: "share_twitter", baseUrl: "https://twitter.com/intent/tweet?text="  },
+        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits", function: "share_facebook", baseUrl: "https://www.facebook.com/sharer/sharer.php?u="  },
         { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits", function: "print_card" },
       ],
 
@@ -356,15 +356,22 @@ export default {
       // return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
     },
 
-    triggerCard( functionName ){
-      console.log("C-FooterCards-triggerCard / functionName: ", functionName )
+    triggerCard( btnData ){
+      console.log("C-FooterCards-triggerCard / btnData.function: ", btnData.function )
       console.log("C-FooterCards-triggerCard / this.current : ", this.current  )
       
-      this.print() 
-
-      if ( functionName === 'print_card' ){
-
+      if ( btnData.function === 'print_card' ){
+        this.print() 
+      } else {
+        let baseUrl = btnData.baseUrl
+        let appMsg = btnData.function !== 'share_facebook' && this.$t('socials.message') + '%0A' 
+        let appLink = "www.playwithtransitions.cards"
+        let shareLink = baseUrl + appMsg + appLink
+        let win = window.open(shareLink, '_blank')
+        // win.focus()
+        // return false
       } 
+
 
     },
 

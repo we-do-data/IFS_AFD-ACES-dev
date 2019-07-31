@@ -89,7 +89,7 @@
 
         </v-layout>
 
-      </v-layout>
+      <!-- </v-layout> -->
 
       <!-- BURGER -->
       <!-- <v-hover
@@ -113,6 +113,8 @@
             <!-- :src="`/icons/icon-burger-M${ hover ? '-white' : '' }.svg`" -->
         </v-btn>
       <!-- </v-hover> -->
+
+      </v-layout>
 
     </v-toolbar>
 

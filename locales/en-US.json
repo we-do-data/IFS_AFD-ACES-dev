@@ -107,6 +107,10 @@
     "rowsperpage" : "rows per page",
     "of": "of",
     "search" : "search"
+  },
+
+  "socials" : {
+    "message" : "Boost your creativity on your transition projects @AFD_France playwithtransitions.cards"
   }
   
 }
