@@ -1,23 +1,31 @@
 <template>
 
-  <div class="navbar-above-all"
+  <div class="navbar-above-all pa-0 ma-0"
     v-if="!isIntroLocalePage"
+    :style="`width: ${ cardWindow.width }px`"
     >
     <!-- v-if="locSelected" -->
     <!-- :style="`width:100px; height:32px`" -->
 
+        <!-- isIntroLocalePage : {{ isIntroLocalePage }} -->
+        <!-- isDrawerLeft : {{ isDrawerLeft }} -->
+        <!-- cardWindow.width : {{cardWindow.width }} -->
 
     <!-- NAVBAR -->
     <v-toolbar 
+      class="pr-3"
       color="transparent" 
-      :dark="!isDrawerLeft"
-      class="pr-4"
       flat
       fixed
+      :dark="!isDrawerLeft"
       :style="`width: ${ cardWindow.width }px`"
       >
 
+      <v-toolbar-title>
+      </v-toolbar-title>
+
       <v-spacer></v-spacer>
+
 
       <!-- LOCALES AND PAGES -->
       <v-menu
@@ -47,76 +55,80 @@
           </v-toolbar-title>
         </template>
 
-        <v-list>
-          <v-list-tile
-            v-for="loc in locales"
-            :key="loc.code"
-            @click="changeLocale(loc)"
-            >
-            <v-list-tile-title
-              :class="`text-menu ${ loc.code !== locale ? 'font-weight-bold' : 'menu-off'}`"
+        <!-- <v-toolbar-items> -->
+          <v-list>
+            <v-list-tile
+              v-for="loc in locales"
+              :key="loc.code"
+              @click="changeLocale(loc)"
               >
-              {{ loc.name }}
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
+              <v-list-tile-title
+                :class="`text-menu ${ loc.code !== locale ? 'font-weight-bold' : 'menu-off'}`"
+                >
+                {{ loc.name }}
+              </v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        <!-- </v-toolbar-items> -->
 
       </v-menu>
 
-      <v-layout
-        row wrap
-        >
+
+      <v-toolbar-items>
+
         <v-layout
+          row wrap
           justify-end
           >
+          <!-- <v-layout
+            > -->
 
-          <!-- many locales -->
-          <v-btn 
-            v-if="isDrawerLeft && !hasManyLocales"
-            v-for="loc in locales"
-            :key="loc.code"
-            flat
-            small
-            @click="changeLocale(loc)"
-            :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage ? 'white--text' : 'primary--text'}`"
-            >
-            <span
-              :class="`text-menu ${ loc.code !== locale ? 'menu-off' : 'font-weight-bold'}`"
+            <!-- many locales -->
+            <v-btn 
+              v-if="isDrawerLeft && !hasManyLocales"
+              v-for="loc in locales"
+              :key="loc.code"
+              flat
+              small
+              @click="changeLocale(loc)"
+              :class="`text-uppercase px-0 mx-0 subheading ${ isCardPage ? 'white--text' : 'primary--text'}`"
               >
-              {{ loc.code }}
-            </span>
-          </v-btn>
+              <span
+                :class="`text-menu ${ loc.code !== locale ? 'menu-off' : 'font-weight-bold'}`"
+                >
+                {{ loc.code }}
+              </span>
+            </v-btn>
+
+
+
+          <!-- </v-flex> -->
 
         </v-layout>
 
-      <!-- </v-layout> -->
+      </v-toolbar-items>
 
-      <!-- BURGER -->
-      <!-- <v-hover
-        v-slot:default="{ hover }"
-        > -->
-        <v-btn
-          v-show="!isDrawerLeft"
-          icon
-          flat
-          :class="`white ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' }`"
-          @click.stop="closeDrawer()"
-          :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
-          >
-          <!-- <v-icon>
-            fas fa-bars
-          </v-icon> -->
-          <img 
-            height="36px"
-            :src="`/icons/icon-burger-M.svg`"
-            />
-            <!-- :src="`/icons/icon-burger-M${ hover ? '-white' : '' }.svg`" -->
-        </v-btn>
-      <!-- </v-hover> -->
 
-      </v-layout>
+
+      <!-- ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' } -->
+      <v-btn
+        v-if="!isDrawerLeft"
+        icon
+        flat
+        :class="`white`"
+        @click.stop="closeDrawer()"
+        :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
+        >
+
+        <img 
+          height="36px"
+          :src="`/icons/icon-burger-M.svg`"
+          />
+          <!-- :src="`/icons/icon-burger-M${ hover ? '-white' : '' }.svg`" -->
+      </v-btn>
 
     </v-toolbar>
+
 
 
     <!-- DRAWER RIGHT / LEFT -->
@@ -251,6 +263,15 @@ export default {
   props: [
   ],
 
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+
   mounted: function() {
     console.log("C-navbar / mounted....")
     if ( this.isDrawerLeft ){
@@ -326,7 +347,7 @@ export default {
     },
 
     isIntroLocalePage(){
-      let isHomePage = this.isCurrentPage({ to : '/' })
+      let isHomePage = this.isCurrentPage( {to: '/'} )
       let isLocSelected = this.locSelected
       return isHomePage && !isLocSelected
     },
@@ -335,6 +356,16 @@ export default {
   },
 
   methods: {
+
+    handleResize() {
+
+      let currentWindow = { 
+        width : window.innerWidth,
+        height : window.innerHeight
+      }
+      this.$store.commit('setCardWindow', currentWindow )
+
+    },
 
     changeLocale(loc){
       this.$i18n.locale = loc.code
