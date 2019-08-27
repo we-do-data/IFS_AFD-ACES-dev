@@ -36,10 +36,15 @@
               justify-center
               >
               <div class="text-xs-center text-uppercase light-opacity">
-                {{ $t('intro.catchPhrase_1') }}
+                <!-- {{ $t('intro.catchPhrase_1') }} -->
+                Play with
                 <span>
-                  <b> {{ $t('intro.catchPhrase_2') }} </b>
+                  <b> 
+                    transitions
+                    <!-- {{ $t('intro.catchPhrase_2') }}  -->
+                  </b>
                 </span>
+                . cards
               </div> 
             </v-layout>
 
