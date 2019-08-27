@@ -13,7 +13,14 @@
         v-if="getTotalFavorites && getTotalFavorites > 0"
         >
         {{ getTotalFavorites }}
-        {{ $t('favorites.title') }}
+        <span
+          v-if="getTotalFavorites === 1">
+          {{ $t('favorites.title_singular') }}
+        </span>
+        <span
+          v-else>
+          {{ $t('favorites.title') }}
+        </span>
       </span>
 
       <span
