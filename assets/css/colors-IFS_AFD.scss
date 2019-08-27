@@ -44,11 +44,11 @@ $cookie-background : #110D26;
 
 // Gradient btn :
 .btn-gradient {
-  background-image: linear-gradient(to right, $main-secondary , $gradient-btn-end) !important;
+  background-image: linear-gradient(to left, $main-secondary , $gradient-btn-end) !important;
   box-shadow : none !important;
 }
 .btn-gradient:hover {
-  background-image: linear-gradient(to right, $gradient-btn-end , $primary) !important;
+  background-image: linear-gradient(to left, $gradient-btn-end , $primary) !important;
   color : white !important;
 }
 
@@ -83,7 +83,7 @@ $cookie-background : #110D26;
 
 // gradient texts
 .text-gradient{
-	background: linear-gradient(to right, $main-secondary , $gradient-btn-end) !important;
+	background: linear-gradient(to left, $main-secondary , $gradient-btn-end) !important;
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent !important;
 }

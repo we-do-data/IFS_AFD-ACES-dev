@@ -4,24 +4,27 @@
     justify="center"
     > -->
 
-  <v-layout row wrap align-center justify-center>
-    <v-flex>
+  <div>
+    <v-layout row wrap align-center justify-center>
 
-      <LottieAnim
-        :options="defaultOptions" 
-        :width="currentWindow.width"
-        :height="currentWindow.height" 
-      />
+      <v-flex>
+        <LottieAnim
+          :options="defaultOptions" 
+          :width="currentWindow.width"
+          :height="currentWindow.height" 
+        />
+      </v-flex>
+    </v-layout>
 
-    </v-flex>
-  </v-layout>
-
-    <!-- <div>
-      isRedirectTime : <code>{{isRedirectTime}}</code> <br>
-    </div> -->
+    <div>
+      isRedirectTime : <code>{{ isRedirectTime }}</code> <br>
+      isFirstVisit : <code>{{ isFirstVisit }}</code>
+    </div>
 
 
   <!-- </v-row> -->
+  </div>
+
 </template>
 
 <script>
@@ -57,6 +60,7 @@
     },
 
     beforeMount(){
+      console.log("P-anim_intro / beforeMount....")
       if ( !this.isFirstVisit ){
         this.$router.push('/intro')
       }
@@ -78,7 +82,7 @@
         defaultOptions: { 
           animationData: animationData.default, 
           // animationData: animationDataTest, 
-          loop: true 
+          loop: false 
         },
       }
     },
@@ -93,8 +97,8 @@
     }),
 
     ...mapGetters({
-
     }),
+
   },
 
     methods: {
@@ -107,11 +111,12 @@
       },
 
       redirectToIntro() {
+        console.log("P-anim_intro-redirectToIntro / ..." )
         setTimeout(() => {
-          console.log("P-anim_intro-redirectToIntro / setTimeout disappear..." )
-          this.isRedirectTime = true
+          console.log("P-anim_intro-redirectToIntro / setTimeout disappear..." );
+          this.isRedirectTime = true ;
           this.$router.push('/intro')
-        }, 3500)
+        }, 5500)
       }
     }
       

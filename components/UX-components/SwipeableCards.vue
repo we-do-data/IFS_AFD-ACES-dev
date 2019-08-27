@@ -84,7 +84,7 @@
     <!-- SECOND CARD -->
     <v-flex
       v-if="getNexCard()"
-      class="card card--two fixed fixed--center"
+      :class="`card card--two fixed fixed--center ${ isVisible ? 'transition_2' :'' }`"
       :style="`z-index: 2; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
       >
       <!-- :style="`z-index: 2; width:${ cardWidth( secondCardWidth )}; height:${ cardHeight( cardHeigthRatio( secondCardWidth ) ) }; ${ centerCardStyle }`" -->
@@ -482,7 +482,7 @@ export default {
     &--one {
       // width: 80vw;
       // width: 100%;
-      transform: translate(-46%, -59%);
+      transform: translate(-50%, -59%);
       // background: rgba(white, 1);
       // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     }
@@ -492,7 +492,7 @@ export default {
       // background: rgba(white, .9);
       // transform: translate(-48%, -48%);
       // transform: scale(1, .8);
-      transform: translate(-50%, -54%);
+      transform: translate(-53%, -54%);
       // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
     }
     &--three {
@@ -501,7 +501,7 @@ export default {
       // background: rgba(white, .8);
       // transform: translate(-46%, -46%);
       // transform: scale(1, .6);
-      transform: translate(-54%, -49%);
+      transform: translate(-56%, -49%);
       // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
     }
     // .text {
@@ -521,19 +521,34 @@ export default {
   .transition {
     animation: appear 300ms ease-in-out;
   }
+  .transition_2 {
+    animation: appear_2 300ms ease-in-out;
+  }
   @keyframes appear {
     from {
       // transform : scaleX(.9411) ;
       // transform : translate(-50%, -50%) scale(.9411) ;
-      transform : translate(-50%, -54%)  ;
+      transform : translate(-53%, -54%)  ;
       // transform : translate(-50%, -57%) ;
     }
     to {
       // transform: translate(-50%, -56%) scale(1) ;
-      transform: translate(-46%, -59%) ;
+      transform: translate(-50%, -59%) ;
       // transform: translate(-50%, -60%) ;
     }
   }
-
+  @keyframes appear_2 {
+    from {
+      // transform : scaleX(.9411) ;
+      // transform : translate(-50%, -50%) scale(.9411) ;
+      transform : translate(-56%, -49%)  ;
+      // transform : translate(-50%, -57%) ;
+    }
+    to {
+      // transform: translate(-50%, -56%) scale(1) ;
+      transform: translate(-53%, -54%) ;
+      // transform: translate(-50%, -60%) ;
+    }
+  }
 
 </style>

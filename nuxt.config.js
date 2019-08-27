@@ -2,7 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 // import pkg from './package.json'
 
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({ path: '.preprod-protect.env' })
 
 console.log('>>> nuxt.config.js (start) / process.env.NUXT_GSHEET_IDS : ', process.env.NUXT_GSHEET_IDS)
 
@@ -87,6 +89,8 @@ const configApp = {
   mode: process.env.NUXT_ENV_RUN_MODE,
   host: process.env.NUXT_ENV_HOST,
   port: choosePort(process.env.NUXT_ENV_RUN_MODE),
+
+  isProtected: chooseBooleanMode(process.env.NUXT_ENV_IS_PROTECTED),
 
   // INTERNATIONALIZATION
   defaultLocale: process.env.NUXT_ENV_LOCALE_DEFAULT,
