@@ -84,7 +84,7 @@ export default {
 
   data() {
     return {
-      maxHeight: .4,
+      maxHeight: .5,
     }
   },
 

@@ -28,7 +28,7 @@
     </v-layout>
 
     <!-- FOOTER CONTENTS -->
-    <FooterAbout/>
+    <!-- <FooterAbout/> -->
 
     <!-- COOKIES BANNER -->
     <CookiesBanner/>

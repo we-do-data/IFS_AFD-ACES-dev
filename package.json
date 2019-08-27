@@ -22,6 +22,7 @@
     "dotenv": "^8.0.0",
     "interactjs": "^1.4.12",
     "js-cookie": "^2.2.0",
+    "lottie-vuejs": "^0.3.6",
     "material-design-icons-iconfont": "^5.0.1",
     "node-sass": "^4.12.0",
     "nuxt": "^2.0.0",
@@ -34,6 +35,7 @@
     "vh-for-mobile": "^1.0.1",
     "vue-html2canvas": "0.0.4",
     "vue-i18n": "^8.11.2",
+    "vue-lottie": "^0.2.1",
     "vue-svg-custom-icon": "^1.0.7",
     "vue2-interact": "0.0.3",
     "vue2-touch-events": "^2.0.0"

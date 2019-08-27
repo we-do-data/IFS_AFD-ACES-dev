@@ -289,7 +289,7 @@ export default {
 
     items: [
 
-      { titleCode: 'homepage', icon: 'home', to:"/" },
+      { titleCode: 'homepage', icon: 'home', to:"/intro" },
       { titleCode: 'cards', icon: 'card', to:"/cards" },
       { titleCode: 'favorites', icon: 'favorite', to:"/favorites" },
 

@@ -1,6 +1,7 @@
 <template>
 
   <v-flex 
+    id="about page"
     pt-4 mt-4
     xs10 offset-xs1
     md8 offset-md2
@@ -33,7 +34,7 @@
       <!-- :textCodeHead="'about.headline'"
       :textCodeContent="'about.content'" -->
     <OverflownContent
-      :maxHeightPercent="maxHeight"t
+      :maxHeightPercent="maxHeight"
       >
 
       <h3
@@ -92,7 +93,7 @@ export default {
 
   data() {
     return {
-      maxHeight: .4,
+      maxHeight: .5,
     }
   },
 
