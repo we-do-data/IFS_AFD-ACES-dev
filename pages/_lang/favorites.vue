@@ -172,7 +172,7 @@
       </div>
 
       <!-- NO FAVS YET -->
-      <div v-else 
+      <div v-if="!getTotalFavorites" 
         class="text-xs-center">
 
         <h3 class="pt-3 secondary--text my-3 favorites-text ">
@@ -207,7 +207,7 @@ export default {
   name: "FavoritesPage",
 
   layout : "staticContents",
-  
+
   transition: 'static',
 
   // TO DO 

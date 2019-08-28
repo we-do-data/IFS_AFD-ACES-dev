@@ -34,8 +34,8 @@
 
         :interact-out-of-sight-x-coordinate="900"
         :interact-max-rotation="15"
-        :interact-x-threshold="200"
-        :interact-y-threshold="200"
+        :interact-x-threshold="170"
+        :interact-y-threshold="170"
 
         :interact-event-bus-events="interactEventBus"
 
