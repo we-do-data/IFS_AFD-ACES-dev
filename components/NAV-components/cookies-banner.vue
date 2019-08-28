@@ -1,74 +1,77 @@
 <template>
 
-  <v-footer
-    dark
-    v-show="isBannerVisible"
-    padless
-    class="cookie-background"
-    fixed
-    :height="`${ $device.isMobileOrTablet ? '130px' : '110px'}`"
-    transition="slide-y-transition"
-    >
-
-    <v-container 
-      fluid
-      justify-center 
-      py-1
+  <transition name="slide">
+    <v-footer
+      dark
+      v-show="isBannerVisible"
+      padless
+      class="cookie-background"
+      fixed
+      :height="`${ $device.isMobileOrTablet ? '130px' : '110px'}`"
       >
+      <!-- transition="scroll-y-reverse-transition" -->
+      <!-- transition="slide-y-transition" -->
 
-      <v-layout 
-        row
+      <v-container 
+        fluid
         justify-center 
-        align-center
-        ml-3
+        py-1
         >
 
-        <v-flex
-          xs7
-          sm6
-          offset-sm2
+        <v-layout 
+          row
+          justify-center 
+          align-center
+          ml-3
           >
 
-          <strong>
-            {{ $t('banner.bannerMessage') }} &nbsp;
-             <!-- / {{ $vuetify.breakpoint.name }} -->
-              <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
-            <br>
-            <a 
-              class="secondary--text"
-              > 
-              {{ $t('banner.learnMore') }}
-            </a>
-          </strong>
-
-        </v-flex>
-      
-        <v-flex
-          xs5
-          sm2
-          mr-3
-          pr-2
-          justify-center
-          >
-
-          <v-btn
-            class="mx-4"
-            dark
-            outline
-            round
-            @click="closeBanner"
+          <v-flex
+            xs7
+            sm6
+            offset-sm2
             >
-            <!-- @click="isBannerVisible = false" -->
-            {{ $t('banner.gotIt') }}
-          </v-btn>
 
-        </v-flex>
+            <strong>
+              {{ $t('banner.bannerMessage') }} &nbsp;
+              <!-- / {{ $vuetify.breakpoint.name }} -->
+                <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
+              <br>
+              <a 
+                class="secondary--text"
+                > 
+                {{ $t('banner.learnMore') }}
+              </a>
+            </strong>
 
-      </v-layout>
+          </v-flex>
+        
+          <v-flex
+            xs5
+            sm2
+            mr-3
+            pr-2
+            justify-center
+            >
 
-    </v-container>
+            <v-btn
+              class="mx-4"
+              dark
+              outline
+              round
+              @click="closeBanner"
+              >
+              <!-- @click="isBannerVisible = false" -->
+              {{ $t('banner.gotIt') }}
+            </v-btn>
 
-  </v-footer>
+          </v-flex>
+
+        </v-layout>
+
+      </v-container>
+
+    </v-footer>
+  </transition>
 
 </template>
 
@@ -155,6 +158,42 @@ export default {
 
     border-width: 0 0 1px;
     border-style: solid;
+  }
+
+  .slide-enter{
+  }
+  .slide-enter-active{
+    animation: slideIn 1s ease-in both;
+  }
+  .slide-enter-to{
+  }
+  .slide-leave{
+  }
+  .slide-leave-active{
+    animation: slideOut 1s ease-out both;
+  }
+  .slide-leave-to{
+
+  }
+  @keyframes slideIn {
+    0% {
+      // opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+    100% {
+      // opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes slideOut {
+    0% {
+      // opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      // opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
   }
 
 </style>
