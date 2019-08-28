@@ -16,10 +16,10 @@
       </v-flex>
     </v-layout>
 
-    <div>
+    <!-- <div>
       isRedirectTime : <code>{{ isRedirectTime }}</code> <br>
       isFirstVisit : <code>{{ isFirstVisit }}</code>
-    </div>
+    </div> -->
 
 
   <!-- </v-row> -->
@@ -42,7 +42,9 @@
   export default {
 
     name: 'LottiePage',
-    
+
+    // transition: 'static',
+
     layout : 'empty',
 
     components: {
@@ -117,6 +119,7 @@
           this.isRedirectTime = true ;
           this.$router.push('/intro')
         }, 8000)
+        // }, 1000)
       }
     }
       

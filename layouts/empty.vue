@@ -1,16 +1,18 @@
 <template>
-  <v-app
-    class="no-scroll splashscreen-gradient"
-    >
+  <transition name="layout" mode="out-in">
+    <v-app
+      class="no-scroll splashscreen-gradient"
+      >
 
-    <!-- CONTENTS -->
-    <v-content>
-      <v-container fill-height ma-0 pa-0>
-        <nuxt />
-      </v-container>
-    </v-content>
+      <!-- CONTENTS -->
+      <v-content>
+        <v-container fill-height ma-0 pa-0>
+          <nuxt />
+        </v-container>
+      </v-content>
 
-  </v-app>
+    </v-app>
+  </transition>
 </template>
 
 <script>

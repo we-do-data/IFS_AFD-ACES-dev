@@ -1,29 +1,31 @@
 <template>
-  <v-app
-    class="no-scroll white-background"
-    :class="`${ locSelected? '' : 'splashscreen-gradient'}`"
-    >
-    <!-- class="splashscreen-gradient" -->
+  <!-- <transition name="layout" mode="out-in"> -->
+    <v-app
+      class="no-scroll white-background"
+      :class="`${ locSelected? '' : 'splashscreen-gradient'}`"
+      >
+      <!-- class="splashscreen-gradient" -->
 
-    <!-- NAVBAR & DRAWERS-->
-    <Navbar>
-    </Navbar>
+      <!-- NAVBAR & DRAWERS-->
+      <Navbar>
+      </Navbar>
 
-    <!-- CONTENTS -->
-    <v-content>
-      <v-container fill-height>
-        <nuxt />
-      </v-container>
-    </v-content>
+      <!-- CONTENTS -->
+      <!-- <v-content> -->
+        <v-container fill-height>
+          <nuxt />
+        </v-container>
+      </v-content>
 
-    <!-- FOOTER INDEX -->
-    <FooterIndex>
-    </FooterIndex>
+      <!-- FOOTER INDEX -->
+      <FooterIndex>
+      </FooterIndex>
 
-    <!-- COOKIES BANNER -->
-    <CookiesBanner/>
+      <!-- COOKIES BANNER -->
+      <CookiesBanner/>
 
-  </v-app>
+    </v-app>
+  <!-- </transition> -->
 </template>
 
 <script>

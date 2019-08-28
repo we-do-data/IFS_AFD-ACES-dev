@@ -63,7 +63,10 @@ export default {
   name: "CreditsPage",
 
   layout : "staticContents",
+
   transition: 'static',
+  // transition: 'tweakOpacity',
+  // transition: 'fadePage',
 
   components: {
     OverflownContent,

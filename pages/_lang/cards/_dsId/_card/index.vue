@@ -20,6 +20,7 @@ export default {
   name: "CardsPage",
 
   layout : "cardLayout",
+
   transition: 'static',
 
   components: {

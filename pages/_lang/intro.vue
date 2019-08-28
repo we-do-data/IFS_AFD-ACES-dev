@@ -133,7 +133,10 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
 
   name: "MainIndex",
-  transition: 'static',
+
+  // layout : "staticContents",
+
+  transition: 'layout',
 
   components: {
     // BasicTable,
