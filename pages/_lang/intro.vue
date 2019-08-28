@@ -30,7 +30,7 @@
       </h2> -->
 
         <p 
-          :class="`${ locSelected ? 'text-gradient' : 'white--text' } text-uppercase title mt-4`"
+          :class="`${ locSelected ? 'text-gradient' : 'white--text' } text-uppercase title mt-4 title-app ${ $device.isMobileOrTablet ? 'title-app-mobile' : ''} `"
           >
           <span class="text-menu">
             <!-- {{ $t('intro.catchPhrase_1') }} -->

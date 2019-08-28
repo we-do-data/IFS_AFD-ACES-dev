@@ -47,3 +47,13 @@ $fw-bold: 700;
 .favorites-text:hover{
   opacity: .5 !important;
 }
+
+.title-app{
+  letter-spacing: .1em !important; 
+  &-mobile{
+    font-size: 14px !important;
+  }
+  &-tablet{
+    font-size: 16px !important;
+  }
+}

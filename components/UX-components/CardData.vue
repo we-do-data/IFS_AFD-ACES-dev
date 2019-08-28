@@ -19,10 +19,10 @@
           <v-container fluid>
 
             <v-layout 
-                row 
-                justify-center 
-                align-center
-                >
+              row 
+              justify-center 
+              align-center
+              >
               <img 
                 :height="logoHeight"
                 class="pa-2 my-3"
@@ -30,12 +30,14 @@
               />
             </v-layout>
 
+              <!-- v-show="isExport" -->
             <v-layout 
               v-show=" !$device.isMobileOrTablet || isExport"
               row 
               justify-center
               >
-              <div class="text-xs-center text-uppercase light-opacity">
+              <div 
+                :class="`text-xs-center text-uppercase light-opacity title-app-${ $device.isMobileOrTablet ? 'mobile' : 'tablet' }`">
                 <!-- {{ $t('intro.catchPhrase_1') }} -->
                 Play with
                 <span>
