@@ -116,7 +116,7 @@
           console.log("P-anim_intro-redirectToIntro / setTimeout disappear..." );
           this.isRedirectTime = true ;
           this.$router.push('/intro')
-        }, 5500)
+        }, 8000)
       }
     }
       

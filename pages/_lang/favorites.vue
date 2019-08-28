@@ -72,7 +72,8 @@
           :key="item[ getItemIdField( dsFavorites.dsId ) ]"
           >
 
-          <a
+          <router-link
+            class="no-underline"
             :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
             @click.native="mutateCardIndex( item )"
             >
@@ -106,7 +107,7 @@
                 </v-icon>
               </v-flex>
             </v-layout>
-          </a>
+          </router-link>
 
           <!-- <v-flex
             class="xs12"> -->
@@ -348,6 +349,10 @@ export default {
 
 .btn-hover-color:hover:before ..btn-hover-color:hover:after{
   color : transparent !important;
+}
+
+.no-underline{
+  text-decoration: none !important;
 }
 
 </style>
