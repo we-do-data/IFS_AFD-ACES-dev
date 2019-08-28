@@ -53,79 +53,177 @@
         </v-card-title>
 
 
+            <!-- v-show="!findMoreActive" -->
+            <!-- :class="`${ findMoreActive ? '' : '' }`" -->
         <!-- TEXT CONTENTS -->
-        <transition name="slide">
+        <!-- <transition name="fadeit"> -->
           <v-layout 
             ref="cardContent"
-            v-show="!findMoreActive"
-            :class="`${ findMoreActive ? '' : '' }`"
             :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
             align-center
             justify-center
             >
 
-            <v-flex
-              v-show="!findMoreActive"
-              :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 4 }`"
-              >
-
-              <!-- <p class="caption"> -->
-                <!-- dsId : {{ dsId }}<br> -->
-                <!-- cardId : {{ cardId }}<br> -->
-                <!-- itemData : {{ itemData }}<br> -->
-                <!-- cookieContent : {{ cookieContent.locale }} <br> -->
-                <!-- locale (store) : {{ locale }}<br> -->
-                <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
-                <!-- device : <code>{{ $device }}</code><br> -->
-                <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
-              <!-- </p> -->
-              <!-- <br> -->
-
-                <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
-                <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-
-              <p 
-                :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
+            <!-- <transition name="fadeit"> -->
+              <v-flex
+                v-show="!findMoreActive"
+                :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 4 }`"
                 >
-                {{ itemData && getContentByLocale('mainContent') }}
-              </p>
 
-              <!-- <p> -->
-                <!-- debug j_integration_01 - 01.4 <br> -->
-                <!-- <div 
-                  v-html="require('../../assets/svg/icon-heart-M.svg' )"
-                >
-                </div> -->
-
-                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
-                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
+                <!-- <p class="caption"> -->
+                  <!-- dsId : {{ dsId }}<br> -->
+                  <!-- cardId : {{ cardId }}<br> -->
+                  <!-- itemData : {{ itemData }}<br> -->
+                  <!-- cookieContent : {{ cookieContent.locale }} <br> -->
+                  <!-- locale (store) : {{ locale }}<br> -->
+                  <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+                  <!-- device : <code>{{ $device }}</code><br> -->
+                  <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
+                  <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
+                <!-- </p> -->
                 <!-- <br> -->
+
+                  <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
+                  <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
+
+                <p 
+                  :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
+                  >
+                  {{ itemData && getContentByLocale('mainContent') }}
+                </p>
+
+                <!-- <p> -->
+                  <!-- debug j_integration_01 - 01.4 <br> -->
+                  <!-- <div 
+                    v-html="require('../../assets/svg/icon-heart-M.svg' )"
+                  >
+                  </div> -->
+
+                  <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+                  <!-- H : {{ cardWindow.height }} : cardWindow.height -->
+                  <!-- <br> -->
+                  
+                  <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
+                  <!-- dsId : {{ dsId }}<br> -->
+                  <!-- cards : {{ cards }}<br> -->
+                  <!-- cardId : {{ cardId }}<br> -->
+                  <!-- index : {{ index }}<br> -->
+
+                  <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+                  <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+                  <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+                <!-- </p> -->
+
+              </v-flex> 
+            <!-- </transition> -->
+
+            <!-- <transition name="fadeit"> -->
+              <v-flex 
+                v-show="findMoreActive"
+                :class="`mt-4 limited-height`"
+                v-body-scroll-lock="true"
+                :style="`max-height:${ cardHeights['resources'] }`"
+                >
+
+                <div
+                  v-for="favField in resourcesList.favFields"
+                  :key="favField.textFieldCode"
+                  style="z-index: 25"
+                  class="text-xs-center"
+                  >
+
+                  <p 
+                    class="favorites-text "
+                    >
+                    <v-icon 
+                      small
+                      left
+                      >
+                      arrow_forward
+                    </v-icon>
+
+                    <span
+                      >
+                      <a 
+                        class="white--text favorites-text-link"
+                        :href="itemData[ favField.linkFieldCode ]"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </a>
+                    </span>
+                  </p>
                 
-                <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
-                <!-- dsId : {{ dsId }}<br> -->
-                <!-- cards : {{ cards }}<br> -->
-                <!-- cardId : {{ cardId }}<br> -->
-                <!-- index : {{ index }}<br> -->
+                </div>
 
-                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
-                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
-                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
-              <!-- </p> -->
-
-            </v-flex> 
+              </v-flex>
+            <!-- </transition> -->
 
           </v-layout> 
-        </transition>
+        <!-- </transition> -->
+
+        <!-- CONTENT RESOURCES -->
+        <!-- <transition name="fadeit"> -->
+          <!-- <v-flex xs12
+            class=""
+            :style="`height:${ cardHeights['content'] }`"
+            v-show="findMoreActive"
+            >
+            <v-card-text
+              >
+              <v-divider></v-divider>
+
+              <div 
+                :class="`mt-4 limited-height`"
+                v-body-scroll-lock="true"
+                :style="`max-height:${ cardHeights['resources'] }`"
+                >
+
+                <div
+                  v-for="favField in resourcesList.favFields"
+                  :key="favField.textFieldCode"
+                  style="z-index: 25"
+                  class="text-xs-center"
+                  >
+
+                  <p 
+                    class="favorites-text "
+                    >
+                    <v-icon 
+                      small
+                      left
+                      >
+                      arrow_forward
+                    </v-icon>
+
+                    <span
+                      >
+                      <a 
+                        class="white--text favorites-text-link"
+                        :href="itemData[ favField.linkFieldCode ]"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </a>
+                    </span>
+                  </p>
+                
+                </div>
+
+              </div>
+
+            </v-card-text>
+
+          </v-flex> -->
+        <!-- </transition> -->
 
 
         <!-- RESSOURCES && FAVORITES CONTENTS -->
+          <!-- :class="` ${ findMoreActive ? '' : 'pb-3' }`" -->
         <v-layout 
           ref="cardMore"
           row
           align-end
           v-show="!isExport"
-          :class="` ${ findMoreActive ? '' : 'pb-3' }`"
+          class="pb-3"
           :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
           >
 
@@ -163,12 +261,7 @@
             align-center
             :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
             >
-            <!-- color="transparent"  -->
-            <!-- ref="cardFooter" -->
-            <!-- <v-layout
-              align-center
-              justify-end
-              > -->
+
               <v-hover
                 v-slot:default="{ hover }"
                 >
@@ -178,9 +271,6 @@
                   flat
                   @click.prevent.stop="switchFavorite()"
                   >
-                  <!-- v-touch:tap="switchFavorite()" -->
-                  <!-- @mouseenter="switchHover()"
-                  @mouseleave="switchHover()" -->
 
                     <!-- :color="isFavorite ? 'pink' : 'grey' " -->
                   <v-icon
@@ -189,11 +279,6 @@
                     >
                     {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
                   </v-icon>
-
-                  <!-- <img 
-                    height="36px"
-                    :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
-                    /> -->
 
                 </v-btn>
               </v-hover>
@@ -204,81 +289,7 @@
         </v-layout>
 
       
-        <!-- CONTENT RESOURCES -->
-        <transition name="slide">
-          <v-flex xs12
-            class=""
-            :style="`height:${ cardHeights['content'] }`"
-            v-show="findMoreActive"
-            >
-            <v-card-text
-              >
-              <v-divider></v-divider>
 
-              <div 
-                :class="`mt-4 limited-height`"
-                v-body-scroll-lock="true"
-                :style="`max-height:${ cardHeights['resources'] }`"
-                >
-
-                <!-- d2.08 / triggerFind : <code>{{ triggerFind }}</code><br> -->
-
-                <!-- <v-list-tile
-                  v-for="favField in resourcesList.favFields"
-                  :key="favField.textFieldCode"
-                  style="z-index: 25"
-                  class="text-xs-center py-0"
-                  >
-                  <img 
-                    class="near-icon"
-                    height="36px"
-                    color="white"
-                    src="/icons/icon-arrowRight-S.svg"
-                    />
-                  <a 
-                    class="white--text favorites-text"
-                    :href="itemData[ favField.linkFieldCode ]"
-                    >
-                    {{ itemData[ favField.textFieldCode ] }}
-                  </a>
-                </v-list-tile> -->
-
-                <div
-                  v-for="favField in resourcesList.favFields"
-                  :key="favField.textFieldCode"
-                  style="z-index: 25"
-                  class="text-xs-center"
-                  >
-
-                  <p 
-                    class="favorites-text "
-                    >
-                    <v-icon 
-                      small
-                      left
-                      >
-                      arrow_forward
-                    </v-icon>
-
-                    <span
-                      >
-                      <a 
-                        class="white--text favorites-text-link"
-                        :href="itemData[ favField.linkFieldCode ]"
-                        >
-                        {{ itemData[ favField.textFieldCode ] }}
-                      </a>
-                    </span>
-                  </p>
-                
-                </div>
-
-              </div>
-
-            </v-card-text>
-
-          </v-flex>
-        </transition>
 
 
       </div>
@@ -521,6 +532,7 @@ export default {
   .close-to-plus-in{
     transform: rotate(45deg)
   }
+
   @keyframes rollin {
     0% { transform: rotate(0); }
     100% { transform: rotate(45deg); }
@@ -535,34 +547,44 @@ export default {
   .roll-out { 
     animation: rollout .7s cubic-bezier(0.55, 0.085, 0.68, 0.53) ; 
   }
-  .slide-enter-active {
-    -moz-transition-duration: 0.4s;
-    -webkit-transition-duration: 0.4s;
-    -o-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    -moz-transition-timing-function: ease-in;
-    -webkit-transition-timing-function: ease-in;
-    -o-transition-timing-function: ease-in;
-    transition-timing-function: ease-in;
+
+  // .slide-enter-active {
+  //   -moz-transition-duration: 0.4s;
+  //   -webkit-transition-duration: 0.4s;
+  //   -o-transition-duration: 0.4s;
+  //   transition-duration: 0.4s;
+  //   -moz-transition-timing-function: ease-in;
+  //   -webkit-transition-timing-function: ease-in;
+  //   -o-transition-timing-function: ease-in;
+  //   transition-timing-function: ease-in;
+  // }
+  // .slide-leave-active {
+  //   -moz-transition-duration: 0.4s;
+  //   -webkit-transition-duration: 0.4s;
+  //   -o-transition-duration: 0.4s;
+  //   transition-duration: 0.4s;
+  //   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  //   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  //   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  //   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  // }
+  // .slide-enter-to, .slide-leave {
+  //   max-height: 100px;
+  //   overflow: hidden;
+  // }
+  // .slide-enter, .slide-leave-to {
+  //   overflow: hidden;
+  //   max-height: 0;
+  // }
+
+
+  .fadeit-enter-active, .fadeit-leave-active {
+    transition: opacity .5s;
   }
-  .slide-leave-active {
-    -moz-transition-duration: 0.4s;
-    -webkit-transition-duration: 0.4s;
-    -o-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  .fadeit-enter, .fadeit-leave-active {
+    opacity: 0;
   }
-  .slide-enter-to, .slide-leave {
-    max-height: 100px;
-    overflow: hidden;
-  }
-  .slide-enter, .slide-leave-to {
-    overflow: hidden;
-    max-height: 0;
-  }
+
   .near-icon{
     min-width: 30px;
   }
