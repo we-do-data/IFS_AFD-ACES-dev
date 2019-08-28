@@ -53,9 +53,7 @@
         class="pa-0 box-wrapper"
         >
 
-        <div class="sidebar-box">
-
-
+        <div :class="`sidebar-box px-0 ${ noPadding ? 'pa-0' : '' }`">
 
           <slot
             class="box-content"
@@ -93,7 +91,8 @@ export default {
 
   props: [
     "maxHeightPercent",
-    // "textColor"
+    // "textColor",
+    "noPadding"
   ],
 
   created() {

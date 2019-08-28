@@ -49,13 +49,13 @@
       >
     </v-divider>
 
-
     <!-- DEBUG -->
     <!-- isOverflowing : {{ isOverflowing}} -->
 
     <OverflownContent
       :maxHeightPercent="maxHeight"
       :textColor="'rgba(46, 34, 101, 1)'"
+      :noPadding="true"
       @scrollChange="setIsOverflowing"
       >
 
@@ -67,7 +67,55 @@
         :key="dsFavorites.dsId"
         >
 
-        <v-list 
+        <div
+          v-for="item in dsFavorites.favorites"
+          :key="item[ getItemIdField( dsFavorites.dsId ) ]"
+          >
+
+          <a
+            :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
+            @click.native="mutateCardIndex( item )"
+            >
+            <v-layout
+              row
+              class="my-2 align-center"
+              >
+              <v-flex
+                class="xs10"
+                >
+                <v-icon 
+                  small
+                  color="pink"
+                  >
+                  favorite
+                </v-icon>
+                <span 
+                  class="primary--text favorites-text card-btn-text"
+                  >
+                  "{{ getFavoriteItem( dsFavorites.dsId, item, 'favText' ) }}"
+                </span>
+              </v-flex>
+
+              <v-flex
+                class="xs2 text-xs-right"
+                >
+                <v-icon
+                  class="primary-smooth"
+                  >
+                  chevron_right
+                </v-icon>
+              </v-flex>
+            </v-layout>
+          </a>
+
+          <!-- <v-flex
+            class="xs12"> -->
+          <v-divider></v-divider>
+          <!-- </v-flex> -->
+
+        </div>
+
+        <!-- <v-list 
           v-for="item in dsFavorites.favorites"
           :key="item[ getItemIdField( dsFavorites.dsId ) ]"
           three-lines
@@ -77,19 +125,19 @@
           <v-list-tile
             :to=" locale + '/cards/' + dsFavorites.dsId + '/' + item "
             @click.native="mutateCardIndex( item )"
-            >
+            > -->
 
             <!-- icon -->
-            <v-list-tile-action>
+            <!-- <v-list-tile-action>
               <v-icon 
                 color="pink"
                 >
                 favorite
               </v-icon>
-            </v-list-tile-action>
+            </v-list-tile-action> -->
 
             <!-- favorite title -->
-            <v-list-tile-content>
+            <!-- <v-list-tile-content>
               <v-list-tile-title>
                 
                 <span 
@@ -106,14 +154,23 @@
               </v-list-tile-title>
             </v-list-tile-content>
           
-          </v-list-tile>
+          </v-list-tile> -->
 
-          <v-divider inset></v-divider>
+
+
+          <!-- <v-divider inset></v-divider> -->
 
         </v-list>
 
+
+
+
+
+
+
       </div>
 
+      <!-- NO FAVS YET -->
       <div v-else 
         class="text-xs-center">
 
@@ -179,7 +236,7 @@ export default {
     return {
       isMounted: false,
       idField: undefined,
-      maxHeight: .45,
+      maxHeight: .60,
       isOverflowing: false,
     }
   },
@@ -289,5 +346,8 @@ export default {
   margin-top: 200px;
 }
 
+.btn-hover-color:hover:before ..btn-hover-color:hover:after{
+  color : transparent !important;
+}
 
 </style>
