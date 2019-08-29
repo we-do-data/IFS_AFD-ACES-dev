@@ -1,8 +1,8 @@
 <template>
 
   
-    <!-- :style="'opacity:0'" -->
   <v-layout 
+    :style="'opacity:0'"
     id="swipeable-cards"
     fill-height
     align-center

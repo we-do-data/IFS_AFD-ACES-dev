@@ -4,7 +4,7 @@
   <div>
 
     <div
-      :style="'opacity:0'"
+      :style="'opacity:1'"
       >
       <v-layout
         ref="printMe"
