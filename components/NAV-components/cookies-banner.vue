@@ -32,7 +32,7 @@
             offset-sm2
             >
 
-            <p>
+            <p class="pt-2">
               <strong>
 
                 {{ $t('banner.bannerMessage') }} &nbsp;
