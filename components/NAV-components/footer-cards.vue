@@ -133,19 +133,19 @@
 
                 <span
                   v-show="showNext"
-                  :class="`${ hover ? 'white' : 'grey'}--text mr-2`"
+                  :class="`${ !isMobile && hover ? 'white' : 'grey'}--text mr-2`"
                   >
                   {{ $t( btn.textCode ) }}
                 </span>
 
                 <v-avatar 
                   class="next-translated"
-                  :color="`${ hover ? 'accent' : 'white'}`"
+                  :color="`${ !isMobile && hover ? 'accent' : 'white'}`"
                   size="36px"
                   >
                   <img 
                     height="36px"
-                    :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                    :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
                     />
                 </v-avatar>
 
@@ -229,6 +229,7 @@ export default {
     return {
 
       isMounted: false,
+      btnClicked: false,
 
       footerBtnsLeft : [
         { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M", to: "/previous" },
@@ -284,6 +285,16 @@ export default {
     ...mapGetters({
     }),
 
+    isMobile() {
+      return this.$device.isMobileOrTablet 
+    },
+
+    ignoreHover() { 
+      if ( this.$device.isMobileOrTablet ) {
+
+      }
+    },
+
     current() {
       return this.cards && this.cards[ this.index ]
     },
@@ -335,6 +346,10 @@ export default {
         case 'lg': return Math.round(( ( widthPercent - (step * 4.5) ) * this.cardWindow.width )) + 'px'
         case 'xl': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
       }
+    },
+
+    clicked() {
+      this.btnClicked = false
     },
 
     skip( isNext=true ) {
