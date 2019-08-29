@@ -217,8 +217,9 @@
               :class="`${ isCardPage || !isDrawerLeft ? 'white--text' : 'primary--text'} text-uppercase text-menu`"
               >
 
+                <!-- class="`font-weight-bold`" -->
               <span
-                :class="`${ isCurrentPage(item) ? 'font-weight-bold' : 'menu-off' }`"
+                :class="`${ isCardPage || isCurrentPage(item) ? 'font-weight-bold' : '' } ${ isCurrentPage(item) ? '' : 'menu-off' }`"
                 >
                 {{ $t( 'drawer.'+ item.titleCode)  }}
               </span>

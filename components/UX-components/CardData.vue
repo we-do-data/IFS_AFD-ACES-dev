@@ -31,26 +31,30 @@
             </v-layout>
 
               <!-- v-show="isExport" -->
+              <!-- v-show=" !$device.isMobileOrTablet || isExport" -->
             <v-layout 
-              v-show=" !$device.isMobileOrTablet || isExport"
               row 
               justify-center
               >
+
               <div 
                 :class="`text-xs-center text-uppercase light-opacity title-app-${ $device.isMobileOrTablet ? 'mobile' : 'tablet' }`">
                 <!-- {{ $t('intro.catchPhrase_1') }} -->
-                Play with
-                <span>
-                  <b> 
-                    transitions
-                    <!-- {{ $t('intro.catchPhrase_2') }}  -->
-                  </b>
+
+                <span v-if="!isExport || !$device.isMobileOrTablet">
+                  Play with
+                  <span>
+                    <b> 
+                      transitions
+                      <!-- {{ $t('intro.catchPhrase_2') }}  -->
+                    </b>
+                  </span>
                 </span>
-                <!-- <span
-                  v-show=" !$device.isMobileOrTablet || isExport"
-                  >
-                  . cards
-                </span> -->
+
+                <span v-else>
+                  playwithtransitions.cards
+                </span>
+
               </div> 
             </v-layout>
 

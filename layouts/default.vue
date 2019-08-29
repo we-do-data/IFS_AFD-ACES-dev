@@ -18,7 +18,9 @@
       </v-content>
 
       <!-- FOOTER INDEX -->
-      <FooterIndex>
+      <FooterIndex
+        v-if="!$device.isMobileOrTablet"
+        >
       </FooterIndex>
 
       <!-- COOKIES BANNER -->
