@@ -12,12 +12,13 @@
         fill-height
         align-center
         justify-center
+        :style="`z-index: 0; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`"
         >
-        <!-- :style="`z-index: 3; wsidth:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`" -->
+        <!-- :style="`z-index: 3; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`" -->
 
+            <!-- class="full-height fixed fixed--center" -->
           <v-flex
-            class="full-height fixed fixed--center"
-            :style="`z-index: 0; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`"
+            class="full-height"
             >
             <CardData
               id="current-card-export"
