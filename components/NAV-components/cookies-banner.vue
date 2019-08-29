@@ -61,7 +61,7 @@
               </a>
 
               <p
-                class="ma-0 pa-0 pt-1 "
+                class="ma-0 pa-0 pt-2 "
                 v-show="showBannerInfos"
                 >
                 {{ $t('banner.bannerInfos') }}
