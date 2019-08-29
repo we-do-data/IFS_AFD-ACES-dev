@@ -143,7 +143,6 @@
       :dark="!isDrawerLeft"
       >
 
-      <!-- temporary -->
       <v-list 
         class="pt-0" 
         dense
@@ -454,7 +453,9 @@ export default {
 }
 
 .shadow{
-  box-shadow: -30px 0px 80px black !important;
+  /* box-shadow: -30px 0px 80px black !important; */
+  -webkit-box-shadow: -20px 0 50px 0 rgba(27,20,59,0.6) !important;
+  box-shadow: -20px 0 50px 0 rgba(27,20,59,0.6) !important;
 }
 
 .active-background{
