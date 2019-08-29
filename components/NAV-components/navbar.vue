@@ -166,10 +166,10 @@
           </v-btn>
         </div>
         
-        <v-divider
+        <!-- <v-divider
           v-show="!isDrawerLeft"
           >
-        </v-divider>
+        </v-divider> -->
 
         <!-- LOCALES -->
         <v-list-tile
@@ -187,8 +187,10 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-divider          
+        <!-- <br v-show="!isDrawerLeft"> -->
+        <v-divider
           v-show="!isDrawerLeft"
+          class="mt-3"
           >
         </v-divider>
 
