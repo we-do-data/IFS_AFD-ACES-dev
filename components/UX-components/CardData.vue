@@ -84,6 +84,7 @@
                   <!-- dsId : {{ dsId }}<br> -->
                   <!-- cardId : {{ cardId }}<br> -->
                   <!-- itemData : {{ itemData }}<br> -->
+                  <!-- resourcesList : {{ resourcesList }} <br> -->
                   <!-- cookieContent : {{ cookieContent.locale }} <br> -->
                   <!-- locale (store) : {{ locale }}<br> -->
                   <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
@@ -143,6 +144,7 @@
                   >
 
                   <p 
+                    v-if="itemData[ favField.linkFieldCode ]"
                     class="favorites-text "
                     >
                     <v-icon 

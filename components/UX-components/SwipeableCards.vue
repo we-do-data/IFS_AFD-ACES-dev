@@ -393,7 +393,7 @@ export default {
         
         // let newPreviousIndex = newIndex - 1 
         // reset deck if no more cards
-        if ( newIndex >= this.cardsLength - 1  ){
+        if ( newIndex >= this.cardsLength  ){
           // this.index = 0
           this.setCurrentCardIndex( 0 )
         } 
