@@ -32,51 +32,40 @@
             offset-sm2
             >
 
-            <strong>
+            <p>
+              <strong>
 
-              {{ $t('banner.bannerMessage') }} &nbsp;
-              <!-- / {{ $vuetify.breakpoint.name }} -->
-                <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
-              <br>
+                {{ $t('banner.bannerMessage') }} &nbsp;
+                              
+                <!-- / {{ $vuetify.breakpoint.name }} -->
+                
+                  <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
+                <br>
 
-              <!-- <v-btn 
-                flat
-                text
-                small
-                class="text secondary--text ma-0 pa-0"
-                @click.prevent="toggleBannerInfos()"
-                >
-                <span class="card-btn-text-raw">
-                  {{ $t('banner.learnMore') }}
-                </span>
-              </v-btn> -->
-              <a 
-                v-show="!showBannerInfos"
-                class="text secondary--text ma-0 pa-0"
-                @click.prevent="toggleBannerInfos()"
-                >
-                <span class="card-btn-text-raw">
-                  {{ $t('banner.learnMore') }}
-                </span>
-              </a>
-
-              <p
-                class="ma-0 pa-0 pt-2 "
-                v-show="showBannerInfos"
-                >
-                {{ $t('banner.bannerInfos') }}
-                &nbsp;
-                <a 
+                <!-- <v-btn 
+                  flat
+                  text
+                  small
                   class="text secondary--text ma-0 pa-0"
                   @click.prevent="toggleBannerInfos()"
                   >
                   <span class="card-btn-text-raw">
-                    ok
+                    {{ $t('banner.learnMore') }}
+                  </span>
+                </v-btn> -->
+
+                <a 
+                  v-show="!showBannerInfos"
+                  class="text secondary--text ma-0 pa-0"
+                  @click.prevent="toggleBannerInfos()"
+                  >
+                  <span class="card-btn-text-raw">
+                    {{ $t('banner.learnMore') }}
                   </span>
                 </a>
-              </p>
 
-            </strong>
+              </strong>
+            </p>
 
           </v-flex>
         
@@ -101,6 +90,41 @@
 
           </v-flex>
 
+        </v-layout>
+
+        <v-layout 
+          row
+          justify-center 
+          ml-2 
+          >
+          <!-- 
+          align-center
+          -->
+
+          <v-flex
+            v-show="showBannerInfos"
+            xs12
+            sm8
+            offset-sm2
+            mr-2
+            pr-2
+            >
+            <div
+              :class="`${ isSmallScreen ? 'ml-1 pl-1' : '' }`"
+              >
+              <!-- :class="`ma-0 pa-0 pt-2`" -->
+              {{ $t('banner.bannerInfos') }}
+              &nbsp;
+              <a 
+                class="text secondary--text ma-0 pa-0"
+                @click.prevent="toggleBannerInfos()"
+                >
+                <span class="card-btn-text-raw">
+                  ok
+                </span>
+              </a>
+            </div>
+          </v-flex>
         </v-layout>
 
       </v-container>
@@ -137,7 +161,7 @@ export default {
     return {
       // isBannerVisible: true,
       breakViews : [ 'xs' , 'sm' ],
-      showBannerInfos : false,
+      showBannerInfos : true,
     }
   },
 
@@ -161,10 +185,15 @@ export default {
 
     }),
 
+    isSmallScreen() {
+      return this.breakViews.includes(this.$vuetify.breakpoint.name)
+    },
+
     computeBannerHeight() {
       let baseH = this.$device.isMobileOrTablet ? 130 : 110
-      let addH = this.showBannerInfos ? 35 : 0
-      return baseH + addH
+      let addH = this.showBannerInfos ? 20 : 0
+      let addMobileH = this.isSmallScreen && this.showBannerInfos ? 45 : 0
+      return baseH + addH + addMobileH
     }
 
   },
