@@ -492,7 +492,7 @@ export default {
       // background: rgba(white, .9);
       // transform: translate(-48%, -48%);
       // transform: scale(1, .8);
-      transform: rotate(-3deg) translate(-52%, -54%);
+      transform: rotate(-2deg) translate(-52%, -54%);
       // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
     }
     &--three {
@@ -528,7 +528,7 @@ export default {
     from {
       // transform : scaleX(.9411) ;
       // transform : translate(-50%, -50%) scale(.9411) ;
-      transform : rotate(-3deg) translate(-52%, -54%)  ;
+      transform : rotate(-2deg) translate(-52%, -54%)  ;
       // transform : translate(-50%, -57%) ;
     }
     to {
@@ -546,7 +546,7 @@ export default {
     }
     to {
       // transform: translate(-50%, -56%) scale(1) ;
-      transform: rotate(-3deg) translate(-52%, -54%) ;
+      transform: rotate(-2deg) translate(-52%, -54%) ;
       // transform: translate(-50%, -60%) ;
     }
   }

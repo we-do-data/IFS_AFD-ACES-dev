@@ -103,6 +103,7 @@
           <!-- RIGHT SIDE ICONS  -->
           <v-layout justify-end >
 
+            <!-- {{ isMobile }} -->
 
             <v-hover 
               v-for="btn in footerBtnsRight"
@@ -112,14 +113,14 @@
 
               <v-btn 
                 v-if="!showNext"
-                :class="`${ hover ? 'accent' : 'white'} mr-0 text-xs-right`"
+                :class="`${ !isMobile && hover ? 'accent' : 'white'} mr-0 text-xs-right`"
                 flat
                 icon
                 @click.prevent="skip()"
                 >
                 <img 
                   height="36px"
-                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
                   />
               </v-btn>
               
