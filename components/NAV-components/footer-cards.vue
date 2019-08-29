@@ -31,14 +31,14 @@
               >
               <v-btn 
                 v-if="!showNext"
-                :class="`ml-0 text-xs-right ${ hover ? 'accent' : 'white'}`"
+                :class="`ml-0 text-xs-right ${ !isMobile && hover ? 'accent' : 'white'}`"
                 flat
                 icon
                 @click.prevent="skip(false)"
                 >
                 <img 
                   height="36px"
-                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
                   />
               </v-btn>
               
@@ -51,20 +51,20 @@
                 >
 
                 <v-avatar 
-                  :class="`previous-translated ${ hover ? 'accent' : 'white'}`"
+                  :class="`previous-translated ${ !isMobile && hover ? 'accent' : 'white'}`"
                   size="36px"
                   >
 
                   <img 
                     height="36px"
-                    :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                    :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
                     />
 
                 </v-avatar>
 
                 <span
                   v-show="showNext"
-                  :class="`${ hover ? 'white' : 'grey'}--text ml-2`"
+                  :class="`${ !isMobile && hover ? 'white' : 'grey'}--text ml-2`"
                   >
                   {{ $t( btn.textCode ) }}
                 </span>
@@ -87,13 +87,13 @@
                 <!-- :to="btn.to" -->
               <v-btn 
                 icon
-                :class="`${ hover ? 'accent' : 'white'}`"
+                :class="`${ !isMobile && hover ? 'accent' : 'white'}`"
                 flat
                 @click.stop="triggerCard( btn )"
                 >
                 <img 
                   height="36px"
-                  :src="`${btn.asset}${ hover ? '-white' : ''}.svg`"
+                  :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
                   />
               </v-btn>
             </v-hover>
