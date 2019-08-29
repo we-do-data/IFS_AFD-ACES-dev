@@ -12,7 +12,12 @@ $fw-bold: 700;
   font-family: "AbrilFatface-Regular" !important;
   letter-spacing: .01em !important; 
 }
-
+.half-opacity{
+  opacity : .5;
+}
+.title-export-spacing{
+  letter-spacing: .1em !important; 
+}
 .light-opacity{
   opacity : .5;
   // font-family: "Roboto-Black" !important;
@@ -29,6 +34,10 @@ $fw-bold: 700;
 .light-letter-spacing{
   font-family: "Roboto-Regular" !important;
   letter-spacing: .05em !important; 
+}
+.export-app-title{
+  font-family: "Roboto-Regular" !important;
+  text-transform: none !important;
 }
 .text-menu{
   font-family: "Roboto-Regular" !important;

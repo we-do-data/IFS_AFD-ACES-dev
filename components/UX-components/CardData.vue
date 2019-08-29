@@ -13,8 +13,9 @@
         <v-card-title 
           ref="cardTitle"
           class="justify-center pa-0"
-          :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`"
+          :style="`height:${ cardHeights['title'] }`"
           >
+          <!-- :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`" -->
 
           <v-container fluid>
 
@@ -38,10 +39,13 @@
               >
 
               <div 
-                :class="`text-xs-center text-uppercase light-opacity title-app-${ $device.isMobileOrTablet ? 'mobile' : 'tablet' }`">
+                :class="`text-xs-center text-uppercase title-app-${ $device.isMobileOrTablet ? 'mobile' : 'tablet' }`">
                 <!-- {{ $t('intro.catchPhrase_1') }} -->
 
-                <span v-if="!isExport">
+                <span 
+                  v-if="!isExport"
+                  class="light-opacity "
+                  >
                   <!-- || !$device.isMobileOrTablet -->
                   Play with
                   <span>
@@ -52,8 +56,11 @@
                   </span>
                 </span>
 
-                <span v-else>
-                  playwithtransitions.cards
+                <span 
+                  v-else
+                  class="export-app-title title-export-spacing"
+                  >
+                  <span class="half-opacity">playwithtransitions</span><span>.cards</span>
                 </span>
 
               </div> 

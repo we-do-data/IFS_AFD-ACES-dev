@@ -3,6 +3,40 @@
   <!-- FOOTER CARDS -->
   <div>
 
+    <div
+      :style="'opacity:0'"
+      >
+      <v-layout
+        ref="printMe"
+        pa-4
+        fill-height
+        align-center
+        justify-center
+        >
+        <!-- :style="`z-index: 3; wsidth:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`" -->
+
+          <v-flex
+            class="full-height fixed fixed--center"
+            :style="`z-index: 0; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`"
+            >
+            <CardData
+              id="current-card-export"
+
+              :itemData="current"
+              :isExport="true"
+              
+              :cardHeights="cardHeights( ratioFirstCard.h )"
+              :cardColorIndex="getRandomColorIndex( index )"
+
+              :breakPoint="this.$vuetify.breakpoint.name"
+              >
+              <!-- :cardHeights="cardHeights" -->
+            </CardData>
+          </v-flex>
+
+      </v-layout>
+    </div>
+
     <v-footer 
       color="transparent"
       xs10 offset-xs1
@@ -10,7 +44,7 @@
       md6 offset-md3
       fixed
       :class="`${ (showNext)? 'mx-0 mb-5' : 'mx-0 mb-4' } centered`"
-      :style="`height: 32px; width:${ cardWindow.width }px`"
+      :style="`height: ${ footerSize.height }px; width:${ cardWindow.width }px`"
       >
 
       <div
@@ -164,33 +198,7 @@
 
     </v-footer>
 
-    <br>
 
-    <div
-      :style="'opacity:0'"
-      >
-      <div
-        ref="printMe"
-        :style="`z-index: 3; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
-        >
-        <!-- :style="`z-index: 2; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`" -->
-
-          <CardData
-            id="current-card-export"
-            
-            :itemData="current"
-            :isExport="true"
-            
-            :cardHeights="cardHeights( ratioFirstCard.h )"
-            :cardColorIndex="getRandomColorIndex( index )"
-
-            :breakPoint="this.$vuetify.breakpoint.name"
-            >
-            <!-- :cardHeights="cardHeights" -->
-          </CardData>
-
-      </div>
-    </div>
 
 
   </div> 
@@ -249,10 +257,14 @@ export default {
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],
 
+      footerSize :{
+        height: 32,
+      },
       cardExportSize: {
         width: 340,
-        height: 552,
+        height: 570,
       },
+        // height: 552,
 
       ratioFirstCard : {
         w : .85,
@@ -353,16 +365,16 @@ export default {
         case 'xl': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
       }
     },
-    cardHeight( factor=1 ) { 
-      return ( this.cardWindow.height * factor * .7 ) + "px" 
+    cardHeight( factor=1, windowHeight=this.cardWindow.height ) { 
+      return ( windowHeight * factor ) + "px" 
     },
-    cardHeights( factor=1 ) {
+    cardHeights( factor=1, windowHeight=this.cardWindow.height ) {
       return {
-        title: ( this.cardWindow.height * factor * .20) + "px",
-        content: ( this.cardWindow.height * factor * .39 ) + "px",
-        more: ( this.cardWindow.height * factor * .12 ) + "px",
-        resources: ( this.cardWindow.height * factor * .24 ) + "px",
-        // footer: ( this.cardWindow.height * factor * .08 ) + "px",
+        title: ( windowHeight * factor * .20) + "px",
+        content: ( windowHeight * factor * .60 ) + "px",
+        // more: ( windowHeight * factor * 0 ) + "px",
+        // resources: ( windowHeight * factor * 0 ) + "px",
+        // footer: ( windowHeight * factor * .08 ) + "px",
       }
     },
 
@@ -437,6 +449,16 @@ export default {
 
 
 <style scoped>
+
+  .full-height{
+    height: 100%;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .fixed--center {
+    transform: translate( 0%, -50%);
+  }
   .centered{
     display: -webkit-box;
     display: -moz-box;

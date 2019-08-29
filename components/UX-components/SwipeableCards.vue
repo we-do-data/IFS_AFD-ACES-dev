@@ -1,11 +1,11 @@
 <template>
 
   
+    <!-- :style="'opacity:0'" -->
   <v-layout 
     id="swipeable-cards"
     fill-height
     align-center
-
     justify-center
     wrap
     >
@@ -56,6 +56,7 @@
         @clickDraggableBtn="getClickSignal"
         >
 
+          <!-- :isExport="true" -->
         <CardData
 
           id="current-card"
@@ -63,6 +64,7 @@
           :itemData="current"
           :isFirst="true"
           
+
           :cardHeights="cardHeights( ratioFirstCard.h )"
           :cardColorIndex="getRandomColorIndex( index )"
 
