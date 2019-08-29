@@ -199,6 +199,7 @@
           v-for="item in items"
           :key="item.title"
           :to="item.to"
+          :class="`${ isCardPage && isCurrentPage(item) ? 'active-background' : '' }`"
           >
 
           <v-divider
@@ -432,6 +433,10 @@ export default {
 
 .shadow{
   box-shadow: -30px 0px 80px black !important;
+}
+
+.active-background{
+  background-color : #6a6192 !important ;
 }
 
 
