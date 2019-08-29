@@ -161,7 +161,7 @@ export default {
     return {
       // isBannerVisible: true,
       breakViews : [ 'xs' , 'sm' ],
-      showBannerInfos : true,
+      showBannerInfos : false,
     }
   },
 
