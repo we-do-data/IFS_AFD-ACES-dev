@@ -171,22 +171,22 @@
       >
       <div
         ref="printMe"
-        :style="`z-index: 2; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`"
+        :style="`z-index: 3; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
         >
+        <!-- :style="`z-index: 2; width:${ cardExportSize.width }px; height:${ cardExportSize.height }px`" -->
 
           <CardData
-
             id="current-card-export"
-
+            
             :itemData="current"
             :isExport="true"
             
-            :cardHeights="cardHeights"
+            :cardHeights="cardHeights( ratioFirstCard.h )"
             :cardColorIndex="getRandomColorIndex( index )"
 
             :breakPoint="this.$vuetify.breakpoint.name"
-
             >
+            <!-- :cardHeights="cardHeights" -->
           </CardData>
 
       </div>
@@ -250,8 +250,13 @@ export default {
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],
 
       cardExportSize: {
+        width: 340,
         height: 552,
-        width: 340
+      },
+
+      ratioFirstCard : {
+        w : .85,
+        h : 1
       },
 
       output: undefined,
@@ -306,19 +311,19 @@ export default {
       return this.showNextBreakpoints.includes(screenBreakPoint)
     },
 
-    cardHeight() { 
-      return ( this.cardWindow.height * .7 ) + "px" 
-    },
+    // cardHeight() { 
+    //   return ( this.cardWindow.height * .7 ) + "px" 
+    // },
 
-    cardHeights() {
-      return {
-        title: ( this.cardWindow.height * .20) + "px",
-        content: ( this.cardWindow.height * .39 ) + "px",
-        more: ( this.cardWindow.height * .12 ) + "px",
-        resources: ( this.cardWindow.height * .24 ) + "px",
-        // footer: ( this.cardWindow.height * .08 ) + "px",
-      }
-    },
+    // cardHeights() {
+    //   return {
+    //     title: ( this.cardWindow.height * .15) + "px",
+    //     content: ( this.cardWindow.height * .39 ) + "px",
+    //     more: ( this.cardWindow.height * .12 ) + "px",
+    //     resources: ( this.cardWindow.height * .24 ) + "px",
+    //     // footer: ( this.cardWindow.height * .08 ) + "px",
+    //   }
+    // },
 
   },
 
@@ -337,11 +342,10 @@ export default {
       setPreviousCurrentCardIndex : 'cards/setPreviousCurrentCardIndex'
     }),
 
-    cardWidth ( widthPercent ) {
 
+    cardWidth ( widthPercent ) {
       let step = .1
       switch (this.$vuetify.breakpoint.name) {
-
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
         case 'md': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
@@ -349,6 +353,19 @@ export default {
         case 'xl': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
       }
     },
+    cardHeight( factor=1 ) { 
+      return ( this.cardWindow.height * factor * .7 ) + "px" 
+    },
+    cardHeights( factor=1 ) {
+      return {
+        title: ( this.cardWindow.height * factor * .20) + "px",
+        content: ( this.cardWindow.height * factor * .39 ) + "px",
+        more: ( this.cardWindow.height * factor * .12 ) + "px",
+        resources: ( this.cardWindow.height * factor * .24 ) + "px",
+        // footer: ( this.cardWindow.height * factor * .08 ) + "px",
+      }
+    },
+
 
     clicked() {
       this.btnClicked = false
