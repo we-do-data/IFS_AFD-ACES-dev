@@ -41,7 +41,8 @@
                 :class="`text-xs-center text-uppercase light-opacity title-app-${ $device.isMobileOrTablet ? 'mobile' : 'tablet' }`">
                 <!-- {{ $t('intro.catchPhrase_1') }} -->
 
-                <span v-if="!isExport || !$device.isMobileOrTablet">
+                <span v-if="!isExport">
+                  <!-- || !$device.isMobileOrTablet -->
                   Play with
                   <span>
                     <b> 
@@ -131,7 +132,7 @@
             <!-- <transition name="fadeit"> -->
               <v-flex 
                 v-show="findMoreActive"
-                :class="`mt-4 limited-height`"
+                :class="`mt-3 limited-height`"
                 v-body-scroll-lock="true"
                 :style="`max-height:${ cardHeights['resources'] }`"
                 >
@@ -140,12 +141,12 @@
                   v-for="favField in resourcesList.favFields"
                   :key="favField.textFieldCode"
                   style="z-index: 25"
-                  class="text-xs-center"
+                  :class="`text-xs-center`"
                   >
 
                   <p 
                     v-if="itemData[ favField.linkFieldCode ]"
-                    class="favorites-text "
+                    :class="`favorites-text mb-${ $device.isMobileOrTablet ? 1 : 2 }`"
                     >
                     <v-icon 
                       small
