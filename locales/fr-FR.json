@@ -23,7 +23,8 @@
   "banner" : {
     "bannerMessage" : "Ce site utilise des cookies pour vous permettre une meilleure expérience d'utilisation",
     "gotIt" : "J'ai compris",
-    "learnMore" : "En savoir plus"
+    "learnMore" : "En savoir plus",
+    "bannerInfos" : " playwithtransitions.cards enregistre des informations dans les cookies des utilisateurs pour stocker les cartes favorites et améliorer l’usage de l’application."
   },
 
   "basicDict"  : {

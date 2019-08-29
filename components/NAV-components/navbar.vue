@@ -13,7 +13,7 @@
 
     <!-- NAVBAR -->
     <v-toolbar 
-      class="pr-3"
+      class="pr-2"
       color="transparent" 
       flat
       fixed
@@ -56,19 +56,19 @@
         </template>
 
         <!-- <v-toolbar-items> -->
-          <v-list>
-            <v-list-tile
-              v-for="loc in locales"
-              :key="loc.code"
-              @click="changeLocale(loc)"
+        <v-list>
+          <v-list-tile
+            v-for="loc in locales"
+            :key="loc.code"
+            @click="changeLocale(loc)"
+            >
+            <v-list-tile-title
+              :class="`text-menu font-weight-bold ${ loc.code !== locale ? '' : 'menu-off'}`"
               >
-              <v-list-tile-title
-                :class="`text-menu font-weight-bold ${ loc.code !== locale ? '' : 'menu-off'}`"
-                >
-                {{ loc.name }}
-              </v-list-tile-title>
-            </v-list-tile>
-          </v-list>
+              {{ loc.name }}
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
         <!-- </v-toolbar-items> -->
 
       </v-menu>
@@ -112,10 +112,11 @@
 
       <!-- ${ (this.$vuetify.breakpoint.name === 'xs' ) ? 'card-margin-in-view-percents' : 'card-margin-in-pixels' } -->
       <v-btn
+        id="drawer-burger"
         v-if="!isDrawerLeft"
         icon
         flat
-        :class="`white`"
+        :class="`white mr-0`"
         @click.stop="closeDrawer()"
         :color="`${ isCardPage || !isDrawerLeft ? 'primary' : 'white' }`"
         >
@@ -151,16 +152,19 @@
 
         <!-- CLOSE DRAWER -->
         <div
-          class="text-xs-right"
+          class="text-xs-right mt-1 mr-3 pt-2 pr-3"
           >
           <v-btn 
+            id="btn-close-drawer"
             v-show="!isDrawerLeft"
-            flat
             icon
             small
+            class="white"
             @click.stop="drawer = !drawer"
             >
-            <v-icon>
+            <v-icon
+              class="menu-off"
+              >
               close
             </v-icon>
           </v-btn>
@@ -202,7 +206,7 @@
           :key="item.title"
           :to="item.to"
           :disabled="item.isDivider"
-          :class="`${ isCardPage && isCurrentPage(item) ? 'active-background' : '' }`"
+          :class="`${ !isDrawerLeft && isCurrentPage(item) ? 'active-background' : '' }`"
           >
 
           <v-divider
@@ -223,7 +227,7 @@
 
                 <!-- class="`font-weight-bold`" -->
               <span
-                :class="`${ isCardPage || isCurrentPage(item) ? 'font-weight-bold' : '' } ${ isCurrentPage(item) ? '' : 'menu-off' }`"
+                :class="`${ isCardPage || isCurrentPage(item) ? 'font-weight-bold' : '' } ${ isCurrentPage(item) ? 'text-menu-on' : 'text-menu-off' }`"
                 >
                 {{ $t( 'drawer.'+ item.titleCode)  }}
               </span>

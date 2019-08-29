@@ -23,6 +23,9 @@ $fw-bold: 700;
   letter-spacing: .05em !important; 
   text-transform: none !important;
 }
+.card-btn-text-raw{
+  text-transform: none !important;
+}
 .light-letter-spacing{
   font-family: "Roboto-Regular" !important;
   letter-spacing: .05em !important; 
@@ -30,6 +33,12 @@ $fw-bold: 700;
 .text-menu{
   font-family: "Roboto-Regular" !important;
   letter-spacing: .1em !important; 
+}
+.text-menu-off{
+  font-weight: 500 !important;
+}
+.text-menu-on{
+  font-weight: 900 !important;
 }
 .text-static-contents{
   font-family: "Roboto-Regular" !important;

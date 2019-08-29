@@ -7,8 +7,9 @@
       padless
       class="cookie-background"
       fixed
-      :height="`${ $device.isMobileOrTablet ? '130px' : '110px'}`"
+      :height="`${ computeBannerHeight }px`"
       >
+      <!-- :height="`${ $device.isMobileOrTablet ? '130px' : '110px'}`" -->
       <!-- transition="scroll-y-reverse-transition" -->
       <!-- transition="slide-y-transition" -->
 
@@ -32,15 +33,49 @@
             >
 
             <strong>
+
               {{ $t('banner.bannerMessage') }} &nbsp;
               <!-- / {{ $vuetify.breakpoint.name }} -->
                 <!-- <br v-if="!breakViews.includes($vuetify.breakpoint.name)"> -->
               <br>
+
+              <!-- <v-btn 
+                flat
+                text
+                small
+                class="text secondary--text ma-0 pa-0"
+                @click.prevent="toggleBannerInfos()"
+                >
+                <span class="card-btn-text-raw">
+                  {{ $t('banner.learnMore') }}
+                </span>
+              </v-btn> -->
               <a 
-                class="secondary--text"
-                > 
-                {{ $t('banner.learnMore') }}
+                v-show="!showBannerInfos"
+                class="text secondary--text ma-0 pa-0"
+                @click.prevent="toggleBannerInfos()"
+                >
+                <span class="card-btn-text-raw">
+                  {{ $t('banner.learnMore') }}
+                </span>
               </a>
+
+              <p
+                class="ma-0 pa-0 pt-1 "
+                v-show="showBannerInfos"
+                >
+                {{ $t('banner.bannerInfos') }}
+                &nbsp;
+                <a 
+                  class="text secondary--text ma-0 pa-0"
+                  @click.prevent="toggleBannerInfos()"
+                  >
+                  <span class="card-btn-text-raw">
+                    ok
+                  </span>
+                </a>
+              </p>
+
             </strong>
 
           </v-flex>
@@ -102,6 +137,7 @@ export default {
     return {
       // isBannerVisible: true,
       breakViews : [ 'xs' , 'sm' ],
+      showBannerInfos : false,
     }
   },
 
@@ -124,6 +160,13 @@ export default {
     ...mapGetters({
 
     }),
+
+    computeBannerHeight() {
+      let baseH = this.$device.isMobileOrTablet ? 130 : 110
+      let addH = this.showBannerInfos ? 35 : 0
+      return baseH + addH
+    }
+
   },
 
   methods: {
@@ -137,10 +180,16 @@ export default {
     }),
 
     closeBanner(){
-      console.log("C-CookiesBanner / beforeMount....")
+      console.log("C-CookiesBanner / closeBanner....")
       // this.disableBanner()
       this.acceptCookies()
-    }
+    },
+
+    toggleBannerInfos(){
+      console.log("C-CookiesBanner / toggleBannerInfos....")
+      this.showBannerInfos = !this.showBannerInfos
+    },
+
   },
 
 }
