@@ -132,9 +132,14 @@ export default {
       disableBanner : 'disableCookieBanner'
     }),
 
+    ...mapActions({
+      acceptCookies : 'setAcceptCookies'
+    }),
+
     closeBanner(){
       console.log("C-CookiesBanner / beforeMount....")
-      this.disableBanner()
+      // this.disableBanner()
+      this.acceptCookies()
     }
   },
 

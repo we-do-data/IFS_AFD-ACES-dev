@@ -165,6 +165,7 @@ export default {
   router : {
     middleware: [
 
+      'checkCookieAccept',
       'setLocales',
       'checkCookieLocale',
       'i18n',

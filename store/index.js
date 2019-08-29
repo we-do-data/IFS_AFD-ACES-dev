@@ -142,4 +142,9 @@ export const actions = {
     Cookie.set('locale', localeCode )
   },
 
+  setAcceptCookies({state, commit}){
+    commit('disableCookieBanner')
+    Cookie.set('acceptCookie', true )
+  },
+
 }

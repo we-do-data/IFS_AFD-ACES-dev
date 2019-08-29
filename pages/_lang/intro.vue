@@ -40,10 +40,10 @@
             <!-- <b>{{ $t('intro.catchPhrase_2') }}</b> -->
             <b>TRANSITIONS</b>
           </span>  
-          <span class="text-menu">
             <!-- <b>{{ $t('intro.catchPhrase_2') }}</b> -->
+          <!-- <span class="text-menu">
             <b>. CARDS</b>
-          </span>  
+          </span>   -->
         </p>
 
       <!-- LOCALE SELECTION -->

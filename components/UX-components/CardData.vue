@@ -46,7 +46,11 @@
                     <!-- {{ $t('intro.catchPhrase_2') }}  -->
                   </b>
                 </span>
-                . cards
+                <!-- <span
+                  v-show=" !$device.isMobileOrTablet || isExport"
+                  >
+                  . cards
+                </span> -->
               </div> 
             </v-layout>
 
