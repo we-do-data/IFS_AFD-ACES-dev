@@ -63,7 +63,7 @@
               @click="changeLocale(loc)"
               >
               <v-list-tile-title
-                :class="`text-menu ${ loc.code !== locale ? 'font-weight-bold' : 'menu-off'}`"
+                :class="`text-menu font-weight-bold ${ loc.code !== locale ? '' : 'menu-off'}`"
                 >
                 {{ loc.name }}
               </v-list-tile-title>
@@ -180,7 +180,7 @@
           >
           <v-list-tile-content>
             <v-list-tile-title
-              :class="`text-uppercase text-menu ${ (loc.code === locale) ? 'font-weight-bold' : 'menu-off' }`"
+              :class="`text-uppercase font-weight-bold text-menu ${ (loc.code === locale) ? '' : 'menu-off' }`"
               >
               {{ loc.code }}
             </v-list-tile-title>
@@ -199,6 +199,7 @@
           v-for="item in items"
           :key="item.title"
           :to="item.to"
+          :disabled="item.isDivider"
           :class="`${ isCardPage && isCurrentPage(item) ? 'active-background' : '' }`"
           >
 

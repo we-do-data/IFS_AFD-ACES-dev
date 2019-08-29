@@ -144,6 +144,7 @@
                   :color="`${ !isMobile && hover ? 'accent' : 'white'}`"
                   size="36px"
                   >
+                  <!-- v-ripple="{ class: `accent` }" -->
                   <img 
                     height="36px"
                     :src="`${btn.asset}${ !isMobile && hover ? '-white' : ''}.svg`"
@@ -233,17 +234,17 @@ export default {
       btnClicked: false,
 
       footerBtnsLeft : [
-        { textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M", to: "/previous" },
+        { code: "L1", textCode: "cards.previous", icon: "fas fa-undo-alt", asset: "/icons/icon-prev-M", to: "/previous" },
       ],
 
       footerBtnsCenter: [
-        { textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about", function: "share_twitter", baseUrl: "https://twitter.com/intent/tweet?text="  },
-        { textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits", function: "share_facebook", baseUrl: "https://www.facebook.com/sharer/sharer.php?u="  },
-        { textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits", function: "print_card" },
+        { code: "M1", textCode: "twitter", icon: "fab fa-twitter", asset: "/icons/icon-twitter-M" , to: "/about", function: "share_twitter", baseUrl: "https://twitter.com/intent/tweet?text="  },
+        { code: "M2", textCode: "facebook", icon: "fab fa-facebook", asset: "/icons/icon-facebook-M" , to: "/credits", function: "share_facebook", baseUrl: "https://www.facebook.com/sharer/sharer.php?u="  },
+        { code: "M3", textCode: "screenshot", icon: "fas fa-camera", asset: "/icons/icon-screenshot-M" , to: "/credits", function: "print_card" },
       ],
 
       footerBtnsRight : [
-        { textCode: "cards.next", icon: "fas fa-arrow-right", asset: "/icons/icon-next-M", to: "/next" },
+        { code: "R1", textCode: "cards.next", icon: "fas fa-arrow-right", asset: "/icons/icon-next-M", to: "/next" },
       ],
 
       showNextBreakpoints : [ 'md', 'lg', 'xl' ],
