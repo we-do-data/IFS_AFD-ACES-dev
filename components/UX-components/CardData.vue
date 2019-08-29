@@ -26,6 +26,7 @@
               >
               <img 
                 :height="logoHeight"
+                :width="logoWidth"
                 class="pa-2 my-3"
                 src="/icons/logo-afd-white.svg" 
               />
@@ -424,10 +425,19 @@ export default {
     logoHeight( ) {
       let windowHeight = this.cardWindow.height
       switch (true) {
-          case (windowHeight < 700): return '50px'
-          case (windowHeight < 900): return '60px'
-          case (windowHeight < 1000): return '65px'
-          default:  return '40px'
+        case (windowHeight < 700): return '50px'
+        case (windowHeight < 900): return '60px'
+        case (windowHeight < 1000): return '65px'
+        default:  return '40px'
+      }
+    },
+    logoWidth( ) {
+      let windowWidth = this.cardWindow.width
+      switch (true) {
+        case (windowWidth < 700): return '121px'
+        case (windowWidth < 900): return '145px'
+        case (windowWidth < 1000): return '157px'
+        default:  return '96px'
       }
     },
 
