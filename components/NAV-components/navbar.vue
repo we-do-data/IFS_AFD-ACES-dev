@@ -461,5 +461,8 @@ export default {
   background-color : #6a6192 !important ;
 }
 
+.v-overlay--active::before {
+  opacity: 0;
+}
 
 </style>
