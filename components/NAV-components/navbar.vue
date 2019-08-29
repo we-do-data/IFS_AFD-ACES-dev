@@ -152,7 +152,7 @@
 
         <!-- CLOSE DRAWER -->
         <div
-          class="text-xs-right mt-1 mr-3 pt-2 pr-3"
+          class="text-xs-right mt-1 mr-3 pt-2 pr-1"
           >
           <v-btn 
             id="btn-close-drawer"
@@ -206,7 +206,7 @@
           :key="item.title"
           :to="item.to"
           :disabled="item.isDivider"
-          :class="`${ !isDrawerLeft && isCurrentPage(item) ? 'active-background' : '' }`"
+          :class="`${ needActiveBackground(item) ? 'active-background' : '' }`"
           >
 
           <v-divider
@@ -356,11 +356,10 @@ export default {
     },
 
     isIntroLocalePage(){
-      let isHomePage = this.isCurrentPage( {to: '/'} )
+      let isHomePage = this.isCurrentPage( {to: '/intro'} )
       let isLocSelected = this.locSelected
       return isHomePage && !isLocSelected
     },
-
 
   },
 
@@ -416,6 +415,22 @@ export default {
         return currentPage.startsWith(item.to)
       }
 
+    },
+
+    needActiveBackground(item){
+      let isCardPage = this.isCardPage
+      let isDrawerLeft = this.isDrawerLeft
+      let isCurrentPage = this.isCurrentPage(item)
+      if ( !isDrawerLeft && isCurrentPage ){
+        return true
+      }
+      else {
+        if ( isCurrentPage && isDrawerLeft && isCardPage ){
+          return true
+        } else {
+          return false
+        }
+      }
     },
 
     closeDrawer(){
