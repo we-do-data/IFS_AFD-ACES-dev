@@ -24,20 +24,20 @@
               justify-center 
               align-center
               >
+                <!-- v-if="!isExport" -->
               <img
-                v-if="!isExport"
                 :height="logoHeight"
                 :width="logoWidth"
                 :class="`pa-2 my-${ isExport ? 0 : 1}`"
                 src="/icons/logo-afd-white.svg"
                 />
                 <!-- :style="`height:${ logoHeight }px; width: auto`" -->
-              <img
+              <!-- <img
                 v-else
                 :height="logoHeight"
                 :width="logoWidth"
                 src="/icons/logo-afd-white.png" 
-              />
+              /> -->
             </v-layout>
 
               <!-- v-show="isExport" -->
@@ -114,8 +114,8 @@
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-              logoHeight - f05 : {{ logoHeight }} <br>
-              logoWidth - f05 : {{ logoWidth }}
+              logoHeight - f06 : {{ logoHeight }} /
+              logoWidth - f06 : {{ logoWidth }}
             <!-- </p> -->
             <!-- <br> -->
 
