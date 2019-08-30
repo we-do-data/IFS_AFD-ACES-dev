@@ -114,8 +114,8 @@
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-              logoHeight - f04 : {{ logoHeight }} <br>
-              logoWidth - f04 : {{ logoWidth }}
+              logoHeight - f05 : {{ logoHeight }} <br>
+              logoWidth - f05 : {{ logoWidth }}
             <!-- </p> -->
             <!-- <br> -->
 
@@ -453,7 +453,7 @@ export default {
 
 
     // compute logo height
-    logoHeightNumber( ) {
+    logoHeightNumber() {
       let windowHeight = this.cardWindow.height
       let exportAdding = this.isExport ? 0 : 0
       switch (true) {
@@ -473,7 +473,7 @@ export default {
     //     default:  return ( 96 - exportAdding ) + 'px'
     //   }
     // },
-    logoHeight( ) {
+    logoHeight() {
       let logoHeightNumber = this.logoHeightNumber
       // let windowHeight = this.cardWindow.height
       // let exportAdding = this.isExport ? 0 : 0
@@ -488,13 +488,15 @@ export default {
     logoWidth() {
       let logoHeightNumber = this.logoHeightNumber
       let logoWidthNumber = ( 145 / 60 ) * logoHeightNumber 
-      return logoWidthNumber + 'px'
+      return Math.round(logoWidthNumber) + 'px'
     },
+
     cookieContent(){
       let parsed = cookieparser.parse(document.cookie)
       console.log("C-CardData-cookieContent / parsed :", parsed)
       return parsed
     }
+
   },
   methods: {
 
