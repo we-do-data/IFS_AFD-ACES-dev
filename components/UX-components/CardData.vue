@@ -435,11 +435,12 @@ export default {
     },
     logoWidth( ) {
       let windowWidth = this.cardWindow.width
+      let exportAdding = this.isExport ? 20 : 0
       switch (true) {
-        case (windowWidth < 700): return '121px'
-        case (windowWidth < 900): return '145px'
-        case (windowWidth < 1000): return '157px'
-        default:  return '96px'
+        case (windowWidth < 700): return (121 - exportAdding) + 'px'
+        case (windowWidth < 900): return (145 - exportAdding) + 'px'
+        case (windowWidth < 1000): return (157 - exportAdding) + 'px'
+        default:  return (96 - exportAdding) + 'px'
       }
     },
 
@@ -455,7 +456,7 @@ export default {
     quoteClass( fieldCode ) {
       let textLength = this.getContentLength( fieldCode )
       // let windowHeight = this.cardWindow.height
-      let mobileHandicap = this.$device.isMobileOrTablet ? 22 : 0
+      let mobileHandicap = this.$device.isMobileOrTablet ? 20 : 0
       let exportAdding = this.isExport ? 20 : 0
       switch (true) {
         case (textLength + mobileHandicap - exportAdding < 10 ): return 'display-4'
@@ -463,8 +464,8 @@ export default {
         case (textLength + mobileHandicap - exportAdding < 40 ): return 'display-2'
         case (textLength + mobileHandicap - exportAdding < 50 ): return 'display-1'
         case (textLength + mobileHandicap - exportAdding < 65 ): return 'display-half'
-        case (textLength + mobileHandicap - exportAdding > 75 ): return 'headline'
-        default:  return 'headline'
+        case (textLength + mobileHandicap - exportAdding > 70 ): return 'headline-custom'
+        default:  return 'headline-custom'
       }
     },
 

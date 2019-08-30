@@ -372,7 +372,7 @@ export default {
     cardHeights( factor=1, windowHeight=this.cardWindow.height ) {
       return {
         title: ( windowHeight * factor * .20) + "px",
-        content: ( windowHeight * factor * .60 ) + "px",
+        content: ( windowHeight * factor * .50 ) + "px",
         // more: ( windowHeight * factor * 0 ) + "px",
         // resources: ( windowHeight * factor * 0 ) + "px",
         // footer: ( windowHeight * factor * .08 ) + "px",
