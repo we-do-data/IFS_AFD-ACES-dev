@@ -32,9 +32,10 @@
                 src="/icons/logo-afd-white.svg"
                 />
                 <!-- :style="`height:${ logoHeight }px; width: auto`" -->
+                <!-- :width="logoWidth" -->
               <img
-                :height="logoHeight"
                 v-else
+                :height="logoHeight"
                 src="/icons/logo-afd-white.png" 
               />
             </v-layout>
@@ -452,27 +453,43 @@ export default {
 
 
     // compute logo height
-    logoHeight() {
+    logoHeightNumber( ) {
       let windowHeight = this.cardWindow.height
       let exportAdding = this.isExport ? 0 : 0
       switch (true) {
-        case (windowHeight < 700) : return ( 50 ) + 'px'
-        case (windowHeight < 900) : return ( 60 ) + 'px'
-        case (windowHeight < 1000): return ( 65 ) + 'px'
-        default:  return ( 40 ) + 'px'
+        case (windowHeight < 700) : return 50
+        case (windowHeight < 900) : return 60
+        case (windowHeight < 1000): return 65
+        default:  return 40
       }
+    },
+    // logoWidth() {
+    //   let windowWidth = this.cardWindow.width
+    //   let exportAdding = this.isExport ? 0 : 0
+    //   switch (true) {
+    //     case (windowWidth < 700) : return ( 121 - exportAdding ) + 'px'
+    //     case (windowWidth < 900) : return ( 145 - exportAdding ) + 'px'
+    //     case (windowWidth < 1000): return ( 157 - exportAdding ) + 'px'
+    //     default:  return ( 96 - exportAdding ) + 'px'
+    //   }
+    // },
+    logoHeight( ) {
+      let logoHeightNumber = this.logoHeightNumber
+      // let windowHeight = this.cardWindow.height
+      // let exportAdding = this.isExport ? 0 : 0
+      // switch (true) {
+      //   case (windowHeight < 700) : return ( 50 ) + 'px'
+      //   case (windowHeight < 900) : return ( 60 ) + 'px'
+      //   case (windowHeight < 1000): return ( 65 ) + 'px'
+      //   default:  return ( 40 ) + 'px'
+      // }
+      return logoHeightNumber + 'px'
     },
     logoWidth() {
-      let windowWidth = this.cardWindow.width
-      let exportAdding = this.isExport ? 0 : 0
-      switch (true) {
-        case (windowWidth < 700) : return ( 121 - exportAdding ) + 'px'
-        case (windowWidth < 900) : return ( 145 - exportAdding ) + 'px'
-        case (windowWidth < 1000): return ( 157 - exportAdding ) + 'px'
-        default:  return ( 96 - exportAdding ) + 'px'
-      }
+      let logoHeightNumber = this.logoHeightNumber
+      let logoWidthNumber = ( 145 / 60 ) * logoHeightNumber 
+      return logoWidthNumber + 'px'
     },
-
     cookieContent(){
       let parsed = cookieparser.parse(document.cookie)
       console.log("C-CardData-cookieContent / parsed :", parsed)
