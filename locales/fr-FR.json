@@ -66,6 +66,7 @@
 
   "cards" : {
     "findMore": "en savoir plus",
+    "noRessources": "pas de ressources disponibles",
     "previous" : "précédente",
     "next" : "suivante"
   },

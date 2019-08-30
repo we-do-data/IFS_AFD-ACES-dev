@@ -37,6 +37,7 @@
             <v-layout 
               row 
               justify-center
+              class="white--text"
               >
 
               <div 
@@ -79,106 +80,120 @@
           <v-layout 
             ref="cardContent"
             :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
+            class="white--text"
             align-center
             justify-center
             >
 
             <!-- <transition name="fadeit"> -->
-              <v-flex
-                v-show="!findMoreActive"
-                :class="`text-xs-center px-${ $device.isMobileOrTablet || this.isExport ? 4 : 5 }`"
+            <v-flex
+              v-show="!findMoreActive"
+              :class="`text-xs-center px-${ $device.isMobileOrTablet || this.isExport ? 4 : 5 }`"
+              >
+
+              <!-- <p class="caption"> -->
+                <!-- dsId : {{ dsId }}<br> -->
+                <!-- cardId : {{ cardId }}<br> -->
+                <!-- itemData : {{ itemData }}<br> -->
+                <!-- resourcesList : {{ resourcesList }} <br> -->
+                <!-- cookieContent : {{ cookieContent.locale }} <br> -->
+                <!-- locale (store) : {{ locale }}<br> -->
+                <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+                <!-- device : <code>{{ $device }}</code><br> -->
+                <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
+                <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
+                <!-- this.$device.isMobileOrTablet : {{ this.$device.isMobileOrTablet }}<br> -->
+                <!-- this.isExport  : {{ this.isExport  }}<br> -->
+                <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
+                <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
+              <!-- </p> -->
+              <!-- <br> -->
+
+
+              <p 
+                :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
                 >
+                <!-- itemHasFavs : {{ itemHasFavs( itemData ) }} -->
+                {{ itemData && getContentByLocale('mainContent') }}
+              </p>
 
-                <!-- <p class="caption"> -->
-                  <!-- dsId : {{ dsId }}<br> -->
-                  <!-- cardId : {{ cardId }}<br> -->
-                  <!-- itemData : {{ itemData }}<br> -->
-                  <!-- resourcesList : {{ resourcesList }} <br> -->
-                  <!-- cookieContent : {{ cookieContent.locale }} <br> -->
-                  <!-- locale (store) : {{ locale }}<br> -->
-                  <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
-                  <!-- device : <code>{{ $device }}</code><br> -->
-                  <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                  <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
-                  <!-- this.$device.isMobileOrTablet : {{ this.$device.isMobileOrTablet }}<br> -->
-                  <!-- this.isExport  : {{ this.isExport  }}<br> -->
-                  <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
-                  <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-                <!-- </p> -->
+              <!-- <p> -->
+                <!-- debug j_integration_01 - 01.4 <br> -->
+                <!-- <div 
+                  v-html="require('../../assets/svg/icon-heart-M.svg' )"
+                >
+                </div> -->
+
+                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
                 <!-- <br> -->
+                
+                <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
+                <!-- dsId : {{ dsId }}<br> -->
+                <!-- cards : {{ cards }}<br> -->
+                <!-- cardId : {{ cardId }}<br> -->
+                <!-- index : {{ index }}<br> -->
 
+                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+              <!-- </p> -->
 
-                <p 
-                  :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
-                  >
-                  {{ itemData && getContentByLocale('mainContent') }}
-                </p>
-
-                <!-- <p> -->
-                  <!-- debug j_integration_01 - 01.4 <br> -->
-                  <!-- <div 
-                    v-html="require('../../assets/svg/icon-heart-M.svg' )"
-                  >
-                  </div> -->
-
-                  <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
-                  <!-- H : {{ cardWindow.height }} : cardWindow.height -->
-                  <!-- <br> -->
-                  
-                  <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
-                  <!-- dsId : {{ dsId }}<br> -->
-                  <!-- cards : {{ cards }}<br> -->
-                  <!-- cardId : {{ cardId }}<br> -->
-                  <!-- index : {{ index }}<br> -->
-
-                  <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
-                  <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
-                  <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
-                <!-- </p> -->
-
-              </v-flex> 
+            </v-flex> 
             <!-- </transition> -->
 
             <!-- <transition name="fadeit"> -->
-              <v-flex 
-                v-show="findMoreActive"
-                :class="`mt-3 limited-height`"
-                v-body-scroll-lock="true"
-                :style="`max-height:${ cardHeights['resources'] }`"
+            <v-flex 
+              v-show="findMoreActive"
+              :class="`mt-3 limited-height`"
+              v-body-scroll-lock="true"
+              :style="`max-height:${ cardHeights['resources'] }`"
+              >
+
+              <div
+                v-for="favField in resourcesList.favFields"
+                :key="favField.textFieldCode"
+                style="z-index: 25"
+                :class="`text-xs-center`"
                 >
 
-                <div
-                  v-for="favField in resourcesList.favFields"
-                  :key="favField.textFieldCode"
-                  style="z-index: 25"
-                  :class="`text-xs-center`"
+                <p 
+                  v-if="itemData[ favField.linkFieldCode ]"
+                  :class="`favorites-text mb-${ $device.isMobileOrTablet ? 1 : 2 }`"
+                  >
+                  <v-icon 
+                    small
+                    left
+                    >
+                    arrow_forward
+                  </v-icon>
+
+                  <span
+                    >
+                    <a 
+                      class="white--text favorites-text-link"
+                      :href="itemData[ favField.linkFieldCode ]"
+                      >
+                      {{ itemData[ favField.textFieldCode ] }}
+                    </a>
+                  </span>
+                </p>
+
+                <div 
+                  v-if="!itemHasFavs( itemData )"
+                  :class="`text-xs-center white--text favorites-text mb-${ $device.isMobileOrTablet ? 1 : 2 }`"
                   >
 
-                  <p 
-                    v-if="itemData[ favField.linkFieldCode ]"
-                    :class="`favorites-text mb-${ $device.isMobileOrTablet ? 1 : 2 }`"
+                  <span
                     >
-                    <v-icon 
-                      small
-                      left
-                      >
-                      arrow_forward
-                    </v-icon>
-
-                    <span
-                      >
-                      <a 
-                        class="white--text favorites-text-link"
-                        :href="itemData[ favField.linkFieldCode ]"
-                        >
-                        {{ itemData[ favField.textFieldCode ] }}
-                      </a>
-                    </span>
-                  </p>
-                
+                    {{ $t('cards.noRessources') }}
+                  </span>
                 </div>
 
-              </v-flex>
+              </div>
+
+
+            </v-flex>
             <!-- </transition> -->
 
           </v-layout> 
@@ -263,6 +278,7 @@
             </p>
 
             <v-btn
+              :disabled="!itemHasFavs( itemData )"
               :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
               flat
               icon
@@ -528,6 +544,20 @@ export default {
       this.$store.dispatch('users/switchFavorite', payload )
       
     },
+
+    itemHasFavs( itemData, returnBool=true ){
+      let count = 0
+      for ( let favField of this.resourcesList.favFields ) {
+        if ( itemData[ favField.linkFieldCode ] ) {
+          count += 1
+        }
+      }
+
+      if ( returnBool ){ return count > 0 }
+      else { return count }
+
+    },
+
   }
 }
 </script>
