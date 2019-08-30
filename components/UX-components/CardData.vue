@@ -32,10 +32,10 @@
                 src="/icons/logo-afd-white.svg"
                 />
                 <!-- :style="`height:${ logoHeight }px; width: auto`" -->
-                <!-- :width="logoWidth" -->
               <img
                 v-else
                 :height="logoHeight"
+                :width="logoWidth"
                 src="/icons/logo-afd-white.png" 
               />
             </v-layout>
