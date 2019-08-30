@@ -463,7 +463,8 @@ export default {
       switch (true) {
         case (textLength + (mobileHandicap - exportAdding) * 1  < 20 ): return 'display-4'
         case (textLength + (mobileHandicap - exportAdding) * 1  < 30 ): return 'display-3'
-        case (textLength + (mobileHandicap - exportAdding) * 1  < 50 ): return 'display-2'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 40 ): return 'display-2'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 50 ): return 'display-2-bis'
         case (textLength + (mobileHandicap - exportAdding) * 1  < 70 ): return 'display-1'
         case (textLength + (mobileHandicap - exportAdding) * 1  < 100 ): return 'display-half'
         case (textLength + (mobileHandicap - exportAdding) * 1  < 130 ): return 'headline-custom'
