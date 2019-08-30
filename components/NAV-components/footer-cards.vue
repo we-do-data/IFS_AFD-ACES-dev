@@ -26,7 +26,8 @@
               :itemData="current"
               :isExport="true"
               
-              :cardHeights="cardHeights( ratioFirstCard.h )"
+              :cardHeights="cardHeights( ratioFirstCard.h, cardExportSize.height )"
+              :cardWidth="cardExportSize.width"
               :cardColorIndex="getRandomColorIndex( index )"
 
               :breakPoint="this.$vuetify.breakpoint.name"
@@ -372,7 +373,7 @@ export default {
     cardHeights( factor=1, windowHeight=this.cardWindow.height ) {
       return {
         title: ( windowHeight * factor * .20) + "px",
-        content: ( windowHeight * factor * .50 ) + "px",
+        content: ( windowHeight * factor * .55 ) + "px",
         // more: ( windowHeight * factor * 0 ) + "px",
         // resources: ( windowHeight * factor * 0 ) + "px",
         // footer: ( windowHeight * factor * .08 ) + "px",

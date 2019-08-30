@@ -27,7 +27,7 @@
               <img 
                 :height="logoHeight"
                 :width="logoWidth"
-                class="pa-2 my-3"
+                :class="`pa-2 my-${ isExport ? 0 : 3}`"
                 src="/icons/logo-afd-white.svg" 
               />
             </v-layout>
@@ -86,7 +86,7 @@
             <!-- <transition name="fadeit"> -->
               <v-flex
                 v-show="!findMoreActive"
-                :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 4 }`"
+                :class="`text-xs-center px-${ $device.isMobileOrTablet || this.isExport ? 4 : 5 }`"
                 >
 
                 <!-- <p class="caption"> -->
@@ -358,6 +358,7 @@ export default {
     // 'cardWidth',
     'breakPoint',
     'cardHeights',
+    'cardWidth',
     'currentDsId'
   ],
   beforeMount() {
@@ -456,16 +457,18 @@ export default {
     quoteClass( fieldCode ) {
       let textLength = this.getContentLength( fieldCode )
       // let windowHeight = this.cardWindow.height
-      let mobileHandicap = this.$device.isMobileOrTablet ? 20 : 0
-      let exportAdding = this.isExport ? 20 : 0
+      let mobileHandicap = this.$device.isMobileOrTablet ? 15 : 0
+      let exportAdding = this.isExport ? 5 : 0
+      let lengthToCheck = textLength + (mobileHandicap - exportAdding)
       switch (true) {
-        case (textLength + mobileHandicap - exportAdding < 10 ): return 'display-4'
-        case (textLength + mobileHandicap - exportAdding < 20 ): return 'display-3'
-        case (textLength + mobileHandicap - exportAdding < 40 ): return 'display-2'
-        case (textLength + mobileHandicap - exportAdding < 50 ): return 'display-1'
-        case (textLength + mobileHandicap - exportAdding < 65 ): return 'display-half'
-        case (textLength + mobileHandicap - exportAdding > 70 ): return 'headline-custom'
-        default:  return 'headline-custom'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 20 ): return 'display-4'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 30 ): return 'display-3'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 50 ): return 'display-2'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 70 ): return 'display-1'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 100 ): return 'display-half'
+        case (textLength + (mobileHandicap - exportAdding) * 1  < 130 ): return 'headline-custom'
+        case (textLength + (mobileHandicap - exportAdding) * 1  >= 130 ): return 'headline'
+        default:  return 'headline'
       }
     },
 

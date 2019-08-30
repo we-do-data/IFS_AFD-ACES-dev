@@ -1,7 +1,7 @@
 <template>
 
   
-    <!-- :style="'opacity:0'" -->
+    <!-- :style="'opacity:0.2'" -->
   <v-layout 
     id="swipeable-cards"
     fill-height
@@ -56,16 +56,16 @@
         @clickDraggableBtn="getClickSignal"
         >
 
-          <!-- :isExport="true" -->
         <CardData
 
           id="current-card"
 
           :itemData="current"
           :isFirst="true"
+          :isExport="false"
           
-
           :cardHeights="cardHeights( ratioFirstCard.h )"
+          :cardWidth="cardWidth( ratioFirstCard.w )"
           :cardColorIndex="getRandomColorIndex( index )"
 
           :breakPoint="this.$vuetify.breakpoint.name"
@@ -93,6 +93,7 @@
       <CardData
         :itemData="getNexCard()"
         :cardHeights="cardHeights( ratioFirstCard.h )"
+        :cardWidth="cardWidth( ratioFirstCard.w )"
         :cardColorIndex="getRandomColorIndex( index + 1)"
         >
         <!-- :cardHeights="cardHeights( cardHeigthRatio( secondCardWidth ) )" -->
@@ -111,6 +112,7 @@
       <CardData
         :itemData="{}"
         :cardHeights="cardHeights( ratioFirstCard.h )"
+        :cardWidth="cardWidth( ratioFirstCard.w )"
         :cardColorIndex="getRandomColorIndex( index + 2)"
         >
         <!-- :cardHeights="cardHeights( cardHeigthRatio( thirdCardWidth ) )" -->
