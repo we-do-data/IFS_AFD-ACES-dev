@@ -1,7 +1,7 @@
 <template>
   <transition name="layout" mode="out-in">
     <v-app
-      class="no-scroll splashscreen-gradient"
+      class="no-scroll splashscreen-gradient fullscreen-div"
       >
 
       <!-- CONTENTS -->
