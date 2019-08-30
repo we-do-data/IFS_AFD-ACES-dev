@@ -116,8 +116,8 @@
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-              logoHeight - f07 : {{ logoHeight }} /
-              logoWidth - f07 : {{ logoWidth }}
+              <!-- logoHeight - f08 : {{ logoHeight }} / -->
+              <!-- logoWidth - f08 : {{ logoWidth }} -->
             <!-- </p> -->
             <!-- <br> -->
 
