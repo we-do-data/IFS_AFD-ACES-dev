@@ -27,7 +27,7 @@
               <img 
                 :height="logoHeight"
                 :width="logoWidth"
-                :class="`pa-2 my-${ isExport ? 0 : 3}`"
+                :class="`pa-2 my-${ isExport ? 0 : 1}`"
                 src="/icons/logo-afd-white.svg" 
               />
             </v-layout>
