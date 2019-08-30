@@ -24,7 +24,8 @@
     "bannerMessage" : "This website uses cookies to ensure you the best experience on your mobile",
     "gotIt" : "Got it",
     "learnMore" : "Learn more",
-    "bannerInfos" : " playwithtransitions.cards records information in users’ cookies to store favorite cards and improve the use of the application."
+    "bannerInfos" : "playwithtransitions.cards records information in users’ cookies to store favorite cards and improve the use of the application.",
+    "bannerInfosBis" : "By continuing your navigation, you agree to the use of cookies for navigation and audience measurement"
   },
 
   "basicDict" : {

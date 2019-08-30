@@ -32,10 +32,12 @@
             offset-sm2
             >
 
+            <!-- BANNER INFOS -->
             <p class="pt-2">
               <strong>
 
-                {{ $t('banner.bannerMessage') }} &nbsp;
+                <!-- {{ $t('banner.bannerMessage') }} &nbsp; -->
+                {{ $t('banner.bannerInfosBis') }} &nbsp;
                               
                 <!-- / {{ $vuetify.breakpoint.name }} -->
                 
@@ -54,7 +56,7 @@
                   </span>
                 </v-btn> -->
 
-                <a 
+                <!-- <a 
                   v-show="!showBannerInfos"
                   class="text secondary--text ma-0 pa-0"
                   @click.prevent="toggleBannerInfos()"
@@ -62,13 +64,14 @@
                   <span class="card-btn-text-raw">
                     {{ $t('banner.learnMore') }}
                   </span>
-                </a>
+                </a> -->
 
               </strong>
             </p>
 
           </v-flex>
-        
+
+          <!-- OK BTN -->
           <v-flex
             xs5
             sm2
@@ -92,14 +95,14 @@
 
         </v-layout>
 
-        <v-layout 
+        <!-- 
+        align-center
+        -->
+        <!-- <v-layout 
           row
           justify-center 
           ml-2 
           >
-          <!-- 
-          align-center
-          -->
 
           <v-flex
             v-show="showBannerInfos"
@@ -112,7 +115,6 @@
             <div
               :class="`${ isSmallScreen ? 'ml-1 pl-1' : '' }`"
               >
-              <!-- :class="`ma-0 pa-0 pt-2`" -->
               {{ $t('banner.bannerInfos') }}
               &nbsp;
               <a 
@@ -125,7 +127,7 @@
               </a>
             </div>
           </v-flex>
-        </v-layout>
+        </v-layout> -->
 
       </v-container>
 
