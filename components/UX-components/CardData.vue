@@ -24,20 +24,22 @@
               justify-center 
               align-center
               >
-                <!-- v-if="!isExport" -->
               <img
+                v-if="!isExport"
                 :height="logoHeight"
                 :width="logoWidth"
-                :class="`pa-2 my-${ isExport ? 0 : 1}`"
+                :class="`ma-${ isExport ? 1 : 2 }`"
                 src="/icons/logo-afd-white.svg"
                 />
+
                 <!-- :style="`height:${ logoHeight }px; width: auto`" -->
-              <!-- <img
+              <img
                 v-else
+                :class="`ma-2`"
                 :height="logoHeight"
                 :width="logoWidth"
-                src="/icons/logo-afd-white.png" 
-              /> -->
+                src="/icons/logo-afd-white.png"
+                />
             </v-layout>
 
               <!-- v-show="isExport" -->
@@ -114,8 +116,8 @@
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-              logoHeight - f06 : {{ logoHeight }} /
-              logoWidth - f06 : {{ logoWidth }}
+              logoHeight - f07 : {{ logoHeight }} /
+              logoWidth - f07 : {{ logoWidth }}
             <!-- </p> -->
             <!-- <br> -->
 
@@ -451,16 +453,21 @@ export default {
       return this.isInFavorites( itemPayload )
     },
 
+    cookieContent(){
+      let parsed = cookieparser.parse(document.cookie)
+      console.log("C-CardData-cookieContent / parsed :", parsed)
+      return parsed
+    },
 
     // compute logo height
     logoHeightNumber() {
       let windowHeight = this.cardWindow.height
-      let exportAdding = this.isExport ? 0 : 0
+      let exportAdding = this.isExport ? 10 : 0
       switch (true) {
-        case (windowHeight < 700) : return 50
-        case (windowHeight < 900) : return 60
-        case (windowHeight < 1000): return 65
-        default:  return 40
+        case (windowHeight < 700) : return 40 - exportAdding
+        case (windowHeight < 900) : return 50 - exportAdding
+        case (windowHeight < 1000): return 60 - exportAdding
+        default:  return 40 - exportAdding
       }
     },
     // logoWidth() {
@@ -483,22 +490,23 @@ export default {
       //   case (windowHeight < 1000): return ( 65 ) + 'px'
       //   default:  return ( 40 ) + 'px'
       // }
-      return logoHeightNumber + 'px'
-    },
-    logoWidth() {
-      let logoHeightNumber = this.logoHeightNumber
-      let logoWidthNumber = ( 145 / 60 ) * logoHeightNumber 
-      return Math.round(logoWidthNumber) + 'px'
+      return logoHeightNumber // + 'px'
     },
 
-    cookieContent(){
-      let parsed = cookieparser.parse(document.cookie)
-      console.log("C-CardData-cookieContent / parsed :", parsed)
-      return parsed
-    }
+    logoWidth() {
+      let logoHeightNumber = this.logoHeightNumber
+      let logoWidthNumber = 0
+      if ( this.isExport ) {
+        logoWidthNumber = ( 194 / 80 ) * logoHeightNumber 
+      } else  {
+        logoWidthNumber = ( 145 / 60 ) * logoHeightNumber 
+      } 
+      return Math.round(logoWidthNumber) // + 'px'
+    },
 
   },
   methods: {
+
 
     // compute logo height
     quoteClass( fieldCode ) {
