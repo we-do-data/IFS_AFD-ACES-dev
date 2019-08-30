@@ -31,9 +31,10 @@
                 :class="`pa-2 my-${ isExport ? 0 : 1}`"
                 src="/icons/logo-afd-white.svg"
                 />
+                <!-- :style="`height:${ logoHeight }px; width: auto`" -->
               <img
+                :height="logoHeight"
                 v-else
-                :style="`height:${ logoHeight }px; width: auto`"
                 src="/icons/logo-afd-white.png" 
               />
             </v-layout>
@@ -112,6 +113,8 @@
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
+              logoHeight : {{ logoHeight }} <br>
+              logoWidth : {{ logoWidth }}
             <!-- </p> -->
             <!-- <br> -->
 
@@ -120,7 +123,9 @@
               :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
               >
               <!-- itemHasFavs : {{ itemHasFavs( itemData ) }} -->
+
               {{ itemData && getContentByLocale('mainContent') }}
+
             </p>
 
             <!-- <p> -->
@@ -447,23 +452,24 @@ export default {
 
 
     // compute logo height
-    logoHeight( ) {
+    logoHeight() {
       let windowHeight = this.cardWindow.height
+      let exportAdding = this.isExport ? 0 : 0
       switch (true) {
-        case (windowHeight < 700): return '50px'
-        case (windowHeight < 900): return '60px'
-        case (windowHeight < 1000): return '65px'
-        default:  return '40px'
+        case (windowHeight < 700) : return ( 50 ) + 'px'
+        case (windowHeight < 900) : return ( 60 ) + 'px'
+        case (windowHeight < 1000): return ( 65 ) + 'px'
+        default:  return ( 40 ) + 'px'
       }
     },
-    logoWidth( ) {
+    logoWidth() {
       let windowWidth = this.cardWindow.width
       let exportAdding = this.isExport ? 0 : 0
       switch (true) {
-        case (windowWidth < 700): return (121 - exportAdding) + 'px'
-        case (windowWidth < 900): return (145 - exportAdding) + 'px'
-        case (windowWidth < 1000): return (157 - exportAdding) + 'px'
-        default:  return (96 - exportAdding) + 'px'
+        case (windowWidth < 700) : return ( 121 - exportAdding ) + 'px'
+        case (windowWidth < 900) : return ( 145 - exportAdding ) + 'px'
+        case (windowWidth < 1000): return ( 157 - exportAdding ) + 'px'
+        default:  return ( 96 - exportAdding ) + 'px'
       }
     },
 
