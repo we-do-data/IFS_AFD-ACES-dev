@@ -1,6 +1,6 @@
 <template>
   <v-app
-    class="no-scroll white-background"
+    class="no-scroll white-background fullscreen-div"
     >
     <!-- class="splashscreen-gradient" -->
 

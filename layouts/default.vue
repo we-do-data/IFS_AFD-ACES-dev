@@ -1,7 +1,7 @@
 <template>
   <!-- <transition name="layout" mode="out-in"> -->
     <v-app
-      class="no-scroll white-background"
+      class="no-scroll white-background fullscreen-div"
       :class="`${ locSelected? '' : 'splashscreen-gradient'}`"
       >
       <!-- class="splashscreen-gradient" -->
