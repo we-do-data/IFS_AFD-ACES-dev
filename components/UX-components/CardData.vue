@@ -464,10 +464,10 @@ export default {
       let windowHeight = this.cardWindow.height
       let exportAdding = this.isExport ? 10 : 0
       switch (true) {
-        case (windowHeight < 700) : return 40 - exportAdding
-        case (windowHeight < 900) : return 50 - exportAdding
-        case (windowHeight < 1000): return 60 - exportAdding
-        default:  return 40 - exportAdding
+        case (windowHeight < 700) : return 35 - exportAdding
+        case (windowHeight < 900) : return 40 - exportAdding
+        case (windowHeight < 1000): return 45 - exportAdding
+        default:  return 50 - exportAdding
       }
     },
     // logoWidth() {
