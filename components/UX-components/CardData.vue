@@ -24,11 +24,17 @@
               justify-center 
               align-center
               >
-              <img 
+              <img
+                v-if="!isExport"
                 :height="logoHeight"
                 :width="logoWidth"
                 :class="`pa-2 my-${ isExport ? 0 : 1}`"
-                src="/icons/logo-afd-white.svg" 
+                src="/icons/logo-afd-white.svg"
+                />
+              <img
+                v-else
+                :style="`height:${ logoHeight }px; width: auto`"
+                src="/icons/logo-afd-white.png" 
               />
             </v-layout>
 
