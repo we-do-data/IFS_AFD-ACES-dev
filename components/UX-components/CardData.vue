@@ -100,11 +100,13 @@
                   <!-- device : <code>{{ $device }}</code><br> -->
                   <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
                   <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
+                  <!-- this.$device.isMobileOrTablet : {{ this.$device.isMobileOrTablet }}<br> -->
+                  <!-- this.isExport  : {{ this.isExport  }}<br> -->
+                  <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
+                  <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
                 <!-- </p> -->
                 <!-- <br> -->
 
-                  <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
-                  <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
 
                 <p 
                   :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
@@ -454,12 +456,15 @@ export default {
       let textLength = this.getContentLength( fieldCode )
       // let windowHeight = this.cardWindow.height
       let mobileHandicap = this.$device.isMobileOrTablet ? 22 : 0
+      let exportAdding = this.isExport ? 20 : 0
       switch (true) {
-          case (textLength + mobileHandicap < 10 ): return 'display-4'
-          case (textLength + mobileHandicap < 20 ): return 'display-3'
-          case (textLength + mobileHandicap < 40 ): return 'display-2'
-          case (textLength + mobileHandicap < 60 ): return 'display-1'
-          default:  return 'headline'
+        case (textLength + mobileHandicap - exportAdding < 10 ): return 'display-4'
+        case (textLength + mobileHandicap - exportAdding < 20 ): return 'display-3'
+        case (textLength + mobileHandicap - exportAdding < 40 ): return 'display-2'
+        case (textLength + mobileHandicap - exportAdding < 50 ): return 'display-1'
+        case (textLength + mobileHandicap - exportAdding < 65 ): return 'display-half'
+        case (textLength + mobileHandicap - exportAdding > 75 ): return 'headline'
+        default:  return 'headline'
       }
     },
 
