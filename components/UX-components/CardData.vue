@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-10 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-11 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -221,7 +221,7 @@
                   <v-btn
                     :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
                     flat
-                    @click="testLink = !testLink"
+                    @click.prevent.stop="testLink = !testLink; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <!-- <v-icon
                       >
