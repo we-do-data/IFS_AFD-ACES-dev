@@ -287,11 +287,15 @@
             class="text-uppercase text-xs-center"
             >
 
-            <p class="mb-0 light-letter-spacing">
+            <p 
+              v-show="itemHasFavs( itemData )"
+              class="mb-0 light-letter-spacing"
+              >
               {{ $t('cards.findMore') }}
             </p>
 
             <v-btn
+              v-show="itemHasFavs( itemData )"
               :disabled="!itemHasFavs( itemData )"
               :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
               flat
