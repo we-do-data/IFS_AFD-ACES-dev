@@ -1,266 +1,266 @@
 <template>
 
-    <v-card
-      :color="`secondary card-color card-color-${ cardColorIndex }`"
-      class="full-height rounded-borders"
-      ref="currentCard"
-      dark
-      >
+  <v-card
+    :color="`secondary card-color card-color-${ cardColorIndex }`"
+    class="full-height rounded-borders"
+    ref="currentCard"
+    dark
+    >
 
-      <div>
+    <div>
 
-        <!-- LOGO TITLE -->
-        <v-card-title 
-          ref="cardTitle"
-          class="justify-center pa-0 "
-          :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`"
-          >
+      <!-- LOGO TITLE -->
+      <v-card-title 
+        ref="cardTitle"
+        class="justify-center pa-0 "
+        :style="`max-height:${ cardHeights['title'] }; height:${ cardHeights['title'] }`"
+        >
 
-          <v-container fluid>
-            <v-layout row justify-center align-center>
-              <img 
-                :height="logoHeight"
-                class="pa-2 my-3"
-                src="/icons/logo-afd-white.svg" 
-              />
-            </v-layout>
-            <v-layout row justify-center>
-              <div class="text-xs-center text-uppercase light-opacity">
-                {{ $t('intro.catchPhrase_1') }}
-                <span>
-                  <b> {{ $t('intro.catchPhrase_2') }} </b>
-                </span>
-              </div> 
-            </v-layout>
-          </v-container>
+        <v-container fluid>
+          <v-layout row justify-center align-center>
+            <img 
+              :height="logoHeight"
+              class="pa-2 my-3"
+              src="/icons/logo-afd-white.svg" 
+            />
+          </v-layout>
+          <v-layout row justify-center>
+            <div class="text-xs-center text-uppercase light-opacity">
+              {{ $t('intro.catchPhrase_1') }}
+              <span>
+                <b> {{ $t('intro.catchPhrase_2') }} </b>
+              </span>
+            </div> 
+          </v-layout>
+        </v-container>
 
-        </v-card-title>
-
-
-        <!-- TEXT CONTENTS -->
-        <transition name="slide">
-          <v-layout 
-            ref="cardContent"
-            v-show="!findMoreActive"
-            :class="`${ findMoreActive ? '' : '' }`"
-            :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
-            align-center
-            justify-center
-            >
-
-            <v-flex
-              v-show="!findMoreActive"
-              :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 3 }`"
-              >
-
-              <!-- <p class="caption"> -->
-                <!-- dsId : {{ dsId }}<br> -->
-                <!-- cardId : {{ cardId }}<br> -->
-                <!-- itemData : {{ itemData }}<br> -->
-                <!-- cookieContent : {{ cookieContent.locale }} <br> -->
-                <!-- locale (store) : {{ locale }}<br> -->
-                <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
-                <!-- device : <code>{{ $device }}</code><br> -->
-                <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
-                <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
-              <!-- </p> -->
-              <!-- <br> -->
-
-                <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
-                <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
-
-              <p 
-                :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
-                >
-                {{ itemData && getContentByLocale('mainContent') }}
-              </p>
-
-              <!-- <p> -->
-                <!-- debug j_integration_01 - 01.4 <br> -->
-                <!-- <div 
-                  v-html="require('../../assets/svg/icon-heart-M.svg' )"
-                >
-                </div> -->
-
-                <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
-                <!-- H : {{ cardWindow.height }} : cardWindow.height -->
-                <!-- <br> -->
-                
-                <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
-                <!-- dsId : {{ dsId }}<br> -->
-                <!-- cards : {{ cards }}<br> -->
-                <!-- cardId : {{ cardId }}<br> -->
-                <!-- index : {{ index }}<br> -->
-
-                <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
-                <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
-                <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
-              <!-- </p> -->
-
-            </v-flex> 
-
-          </v-layout> 
-        </transition>
+      </v-card-title>
 
 
-        <!-- RESSOURCES && FAVORITES CONTENTS -->
+      <!-- TEXT CONTENTS -->
+      <transition name="slide">
         <v-layout 
-          ref="cardMore"
-          v-show="!isExport"
-          :class="` ${ findMoreActive ? '' : 'pb-3' }`"
-          :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
-          row
-          align-end
+          ref="cardContent"
+          v-show="!findMoreActive"
+          :class="`${ findMoreActive ? '' : '' }`"
+          :style="`height:${ cardHeights['content'] }; max-height:${ cardHeights['content'] }`"
+          align-center
+          justify-center
           >
 
-          <!-- FIND MORE TITLE -->
-          <v-flex 
-            justify-center
-            align-center
-            xs6 offset-xs3
-            class="text-uppercase text-xs-center"
-            >
-            <p class="mb-0 light-letter-spacing">
-              {{ $t('cards.findMore') }}
-            </p>
-            <v-btn
-              :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
-              flat
-              icon
-              @click="triggerFind = !triggerFind; findMoreActive = !findMoreActive"
-              >
-              <v-icon
-                >
-                close
-              </v-icon>
-            </v-btn>
-
-          </v-flex>
-
-          <!-- FAVORITES FOOTER -->
-            <!-- :style="`z-index:4; max-height:${ cardHeights['footer'] }; height:${ cardHeights['footer'] }`" -->
           <v-flex
-            xs3
-            justify-end
-            align-center
-            :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
+            v-show="!findMoreActive"
+            :class="`text-xs-center px-${ $device.isMobileOrTablet ? 5 : 3 }`"
             >
-            <!-- color="transparent"  -->
-            <!-- ref="cardFooter" -->
-            <!-- <v-layout
-              align-center
-              justify-end
-              > -->
-              <v-btn 
-                class="card-button white"
-                icon
-                flat
-                @click.prevent.stop="switchFavorite()"
-                >
-                <!-- v-touch:tap="switchFavorite()" -->
-                <!-- @mouseenter="switchHover()"
-                @mouseleave="switchHover()" -->
 
-                  <!-- :color="isFavorite ? 'pink' : 'grey' " -->
-                <v-icon
-                  color="pink"
-                  small
-                  >
-                  {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
-                </v-icon>
+            <!-- <p class="caption"> -->
+              <!-- dsId : {{ dsId }}<br> -->
+              <!-- cardId : {{ cardId }}<br> -->
+              <!-- itemData : {{ itemData }}<br> -->
+              <!-- cookieContent : {{ cookieContent.locale }} <br> -->
+              <!-- locale (store) : {{ locale }}<br> -->
+              <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+              <!-- device : <code>{{ $device }}</code><br> -->
+              <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
+              <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
+            <!-- </p> -->
+            <!-- <br> -->
 
-                <!-- <img 
-                  height="36px"
-                  :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
-                  /> -->
+              <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
+              <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
 
-              </v-btn>
-            <!-- </v-layout> -->
-          </v-flex>
-          
-        </v-layout>
-
-      
-        <!-- CONTENT RESOURCES -->
-        <transition name="slide">
-          <v-flex xs12
-            class=""
-            :style="`height:${ cardHeights['content'] }`"
-            v-show="findMoreActive"
-            >
-            <v-card-text
+            <p 
+              :class="`${ quoteClass('mainContent') } font-weight-bold quote-text`"
               >
-              <v-divider></v-divider>
+              {{ itemData && getContentByLocale('mainContent') }}
+            </p>
 
-              <div 
-                :class="`mt-4 limited-height`"
-                v-body-scroll-lock="true"
-                :style="`max-height:${ cardHeights['resources'] }`"
+            <!-- <p> -->
+              <!-- debug j_integration_01 - 01.4 <br> -->
+              <!-- <div 
+                v-html="require('../../assets/svg/icon-heart-M.svg' )"
+              >
+              </div> -->
+
+              <!-- W :{{ cardWindow.width }} : cardWindow.width<br> -->
+              <!-- H : {{ cardWindow.height }} : cardWindow.height -->
+              <!-- <br> -->
+              
+              <!-- cardColorIndex : {{ cardColorIndex }}<br> -->
+              <!-- dsId : {{ dsId }}<br> -->
+              <!-- cards : {{ cards }}<br> -->
+              <!-- cardId : {{ cardId }}<br> -->
+              <!-- index : {{ index }}<br> -->
+
+              <!-- <br> {{ $device.isMobileOrTablet }} : $device.isMobileOrTablet -->
+              <!-- <br> {{ $ua.browser() }} : $ua.browser()  -->
+              <!-- <br> {{ $ua.isFromAndroidOs() }} : $ua.isFromAndroidOs() -->
+            <!-- </p> -->
+
+          </v-flex> 
+
+        </v-layout> 
+      </transition>
+
+
+      <!-- RESSOURCES && FAVORITES CONTENTS -->
+      <v-layout 
+        ref="cardMore"
+        v-show="!isExport"
+        :class="` ${ findMoreActive ? '' : 'pb-3' }`"
+        :style="`z-index: 6; max-height:${ cardHeights['more'] }; height:${ cardHeights['more'] }`"
+        row
+        align-end
+        >
+
+        <!-- FIND MORE TITLE -->
+        <v-flex 
+          justify-center
+          align-center
+          xs6 offset-xs3
+          class="text-uppercase text-xs-center"
+          >
+          <p class="mb-0 light-letter-spacing">
+            {{ $t('cards.findMore') }}
+          </p>
+          <v-btn
+            :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
+            flat
+            icon
+            @click="triggerFind = !triggerFind; findMoreActive = !findMoreActive"
+            >
+            <v-icon
+              >
+              close
+            </v-icon>
+          </v-btn>
+
+        </v-flex>
+
+        <!-- FAVORITES FOOTER -->
+          <!-- :style="`z-index:4; max-height:${ cardHeights['footer'] }; height:${ cardHeights['footer'] }`" -->
+        <v-flex
+          xs3
+          justify-end
+          align-center
+          :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
+          >
+          <!-- color="transparent"  -->
+          <!-- ref="cardFooter" -->
+          <!-- <v-layout
+            align-center
+            justify-end
+            > -->
+            <v-btn 
+              class="card-button white"
+              icon
+              flat
+              @click.prevent.stop="switchFavorite()"
+              >
+              <!-- v-touch:tap="switchFavorite()" -->
+              <!-- @mouseenter="switchHover()"
+              @mouseleave="switchHover()" -->
+
+                <!-- :color="isFavorite ? 'pink' : 'grey' " -->
+              <v-icon
+                color="pink"
+                small
+                >
+                {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
+              </v-icon>
+
+              <!-- <img 
+                height="36px"
+                :src="`/icons/icon-heart-M${ isFavorite ? '-fill' : '' }.svg`"
+                /> -->
+
+            </v-btn>
+          <!-- </v-layout> -->
+        </v-flex>
+        
+      </v-layout>
+
+    
+      <!-- CONTENT RESOURCES -->
+      <transition name="slide">
+        <v-flex xs12
+          class=""
+          :style="`height:${ cardHeights['content'] }`"
+          v-show="findMoreActive"
+          >
+          <v-card-text
+            >
+            <v-divider></v-divider>
+
+            <div 
+              :class="`mt-4 limited-height`"
+              v-body-scroll-lock="true"
+              :style="`max-height:${ cardHeights['resources'] }`"
+              >
+
+              <!-- d2.08 / triggerFind : <code>{{ triggerFind }}</code><br> -->
+
+              <!-- <v-list-tile
+                v-for="favField in resourcesList.favFields"
+                :key="favField.textFieldCode"
+                style="z-index: 25"
+                class="text-xs-center py-0"
+                >
+                <img 
+                  class="near-icon"
+                  height="36px"
+                  color="white"
+                  src="/icons/icon-arrowRight-S.svg"
+                  />
+                <a 
+                  class="white--text favorites-text"
+                  :href="itemData[ favField.linkFieldCode ]"
+                  >
+                  {{ itemData[ favField.textFieldCode ] }}
+                </a>
+              </v-list-tile> -->
+
+              <div
+                v-for="favField in resourcesList.favFields"
+                :key="favField.textFieldCode"
+                style="z-index: 25"
+                class="text-xs-center"
                 >
 
-                <!-- d2.08 / triggerFind : <code>{{ triggerFind }}</code><br> -->
-
-                <!-- <v-list-tile
-                  v-for="favField in resourcesList.favFields"
-                  :key="favField.textFieldCode"
-                  style="z-index: 25"
-                  class="text-xs-center py-0"
+                <p 
+                  class="favorites-text "
                   >
-                  <img 
-                    class="near-icon"
-                    height="36px"
-                    color="white"
-                    src="/icons/icon-arrowRight-S.svg"
-                    />
-                  <a 
-                    class="white--text favorites-text"
-                    :href="itemData[ favField.linkFieldCode ]"
+                  <v-icon 
+                    small
+                    left
                     >
-                    {{ itemData[ favField.textFieldCode ] }}
-                  </a>
-                </v-list-tile> -->
+                    arrow_forward
+                  </v-icon>
 
-                <div
-                  v-for="favField in resourcesList.favFields"
-                  :key="favField.textFieldCode"
-                  style="z-index: 25"
-                  class="text-xs-center"
-                  >
-
-                  <p 
-                    class="favorites-text "
+                  <span
                     >
-                    <v-icon 
-                      small
-                      left
+                    <a 
+                      class="white--text favorites-text-link"
+                      :href="itemData[ favField.linkFieldCode ]"
                       >
-                      arrow_forward
-                    </v-icon>
-
-                    <span
-                      >
-                      <a 
-                        class="white--text favorites-text-link"
-                        :href="itemData[ favField.linkFieldCode ]"
-                        >
-                        {{ itemData[ favField.textFieldCode ] }}
-                      </a>
-                    </span>
-                  </p>
-                
-                </div>
-
+                      {{ itemData[ favField.textFieldCode ] }}
+                    </a>
+                  </span>
+                </p>
+              
               </div>
 
-            </v-card-text>
+            </div>
 
-          </v-flex>
-        </transition>
+          </v-card-text>
+
+        </v-flex>
+      </transition>
 
 
-      </div>
+    </div>
 
-    </v-card>
+  </v-card>
 
 </template>
 

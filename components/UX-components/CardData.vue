@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-15 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-16 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -214,11 +214,11 @@
                     v-slot:default="{ hover }"
                     >
                     <a 
-                      class="white--text favorites-text-link"
+                      class="white--text"
                       @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                       >
                       <span 
-                        class="favorites-text-link"
+                        :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
                         >
                         {{ itemData[ favField.textFieldCode ] }}
                       </span>
@@ -246,6 +246,7 @@
                   <!-- DEBUG -->
                   <v-hover
                     v-slot:default="{ hover }"
+                    v-if="$device.isMobileOrTablet"
                     >
                     <v-btn
                       :class="`my-0 card-button`"
@@ -682,7 +683,7 @@ export default {
       this.linkOpenTxt = itemLink
       let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
       
-      //  window.open( itemLink, isExternal )
+       window.open( itemLink, isExternal )
       // let win = window.open( itemLink, isExternal )
       // win.focus()
     }
