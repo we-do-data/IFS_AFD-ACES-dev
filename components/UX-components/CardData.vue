@@ -203,7 +203,6 @@
                       flat
                       small
                       class="card-btn-text white--text ma-0"
-                      color="transparent"
                       @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                       >
                       <span 
@@ -251,9 +250,9 @@
                   </v-hover> -->
 
                   <!-- DEBUG -->
+                    <!-- v-if="$device.isMobileOrTablet" -->
                   <v-hover
                     v-slot:default="{ hover }"
-                    v-if="$device.isMobileOrTablet"
                     >
                     <v-btn
                       :class="`my-0 card-button`"
