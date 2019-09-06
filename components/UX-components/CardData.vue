@@ -187,9 +187,16 @@
                   <a 
                     class="white--text favorites-text-link"
                     :href="itemData[ favField.linkFieldCode ]"
+                    target="_blank"
                     >
                     {{ itemData[ favField.textFieldCode ] }}
                   </a>
+                  <!-- <a 
+                    class="white--text favorites-text-link"
+                    :href="itemData[ favField.linkFieldCode ]"
+                    >
+                    {{ itemData[ favField.textFieldCode ] }}
+                  </a> -->
                 </span>
               </p>
 
