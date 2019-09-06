@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-08 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-09 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -217,6 +217,18 @@
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
                   </a> -->
+
+                  <v-btn
+                    :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
+                    flat
+                    icon
+                    @click="testLink = !testLink"
+                    >
+                    <v-icon
+                      >
+                      close
+                    </v-icon>
+                  </v-btn>
 
                 </span>
               </p>
@@ -320,7 +332,7 @@
               class="mb-0 light-letter-spacing"
               >
               {{ $t('cards.findMore') }}
-              - {{ triggerFind }} -
+              <!-- - {{ triggerFind }} - -->
             </p>
 
             <v-btn
