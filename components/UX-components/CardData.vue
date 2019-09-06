@@ -195,7 +195,7 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <v-hover
+                  <!-- <v-hover
                     v-slot:default="{ hover }"
                     v-if="$device.isMobileOrTablet"
                     >
@@ -211,14 +211,14 @@
                         {{ itemData[ favField.textFieldCode ] }}
                       </span>
                     </v-btn>
-                  </v-hover>
+                  </v-hover> -->
 
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
 
-                  <v-hover
+                    <!-- v-if="!$device.isMobileOrTablet" -->
+                  <!-- <v-hover
                     v-slot:default="{ hover }"
-                    v-if="!$device.isMobileOrTablet"
-                    >
+                    > -->
                     <a 
                       class="white--text"
                       @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
@@ -229,7 +229,7 @@
                         {{ itemData[ favField.textFieldCode ] }}
                       </span>
                     </a>
-                  </v-hover>
+                  <!-- </v-hover> -->
 
                   <!-- DEBUG -->
                   <!-- <v-hover
