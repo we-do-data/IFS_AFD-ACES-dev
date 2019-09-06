@@ -167,8 +167,8 @@
             <div
               :class="`text-xs-center`"
               >
-              testLink : {{ testLink }}<br>
-              linkOpenTxt-05 : <br><code>{{ linkOpenTxt }}</code><br>
+              testLink : <code>{{ testLink }}</code><br>
+              linkOpenTxt-06 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -198,7 +198,7 @@
                     small
                     class="card-btn-text white--text ma-0"
                     color="transprent"
-                    @click.prevent="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                    @click="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <span 
                       class="favorites-text-link"
