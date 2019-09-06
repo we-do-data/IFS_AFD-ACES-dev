@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-11 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-12 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -198,7 +198,7 @@
                     small
                     class="card-btn-text white--text ma-0"
                     color="transprent"
-                    @click="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                    @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <span 
                       class="favorites-text-link"
@@ -221,7 +221,7 @@
                   <v-btn
                     :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
                     flat
-                    @click.prevent.stop="testLink = !testLink; openLink( itemData[ favField.linkFieldCode ] )"
+                    @click.prevent.stop="testLink = !testLink; switchFavorite(); openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <!-- <v-icon
                       >
