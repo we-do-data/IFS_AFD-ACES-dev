@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-13 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-14 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -193,7 +193,7 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <v-btn 
+                  <!-- <v-btn 
                     flat
                     small
                     class="card-btn-text white--text ma-0"
@@ -205,36 +205,50 @@
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </v-btn>
+                  </v-btn> -->
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
-                  <!-- <a 
+                  <a 
                     class="white--text favorites-text-link"
-                    @click="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                    @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <span 
                       class="favorites-text-link"
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </a> -->
+                  </a>
 
                   <v-hover
                     v-slot:default="{ hover }"
                     >
                     <v-btn
-                      :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
+                      :class="`card-button`"
                       flat
+                      small
                       @click.prevent.stop="testLink = !testLink; switchFavorite(); openLink( itemData[ favField.linkFieldCode ] )"
                       >
-                      <!-- <v-icon
-                        >
-                        close
-                      </v-icon> -->
                       <span 
                         class="favorites-text-link"
                         >
                         test
                       </span>
+                    </v-btn>
+                  </v-hover>
+
+                  <v-hover
+                    v-slot:default="{ hover }"
+                    >
+                    <v-btn
+                      :class="`card-button`"
+                      flat
+                      icon
+                      small
+                      @click.prevent.stop="testLink = !testLink; switchFavorite(); openLink( itemData[ favField.linkFieldCode ] )"
+                      >
+                      <v-icon
+                        >
+                        favorite
+                      </v-icon>
                     </v-btn>
                   </v-hover>
 
@@ -656,6 +670,8 @@ export default {
     openLink( itemLink ){
       this.linkOpenTxt = itemLink
       let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
+      
+      //  window.open( itemLink, isExternal )
       // let win = window.open( itemLink, isExternal )
       // win.focus()
     }
