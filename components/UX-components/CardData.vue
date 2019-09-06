@@ -164,11 +164,12 @@
             :style="`max-height:${ cardHeights['resources'] }`"
             >
 
-            <span
+            <div
               :class="`text-xs-center`"
               >
-              linkOpenTxt-04 : {{ linkOpenTxt }}<br>
-            </span>
+              testLink : {{ testLink }}<br>
+              linkOpenTxt-05 : <br><code>{{ linkOpenTxt }}</code><br>
+            </div>
 
             <div
               v-for="favField in resourcesList.favFields"
@@ -192,21 +193,21 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <!-- <v-btn 
+                  <v-btn 
                     flat
                     small
                     class="card-btn-text white--text ma-0"
                     color="transprent"
-                    @click="openLink( itemData[ favField.linkFieldCode ] )"
+                    @click.prevent="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <span 
                       class="favorites-text-link"
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </v-btn> -->
+                  </v-btn>
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
-                  <a 
+                  <!-- <a 
                     class="white--text favorites-text-link"
                     @click.prevent="openLink( itemData[ favField.linkFieldCode ] )"
                     >
@@ -215,7 +216,7 @@
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </a>
+                  </a> -->
                 </span>
               </p>
 
@@ -443,7 +444,8 @@ export default {
       triggerFav : false,
       triggerFind : false,
 
-       linkOpenTxt : false,
+      linkOpenTxt : false,
+      testLink : false,
 
     }
   },
