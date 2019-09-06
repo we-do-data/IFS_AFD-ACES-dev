@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-17 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-19 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
