@@ -164,12 +164,12 @@
             :style="`max-height:${ cardHeights['resources'] }`"
             >
 
-            <div
+            <!-- <div
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-22 : <br><code>{{ linkOpenTxt }}</code><br>
-            </div>
+              linkOpenTxt-23 : <br><code>{{ linkOpenTxt }}</code><br>
+            </div> -->
 
             <div
               v-for="favField in resourcesList.favFields"
@@ -192,31 +192,11 @@
 
                 <span
                   >
-                    <!-- :href="itemData[ favField.linkFieldCode ]"
-                    target="_blank" -->
-                  <!-- <v-hover
-                    v-slot:default="{ hover }"
-                    v-if="$device.isMobileOrTablet"
-                    >
-                    <v-btn 
-                      flat
-                      small
-                      class="card-btn-text white--text ma-0"
-                      @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
-                      >
-                      <span 
-                        :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
-                        >
-                        {{ itemData[ favField.textFieldCode ] }}
-                      </span>
-                    </v-btn>
-                  </v-hover> -->
-
-                    <!-- :href="itemData[ favField.linkFieldCode ]" -->
 
                   <!-- <v-hover
                     v-slot:default="{ hover }"
                     > -->
+                    
                     <a 
                       v-if="!$device.isMobileOrTablet"
                       class="white--text"
@@ -229,7 +209,21 @@
                       </span>
                     </a>
 
-                    <span 
+                    <v-btn 
+                      v-if="$device.isMobileOrTablet"
+                      flat
+                      small
+                      class="card-btn-text white--text ma-0"
+                      @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                      >
+                      <span 
+                        :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </span>
+                    </v-btn>
+
+                    <!-- <span 
                       v-if="$device.isMobileOrTablet"
                       class="white--text"
                       >
@@ -238,33 +232,21 @@
                         >
                         {{ itemData[ favField.textFieldCode ] }}
                       </span>
-                    </span>
+                    </span> -->
 
                   <!-- </v-hover> -->
 
+
+
+
                   <!-- DEBUG -->
+
+
                   <!-- <v-hover
                     v-slot:default="{ hover }"
-                    >
+                    > -->
                     <v-btn
-                      :class="`card-button`"
-                      flat
-                      small
-                      @click.prevent.stop="testLink = !testLink; switchFavorite(); openLink( itemData[ favField.linkFieldCode ] )"
-                      >
-                      <span 
-                        class="favorites-text-link"
-                        >
-                        test
-                      </span>
-                    </v-btn>
-                  </v-hover> -->
-
-                  <v-hover
-                    v-slot:default="{ hover }"
-                    v-if="$device.isMobileOrTablet"
-                    >
-                    <v-btn
+                      v-if="$device.isMobileOrTablet"
                       :class="`my-0 card-button`"
                       flat
                       icon
@@ -278,7 +260,7 @@
                         open_in_new
                       </v-icon>
                     </v-btn>
-                  </v-hover>
+                  <!-- </v-hover> -->
 
                 </span>
               </p>
