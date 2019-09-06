@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-19 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-21 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -215,11 +215,11 @@
 
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
 
-                    <!-- v-if="!$device.isMobileOrTablet" -->
                   <!-- <v-hover
                     v-slot:default="{ hover }"
                     > -->
                     <a 
+                      v-if="!$device.isMobileOrTablet"
                       class="white--text"
                       @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                       >
@@ -229,6 +229,18 @@
                         {{ itemData[ favField.textFieldCode ] }}
                       </span>
                     </a>
+
+                    <span 
+                      class="white--text"
+                      v-if="$device.isMobileOrTablet"
+                      >
+                      <span 
+                        :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </span>
+                    </span>
+
                   <!-- </v-hover> -->
 
                   <!-- DEBUG -->
@@ -250,9 +262,9 @@
                   </v-hover> -->
 
                   <!-- DEBUG -->
-                    <!-- v-if="$device.isMobileOrTablet" -->
                   <v-hover
                     v-slot:default="{ hover }"
+                    v-if="$device.isMobileOrTablet"
                     >
                     <v-btn
                       :class="`my-0 card-button`"
