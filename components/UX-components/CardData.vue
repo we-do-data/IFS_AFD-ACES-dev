@@ -164,6 +164,8 @@
             :style="`max-height:${ cardHeights['resources'] }`"
             >
 
+           linkOpenTxt : {{ linkOpenTxt }}<br>
+
             <div
               v-for="favField in resourcesList.favFields"
               :key="favField.textFieldCode"
@@ -185,11 +187,14 @@
                 <span
                   >
                   <a 
-                    class="white--text favorites-text-link"
-                    :href="itemData[ favField.linkFieldCode ]"
-                    target="_blank"
+                    class=" white--text favorites-text-link"
+                    @click="openLink( itemData[ favField.linkFieldCode ] )"
                     >
-                    {{ itemData[ favField.textFieldCode ] }}
+                    <!-- :href="itemData[ favField.linkFieldCode ]"
+                    target="_blank" -->
+                    <span>
+                      {{ itemData[ favField.textFieldCode ] }}
+                    </span>
                   </a>
                   <!-- <a 
                     class="white--text favorites-text-link"
@@ -424,6 +429,8 @@ export default {
       triggerFav : false,
       triggerFind : false,
 
+       linkOpenTxt : false,
+
     }
   },
 
@@ -607,6 +614,12 @@ export default {
       else { return count }
 
     },
+
+    openLink( itemLink ){
+      this.linkOpenTxt = itemLink
+      window.open( itemLink, '_blank' )
+
+    }
 
   }
 }
