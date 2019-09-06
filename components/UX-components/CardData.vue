@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-07 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-08 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -193,7 +193,7 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <!-- <v-btn 
+                  <v-btn 
                     flat
                     small
                     class="card-btn-text white--text ma-0"
@@ -205,9 +205,9 @@
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </v-btn> -->
+                  </v-btn>
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
-                  <a 
+                  <!-- <a 
                     class="white--text favorites-text-link"
                     @click="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
@@ -216,7 +216,8 @@
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </a>
+                  </a> -->
+
                 </span>
               </p>
 
@@ -319,6 +320,7 @@
               class="mb-0 light-letter-spacing"
               >
               {{ $t('cards.findMore') }}
+              - {{ triggerFind }} -
             </p>
 
             <v-btn
@@ -634,7 +636,7 @@ export default {
     openLink( itemLink ){
       this.linkOpenTxt = itemLink
       let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
-      let win = window.open( itemLink, isExternal )
+      // let win = window.open( itemLink, isExternal )
       // win.focus()
     }
 
