@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-21 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-22 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -182,14 +182,13 @@
                 v-if="itemData[ favField.linkFieldCode ]"
                 :class="`favorites-text mb-${ $device.isMobileOrTablet ? 1 : 2 }`"
                 >
+
                 <v-icon 
                   small
                   left
                   >
                   arrow_forward
                 </v-icon>
-
-
 
                 <span
                   >
@@ -231,8 +230,8 @@
                     </a>
 
                     <span 
-                      class="white--text"
                       v-if="$device.isMobileOrTablet"
+                      class="white--text"
                       >
                       <span 
                         :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
@@ -261,7 +260,6 @@
                     </v-btn>
                   </v-hover> -->
 
-                  <!-- DEBUG -->
                   <v-hover
                     v-slot:default="{ hover }"
                     v-if="$device.isMobileOrTablet"
