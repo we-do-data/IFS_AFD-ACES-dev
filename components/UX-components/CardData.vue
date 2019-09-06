@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-06 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-07 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -193,7 +193,7 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <v-btn 
+                  <!-- <v-btn 
                     flat
                     small
                     class="card-btn-text white--text ma-0"
@@ -205,18 +205,18 @@
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </v-btn>
+                  </v-btn> -->
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
-                  <!-- <a 
+                  <a 
                     class="white--text favorites-text-link"
-                    @click.prevent="openLink( itemData[ favField.linkFieldCode ] )"
+                    @click="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <span 
                       class="favorites-text-link"
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </a> -->
+                  </a>
                 </span>
               </p>
 
@@ -635,7 +635,7 @@ export default {
       this.linkOpenTxt = itemLink
       let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
       let win = window.open( itemLink, isExternal )
-      win.focus()
+      // win.focus()
     }
 
   }
