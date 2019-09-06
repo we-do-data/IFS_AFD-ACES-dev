@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-16 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-17 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -195,23 +195,30 @@
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                  <!-- <v-btn 
-                    flat
-                    small
-                    class="card-btn-text white--text ma-0"
-                    color="transprent"
-                    @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                  <v-hover
+                    v-slot:default="{ hover }"
+                    v-if="$device.isMobileOrTablet"
                     >
-                    <span 
-                      class="favorites-text-link"
+                    <v-btn 
+                      flat
+                      small
+                      class="card-btn-text white--text ma-0"
+                      color="transparent"
+                      @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
                       >
-                      {{ itemData[ favField.textFieldCode ] }}
-                    </span>
-                  </v-btn> -->
+                      <span 
+                        :class="`favorites-text${ $device.isMobileOrTablet? '' : '-link' }`"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </span>
+                    </v-btn>
+                  </v-hover>
+
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
 
                   <v-hover
                     v-slot:default="{ hover }"
+                    v-if="!$device.isMobileOrTablet"
                     >
                     <a 
                       class="white--text"
