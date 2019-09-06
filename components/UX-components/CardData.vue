@@ -164,7 +164,11 @@
             :style="`max-height:${ cardHeights['resources'] }`"
             >
 
-           linkOpenTxt : {{ linkOpenTxt }}<br>
+            <span
+              :class="`text-xs-center`"
+              >
+              linkOpenTxt-bis: {{ linkOpenTxt }}<br>
+            </span>
 
             <div
               v-for="favField in resourcesList.favFields"
