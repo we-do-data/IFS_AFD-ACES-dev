@@ -167,7 +167,7 @@
             <span
               :class="`text-xs-center`"
               >
-              linkOpenTxt-bis: {{ linkOpenTxt }}<br>
+              linkOpenTxt-03 : {{ linkOpenTxt }}<br>
             </span>
 
             <div
@@ -190,16 +190,21 @@
 
                 <span
                   >
-                  <a 
-                    class=" white--text favorites-text-link"
+                  <v-btn 
+                    flat
+                    small
+                    class="card-btn-text white--text ma-0"
+                    color="transprent"
                     @click="openLink( itemData[ favField.linkFieldCode ] )"
                     >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
                     target="_blank" -->
-                    <span>
+                    <span 
+                      class="favorites-text-link"
+                      >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </a>
+                  </v-btn>
                   <!-- <a 
                     class="white--text favorites-text-link"
                     :href="itemData[ favField.linkFieldCode ]"
