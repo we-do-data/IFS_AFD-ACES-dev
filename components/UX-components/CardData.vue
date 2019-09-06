@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-09 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-10 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -221,13 +221,17 @@
                   <v-btn
                     :class="`mb-2 card-button ma-0 ${ findMoreActive? 'close-to-plus-out' : 'close-to-plus-in roll-in' }`"
                     flat
-                    icon
                     @click="testLink = !testLink"
                     >
-                    <v-icon
+                    <!-- <v-icon
                       >
                       close
-                    </v-icon>
+                    </v-icon> -->
+                    <span 
+                      class="favorites-text-link"
+                      >
+                      test btn
+                    </span>
                   </v-btn>
 
                 </span>
@@ -360,26 +364,26 @@
             :class="`text-xs-center ${ $device.isMobileOrTablet? 'pb-0' : 'pb-2' }`"
             >
 
-              <v-hover
-                v-slot:default="{ hover }"
+            <v-hover
+              v-slot:default="{ hover }"
+              >
+              <v-btn 
+                :class="`card-button ${ hover ? 'pink lighten-5' : 'white'} second-border`"
+                icon
+                flat
+                @click.prevent.stop="switchFavorite()"
                 >
-                <v-btn 
-                  :class="`card-button ${ hover ? 'pink lighten-5' : 'white'} second-border`"
-                  icon
-                  flat
-                  @click.prevent.stop="switchFavorite()"
+
+                  <!-- :color="isFavorite ? 'pink' : 'grey' " -->
+                <v-icon
+                  color="pink"
+                  small
                   >
+                  {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
+                </v-icon>
 
-                    <!-- :color="isFavorite ? 'pink' : 'grey' " -->
-                  <v-icon
-                    color="pink"
-                    small
-                    >
-                    {{ isFavorite ? 'fas fa-heart' : 'far fa-heart' }}
-                  </v-icon>
-
-                </v-btn>
-              </v-hover>
+              </v-btn>
+            </v-hover>
 
             <!-- </v-layout> -->
           </v-flex>
