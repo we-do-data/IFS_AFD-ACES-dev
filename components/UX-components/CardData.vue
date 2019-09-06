@@ -167,7 +167,7 @@
             <span
               :class="`text-xs-center`"
               >
-              linkOpenTxt-03 : {{ linkOpenTxt }}<br>
+              linkOpenTxt-04 : {{ linkOpenTxt }}<br>
             </span>
 
             <div
@@ -190,27 +190,32 @@
 
                 <span
                   >
-                  <v-btn 
+                    <!-- :href="itemData[ favField.linkFieldCode ]"
+                    target="_blank" -->
+                  <!-- <v-btn 
                     flat
                     small
                     class="card-btn-text white--text ma-0"
                     color="transprent"
                     @click="openLink( itemData[ favField.linkFieldCode ] )"
                     >
-                    <!-- :href="itemData[ favField.linkFieldCode ]"
-                    target="_blank" -->
                     <span 
                       class="favorites-text-link"
                       >
                       {{ itemData[ favField.textFieldCode ] }}
                     </span>
-                  </v-btn>
-                  <!-- <a 
+                  </v-btn> -->
+                    <!-- :href="itemData[ favField.linkFieldCode ]" -->
+                  <a 
                     class="white--text favorites-text-link"
-                    :href="itemData[ favField.linkFieldCode ]"
+                    @click.prevent="openLink( itemData[ favField.linkFieldCode ] )"
                     >
-                    {{ itemData[ favField.textFieldCode ] }}
-                  </a> -->
+                    <span 
+                      class="favorites-text-link"
+                      >
+                      {{ itemData[ favField.textFieldCode ] }}
+                    </span>
+                  </a>
                 </span>
               </p>
 
@@ -627,7 +632,8 @@ export default {
     openLink( itemLink ){
       this.linkOpenTxt = itemLink
       let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
-      window.open( itemLink, isExternal )
+      let win = window.open( itemLink, isExternal )
+      win.focus()
     }
 
   }
