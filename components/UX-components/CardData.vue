@@ -168,7 +168,7 @@
               :class="`text-xs-center`"
               >
               testLink : <code>{{ testLink }}</code><br>
-              linkOpenTxt-14 : <br><code>{{ linkOpenTxt }}</code><br>
+              linkOpenTxt-15 : <br><code>{{ linkOpenTxt }}</code><br>
             </div>
 
             <div
@@ -189,6 +189,8 @@
                   arrow_forward
                 </v-icon>
 
+
+
                 <span
                   >
                     <!-- :href="itemData[ favField.linkFieldCode ]"
@@ -207,18 +209,24 @@
                     </span>
                   </v-btn> -->
                     <!-- :href="itemData[ favField.linkFieldCode ]" -->
-                  <a 
-                    class="white--text favorites-text-link"
-                    @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
-                    >
-                    <span 
-                      class="favorites-text-link"
-                      >
-                      {{ itemData[ favField.textFieldCode ] }}
-                    </span>
-                  </a>
 
                   <v-hover
+                    v-slot:default="{ hover }"
+                    >
+                    <a 
+                      class="white--text favorites-text-link"
+                      @click.prevent.stop="testLink = !testLink ; openLink( itemData[ favField.linkFieldCode ] )"
+                      >
+                      <span 
+                        class="favorites-text-link"
+                        >
+                        {{ itemData[ favField.textFieldCode ] }}
+                      </span>
+                    </a>
+                  </v-hover>
+
+                  <!-- DEBUG -->
+                  <!-- <v-hover
                     v-slot:default="{ hover }"
                     >
                     <v-btn
@@ -233,21 +241,24 @@
                         test
                       </span>
                     </v-btn>
-                  </v-hover>
+                  </v-hover> -->
 
+                  <!-- DEBUG -->
                   <v-hover
                     v-slot:default="{ hover }"
                     >
                     <v-btn
-                      :class="`card-button`"
+                      :class="`my-0 card-button`"
                       flat
                       icon
                       small
-                      @click.prevent.stop="testLink = !testLink; switchFavorite(); openLink( itemData[ favField.linkFieldCode ] )"
+                      @click.prevent.stop="testLink = !testLink; openLink( itemData[ favField.linkFieldCode ] )"
                       >
                       <v-icon
+                        small
                         >
-                        favorite
+                        <!-- fas fa-link -->
+                        open_in_new
                       </v-icon>
                     </v-btn>
                   </v-hover>
