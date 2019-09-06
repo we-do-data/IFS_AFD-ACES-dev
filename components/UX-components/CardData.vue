@@ -617,8 +617,8 @@ export default {
 
     openLink( itemLink ){
       this.linkOpenTxt = itemLink
-      window.open( itemLink, '_blank' )
-
+      let isExternal = this.$device.isMobileOrTablet ? '_self' : '_blank'
+      window.open( itemLink, isExternal )
     }
 
   }
