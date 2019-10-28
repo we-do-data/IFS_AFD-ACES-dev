@@ -82,9 +82,9 @@
 
         </v-card-title>
 
-
             <!-- v-show="!findMoreActive" -->
             <!-- :class="`${ findMoreActive ? '' : '' }`" -->
+
         <!-- TEXT CONTENTS -->
         <!-- <transition name="fadeit"> -->
         <v-layout 
@@ -108,11 +108,11 @@
               <!-- resourcesList : {{ resourcesList }} <br> -->
               <!-- cookieContent : {{ cookieContent.locale }} <br> -->
               <!-- locale (store) : {{ locale }}<br> -->
-              <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
+              isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br>
               <!-- device : <code>{{ $device }}</code><br> -->
               <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
               <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
-              <!-- this.$device.isMobileOrTablet : {{ this.$device.isMobileOrTablet }}<br> -->
+              this.$device.isMobileOrTablet : <code>{{ this.$device.isMobileOrTablet }}</code><br>
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
