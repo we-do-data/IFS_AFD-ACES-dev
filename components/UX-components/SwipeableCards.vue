@@ -308,6 +308,7 @@ export default {
       // setCurrentCardId: 'cards/setCurrentCardId',
       setCurrentCardIndex: 'cards/setCurrentCardIndex',
       setIsClicking: 'cards/setIsClicking',
+      setHadClick: 'cards/setHadClick',
     }),
 
     // compute card width

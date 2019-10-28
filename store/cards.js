@@ -7,7 +7,8 @@ export const state = () => ({
 
   currentCardIndex : 0,
 
-  isClicking : false,
+  isClicking : undefined,
+  hadClick : false,
 
 })
 
@@ -59,6 +60,10 @@ export const mutations = {
   setIsClicking(state, isClick){
     console.log("S-cards-M-setIsClicking / isClick : ", isClick )
     state.isClicking = isClick
+  },
+  setHadClick(state){
+    console.log("S-cards-M-setHadClick ..." )
+    state.hadClick != state.hadClick
   },
 
 }

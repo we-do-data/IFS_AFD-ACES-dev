@@ -141,6 +141,7 @@ export default {
 
     let store = this.$store
     let setClicking = this.setIsClicking
+    let setHadClick = this.setHadClick
 
     const element = this.$refs.interactElement
 
@@ -189,9 +190,9 @@ export default {
     })
 
     .on('tap', function(event) {
-      // store.commit( 'cards/setIsClicking', 'interactDraggable / tap' )
-      setClicking( 'interactDraggable / tap' )
       if ( IsMobileOrTablet ){
+        setClicking( 'interactDraggable / tap' )
+        setHadClick()
         event.preventDefault()
         event.stopImmediatePropagation()
         console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
@@ -200,12 +201,14 @@ export default {
     }, true )
 
     .on('click', function(event) {
-      // store.commit( 'cards/setIsClicking', 'interactDraggable / click' )
-      setClicking( 'interactDraggable / click' )
-      event.preventDefault()
-      event.stopImmediatePropagation()
-      console.log('C-InteractDraggable-on-click / event.target : ', event.target)
-      event.target.__vue__.$el.click()
+      if ( !IsMobileOrTablet ){
+        console.log('C-InteractDraggable-on-click / event.target : ', event.target)
+        setClicking( 'interactDraggable / click' )
+        event.preventDefault()
+        event.stopImmediatePropagation()
+        setHadClick()
+        event.target.__vue__.$el.click()
+      }
     }, true )
 
   },
@@ -219,6 +222,7 @@ export default {
 
     ...mapMutations({
       setIsClicking: 'cards/setIsClicking',
+      setHadClick: 'cards/setHadClick',
     }),
 
     interactClick() {
