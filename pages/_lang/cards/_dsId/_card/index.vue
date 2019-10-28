@@ -1,7 +1,6 @@
 <template>
 
-  <SwipeableCards
-    >
+  <SwipeableCards>
   </SwipeableCards>
 
 </template>
@@ -14,18 +13,19 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import ArrayShuffler from '~/utils/shuffler.js'
 
 import SwipeableCards from '~/components/UX-components/SwipeableCards'
-import FooterCards from '~/components/NAV-components/footer-cards'
+// import FooterCards from '~/components/NAV-components/footer-cards'
 
 export default {
 
   name: "CardsPage",
 
   layout : "cardLayout",
+
   transition: 'static',
 
   components: {
     SwipeableCards,
-    FooterCards
+    // FooterCards
   },
 
   middleware : [
@@ -130,7 +130,6 @@ export default {
 
     }),
 
-
   },
 
   methods: {
@@ -143,31 +142,31 @@ export default {
       resetCardIndex: 'cards/resetCurrentCardIndex'
     }),
 
-    reloadPreviousItem(){
-      console.log( "P-CardsPage-reloadPreviousItem... " )
-    },
+    // reloadPreviousItem(){
+    //   console.log( "P-CardsPage-reloadPreviousItem... " )
+    // },
 
-
-
-    handleCardAccepted() {
-      console.log("handleCardAccepted");
-    },
-    handleCardRejected() {
-      console.log("handleCardRejected");
-    },
-    handleCardSkipped() {
-      console.log("handleCardSkipped");
-    },
-    removeCardFromDeck() {
-      this.visibleCards.shift();
-    }
+    // handleCardAccepted() {
+    //   console.log("handleCardAccepted");
+    // },
+    // handleCardRejected() {
+    //   console.log("handleCardRejected");
+    // },
+    // handleCardSkipped() {
+    //   console.log("handleCardSkipped");
+    // },
+    // removeCardFromDeck() {
+    //   this.visibleCards.shift();
+    // }
     
   },
 
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+  @import '~assets/css/colors-IFS_AFD.scss';
 
   .skip-navbar-more{
     margin-top: 75px;
@@ -180,6 +179,31 @@ export default {
     bottom:0;
     width: 100%;
     text-align: center;
+  }
+
+  .card-color-1{
+    background-color : $card-orange !important;
+  }
+  .card-color-2{
+    background-color : $card-pink !important;
+  }
+  .card-color-3{
+    background-color : $card-turquoise !important;
+  }
+  .card-color-4{
+    background-color : $card-beige !important;
+  }
+  .card-color-5{
+    background-color : $card-red !important;
+  }
+  .card-color-6{
+    background-color : $card-yellow !important;
+  }
+  .card-color-7{
+    background-color : $card-green !important;
+  }
+  .card-color-8{
+    background-color : $card-blue !important;
   }
 
 </style>

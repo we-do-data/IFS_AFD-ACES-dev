@@ -9,8 +9,23 @@
 
   "intro" : {
     "chooseLang" : "Choose your language",
+
     "catchPhrase" : "Use the development ACES cards from AFD to boost your creativity",
-    "getAnAce" : "Get an ACE"
+    "catchPhrase_1" : "Play with ",
+    "catchPhrase_2" : "transitions",
+
+    "pitchPhrase_1" : "Boost your creativity",
+    "pitchPhrase_2" : "on your transition projects",
+
+    "getAnAce" : "Get a card"
+  },
+
+  "banner" : {
+    "bannerMessage" : "This website uses cookies to ensure you the best experience on your mobile",
+    "gotIt" : "Got it",
+    "learnMore" : "Learn more",
+    "bannerInfos" : "playwithtransitions.cards records information in users’ cookies to store favorite cards and improve the use of the application.",
+    "bannerInfosBis" : "By continuing your navigation, you agree to the use of cookies for navigation and audience measurement"
   },
 
   "basicDict" : {
@@ -51,6 +66,7 @@
 
   "cards" : {
     "findMore": "find more",
+    "noRessources": "no ressources available",
     "previous" : "previous",
     "next" : "next"
   },
@@ -59,19 +75,24 @@
     "title": "About",
     "headline" : "headline of about page",
     "introduction": "This page is made to give you more informations.",
-    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
 
   "credits" : {
     "title" : "Credits",
     "headline" : "headline of credits page",
     "introduction" : "This page lists the credits",
-    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
 
   "favorites" : {
-    "title" : "Favorite ACES",
+    "title_singular" : "Favorite card",
+    "title_empty" : "No favorite card yet",
+    "title" : "Favorite cards",
     "headline" : "headline of favorites page",
+    "introduction_empty_01" : "Browse the cards,",
+    "introduction_empty_02" : "if you press the 'like' button",
+    "introduction_empty_03" : "your favorite cards will appear here",
     "introduction" : "This page lists your favorite cards"
   },
 
@@ -89,6 +110,10 @@
     "rowsperpage" : "rows per page",
     "of": "of",
     "search" : "search"
+  },
+
+  "socials" : {
+    "message" : "Boost your creativity on your transition projects @AFD_France playwithtransitions.cards"
   }
   
 }

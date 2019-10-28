@@ -1,25 +1,13 @@
-// Gradient Splashscreen :
-$color-splashscreen-start: #2e2265;
-$color-splashscreen-end: #c4281a;
+// Primary / splashscreen
+$primary: #2e2265;
+$primary-light: #572a99;
+$primary-smooth: #cbc8d8;
+$menu-off: #6a6192;
+$main-background-bottom : #c4281a;
 
-.splashscreen-gradient {
-  background-image: linear-gradient($color-splashscreen-start , $color-splashscreen-end) !important;
-}
-// Primary
-$main-background: #2e2265;
-.card-background-color{
-  background-color : $main-background !important;
-}
-
-// Secondary
+// Secondary / gradient button
 $main-secondary : #de4a5b;
-
-// Gradient btn :
-$color-btn-start: #de4a5b;
-$color-btn-end: #863561;
-.btn-gradient {
-  background-image: linear-gradient(to right, $color-btn-start , $color-btn-end) !important;
-}
+$gradient-btn-end: #863561;
 
 // cards colors :
 $card-orange : #e76727;
@@ -30,3 +18,83 @@ $card-red : #de4a5b;
 $card-yellow : #f1a21e;
 $card-green : #3dad4b;
 $card-blue : #5599d6;
+
+// cookies
+$cookie-background : #110D26;
+
+// Needs latest Compass, add '@import "compass"' to your scss
+// Permalink - use to edit and share this gradient:
+// https://colorzilla.com/gradient-editor/#2e2265+27,2e2265+100&0+27,0.5+99
+// @include filter-gradient(#002e2265, #802e2265, vertical); // IE6-9
+// @include background-image(linear-gradient(top,  rgba(46,34,101,0) 27%,rgba(46,34,101,0.5) 99%,rgba(46,34,101,0.5) 100%));
+
+// full white background
+.white-background{
+  background: white !important;
+}
+
+// Gradient Splashscreen :
+.splashscreen-gradient {
+  background-image: linear-gradient( $primary , $main-background-bottom) !important;
+}
+
+.card-background-color{
+  background-color : $primary !important;
+}
+
+// Gradient btn :
+.btn-gradient {
+  background-image: linear-gradient(to left, $main-secondary , $gradient-btn-end) !important;
+  box-shadow : none !important;
+}
+.btn-gradient:hover {
+  background-image: linear-gradient(to left, $gradient-btn-end , $primary) !important;
+  color : white !important;
+}
+
+.btn-footer:hover{
+  background-color : $primary !important;
+  color : white !important;
+}
+
+.btn-simple:hover{
+  background-color : white !important;
+  color :$primary !important;
+}
+
+// color AFS special
+.primary-smooth{
+  color : $primary-smooth !important;
+}
+.menu-off{
+  color : $menu-off !important;
+}
+.menu-divider{
+  &-on-white{
+    border-color: $menu-off !important;
+  }
+  &-on-dark{
+    border-color: $menu-off !important;
+  }
+}
+.divider-smooth{
+  border-color: $primary-smooth !important; 
+}
+
+// gradient texts
+.text-gradient{
+	background: linear-gradient(to left, $main-secondary , $gradient-btn-end) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}
+
+.cookie-background{
+  background-color : $cookie-background !important;
+}
+
+// cf : https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+.bottom-text-shadow{
+  background: -webkit-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

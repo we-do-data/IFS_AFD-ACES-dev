@@ -1,51 +1,56 @@
 <template>
+
+  <v-flex 
+    id="about page"
+    pt-4 mt-4
+    xs10 offset-xs1
+    md8 offset-md2
+    lg6 offset-lg3
+    >
     
-  <!-- <v-layout 
-    class="skip-navbar-content"
-    > -->
+    <p class="text-xs-center headline light-letter-spacing text-uppercase primary--text font-weight-thin mb-0">
+      {{ $t('about.title') }}
+    </p>
 
-    <v-flex 
-      xs10 offset-xs1
-      md8 offset-md2
-      lg6 offset-lg3
-      >
-      
-      <h1 class="text-xs-center">
-        {{ $t('about.title') }}
-      </h1>
-
-      <v-layout justify-center>
-        <v-btn 
-          flat
-          icon
-          color="primary"
-          @click="goBack"
-          >
-          <v-icon>
-            close
-          </v-icon>
-        </v-btn>
-      </v-layout>
-
-      <hr>
-
-      <div 
-        class="limited-height"
+    <v-layout justify-center mb-2>
+      <v-btn 
+        flat
+        icon
+        color="primary"
+        @click="triggerClick"
         >
+        <v-icon>
+          close
+        </v-icon>
+      </v-btn>
+    </v-layout>
 
-        <h3 class="pt-3">
-          {{ $t('about.headline') }}
-        </h3>
+    <v-divider
+      class="divider-smooth"
+      >
+    </v-divider>
 
-        <p class="pt-4">
-          {{ $t('about.content') }}
-        </p>
 
-      </div>
+      <!-- :textCodeHead="'about.headline'"
+      :textCodeContent="'about.content'" -->
+    <OverflownContent
+      :maxHeightPercent="maxHeight"
+      >
 
-    </v-flex>
+      <h3
+        class="pt-3 primary--text">
+        {{ $t( 'about.headline' ) }}
+      </h3>
 
-  <!-- </v-layout> -->
+      <p 
+        class="pt-4 text-static-contents primary--text">
+        {{ $t( 'about.content' ) }}
+      </p>
+
+    </OverflownContent>
+
+
+  </v-flex>
 
 </template>
 
@@ -53,6 +58,8 @@
 <script>
 
 import { mapState, mapGetters, mapActions } from 'vuex'
+
+import OverflownContent from '~/components/UX-components/overflownContent'
 
 export default {
 
@@ -68,6 +75,7 @@ export default {
 
   components: {
     // FooterAbout,
+    OverflownContent,
   },
 
   middleware : [
@@ -80,8 +88,12 @@ export default {
     console.log("P-AboutPage / beforeMount....")
   },
 
+  mounted : function(){
+  },
+
   data() {
     return {
+      maxHeight: .5,
     }
   },
 
@@ -96,14 +108,23 @@ export default {
     ...mapGetters({
 
     }),
+
   },
 
   methods: {
 
+    triggerClick(e){
+      if ( this.isFirstVisit ){
+        this.$router.push('/cards')
+      } else {
+        this.goBack(e)
+      }
+    },
+
     goBack(e){
       e.preventDefault()
       this.$router.back()
-    }
+    },
 
   },
 
@@ -115,11 +136,6 @@ export default {
 
 .skip-navbar-content{
   margin-top: 200px;
-}
-
-.limited-height{
-  max-height: 80vw;
-  overflow-y: auto;
 }
 
 </style>

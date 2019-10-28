@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-prev-M-white" data-name="icon-prev-M-white" viewBox="0 0 21.014 21">
+      <polyline points="6.157 6.371 0.5 6.371 0.5 0.715" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M.5,6.3714,3.4425,3.4289A10.0119,10.0119,0,1,1,.5185,10.5" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+  <title>icon-prev-M-white</title>
+  <use width="21.0136" height="21" transform="translate(8.4864 8.5)" xlink:href="#icon-prev-M-white"/>
+</svg>

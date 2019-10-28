@@ -2,7 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 // import pkg from './package.json'
 
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({ path: '.preprod-protect.env' })
 
 console.log('>>> nuxt.config.js (start) / process.env.NUXT_GSHEET_IDS : ', process.env.NUXT_GSHEET_IDS)
 
@@ -88,6 +90,8 @@ const configApp = {
   host: process.env.NUXT_ENV_HOST,
   port: choosePort(process.env.NUXT_ENV_RUN_MODE),
 
+  isProtected: chooseBooleanMode(process.env.NUXT_ENV_IS_PROTECTED),
+
   // INTERNATIONALIZATION
   defaultLocale: process.env.NUXT_ENV_LOCALE_DEFAULT,
   localesBuild: buildLocales(),
@@ -126,8 +130,8 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: process.env.NUXT_ENV_APP_TITLE + ' - %s' ,
+    title: process.env.NUXT_ENV_APP_TITLE || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -161,6 +165,7 @@ export default {
   router : {
     middleware: [
 
+      'checkCookieAccept',
       'setLocales',
       'checkCookieLocale',
       'i18n',
@@ -201,7 +206,9 @@ export default {
     '~/plugins/vue-touch-events.js',
     // '~/plugins/vh-for-mobile.js',
     '~/plugins/scroll-lock.js',
-    '~/plugins/eventBus'
+    '~/plugins/eventBus',
+    '~/plugins/svg-icons',
+    '~/plugins/vue-html-to-canvas',
   ],
 
   /*
@@ -217,8 +224,15 @@ export default {
 
     'nuxt-device-detect',
     'nuxt-user-agent',
+    
+    'nuxt-svg',
+    // '@nuxtjs/svg-sprite',
 
   ],
+
+  // svgSprite: {
+  //   input: '~/assets/icons/'
+  // },
 
   devModules: [
     '@nuxtjs/vuetify'
@@ -256,6 +270,7 @@ export default {
     */
     // vendor: ['vue-i18n'],
     extend(config, ctx) {
+
     }
   }
 }

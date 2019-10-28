@@ -1,2 +1,90 @@
 $fs-h2: rem(24px);
 $fw-bold: 700;
+
+// conversion from .ttf with :  https://www.font-converter.net
+
+@import "../fonts/AbrilFatface-Regular/style.css";
+@import "../fonts/Roboto-Black/style.css";
+@import "../fonts/Roboto-Regular/style.css";
+@import "../fonts/RobotoSlab-Bold/style.css";
+
+.quote-text{
+  font-family: "AbrilFatface-Regular" !important;
+  letter-spacing: .01em !important; 
+}
+.half-opacity{
+  opacity : .5;
+}
+.title-export-spacing{
+  letter-spacing: .1em !important; 
+}
+.light-opacity{
+  opacity : .5;
+  // font-family: "Roboto-Black" !important;
+  letter-spacing: .15em !important; 
+}
+.card-btn-text{
+  font-family: "RobotoSlab-Bold" !important;
+  letter-spacing: .05em !important; 
+  text-transform: none !important;
+}
+.card-btn-text-raw{
+  text-transform: none !important;
+}
+.light-letter-spacing{
+  font-family: "Roboto-Regular" !important;
+  letter-spacing: .05em !important; 
+}
+.export-app-title{
+  font-family: "Roboto-Regular" !important;
+  text-transform: none !important;
+}
+.text-menu{
+  font-family: "Roboto-Regular" !important;
+  letter-spacing: .1em !important; 
+}
+.text-menu-off{
+  font-weight: 500 !important;
+}
+.text-menu-on{
+  font-weight: 900 !important;
+}
+.text-static-contents{
+  font-family: "Roboto-Regular" !important;
+  letter-spacing: .02em !important; 
+}
+.favorites-text{
+  font-family: "RobotoSlab-Bold" !important;
+  letter-spacing: .02em !important; 
+  opacity: 1 !important;
+  &-link{
+    text-decoration: none;
+    border-bottom: 1px solid white;
+  }
+}
+.favorites-text:hover{
+  opacity: .5 !important;
+}
+
+.title-app{
+  letter-spacing: .1em !important; 
+  &-mobile{
+    font-size: 14px !important;
+  }
+  &-tablet{
+    font-size: 16px !important;
+  }
+}
+
+.display-2-bis{
+  font-size: 40px !important;
+  line-height: 46px !important;
+}
+.display-half{
+  font-size: 30px !important;
+  line-height: 34px !important;
+}
+.headline-custom{
+  font-size: 22px !important;
+  line-height: 31px !important;
+}

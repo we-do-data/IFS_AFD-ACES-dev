@@ -12,7 +12,7 @@ export const NavbarConfig = Object.freeze({
 
     { 
       icon: 'apps',
-      to: '/',
+      to: '/intro',
       code : 'n_home',
       is_divider : false,
     },

@@ -20,6 +20,7 @@ export const state = () => ({
   // UX OPTIONS
   showNav : false,
   firstVisit: true,
+  isCookieBannerVisible : true,
 
   cardWindow: {
     width: 0,
@@ -41,6 +42,14 @@ export const getters = {
   getCurrentLocale : (state, getters) => {
     console.log("S-index-G-getCurrentLocale / state.locale : ", state.locale)
     return state.locale ? state.locale : getters.getDefaultLocale
+  },
+
+  getLocalesCodes : (state, getters) => {
+    console.log("S-index-G-getLocalesCodes / state.locales : ", state.locales)
+    let localesCodes = state.locales.map( loc => {
+      return loc.code
+    })
+    return localesCodes
   },
 
   // UX GETTERS
@@ -112,6 +121,10 @@ export const mutations = {
     state.cardWindow.height = cardWithHeight.height - mobileHeightCorrection
   },
 
+  disableCookieBanner(state){
+    state.isCookieBannerVisible = false
+  }
+
 }
 
 export const actions = {
@@ -125,7 +138,13 @@ export const actions = {
     // commit('switchLocale', localeObject)
     // state.locale = localeCode
     commit('switchLocaleCode', localeCode)
+    commit('setLocSelected')
     Cookie.set('locale', localeCode )
+  },
+
+  setAcceptCookies({state, commit}){
+    commit('disableCookieBanner')
+    Cookie.set('acceptCookie', true )
   },
 
 }

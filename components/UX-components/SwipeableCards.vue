@@ -1,24 +1,29 @@
 <template>
 
   
+    <!-- :style="'opacity:0.2'" -->
   <v-layout 
     id="swipeable-cards"
     fill-height
     align-center
-
     justify-center
     wrap
     >
 
     <!-- DEBUG -->
-    <!-- {{ breakPointCode }}<br> -->
-    <!-- {{ windowWidth }}<br> -->
-    
+    <!-- <p class="white--text"> -->
+      <!-- {{ breakPointCode }}<br> -->
+      <!-- {{ windowWidth }}<br> -->
+
+      <!-- {{ cardHeigthRatio( secondCardWidth ) }}<br>
+      {{ cardHeigthRatio( thirdCardWidth ) }}<br> -->
+    <!-- </p> -->
+
     <!-- FIRST CARD -->
     <v-flex
       v-if="current"
       :class="`card card--one full-height fixed fixed--center ${ isVisible ? 'transition' :'' }`"
-      :style="`z-index: 3; width:${ cardWidth( .9 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :style="`z-index: 3; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
       >
 
       <InteractDraggable
@@ -27,10 +32,10 @@
         ref="mainDraggableCard"
         class="full-height"
 
-        :interact-out-of-sight-x-coordinate="700"
+        :interact-out-of-sight-x-coordinate="900"
         :interact-max-rotation="15"
-        :interact-x-threshold="200"
-        :interact-y-threshold="200"
+        :interact-x-threshold="170"
+        :interact-y-threshold="170"
 
         :interact-event-bus-events="interactEventBus"
 
@@ -53,19 +58,24 @@
 
         <CardData
 
-          :itemData="current"
-          
-          :cardHeights="cardHeights"
+          id="current-card"
 
-          :cardWidth="cardWidth( .9 )"
+          :itemData="current"
+          :isFirst="true"
+          :isExport="false"
+          
+          :cardHeights="cardHeights( ratioFirstCard.h )"
+          :cardWidth="cardWidth( ratioFirstCard.w )"
+          :cardColorIndex="getRandomColorIndex( index )"
+
           :breakPoint="this.$vuetify.breakpoint.name"
 
           :isPauseInteractParent="isPauseInteract"
-          :cardWindow="cardWindow"
 
           @needPauseInteract="pauseInteract"
           @click="stopPropagation"
           >
+          <!-- :cardWindow="cardWindow" -->
         </CardData>
 
       </InteractDraggable>
@@ -76,14 +86,18 @@
     <!-- SECOND CARD -->
     <v-flex
       v-if="getNexCard()"
-      class="card card--two fixed fixed--center"
-      :style="`z-index: 2; width:${ cardWidth( .85 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :class="`card card--two fixed fixed--center ${ isVisible ? 'transition_2' :'' }`"
+      :style="`z-index: 2; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
       >
+      <!-- :style="`z-index: 2; width:${ cardWidth( secondCardWidth )}; height:${ cardHeight( cardHeigthRatio( secondCardWidth ) ) }; ${ centerCardStyle }`" -->
       <CardData
         :itemData="getNexCard()"
-        :cardHeights="cardHeights"
-        :cardWindow="cardWindow"
+        :cardHeights="cardHeights( ratioFirstCard.h )"
+        :cardWidth="cardWidth( ratioFirstCard.w )"
+        :cardColorIndex="getRandomColorIndex( index + 1)"
         >
+        <!-- :cardHeights="cardHeights( cardHeigthRatio( secondCardWidth ) )" -->
+        <!-- :cardWindow="cardWindow" -->
       </CardData>
     </v-flex> 
 
@@ -92,13 +106,17 @@
     <v-flex
       v-if="index + 2 < cards.length"
       class="card card--three fixed fixed--center"
-      :style="`z-index: 1; width:${ cardWidth( .8 )}; height:${ cardHeight }; ${ centerCardStyle }`"
+      :style="`z-index: 1; width:${ cardWidth( ratioFirstCard.w )}; height:${ cardHeight( ratioFirstCard.h ) }; ${ centerCardStyle }`"
       >
+      <!-- :style="`z-index: 1; width:${ cardWidth( thirdCardWidth )}; height:${ cardHeight( cardHeigthRatio( thirdCardWidth ) ) }; ${ centerCardStyle }`" -->
       <CardData
         :itemData="{}"
-        :cardHeights="cardHeights"
-        :cardWindow="cardWindow"
+        :cardHeights="cardHeights( ratioFirstCard.h )"
+        :cardWidth="cardWidth( ratioFirstCard.w )"
+        :cardColorIndex="getRandomColorIndex( index + 2)"
         >
+        <!-- :cardHeights="cardHeights( cardHeigthRatio( thirdCardWidth ) )" -->
+        <!-- :cardWindow="cardWindow" -->
       </CardData>
     </v-flex>
 
@@ -139,22 +157,37 @@ import InteractDraggable from '~/components/UX-components/InteractDraggable'
 import { EVENTS, INTERACT_EVENTS } from "~/config/interactEvents.js"
 
 export default {
+
   name: 'SwipeableCards',
+
   components: { 
     CardData,
     InteractDraggable,
     // Vue2InteractDraggable,
   },
+
   props: [
   ],
+  
   mounted: function() {
     console.log("C-SwipeableCards / mounted....")
   },
+  
   data() {
     return {
       
       // UI data
       breakPointCode : undefined,
+      colorIndexMax : 1,
+      colorIndexMin : 8,
+
+      ratioFirstCard : {
+        w : .85,
+        h : 1
+      },
+      secondCardWidth : .8,
+      thirdCardWidth : .75,
+
 
       // cards iteration variables
       isVisible: true,
@@ -177,6 +210,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },
+
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
@@ -194,11 +228,13 @@ export default {
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
       
+      isClicking : state => state.cards.isClicking,
     }),
 
     ...mapGetters({
       cardsLength : 'cards/getCardsArrrayLength',
     }),
+
     current() {
       return this.cards && this.cards[ this.index ]
     },
@@ -206,23 +242,15 @@ export default {
     centerCardStyle() {
       return `top:${ this.cardWindow.height/2 }px; left: ${ (this.cardWindow.width/2) }px;`
     },
-    cardHeight() { 
-      return ( this.cardWindow.height * .75 ) + "px" 
-    },
-    cardHeights() {
-      return {
-        title: ( this.cardWindow.height * .10) + "px",
-        content: ( this.cardWindow.height * .54 ) + "px",
-        more: ( this.cardWindow.height * .12 ) + "px",
-        resources: ( this.cardWindow.height * .39 ) + "px",
-        // footer: ( this.cardWindow.height * .08 ) + "px",
-      }
-    },
 
     next() {
       return this.cards && this.cards[ this.index + 1 ]
     },
-  
+
+    ratioCards () {
+      return this.ratioFirstCard.w / this.ratioFirstCard.h
+    },
+
     previous() {
       if ( this.index !== 0 ){
         return this.cards && this.cards[ this.index - 1 ]
@@ -231,6 +259,7 @@ export default {
       }
     },
   },
+
   methods: {
 
     handleResize() {
@@ -243,6 +272,29 @@ export default {
 
     },
 
+    cardHeigthRatio( widthPercent ) {
+      return widthPercent / this.ratioCards
+    },
+
+    cardHeight( factor=1 ) { 
+      return ( this.cardWindow.height * factor * .7 ) + "px" 
+    },
+
+    cardHeights( factor=1 ) {
+      return {
+        title: ( this.cardWindow.height * factor * .20) + "px",
+        content: ( this.cardWindow.height * factor * .39 ) + "px",
+        more: ( this.cardWindow.height * factor * .12 ) + "px",
+        resources: ( this.cardWindow.height * factor * .24 ) + "px",
+        // footer: ( this.cardWindow.height * factor * .08 ) + "px",
+      }
+    },
+
+    getRandomColorIndex( cardIndex ){
+      return cardIndex % 8
+      // return Math.floor(Math.random() * (this.colorIndexMax - this.colorIndexMin + 1) + this.colorIndexMin)
+    },
+
     getClickSignal(event){
       console.log("C-SwipeableCards-getClickSignal / event : ", event )
       e.stopImmediatePropagation()
@@ -251,10 +303,12 @@ export default {
     },
 
     ...mapMutations({
-      setCurrentDsId: 'cards/setCurrentDsId',
-      setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
-      setCurrentCardId: 'cards/setCurrentCardId',
+      // setCurrentDsId: 'cards/setCurrentDsId',
+      // setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
+      // setCurrentCardId: 'cards/setCurrentCardId',
       setCurrentCardIndex: 'cards/setCurrentCardIndex',
+      setIsClicking: 'cards/setIsClicking',
+      setHadClick: 'cards/setHadClick',
     }),
 
     // compute card width
@@ -266,8 +320,8 @@ export default {
         case 'xs': return Math.round(( widthPercent * this.cardWindow.width )) + 'px'
         case 'sm': return Math.round(( ( widthPercent - (step * 4) ) * this.cardWindow.width )) + 'px'
         case 'md': return Math.round(( ( widthPercent - (step * 5) ) * this.cardWindow.width )) + 'px'
-        case 'lg': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
-        case 'xl': return Math.round(( ( widthPercent - (step * 7) ) * this.cardWindow.width )) + 'px'
+        case 'lg': return Math.round(( ( widthPercent - (step * 5.5) ) * this.cardWindow.width )) + 'px'
+        case 'xl': return Math.round(( ( widthPercent - (step * 6) ) * this.cardWindow.width )) + 'px'
       }
     },
     getNexCard(){
@@ -346,7 +400,7 @@ export default {
         
         // let newPreviousIndex = newIndex - 1 
         // reset deck if no more cards
-        if ( newIndex >= this.cardsLength - 1  ){
+        if ( newIndex >= this.cardsLength  ){
           // this.index = 0
           this.setCurrentCardIndex( 0 )
         } 
@@ -407,79 +461,101 @@ export default {
 
 <style lang="scss" scoped>
 
-.full-height{
-  height: 100%;
-}
+  .full-height{
+    height: 100%;
+  }
 
-.fixed {
-  position: fixed;
-  // &--center {
-  //   top: 357px;
-  //   left: 199px; 
-  //   // left: 50%;
-  //   // top: 50%;
-  //   // transform: translate(-50%, -50%);
-  // }
-}
+  .fixed {
+    position: fixed;
+    // &--center {
+    //   top: 357px;
+    //   left: 199px; 
+    //   // left: 50%;
+    //   // top: 50%;
+    //   // transform: translate(-50%, -50%);
+    // }
+  }
 
-.card {
-  // height: 70vh;
-  // height: 85%;
-  // color: black;
-  // img {
-    //   object-fit: cover;
-  //   display: block;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-  &--one {
-    // width: 80vw;
-    // width: 100%;
-    transform: translate(-50%, -60%);
-    // background: rgba(white, 1);
-    // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  .card {
+    // height: 70vh;
+    // height: 85%;
+    // color: black;
+    // img {
+      //   object-fit: cover;
+    //   display: block;
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    &--one {
+      // width: 80vw;
+      // width: 100%;
+      transform: translate(-50%, -56%);
+      // background: rgba(white, 1);
+      // box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 1px rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    }
+    &--two {
+      // width: 78vw;
+      // width: 85%;
+      // background: rgba(white, .9);
+      // transform: translate(-48%, -48%);
+      // transform: scale(1, .8);
+      transform: rotate(-2deg) translate(-52%, -54%);
+      // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
+    }
+    &--three {
+      // width: 76vw;
+      // width: 80%;
+      // background: rgba(white, .8);
+      // transform: translate(-46%, -46%);
+      // transform: scale(1, .6);
+      transform: rotate(5deg) translate(-56%, -49%);
+      // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
+    }
+    // .text {
+    //   position: absolute;
+    //   bottom: 0;
+    //   width: 100%;
+    //   background:black;
+    //   background:rgba(0,0,0,0.5);
+    //   border-bottom-right-radius: 12px;
+    //   border-bottom-left-radius: 12px;
+    //   text-indent: 20px;
+    //   span {
+    //     font-weight: normal;
+    //   }
+    // }
   }
-  &--two {
-    // width: 78vw;
-    // width: 85%;
-    // background: rgba(white, .9);
-    // transform: translate(-48%, -48%);
-    // transform: scale(1, .8);
-    transform: translate(-50%, -57%);
-    // box-shadow: 0 6px 6px -3px rgba(0,0,0,.2), 0 10px 14px 1px rgba(0,0,0,.14), 0 4px 18px 3px rgba(0,0,0,.12);
+  .transition {
+    animation: appear 300ms ease-in-out;
   }
-  &--three {
-    // width: 76vw;
-    // width: 80%;
-    // background: rgba(white, .8);
-    // transform: translate(-46%, -46%);
-    // transform: scale(1, .6);
-    transform: translate(-50%, -54%);
-    // box-shadow: 0 10px 13px -6px rgba(0,0,0,.2), 0 20px 31px 3px rgba(0,0,0,.14), 0 8px 38px 7px rgba(0,0,0,.12);
+  .transition_2 {
+    animation: appear_2 300ms ease-in-out;
   }
-  // .text {
-  //   position: absolute;
-  //   bottom: 0;
-  //   width: 100%;
-  //   background:black;
-  //   background:rgba(0,0,0,0.5);
-  //   border-bottom-right-radius: 12px;
-  //   border-bottom-left-radius: 12px;
-  //   text-indent: 20px;
-  //   span {
-  //     font-weight: normal;
-  //   }
-  // }
-}
-.transition {
-  animation: appear 300ms ease-in-out;
-}
-@keyframes appear {
-  from {
-    transform : translate(-50%, -57%) scaleX(.85) ;
+  @keyframes appear {
+    from {
+      // transform : scaleX(.9411) ;
+      // transform : translate(-50%, -50%) scale(.9411) ;
+      transform : rotate(-2deg) translate(-52%, -54%)  ;
+      // transform : translate(-50%, -57%) ;
+    }
+    to {
+      // transform: translate(-50%, -56%) scale(1) ;
+      transform: translate(-50%, -56%) ;
+      // transform: translate(-50%, -60%) ;
+    }
   }
-  to {
-    transform: translate(-50%, -60%) scaleX(.9);
+  @keyframes appear_2 {
+    from {
+      // transform : scaleX(.9411) ;
+      // transform : translate(-50%, -50%) scale(.9411) ;
+      transform : rotate(5deg) translate(-56%, -49%)  ;
+      // transform : translate(-50%, -57%) ;
+    }
+    to {
+      // transform: translate(-50%, -56%) scale(1) ;
+      transform: rotate(-2deg) translate(-52%, -54%) ;
+      // transform: translate(-50%, -60%) ;
+    }
   }
-}
+
 </style>

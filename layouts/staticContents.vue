@@ -1,6 +1,6 @@
 <template>
   <v-app
-    class="no-scroll"
+    class="no-scroll white-background fullscreen-div"
     >
     <!-- class="splashscreen-gradient" -->
 
@@ -8,19 +8,30 @@
     <Navbar>
     </Navbar>
 
-    <v-layout fill-height>
+    <v-layout
+      justify-center
+      mt-5
+      >
+      <img 
+        v-if="locSelected"
+        height="60px"
+        src="/icons/logo-afd-color.svg" />
+    </v-layout>
 
-      <!-- CONTENTS -->
+    <!-- CONTENTS -->
+    <v-layout fill-height>
       <v-content>
-        <v-container fill-height>
+        <v-container>
           <nuxt />
         </v-container>
       </v-content>
-
     </v-layout>
 
     <!-- FOOTER CONTENTS -->
-    <FooterAbout/>
+    <!-- <FooterAbout/> -->
+
+    <!-- COOKIES BANNER -->
+    <CookiesBanner/>
 
   </v-app>
 </template>
@@ -31,6 +42,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Navbar from '~/components/NAV-components/navbar.vue'
 import FooterAbout from '~/components/NAV-components/footer-about'
+import CookiesBanner from '~/components/NAV-components/cookies-banner.vue'
 
 export default {
 
@@ -38,7 +50,8 @@ export default {
   
   components: {
     Navbar,
-    FooterAbout
+    FooterAbout,
+    CookiesBanner
   },
 
   props: [

@@ -23,7 +23,7 @@ export default function ({ req, store, app, redirect }) {
 
   let cookieLocale = parsed.locale
   if ( cookieLocale ){
-    // console.log('-MW-checkCookieLocale / cookieLocale :', cookieLocale)
+    console.log('-MW-checkCookieLocale / cookieLocale :', cookieLocale)
     store.dispatch('setLocaleCookie', cookieLocale)
   }
 }

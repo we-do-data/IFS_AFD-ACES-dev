@@ -54,6 +54,30 @@ export const DataContentFields = Object.freeze([
         fr: "rsc-03-title",
         trimLimit : 25,
       },
+      {
+        itemAppFieldCode : "link_04_url", 
+        en: "rsc-04-url",
+        fr: "rsc-04-url",
+        trimLimit : false,
+      },
+      {
+        itemAppFieldCode : "link_04_text", 
+        en: "rsc-04-title",
+        fr: "rsc-04-title",
+        trimLimit : 25,
+      },
+      {
+        itemAppFieldCode : "link_05_url", 
+        en: "rsc-05-url",
+        fr: "rsc-05-url",
+        trimLimit : false,
+      },
+      {
+        itemAppFieldCode : "link_05_text", 
+        en: "rsc-05-title",
+        fr: "rsc-05-title",
+        trimLimit : 25,
+      },
 
     ]
   }
@@ -67,6 +91,8 @@ export const CardResourcesFields = Object.freeze([
       { textFieldCode: 'rsc-01-title', linkFieldCode: 'rsc-01-url' },
       { textFieldCode: 'rsc-02-title', linkFieldCode: 'rsc-02-url' },
       { textFieldCode: 'rsc-03-title', linkFieldCode: 'rsc-03-url' },
+      { textFieldCode: 'rsc-04-title', linkFieldCode: 'rsc-04-url' },
+      { textFieldCode: 'rsc-05-title', linkFieldCode: 'rsc-05-url' },
     ]
   },
 ])
