@@ -1,6 +1,9 @@
 # ACES CARDS 
 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c2012768-10f5-49a3-9ad1-2c988715eac4/deploy-status)](https://app.netlify.com/sites/playwithtransitions-debug-preprod/deploys)
+
+
 ## Goal
 
 Display quotes as cards (aka "ACES" cards) 
