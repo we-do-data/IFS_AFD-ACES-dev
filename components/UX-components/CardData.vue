@@ -82,9 +82,9 @@
 
         </v-card-title>
 
-
             <!-- v-show="!findMoreActive" -->
             <!-- :class="`${ findMoreActive ? '' : '' }`" -->
+
         <!-- TEXT CONTENTS -->
         <!-- <transition name="fadeit"> -->
         <v-layout 
@@ -110,9 +110,11 @@
               <!-- locale (store) : {{ locale }}<br> -->
               <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
               <!-- device : <code>{{ $device }}</code><br> -->
+              <!-- this.$device.isMobileOrTablet : <code>{{ this.$device.isMobileOrTablet }}</code><br> -->
+              <!-- isClicking : <code>{{ isClicking }}</code><br> -->
+              <!-- hadClick : <code>{{ hadClick }}</code><br> -->
               <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
               <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
-              <!-- this.$device.isMobileOrTablet : {{ this.$device.isMobileOrTablet }}<br> -->
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
               <!-- content length : {{ itemData && getContentLength('mainContent') }}<br> -->
               <!-- quoteClass('mainContent') : {{ itemData && quoteClass('mainContent') }}<br> -->
@@ -399,8 +401,9 @@
                 :class="`card-button ${ hover ? 'pink lighten-5' : 'white'} second-border`"
                 icon
                 flat
-                @click.prevent.stop="switchFavorite()"
+                @click.prevent="switchFavorite()"
                 >
+                <!-- @click.prevent.stop="switchFavorite()" -->
 
                   <!-- :color="isFavorite ? 'pink' : 'grey' " -->
                 <v-icon
@@ -435,7 +438,7 @@
 var cookieparser = require('cookieparser')
 import Cookie from 'js-cookie'
 
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 import interact from 'interact.js'
 import { InteractEventBus } from 'vue2-interact'
@@ -513,6 +516,9 @@ export default {
       // itemIdField : state => state.users.itemIdField,
       favorites : state => state.users.favorites,
 
+      isClicking : state => state.cards.isClicking,
+      hadClick : state => state.cards.hadClick,
+
     }),
 
     ...mapGetters({
@@ -587,6 +593,9 @@ export default {
   },
   methods: {
 
+    ...mapMutations({
+      setIsClicking: 'cards/setIsClicking',
+    }),
 
     // compute logo height
     quoteClass( fieldCode ) {
@@ -659,8 +668,7 @@ export default {
         dsId : this.dsId,
         idField : this.idField
       }
-      // this.$store.dispatch('users/switchFavorite', this.cardData)
-      this.$store.dispatch('users/switchFavorite', payload )
+      // this.$store.dispatch('users/switchFavorite', payload )
       
     },
 

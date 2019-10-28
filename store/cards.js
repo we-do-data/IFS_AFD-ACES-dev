@@ -7,6 +7,9 @@ export const state = () => ({
 
   currentCardIndex : 0,
 
+  isClicking : undefined,
+  hadClick : false,
+
 })
 
 export const getters = {
@@ -52,6 +55,15 @@ export const mutations = {
     } else {
       state.currentCardIndex = requestedIndex
     }
+  },
+
+  setIsClicking(state, isClick){
+    console.log("S-cards-M-setIsClicking / isClick : ", isClick )
+    state.isClicking = isClick
+  },
+  setHadClick(state){
+    console.log("S-cards-M-setHadClick ..." )
+    state.hadClick = !state.hadClick
   },
 
 }

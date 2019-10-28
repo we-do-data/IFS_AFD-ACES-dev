@@ -228,6 +228,7 @@ export default {
       cardId : state => state.cards.currentCardId,
       index : state => state.cards.currentCardIndex,
       
+      isClicking : state => state.cards.isClicking,
     }),
 
     ...mapGetters({
@@ -302,10 +303,12 @@ export default {
     },
 
     ...mapMutations({
-      setCurrentDsId: 'cards/setCurrentDsId',
-      setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
-      setCurrentCardId: 'cards/setCurrentCardId',
+      // setCurrentDsId: 'cards/setCurrentDsId',
+      // setCurrentCardsArrray: 'cards/setCurrentCardsArrray',
+      // setCurrentCardId: 'cards/setCurrentCardId',
       setCurrentCardIndex: 'cards/setCurrentCardIndex',
+      setIsClicking: 'cards/setIsClicking',
+      setHadClick: 'cards/setHadClick',
     }),
 
     // compute card width
