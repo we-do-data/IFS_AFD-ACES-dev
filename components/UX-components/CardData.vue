@@ -401,8 +401,9 @@
                 :class="`card-button ${ hover ? 'pink lighten-5' : 'white'} second-border`"
                 icon
                 flat
-                @click.prevent.stop="switchFavorite()"
+                @click.prevent="switchFavorite()"
                 >
+                <!-- @click.prevent.stop="switchFavorite()" -->
 
                   <!-- :color="isFavorite ? 'pink' : 'grey' " -->
                 <v-icon
@@ -667,8 +668,7 @@ export default {
         dsId : this.dsId,
         idField : this.idField
       }
-      // this.$store.dispatch('users/switchFavorite', this.cardData)
-      this.$store.dispatch('users/switchFavorite', payload )
+      // this.$store.dispatch('users/switchFavorite', payload )
       
     },
 

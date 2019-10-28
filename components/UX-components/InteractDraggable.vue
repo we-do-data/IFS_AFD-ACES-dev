@@ -25,6 +25,7 @@ export default {
   name: 'InteractDraggable',
 
   props: {
+    
     interactBlockDragDown: {
       type: Boolean,
       default: false,
@@ -109,8 +110,25 @@ export default {
       log : state => state.log, 
       locale : state => state.locale,
 
+      dsId : state => state.cards.currentDsId,
+      cards : state => state.cards.currentCardsArrray,
+      cardId : state => state.cards.currentCardId,
+      index : state => state.cards.currentCardIndex,
+
       isClicking : state => state.cards.isClicking,
 
+    }),
+
+    current() {
+      return this.cards && this.cards[ this.index ]
+    },
+
+    ...mapGetters({
+      // favorites : 'users/getFavorites',
+      currentIdField: 'data/getCurrentIdField',
+      getContentField: 'data/getContentField',
+      getCardResourcesFields: 'data/getCardResourcesFields',
+      isInFavorites: 'users/isInFavorites',
     }),
 
     interactTransformString() {
@@ -146,6 +164,12 @@ export default {
     const element = this.$refs.interactElement
 
     let IsMobileOrTablet = this.$device.isMobileOrTablet
+
+    let payload = {
+      item : this.current,
+      dsId : this.dsId,
+      idField : this.currentIdField( this.dsId )
+    }
 
     interact(element).draggable({
 
@@ -190,24 +214,42 @@ export default {
     })
 
     .on('tap', function(event) {
-      if ( IsMobileOrTablet ){
-        event.preventDefault()
+
+      console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
+      let eventClasses = event.target.classList.contains('card-button')
+
+
+      // this.$store.dispatch('users/switchFavorite', payload )
+
+      if ( IsMobileOrTablet && eventClasses ){
+        console.log('C-InteractDraggable-on-tap / payload  : ', payload )
+        console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
         event.stopImmediatePropagation()
+        event.preventDefault()
         setClicking( 'interactDraggable / tap' )
         setHadClick()
-        console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
-        event.target.__vue__.$el.click()
+
+        store.dispatch('users/switchFavorite', payload )
+        // event.target.__vue__.$el.click()
       }
     }, true )
 
     .on('click', function(event) {
-      if ( !IsMobileOrTablet ){
+
+      console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
+      let eventClasses = event.target.classList.contains('card-button')
+
+
+      if ( !IsMobileOrTablet && eventClasses ){
+        console.log('C-InteractDraggable-on-tap / payload  : ', payload )
         console.log('C-InteractDraggable-on-click / event.target : ', event.target)
-        event.preventDefault()
         event.stopImmediatePropagation()
+        event.preventDefault()
         setClicking( 'interactDraggable / click' )
         setHadClick()
-        event.target.__vue__.$el.click()
+        
+        store.dispatch('users/switchFavorite', payload )
+        // event.target.__vue__.$el.click()
       }
     }, true )
 
