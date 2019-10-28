@@ -110,9 +110,9 @@
               <!-- locale (store) : {{ locale }}<br> -->
               <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
               <!-- device : <code>{{ $device }}</code><br> -->
-              this.$device.isMobileOrTablet : <code>{{ this.$device.isMobileOrTablet }}</code><br>
-              isClicking : <code>{{ isClicking }}</code><br>
-              hadClick : <code>{{ hadClick }}</code><br>
+              <!-- this.$device.isMobileOrTablet : <code>{{ this.$device.isMobileOrTablet }}</code><br> -->
+              <!-- isClicking : <code>{{ isClicking }}</code><br> -->
+              <!-- hadClick : <code>{{ hadClick }}</code><br> -->
               <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
               <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
               <!-- this.isExport  : {{ this.isExport  }}<br> -->
