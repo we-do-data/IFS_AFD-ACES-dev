@@ -13,6 +13,8 @@
 
 <script>
 
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
 import interact from 'interact.js'
 
 // import InteractEventBus from './interactEventBus.js'
@@ -102,6 +104,15 @@ export default {
   },
 
   computed: {
+
+    ...mapState({
+      log : state => state.log, 
+      locale : state => state.locale,
+
+      isClicking : state => state.cards.isClicking,
+
+    }),
+
     interactTransformString() {
       if (!this.interactIsAnimating || this.interactDragged) {
         const { x, y, rotation } = this.interactPosition;
@@ -125,8 +136,11 @@ export default {
   },
 
   mounted() {
-    
+
     this.interactSetEventBusEvents();
+
+    let store = this.$store
+    let setClicking = this.setIsClicking
 
     const element = this.$refs.interactElement
 
@@ -173,7 +187,10 @@ export default {
       },
 
     })
+
     .on('tap', function(event) {
+      // store.commit( 'cards/setIsClicking', 'interactDraggable / tap' )
+      setClicking( 'interactDraggable / tap' )
       if ( IsMobileOrTablet ){
         event.preventDefault()
         event.stopImmediatePropagation()
@@ -182,12 +199,15 @@ export default {
       }
     }, true )
 
-    // .on('click', function(event) {
-    //   event.preventDefault()
-    //   event.stopImmediatePropagation()
-    //   console.log('C-InteractDraggable-on-click / event.target : ', event.target)
-    //   event.target.__vue__.$el.click()
-    // }, true )
+    .on('click', function(event) {
+      // store.commit( 'cards/setIsClicking', 'interactDraggable / click' )
+      setClicking( 'interactDraggable / click' )
+      event.preventDefault()
+      event.stopImmediatePropagation()
+      console.log('C-InteractDraggable-on-click / event.target : ', event.target)
+      event.target.__vue__.$el.click()
+    }, true )
+
   },
 
   beforeDestroy() {
@@ -196,6 +216,10 @@ export default {
   },
 
   methods: {
+
+    ...mapMutations({
+      setIsClicking: 'cards/setIsClicking',
+    }),
 
     interactClick() {
       this.$emit('clickDraggableBtn', event);

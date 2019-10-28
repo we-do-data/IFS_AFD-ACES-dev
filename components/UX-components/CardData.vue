@@ -108,8 +108,9 @@
               <!-- resourcesList : {{ resourcesList }} <br> -->
               <!-- cookieContent : {{ cookieContent.locale }} <br> -->
               <!-- locale (store) : {{ locale }}<br> -->
-              isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br>
+              <!-- isPauseInteractParent : <code>{{ isPauseInteractParent }}</code><br> -->
               <!-- device : <code>{{ $device }}</code><br> -->
+              isClicking : <code>{{ isClicking }}</code><br>
               <!-- isPauseInteract : <code>{{ isPauseInteract }}</code><br> -->
               <!-- d2.08 / triggerFav : <code>{{ triggerFav }}</code><br> -->
               this.$device.isMobileOrTablet : <code>{{ this.$device.isMobileOrTablet }}</code><br>
@@ -435,7 +436,7 @@
 var cookieparser = require('cookieparser')
 import Cookie from 'js-cookie'
 
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 import interact from 'interact.js'
 import { InteractEventBus } from 'vue2-interact'
@@ -513,6 +514,8 @@ export default {
       // itemIdField : state => state.users.itemIdField,
       favorites : state => state.users.favorites,
 
+      isClicking : state => state.cards.isClicking,
+
     }),
 
     ...mapGetters({
@@ -587,6 +590,9 @@ export default {
   },
   methods: {
 
+    ...mapMutations({
+      setIsClicking: 'cards/setIsClicking',
+    }),
 
     // compute logo height
     quoteClass( fieldCode ) {
