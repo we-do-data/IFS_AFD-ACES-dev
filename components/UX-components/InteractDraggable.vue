@@ -191,10 +191,10 @@ export default {
 
     .on('tap', function(event) {
       if ( IsMobileOrTablet ){
-        setClicking( 'interactDraggable / tap' )
-        setHadClick()
         event.preventDefault()
         event.stopImmediatePropagation()
+        setClicking( 'interactDraggable / tap' )
+        setHadClick()
         console.log('C-InteractDraggable-on-tap / event.target : ', event.target)
         event.target.__vue__.$el.click()
       }
@@ -203,9 +203,9 @@ export default {
     .on('click', function(event) {
       if ( !IsMobileOrTablet ){
         console.log('C-InteractDraggable-on-click / event.target : ', event.target)
-        setClicking( 'interactDraggable / click' )
         event.preventDefault()
         event.stopImmediatePropagation()
+        setClicking( 'interactDraggable / click' )
         setHadClick()
         event.target.__vue__.$el.click()
       }

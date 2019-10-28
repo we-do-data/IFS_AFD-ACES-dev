@@ -63,7 +63,7 @@ export const mutations = {
   },
   setHadClick(state){
     console.log("S-cards-M-setHadClick ..." )
-    state.hadClick != state.hadClick
+    state.hadClick = !state.hadClick
   },
 
 }
