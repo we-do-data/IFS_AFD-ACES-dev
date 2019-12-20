@@ -37,14 +37,24 @@
       :maxHeightPercent="maxHeight"
       >
 
-      <h3
+      <!-- <h3
         class="pt-3 primary--text">
         {{ $t( 'about.headline' ) }}
-      </h3>
+      </h3> -->
 
       <p 
         class="pt-4 text-static-contents primary--text">
-        {{ $t( 'about.content' ) }}
+        {{ $t( 'about.content_1' ) }}
+      </p>
+
+      <p 
+        class="pt-4 text-static-contents primary--text">
+        {{ $t( 'about.content_2' ) }}
+      </p>
+  
+      <p 
+        class="pt-4 text-static-contents primary--text">
+        {{ $t( 'about.content_3' ) }}
       </p>
 
     </OverflownContent>

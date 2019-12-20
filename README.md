@@ -27,13 +27,13 @@ In the `.env`file some variables will be converted into arrays or/and objects at
 Usually the logic is the followinng: 
 
 ```bash
-### .env file
+### .env file for instance
 NUXT_ENV_LOCALES=Français:fr:fr-FR,English:en:en-US
 
 # will be converted in the nuxt.config file into : 
-myJsObject = [
-  { myVar1: 'Français', myVar2: 'fr', myVar3: 'fr-FR' },
-  { myVar1: 'English', myVar2: 'en', myVar3: 'en-US' },
+locales = [
+  { name: 'Français', code: 'fr', iso: 'fr-FR', file: 'fr-FR.json' },
+  { name: 'English', code: 'en', iso: 'en-US', file: 'en-US.json' },
 ]
 ```
 
