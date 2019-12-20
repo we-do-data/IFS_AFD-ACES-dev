@@ -1,18 +1,26 @@
 # ACES CARDS 
 
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c2012768-10f5-49a3-9ad1-2c988715eac4/deploy-status)](https://app.netlify.com/sites/playwithtransitions-debug-preprod/deploys)
+----
 
+## Online websites 
+
+#### predrod
+- status : [![Netlify Status](https://api.netlify.com/api/v1/badges/c2012768-10f5-49a3-9ad1-2c988715eac4/deploy-status)](https://app.netlify.com/sites/playwithtransitions-debug-preprod/deploys)
+- online website : [https://playwithtransitions-debug-preprod.netlify.com](https://playwithtransitions-debug-preprod.netlify.com)
+- deployed branch `j_integration_01`
+- [Netlify setup summary](https://app.netlify.com/sites/playwithtransitions-debug-preprod/overview)
+
+---
 
 ## Goal
 
-Display quotes as cards (aka "ACES" cards) 
+Display AFD's quotes as cards (aka "ACES" cards) 
 
-- mobile-fisrt
-
-- agnostically load list of Google Sheet data to the store
-- (option) add list of sheets as correspondance tables
-- (option) add list of sheets as data types references
+- mobile-first ;
+- agnostically load list of Google Sheet data to the Vue's store ;
+- (option) add list of sheets as correspondance tables ;
+- (option) add list of sheets as data types references ;
 - by default the sheet-loads includes : internationalizatin with i18n, cookie-parser...
 
 ------
@@ -100,8 +108,60 @@ $ npm run generate
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 
---------
+------
+## Netlify setup
 
+=> see the general setup summary [here](https://app.netlify.com/sites/playwithtransitions-debug-preprod/settings/general)
+
+
+##### in [`Continuous Deployment`](https://app.netlify.com/sites/playwithtransitions-debug-preprod/settings/deploys#continuous-deployment)
+
+```env
+# Build settings
+
+Repository = github.com/we-do-data/IFS_AFD-ACES-dev
+Base directory = Not set
+Build command = npm run build
+Publish directory = dist
+Deploy log visibility = Logs are public
+
+# Deploy contexts
+
+Production branch = j_integration_01
+Deploy previews = Automatically build deploy previews for all pull requests
+Branch deploys = Deploy only the production branch
+```
+
+##### in [`Environment`](https://app.netlify.com/sites/playwithtransitions-debug-preprod/settings/deploys#environment)
+
+```env
+NUXT_ENV_APP_TITLE=Play With Transitions
+NUXT_ENV_HOST=localhost
+NUXT_ENV_LOCALES=Français:fr:fr-FR,English:en:en-US
+NUXT_ENV_LOCALE_DEFAULT=fr
+NUXT_ENV_PORT_DEV=50060
+NUXT_ENV_PORT_PREPROD=50061
+NUXT_ENV_PORT_PROD=50062
+NUXT_ENV_RUN_MODE=dev
+NUXT_GSHEET_IDS_CORRESP_DICTS=1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA:2:correspondances:categories-code
+NUXT_GSHEET_IDS_DATAS=1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA:1:aces-contents
+NUXT_GSHEET_IDS_DATA_TYPES=1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA:3:my-types:col-title:data-type:is-list:list-separator:lang:key-value-separator
+VUETIFY_accent=#572a99
+VUETIFY_error=#FF5252
+VUETIFY_info=#cbc8d8
+VUETIFY_primary=#2e2265
+VUETIFY_secondary=#de4a5bVUETIFY_success#00BCD4
+VUETIFY_warning=#FFC107
+```
+
+##### in [`Domains`](https://app.netlify.com/sites/playwithtransitions-debug-preprod/settings/domain)
+
+```
+playwithtransitions-debug-preprod.netlify.com
+(Default subdomain)
+```
+
+----- 
 ## Credits
 
 ### client 
@@ -110,10 +170,10 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 
 ### Realisation
 
-- WeDoData
+- [WeDoData](https://www.wedodata.fr)
 
--------
+### Team 
 
-## Author
-
-- Julien Paris
+- Project lead : Brice Terdjman
+- Design : Clément Thorez
+- Code / integration : [Julien Paris](https://github.com/JulienParis)
