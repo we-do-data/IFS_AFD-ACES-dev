@@ -9,8 +9,23 @@
 
   "intro" : {
     "chooseLang" : "Choose your language",
+
     "catchPhrase" : "Use the development ACES cards from AFD to boost your creativity",
-    "getAnAce" : "Get an ACE"
+    "catchPhrase_1" : "Play with ",
+    "catchPhrase_2" : "transitions",
+
+    "pitchPhrase_1" : "Boost your creativity",
+    "pitchPhrase_2" : "on your transition projects",
+
+    "getAnAce" : "Get a card"
+  },
+
+  "banner" : {
+    "bannerMessage" : "This website uses cookies to ensure you the best experience on your mobile",
+    "gotIt" : "Got it",
+    "learnMore" : "Learn more",
+    "bannerInfos" : "playwithtransitions.cards records information in users’ cookies to store favorite cards and improve the use of the application.",
+    "bannerInfosBis" : "By continuing your navigation, you agree to the use of cookies for navigation and audience measurement"
   },
 
   "basicDict" : {
@@ -23,10 +38,11 @@
   },
 
   "drawer": {
-    "homepage"  : "homepage",
-    "favorites"  : "favorites",
-    "about"  : "about",
-    "credits"  : "credits"
+    "homepage" : "homepage",
+    "favorites" : "favorites ACES",
+    "about" : "about",
+    "credits" : "credits",
+    "cards" : "ACES cards"
   },
 
   "footers" : {
@@ -50,6 +66,8 @@
 
   "cards" : {
     "findMore": "find more",
+    "noRessources": "no ressources available",
+    "previous" : "previous",
     "next" : "next"
   },
 
@@ -57,19 +75,29 @@
     "title": "About",
     "headline" : "headline of about page",
     "introduction": "This page is made to give you more informations.",
-    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "content_1" : "Dealing with various and complex challenges, transition actors can sometimes feel stuck in intractable issues. With Playwithtransitions, AFD offers to facilitate their decision-making, in a creative and funny way. Far from giving ready-made solutions, this site offers to ask the right questions so that the solution comes from itself.",
+    "content_2" : "This game is inspired by the principle of 'lateral thinking' theorized by Edward de Bono, which promotes innovation by getting out of the usual thinking pattern, and 'oblique strategies', a card game imagined by Brian Eno and Peter Schmidt, two artists wondering about ways to get around the blockages that can be encountered in a creative process.",
+    "content_3" : "The principle is simple: a card will appear at random, follow the advice written on it and apply it to your problem. Leave your rational mind aside, and let your mind wandering. You can change the question by swiping the card on the side of your screen and deepen all concepts and methodologies by clicking on 'learn more'. Do not hesitate to share this site if it helped you!"
   },
 
   "credits" : {
     "title" : "Credits",
     "headline" : "headline of credits page",
     "introduction" : "This page lists the credits",
-    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "content_1" : "This project has been designed by Institut des Futurs Souhaitables and AFD.",
+    "content_2" : "The website has been designed and developed by WedoData."
   },
 
   "favorites" : {
-    "title" : "Favorites",
+    "title_singular" : "Favorite card",
+    "title_empty" : "No favorite card yet",
+    "title" : "Favorite cards",
     "headline" : "headline of favorites page",
+    "introduction_empty_01" : "Browse the cards,",
+    "introduction_empty_02" : "if you press the 'like' button",
+    "introduction_empty_03" : "your favorite cards will appear here",
     "introduction" : "This page lists your favorite cards"
   },
 
@@ -87,6 +115,10 @@
     "rowsperpage" : "rows per page",
     "of": "of",
     "search" : "search"
+  },
+
+  "socials" : {
+    "message" : "Boost your creativity on your transition projects @AFD_France playwithtransitions.cards"
   }
   
 }

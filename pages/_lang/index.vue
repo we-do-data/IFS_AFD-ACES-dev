@@ -1,167 +1,127 @@
 <template>
-
-  <!-- <v-container
+  <!-- <v-row 
+    id="anim"
+    justify="center"
     > -->
-    
-    <v-layout 
-      class="text-xs-center"
-      align-center 
-      justify-center 
-      >
 
-      <div>
+  <div>
+    <v-layout row wrap align-center justify-center>
 
-        <!-- LOGO -->
-        <p>xxx logo xxx</p>
-
-        <h2> 
-          {{ $t('title.development') }}
-          <b>{{ $t('title.aces') }}</b>
-        </h2>
-
-        <br>
-
-
-        <!-- LOCALE SELECTION -->
-        <div v-show="!locSelected">
-
-          <p>
-            {{ $t('intro.chooseLang') }}
-          </p>
-        
-          <v-btn 
-            v-for="(loc, index) in locales"
-            :key="index"
-            :class="`text-uppercase ${ (loc.code === locale)? '' : 'font-weight-thin' }`"
-            round 
-            color="primary" 
-            dark
-            outline
-            @click="changeLocale(loc, false)"
-            @mouseover="changeLocale(loc, true)"
-            >
-            <!-- :outline="loc.code !== locale " -->
-            {{ loc.code }}
-          </v-btn>
-        
-        </div>
-
-        <!-- GO TO ACES PAGE -->
-        <div  v-show="locSelected">
-
-          <p class="text-uppercase">
-            {{ $t('intro.catchPhrase') }}
-          </p>
-
-          <v-btn 
-            round
-            outline
-            color="primary"
-            :to="(isFirstVisit)? '/about' : '/cards' "
-            >
-            {{ $t('intro.getAnAce')}}
-          </v-btn>
-
-        </div>
-
-      </div>
-
-
-
-
+      <v-flex>
+        <LottieAnim
+          :options="defaultOptions" 
+          :width="currentWindow.width"
+          :height="currentWindow.height" 
+        />
+      </v-flex>
     </v-layout>
 
-  <!-- </v-container> -->
+    <!-- <div>
+      isRedirectTime : <code>{{ isRedirectTime }}</code> <br>
+      isFirstVisit : <code>{{ isFirstVisit }}</code>
+    </div> -->
+
+
+  <!-- </v-row> -->
+  </div>
 
 </template>
 
-
 <script>
 
-import { mapState, mapGetters, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
+  
+  // import Lottie from '~/components/UX-components/Lottie.vue'
 
-import GameCardsStack from '~/components/UX-components/GameCardsStack'
-import BasicTable from '~/components/DATA-components/basic-table'
+  // import LottieAnimation from 'lottie-vuejs' // import lottie-vuejs
+  import LottieAnim from 'vue-lottie' // import lottie-vuejs
+  
+  import * as animationData from '~/assets/_anim-lottie/data.json'
+  // import animationDataTest from "~/assets/_anim-lottie/anim-test.js"
 
-export default {
+  export default {
 
-  name: "MainIndex",
+    name: 'LottiePage',
 
-  components: {
-    BasicTable,
-    GameCardsStack
-  },
+    // transition: 'static',
 
-  middleware : [
-  ],
+    layout : 'empty',
 
-  props: [
-  ],
+    components: {
+      // Lottie,
+      LottieAnim,
+      // LottieAnimation,
+    },
 
-  beforeMount : function(){
-    console.log("P-index / beforeMount....")
-  },
+    created() {
+      window.addEventListener('resize', this.handleResize)
+      this.handleResize()
+    },
+    destroyed() {
+      window.removeEventListener('resize', this.handleResize)
+    },
 
-  data() {
-    return {
-      // locSelected: false,
-    }
-  },
+    beforeMount(){
+      console.log("P-anim_intro / beforeMount....")
+      if ( !this.isFirstVisit ){
+        this.$router.push('/intro')
+      }
+    },
+
+    mounted() {
+      console.log("P-anim_intro / mounted....")
+      // console.log("C-anim_intro / animationData.default : \n", animationData.default)
+      this.redirectToIntro()
+    },
+
+    data() {
+      return {
+        isRedirectTime : false,
+        currentWindow: {
+          width : 0,
+          height : 0,
+        },
+        defaultOptions: { 
+          animationData: animationData.default, 
+          // animationData: animationDataTest, 
+          loop: false 
+        },
+      }
+    },
 
   computed: {
 
     ...mapState({
 
       log : state => state.log, 
-
       isFirstVisit : state => state.firstVisit,
-
-      locale : state => state.locale,
-      locales : state => state.locales,
-      defaultLocale : state => state.defaultLocale,
-      locSelected: state => state.locSelected,
-
-      datasets : state => state.data.datasets,
-      correspondanceDicts : state => state.data.correspondanceDicts,
-      dataTypes : state => state.data.dataTypes,
 
     }),
 
     ...mapGetters({
-
     }),
+
   },
 
-  methods: {
+    methods: {
 
-    changeLocale(loc, hover=true){
-      // console.log("P-index / changeLocale ...")
-      this.$i18n.locale = loc.code
-      this.$store.commit('switchLocale', loc)
-      if (!hover){
-        // this.locSelected = true
-        this.$store.commit('setLocSelected')
-        // this.$router.push('/cards')
-      } 
-      // else {
-      //   this.locSelected = true
-      // }
-    },
+      handleResize() {
+        this.currentWindow = { 
+          width : window.innerWidth,
+          height : window.innerHeight
+        }
+      },
 
-    openRandomCard(){
-      console.log("P-index / openRandomCard ...")
-      
+      redirectToIntro() {
+        console.log("P-anim_intro-redirectToIntro / ..." )
+        setTimeout(() => {
+          console.log("P-anim_intro-redirectToIntro / setTimeout disappear..." );
+          this.isRedirectTime = true ;
+          this.$router.push('/intro')
+        }, 8000)
+        // }, 1000)
+      }
     }
-
-  },
-
-}
-</script>
-
-<style scoped>
-
-  .skip-navbar-more{
-    margin-top: 75px;
+      
   }
-
-</style>
+</script>

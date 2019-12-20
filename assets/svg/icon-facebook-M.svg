@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-facebook-M" data-name="icon-facebook-M" viewBox="0 0 11 20.256">
+      <path id="f" d="M6.9908,19.7562V10.9725H9.9392l.4414-3.4232h-3.39V5.3638c0-.9911.2752-1.6665,1.6965-1.6665L10.5,3.6966V.6349A24.254,24.254,0,0,0,7.8586.5C5.2451.5,3.4559,2.0953,3.4559,5.0249V7.5494H.5v3.4232H3.4559v8.7837Z" fill="none" stroke="#2e2265" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+  <title>icon-facebook-M</title>
+  <use width="11" height="20.2562" transform="translate(12.9686 8.4034)" xlink:href="#icon-facebook-M"/>
+</svg>

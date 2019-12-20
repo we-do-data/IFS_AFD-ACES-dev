@@ -1,49 +1,57 @@
 <template>
     
-  <!-- <v-layout 
-    class="skip-navbar-content"
-    > -->
+  <v-flex 
+    pt-4 mt-4
+    xs10 offset-xs1
+    md8 offset-md2
+    lg6 offset-lg3
+    >
+    
+    <p class="text-xs-center headline light-letter-spacing text-uppercase primary--text font-weight-thin mb-0">
+      {{ $t('credits.title') }}
+    </p>
 
-    <v-flex 
-      xs10 offset-xs1
-      >
-      
-      <h1 class="text-xs-center">
-        {{ $t('credits.title') }}
-      </h1>
-
-      <v-layout justify-center>
-        <v-btn 
-          flat
-          icon
-          color="primary"
-          @click="goBack"
-          >
-          <v-icon>
-            close
-          </v-icon>
-        </v-btn>
-      </v-layout>
-
-      <hr>
-
-      <div
-        class="limited-height"
+    <v-layout justify-center mb-2>
+      <v-btn 
+        flat
+        icon
+        color="primary"
+        @click="goBack"
         >
+        <v-icon>
+          close
+        </v-icon>
+      </v-btn>
+    </v-layout>
 
-        <h3 class="pt-3">
-          {{ $t('credits.headline') }}
-        </h3>
+    <v-divider
+      class="divider-smooth"
+      >
+    </v-divider>
 
-        <p class="pt-4">
-          {{ $t('credits.content') }}
-        </p>
-      
-      </div>
 
-    </v-flex>
+    <OverflownContent
+      :maxHeightPercent="maxHeight"
+      >
 
-  <!-- </v-layout> -->
+      <!-- <h3
+        class="pt-3 primary--text">
+        {{ $t( 'credits.headline' ) }}
+      </h3> -->
+
+      <p 
+        class="pt-4 text-static-contents primary--text">
+        {{ $t( 'credits.content_1' ) }}
+      </p>
+
+      <p 
+        class="text-static-contents primary--text">
+        {{ $t( 'credits.content_2' ) }}
+      </p>
+
+    </OverflownContent>
+
+  </v-flex>
 
 
 </template>
@@ -53,13 +61,20 @@
 
 import { mapState, mapGetters, mapActions } from 'vuex'
 
+import OverflownContent from '~/components/UX-components/overflownContent'
+
 export default {
 
   name: "CreditsPage",
 
   layout : "staticContents",
 
+  transition: 'static',
+  // transition: 'tweakOpacity',
+  // transition: 'fadePage',
+
   components: {
+    OverflownContent,
   },
 
   middleware : [
@@ -72,8 +87,12 @@ export default {
     console.log("P-CreditsPage / beforeMount....")
   },
 
+  mounted : function(){
+  },
+
   data() {
     return {
+      maxHeight: .5,
     }
   },
 
@@ -85,8 +104,9 @@ export default {
     }),
 
     ...mapGetters({
-
     }),
+
+
   },
 
   methods: {
@@ -106,11 +126,6 @@ export default {
 
   .skip-navbar-content{
     margin-top: 200px;
-  }
-
-  .limited-height{
-    max-height: 85vw;
-    overflow-y: auto;
   }
 
 </style>

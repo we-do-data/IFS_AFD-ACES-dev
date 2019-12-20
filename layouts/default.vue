@@ -1,22 +1,33 @@
 <template>
-  <v-app>
+  <!-- <transition name="layout" mode="out-in"> -->
+    <v-app
+      class="no-scroll white-background fullscreen-div"
+      :class="`${ locSelected? '' : 'splashscreen-gradient'}`"
+      >
+      <!-- class="splashscreen-gradient" -->
 
-    <!-- NAVBAR & DRAWERS-->
-    <Navbar>
-    </Navbar>
+      <!-- NAVBAR & DRAWERS-->
+      <Navbar>
+      </Navbar>
 
-    <!-- CONTENTS -->
-    <v-content>
-      <v-container fill-height>
-        <nuxt />
-      </v-container>
-    </v-content>
+      <!-- CONTENTS -->
+      <!-- <v-content> -->
+        <v-container fill-height>
+          <nuxt />
+        </v-container>
+      </v-content>
 
-    <!-- FOOTER INDEX -->
-    <FooterIndex>
-    </FooterIndex>
+      <!-- FOOTER INDEX -->
+      <FooterIndex
+        v-if="!$device.isMobileOrTablet"
+        >
+      </FooterIndex>
 
-  </v-app>
+      <!-- COOKIES BANNER -->
+      <CookiesBanner/>
+
+    </v-app>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -25,6 +36,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 import Navbar from '~/components/NAV-components/navbar.vue'
 import FooterIndex from '~/components/NAV-components/footer-index.vue'
+import CookiesBanner from '~/components/NAV-components/cookies-banner.vue'
 
 export default {
 
@@ -32,7 +44,8 @@ export default {
 
   components: {
     Navbar,
-    FooterIndex
+    FooterIndex,
+    CookiesBanner
   },
 
   props: [

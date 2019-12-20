@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-screenshot-M" data-name="icon-screenshot-M" viewBox="0 0 21 20.324">
+      <polyline points="13.1 0 13.1 6.4 17 6.4 10.5 12.9 4 6.4 7.9 6.4 7.9 0" fill="none" stroke="#2e2265" stroke-linejoin="round"/>
+      <rect x="0.5" y="14.8242" width="20" height="5" rx="2.5" ry="2.5" fill="none" stroke="#2e2265" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+  <title>icon-screenshot-M</title>
+  <use width="21" height="20.3242" transform="translate(8.4958 8.0856)" xlink:href="#icon-screenshot-M"/>
+</svg>
