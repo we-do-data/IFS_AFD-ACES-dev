@@ -48,12 +48,12 @@
       </p>
 
       <p 
-        class="pt-4 text-static-contents primary--text">
+        class="text-static-contents primary--text">
         {{ $t( 'about.content_2' ) }}
       </p>
   
       <p 
-        class="pt-4 text-static-contents primary--text">
+        class="text-static-contents primary--text">
         {{ $t( 'about.content_3' ) }}
       </p>
 

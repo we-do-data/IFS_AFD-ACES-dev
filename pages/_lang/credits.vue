@@ -45,7 +45,7 @@
       </p>
 
       <p 
-        class="pt-4 text-static-contents primary--text">
+        class="text-static-contents primary--text">
         {{ $t( 'credits.content_2' ) }}
       </p>
 
