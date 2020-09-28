@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-arrowRight-S" data-name="icon-arrowRight-S" viewBox="0 0 11 10.721">
+      <path d="M5.222.1734a.5853.5853,0,0,1,.8316,0l4.773,4.77a.5865.5865,0,0,1,0,.8327l-4.773,4.7719a.5853.5853,0,0,1-.8316,0l-.5452-.5452a.5894.5894,0,0,1,.01-.8419L7.6453,6.3426H.5892A.588.588,0,0,1,0,5.7534V4.9678a.588.588,0,0,1,.5892-.5892H7.6453L4.687,1.56a.585.585,0,0,1-.01-.8419Z" fill="#fff"/>
+    </symbol>
+  </defs>
+  <title>icon-arrowRight-S</title>
+  <use width="11" height="10.7213" transform="translate(13.5 13.6394)" xlink:href="#icon-arrowRight-S"/>
+</svg>

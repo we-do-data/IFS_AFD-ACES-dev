@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-next-M" data-name="icon-next-M" viewBox="0 0 8.071 15.142">
+      <polyline points="0.5 0.5 7.571 7.571 0.5 14.642" fill="none" stroke="#2e2265" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+  <title>icon-next-M</title>
+  <use width="8.0711" height="15.1421" transform="translate(15.8112 11.4289)" xlink:href="#icon-next-M"/>
+</svg>

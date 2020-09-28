@@ -1,0 +1,26 @@
+@import './rem.scss';
+@import './fontawesome.scss';
+@import './materialdesignicons.scss';
+@import './materialdesign.scss';
+
+
+@import "./mixins.scss";
+@import "./colors.scss";
+@import "./colors-IFS_AFD.scss";
+@import "./typography.scss";
+@import "./animations.scss";
+
+@import "./transitions.scss";
+
+
+.skip-navbar{
+  padding-top : rem(64px) ;
+}
+.no-scroll{
+  overflow: hidden;
+  position: fixed;
+}
+.fullscreen-div{
+  height: 100%;
+  width: 100%;
+}

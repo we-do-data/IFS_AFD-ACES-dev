@@ -1,0 +1,13 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "AbrilFatface-Regular";
+  src: url("./fonts/AbrilFatface-Regular.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/AbrilFatface-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/AbrilFatface-Regular.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/AbrilFatface-Regular.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/AbrilFatface-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/AbrilFatface-Regular.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/AbrilFatface-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,108 @@
+
+.static-enter{
+}
+.static-enter-active{
+  animation: acrossIn 1s ease-out both;
+}
+.static-enter-to{
+}
+.static-leave{
+}
+.static-leave-active{
+  animation: acrossOut 1s ease-in both;
+}
+.static-leave-to{
+
+}
+@keyframes acrossIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes acrossOut {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+
+.layout-enter-active, .layout-leave-to {
+  transition: opacity .4s;
+}
+.layout-enter, .layout-leave-to {
+  opacity: 0;
+}
+
+
+// .page-enter-active, .page-leave-active {
+//   transition: opacity 1s
+// }
+// .page-enter, .page-leave-active {
+//   opacity: 0
+// }
+
+
+
+.bounce-enter-active {
+  animation: bounce-in 1s;
+}
+// .bounce-leave-active {
+//   animation: bounce-out .5s;
+// }
+@keyframes bounce-in {
+  0% { transform: scale(0) }
+  50% { transform: scale(1.5) }
+  100% { transform: scale(1) }
+}
+@keyframes bounce-out {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.5) }
+  100% { transform: scale(0) }
+}
+
+
+
+.fadepage-enter{
+}
+.fadepage-enter-active{
+  animation: fadeIn 1s ease-out both;
+}
+.fadepage-enter-to{
+}
+.fadepage-leave{
+}
+.fadepage-leave-active{
+  animation: fadeOut 1s ease-in both;
+}
+.fadepage-leave-to{
+
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+

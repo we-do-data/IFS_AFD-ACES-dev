@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="38" viewBox="0 0 38 38">
+  <defs>
+    <symbol id="icon-burger-M" data-name="icon-burger-M" viewBox="0 0 21 11">
+      <g>
+        <line x1="0.5" y1="0.5" x2="20.5" y2="0.5" fill="none" stroke="#2e2265" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="0.5" y1="5.5" x2="20.5" y2="5.5" fill="none" stroke="#2e2265" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="0.5" y1="10.5" x2="20.5" y2="10.5" fill="none" stroke="#2e2265" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </symbol>
+  </defs>
+  <title>icon-burger-M</title>
+  <use width="21" height="11" transform="translate(8.5 13.5)" xlink:href="#icon-burger-M"/>
+</svg>
