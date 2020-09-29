@@ -199,6 +199,7 @@ const gsheetSlug = function (fString) {
   return fKey
 }
 const getSheetName = function (fSheetID, fSheetIndex) {
+  console.log(getSheetName, fSheetID, fSheetIndex)
   // if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
     if (fSheetIndex === '1') {
       return 'data-contents'
