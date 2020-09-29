@@ -200,7 +200,18 @@ const gsheetSlug = function (fString) {
 }
 const getSheetName = function (fSheetID, fSheetIndex) {
   console.log('getSheetName', fSheetID, fSheetIndex)
-  if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
+  //if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
+    /*if (fSheetIndex === '1') {
+      return 'aces-contents'
+    } else if (fSheetIndex === '2') {
+      return 'tags-correspondance'
+    } else if (fSheetIndex === '3') {
+      return 'data-types'
+    } else {
+      console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
+      return null
+    }*/
+  //} else if (fSheetID === '1JYvnZ8sYg9n2Rmfty8xRX7qQZCwVLl7CHoewxaBVbDA') {
     if (fSheetIndex === '1') {
       return 'data-contents'
     } else if (fSheetIndex === '2') {
@@ -211,21 +222,10 @@ const getSheetName = function (fSheetID, fSheetIndex) {
       console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
       return null
     }
-  } else if (fSheetID === '1JYvnZ8sYg9n2Rmfty8xRX7qQZCwVLl7CHoewxaBVbDA') {
-    if (fSheetIndex === '1') {
-      return 'aces-contents'
-    } else if (fSheetIndex === '2') {
-      return 'tags-correspondance'
-    } else if (fSheetIndex === '3') {
-      return 'data-types'
-    } else {
-      console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
-      return null
-    }
-  } else {
+  /*} else {
     console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
     return null
-  }
+  }*/
 }
 // main function to load data frrom GSheet and loading it into the store
 export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined ){
@@ -236,7 +236,7 @@ export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined
     const sheetName = getSheetName(GSheetConfig.gsId, GSheetConfig.sheetNumber)
     // build url from gsheet config object
     // let GSbaseUrl = `https://spreadsheets.google.com/feeds/list/${GSheetConfig.gsId}/${GSheetConfig.sheetNumber}/public/values?alt=json`
-    let GSbaseUrl = `https://sheets.googleapis.com/v4/spreadsheets/${GSheetConfig.gsId}/values/${sheetName}?key=AIzaSyClUXhiJ_n3Vogb46R050xtvJqt26P3J9k`
+    let GSbaseUrl = `https://sheets.googleapis.com/v4/spreadsheets/1JYvnZ8sYg9n2Rmfty8xRX7qQZCwVLl7CHoewxaBVbDA/values/${sheetName}?key=AIzaSyClUXhiJ_n3Vogb46R050xtvJqt26P3J9k`
     console.log('>>> UT-loadGSheet / GSbaseUrl :', GSbaseUrl)
 
     // call Axios
