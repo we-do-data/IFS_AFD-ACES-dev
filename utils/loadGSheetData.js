@@ -1,7 +1,7 @@
 console.log('>>> utils/loadGSheetData... ')
 
 import axios from 'axios'
-// import * as _ from 'lodash'
+import * as _ from 'lodash'
 
 
 // REMAPPER
@@ -177,16 +177,54 @@ export function applyDataTypes ( valueObject, dsTypes ){
 
 } 
 
+const gsheetSlug = function (fString) {
+  let fKey = fString
+  fKey = 'gsx$' + fKey.split('_').join('')
+  fKey = fKey.split(' ').join('')
+  fKey = fKey.split('/').join('')
+  fKey = fKey.toLowerCase()
+  fKey = fKey.replace('(', '')
+  fKey = fKey.replace(')', '')
+  fKey = fKey.replace('?', '')
+  fKey = fKey.split(',').join('')
 
+  fKey = fKey.replace(/[\\]/g, '\\\\')
+  fKey = fKey.replace(/[\"]/g, '\\\"')
+  fKey = fKey.replace(/[\/]/g, '\\/')
+  fKey = fKey.replace(/[\b]/g, '\\b')
+  fKey = fKey.replace(/[\f]/g, '\\f')
+  fKey = fKey.replace(/[\n]/g, '')
+  fKey = fKey.replace(/[\r]/g, '\\r')
+  fKey = fKey.replace(/[\t]/g, '\\t')
+  return fKey
+}
+const getSheetName = function (fSheetID, fSheetIndex) {
+  if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
+    if (fSheetIndex === '1') {
+      return 'data-contents'
+    } else if (fSheetIndex === '2') {
+      return 'tags-correspondance'
+    } else if (fSheetIndex === '3') {
+      return 'data-types'
+    } else {
+      console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
+      return null
+    }
+  } else {
+    console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
+    return null
+  }
+}
 // main function to load data frrom GSheet and loading it into the store
 export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined ){
 
   try {
 
     console.log('>>> UT-loadGSheet / GSheetConfig :', GSheetConfig)
-  
+    const sheetName = getSheetName(GSheetConfig.gsId, GSheetConfig.sheetNumber)
     // build url from gsheet config object
-    let GSbaseUrl = `https://spreadsheets.google.com/feeds/list/${GSheetConfig.gsId}/${GSheetConfig.sheetNumber}/public/values?alt=json`
+    // let GSbaseUrl = `https://spreadsheets.google.com/feeds/list/${GSheetConfig.gsId}/${GSheetConfig.sheetNumber}/public/values?alt=json`
+    let GSbaseUrl = `https://sheets.googleapis.com/v4/spreadsheets/${GSheetConfig.gsId}/values/${sheetName}?key=AIzaSyClUXhiJ_n3Vogb46R050xtvJqt26P3J9k`
     console.log('>>> UT-loadGSheet / GSbaseUrl :', GSbaseUrl)
 
     // call Axios
@@ -194,6 +232,7 @@ export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined
     .then(response => {
 
       console.log('>>> UT-loadGSheet / response :', response)
+      /*
       let GSdata = {
         nameSheet: response.data.feed.title.$t,
         gsId : GSheetConfig.gsId,
@@ -201,6 +240,34 @@ export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined
         dsId : GSheetConfig.dsId,
         dsType: GSheetConfig.datasetType,
         dataRows: remapGSheetData( response.data.feed.entry, GSheetConfig, dataTypes ),
+      }
+      */
+      let dataResponse = response.data
+      const keys = dataResponse.values[0]
+      dataResponse.values.shift()
+      let dataMappedV3ToV4 = {
+        feed: {
+          entry: _.map(dataResponse.values, function (fEntry, fEntryIndex) {
+            let returnedEntry = {}
+            _.each(keys, function (fKey, fKeyIndex) {
+              let keyslug = gsheetSlug(fKey)
+              returnedEntry[keyslug] = {
+                $t: fEntry[fKeyIndex] || ''
+              }
+            })
+            return returnedEntry
+          })
+        }
+      }
+      dataResponse = dataMappedV3ToV4
+      let GSdata = {
+        nameSheet: sheetName,
+        gsId : GSheetConfig.gsId,
+        gsSheetN : GSheetConfig.sheetNumber,
+        dsId : GSheetConfig.dsId,
+        dsType: GSheetConfig.datasetType,
+        dataRows: remapGSheetData( dataResponse.feed.entry, GSheetConfig, dataTypes ),
+        // dataRows: remapGSheetData( response.data.feed.entry, GSheetConfig, dataTypes ),
       }
       GSdata['dataHeaders'] = createDatasetHeaders( GSdata.dataRows[0], dataTypes )
       
