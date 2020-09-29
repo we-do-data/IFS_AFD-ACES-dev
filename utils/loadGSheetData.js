@@ -199,7 +199,7 @@ const gsheetSlug = function (fString) {
   return fKey
 }
 const getSheetName = function (fSheetID, fSheetIndex) {
-  if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
+  // if (fSheetID === '1FcV5ZQAKyx5cZWW7EABTioaRYrs4Jw9ncHjs2ZeVWFA') {
     if (fSheetIndex === '1') {
       return 'data-contents'
     } else if (fSheetIndex === '2') {
@@ -214,7 +214,7 @@ const getSheetName = function (fSheetID, fSheetIndex) {
     console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
     return null
   }
-}
+// }
 // main function to load data frrom GSheet and loading it into the store
 export default async function loadGoogleSheet( GSheetConfig, dataTypes=undefined ){
 
