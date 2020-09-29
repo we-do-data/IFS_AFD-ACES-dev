@@ -211,6 +211,17 @@ const getSheetName = function (fSheetID, fSheetIndex) {
       console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
       return null
     }
+  } else if (fSheetID === '1JYvnZ8sYg9n2Rmfty8xRX7qQZCwVLl7CHoewxaBVbDA') {
+    if (fSheetIndex === '1') {
+      return 'ace-contents'
+    } else if (fSheetIndex === '2') {
+      return 'tags-correspondance'
+    } else if (fSheetIndex === '3') {
+      return 'data-types'
+    } else {
+      console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
+      return null
+    }
   } else {
     console.log('MISSING SHEET NAME MAPPING', fSheetID, fSheetIndex)
     return null
