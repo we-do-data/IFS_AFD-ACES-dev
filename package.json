@@ -24,7 +24,7 @@
     "js-cookie": "^2.2.0",
     "lottie-vuejs": "^0.3.6",
     "material-design-icons-iconfont": "^5.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "nuxt-device-detect": "^1.1.5",
     "nuxt-svg": "^0.1.6",
